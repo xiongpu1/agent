@@ -1,0 +1,57 @@
+{
+  "question": "Milano",
+  "context": "[diagram] result.mmd\n![](images/0.jpg)\n\n\n[diagram] result.mmd\n![](images/0.jpg)\n",
+  "prediction": {
+    "productTitle": "Milano",
+    "features": {
+      "capacity": "待填写",
+      "jets": "待填写",
+      "pumps": "1"
+    },
+    "measurements": "待填写",
+    "premiumFeatures": [
+      "水底灯",
+      "阀带灯",
+      "Logo灯"
+    ],
+    "insulationFeatures": [
+      "玻璃纤维/316不锈钢支架无底板/单底镀锌支架+铝膜",
+      "四面保温",
+      "户外缸单层发泡"
+    ],
+    "extraFeatures": [
+      "光边光面部分喷嘴带灯",
+      "罗浮简配蓝牙+共振喇叭",
+      "单面色/黑橡木网纹钢板聚氨酯裙边",
+      "黑橡木PS转角"
+    ],
+    "Specifications": [
+      {
+        "Cabinet Color": "#ffffff"
+      },
+      {
+        "Shell Color": "#ffffff"
+      },
+      {
+        "Dry Weight": "待填写"
+      },
+      {
+        "Water Capacity": "待填写"
+      },
+      {
+        "Pump": "1个双速2HPLX（美标/单110V/配浅灰过滤器）"
+      },
+      {
+        "Controls": "P68B123+PB562+4KW（带WIFI功能/贝拉乔灰白面板贴纸）"
+      }
+    ],
+    "smartWater": [
+      "臭氧（美标）"
+    ],
+    "images": {
+      "product": "/api/files/manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/images/0.jpg",
+      "background": "/back/back.png"
+    }
+  },
+  "saved_at": "2025-12-25T05:20:04.833506Z"
+}

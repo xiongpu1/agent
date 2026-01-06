@@ -1,0 +1,58 @@
+{
+  "question": "Massern",
+  "context": "[diagram] result.mmd\n\n# Masrren（梅索伦-双区冰水缸）操作工艺 \n\n\n## 一、产品概述： \n\n\n### 1、基础数据： \n\n\n产品规格：2150*2150*1000mm； \n\n\n冰水区座位深度：620mm，底部深度850mm； \n\n\nSPA区座位1深度：585mm，座位2深度640mm，底部深度802mm； \n\n\n产品包装尺寸：2150*2150*1130mm（平放包装）； \n\n\n装箱方式：2个叠装，每个都带托盘，40HQ装10套； \n\n\n产品毛重： 净重： 水容量：spa区820L+冰水区330L \n\n\n### 2、产品配置： \n\n\n<table><tr><td>适合人数</td><td>亚克力</td><td>喷嘴总数</td><td>4.5寸</td><td>3.5寸</td><td>2寸</td><td>1寸</td><td>小喷泉+阀</td><td>调气</td><td>过滤器</td></tr><tr><td>4</td><td>国产<br/>云彩白</td><td>22</td><td>3</td><td>1</td><td>18</td><td>1<br/>(臭氧出口)</td><td>3+1</td><td>2</td><td>2</td></tr><tr><td colspan=\"10\"></td></tr><tr><td>消毒</td><td>水底灯</td><td>控制器</td><td>面板</td><td>循环泵</td><td>水泵</td><td>裙边</td><td>缸体保温</td><td>框架</td><td>缸盖</td></tr><tr><td>1*臭氧</td><td>2</td><td>P68B123<br/>双区特用</td><td>PB565-001</td><td>冰水区：<br/>WE10+热泵</td><td>SPA区：<br/>1*2HP 双速</td><td>聚氨酯</td><td>单泡</td><td>玻璃钢单<br/>底铝架</td><td>64-88<br/>2件</td></tr></table>\n\n\n## 二、工艺操作 \n\n\n### 1、成型注意事项： \n\n\n3.5mm厚国产板材成型后底部拐角偏薄，容易打折，需注意； \n\n\n成型后检查冰水区过滤器、控制面板、冰水区台阶位置是否成型到位，四边侧面不得有冷筋；\n\n[diagram] result.mmd\n![](images/0.jpg)\n  \n\n\n2、铺毡注意事项：  \n\n\n整缸底部偏薄，成型后要先用树脂和表面毡包底，防止鼓包变形；  \n\n\n冰水区大圆底部背面不需要铺毡（因为要裁切掉）；  \n\n![](images/1.jpg)\n  \n\n\n四周木块高度要与安装阀的突起造型高度持平或略高，以免安装支架时阀的突起造型抵住支架；  \n\n![](images/2.jpg)\n",
+  "prediction": {
+    "productTitle": "Massern",
+    "features": {
+      "capacity": "4",
+      "jets": "22",
+      "pumps": "3"
+    },
+    "measurements": "2150\" × 2150\" × 1000\"",
+    "premiumFeatures": [
+      "水底灯",
+      "阀带灯",
+      "缸边灯"
+    ],
+    "insulationFeatures": [
+      "单底支架",
+      "帘子保温",
+      "满泡"
+    ],
+    "extraFeatures": [
+      "灰色钻石旋转喷/标准数量",
+      "带2个共振喇叭底座",
+      "咖啡色生态裙边",
+      "灰色生态转角",
+      "黑色二级台阶"
+    ],
+    "Specifications": [
+      {
+        "Cabinet Color": "#0077be"
+      },
+      {
+        "Shell Color": "#0077be"
+      },
+      {
+        "Dry Weight": "待填写"
+      },
+      {
+        "Water Capacity": "1150 liters"
+      },
+      {
+        "Pump": "1个循环LX+1个单速3HPLX+1个单速1HP"
+      },
+      {
+        "Controls": "YJ-3+K1000+3KW"
+      }
+    ],
+    "smartWater": [
+      "臭氧"
+    ],
+    "images": {
+      "product": "/api/files/manual_ocr_results/Massern_T551E1515CA1CABBCACB2F/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg",
+      "background": "/back/back.png"
+    }
+  },
+  "saved_at": "2025-12-21T15:27:48.531668Z"
+}

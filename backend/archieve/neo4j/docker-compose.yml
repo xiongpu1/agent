@@ -1,0 +1,19 @@
+services:
+  neo4j:
+    image: neo4j:latest
+    volumes:
+        - neo4j-logs:/logs
+        - neo4j-config:/config
+        - neo4j-data:/data
+        - neo4j-plugins:/plugins
+    environment:
+        - NEO4J_AUTH=neo4j/Root@12345678@
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+volumes:
+  neo4j-logs:
+  neo4j-config:
+  neo4j-data:
+  neo4j-plugins:

@@ -1,0 +1,52 @@
+{
+  "productTitle": "Milano",
+  "features": {
+    "capacity": "待填写",
+    "jets": "待填写",
+    "pumps": "1"
+  },
+  "measurements": "待填写",
+  "premiumFeatures": [
+    "Underwater Mood Lighting",
+    "Valve Laser Lighting",
+    "Logo Light"
+  ],
+  "insulationFeatures": [
+    "Fiberglass Bottom Insulation with 316 Stainless Steel Frame and Galvanized Single Bottom Support with Aluminum Foil",
+    "Four-Sided Insulation",
+    "Outdoor Tub Single-Layer Foam Insulation"
+  ],
+  "extraFeatures": [
+    "Black Oak Wood Grain PU Skirt",
+    "Black Oak PS Corner Trim",
+    "Bluetooth Audio System with Resonance Speaker (EU/US Compatible)",
+    "Jets with Lights on Smooth Edge and Smooth Surface Areas"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "待填写"
+    },
+    {
+      "Water Capacity": "待填写"
+    },
+    {
+      "Pump": "1 x Dual-Speed 2HPLX Pump (US Standard / 110V / with Light Gray Filter)"
+    },
+    {
+      "Controls": "P68B123 + PB562 + 4KW (with WIFI Function / Bella Gio Gray-White Panel Sticker)"
+    }
+  ],
+  "smartWater": [
+    "Ozonator (US Standard)"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/manual_1766611570418_d9d84e/products/Milano_1_/Milano_1_/Milano_1_/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}

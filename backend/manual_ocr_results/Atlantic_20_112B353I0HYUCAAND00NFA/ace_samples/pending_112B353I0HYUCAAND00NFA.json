@@ -1,0 +1,60 @@
+{
+  "question": "Atlantic 20",
+  "context": "[diagram] result.mmd\n![](images/0.jpg)\n",
+  "prediction": {
+    "productTitle": "Atlantic 20",
+    "features": {
+      "capacity": "5",
+      "jets": "待填写",
+      "pumps": "4"
+    },
+    "measurements": "待填写",
+    "premiumFeatures": [
+      "水底灯",
+      "阀带灯",
+      "缸边灯",
+      "转角灯",
+      "贝拉乔LOGO灯"
+    ],
+    "insulationFeatures": [
+      "常规支架+全三（底保温）",
+      "四面保温（缸侧保温）",
+      "单层发泡（缸体保温）",
+      "带热泵预装管道（外置加热）"
+    ],
+    "extraFeatures": [
+      "泳池带灯豪配(老款泳池豪配带灯)",
+      "gecko蓝牙(美标)",
+      "灰色/铝板/聚氨酯裙边",
+      "灰色铝转角"
+    ],
+    "Specifications": [
+      {
+        "Cabinet Color": "#ffffff"
+      },
+      {
+        "Shell Color": "#ffffff"
+      },
+      {
+        "Dry Weight": "待填写"
+      },
+      {
+        "Water Capacity": "待填写"
+      },
+      {
+        "Pump": "1个循环LX+2个2.5寸接口单速3HPLX+1个2寸接口单速3HPLX(美标)"
+      },
+      {
+        "Controls": "YJ-3+K1000+4KW(美标)"
+      }
+    ],
+    "smartWater": [
+      "H"
+    ],
+    "images": {
+      "product": "/api/files/manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/images/0.jpg",
+      "background": "/back/back.png"
+    }
+  },
+  "saved_at": "2025-12-25T02:23:14.476025Z"
+}

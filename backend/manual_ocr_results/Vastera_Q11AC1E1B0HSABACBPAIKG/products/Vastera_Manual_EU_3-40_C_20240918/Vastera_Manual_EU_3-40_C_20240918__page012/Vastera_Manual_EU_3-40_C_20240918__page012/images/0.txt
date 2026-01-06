@@ -1,0 +1,1 @@
+深蓝色圆角矩形显示“100 °F”，左侧有电源图标，右侧标注“Preset water temperature °C/°F”及两行点击提示文字。

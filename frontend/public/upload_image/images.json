@@ -1,0 +1,20 @@
+[
+  {
+    "id": "3db849b4-c8ae-4cd4-ad7d-5b2e1699727c",
+    "name": "产品1",
+    "filename": "3db849b4-c8ae-4cd4-ad7d-5b2e1699727c.png",
+    "url": "/upload_image/3db849b4-c8ae-4cd4-ad7d-5b2e1699727c.png"
+  },
+  {
+    "id": "670f1dc5-0296-488a-a9bd-d02bf963ab8b",
+    "name": "产品2",
+    "filename": "670f1dc5-0296-488a-a9bd-d02bf963ab8b.png",
+    "url": "/upload_image/670f1dc5-0296-488a-a9bd-d02bf963ab8b.png"
+  },
+  {
+    "id": "7bea4210-c9f8-497f-818d-ec8e3196a2f7",
+    "name": "产品3",
+    "filename": "7bea4210-c9f8-497f-818d-ec8e3196a2f7.png",
+    "url": "/upload_image/7bea4210-c9f8-497f-818d-ec8e3196a2f7.png"
+  }
+]

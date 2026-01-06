@@ -1,0 +1,85 @@
+{
+  "session_id": "Milano_K28WI5N4Z0HQQLAAYP000A",
+  "product_name": "Milano",
+  "bom_code": "K28WI5N4Z0HQQLAAYP000A",
+  "bom_type": "outdoor",
+  "created_at": "2025-12-25T05:19:46.568948",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "Milano_1_-1766639986568573286",
+      "name": "Milano_1_.jpg",
+      "size": 7880471,
+      "type": "image/jpeg",
+      "path": "manual_uploads/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_.jpg",
+      "url": "/api/files/manual_uploads/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_.jpg",
+      "lastModified": 1766639986568,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 1,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "Milano_1_.jpg",
+      "source_size": 7880471,
+      "source_mime": "image/jpeg",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Milano_1_",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 729876,
+              "url": "/api/files/manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Milano_1_.stdout.md",
+              "path": "manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/Milano_1_.stdout.md",
+              "type": "text/markdown",
+              "size": 426,
+              "url": "/api/files/manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/Milano_1_.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Milano_1_"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Milano_1_"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 957709,
+              "url": "/api/files/manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Milano_1_"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/images/0.txt",
+              "type": "text/plain",
+              "size": 111,
+              "url": "/api/files/manual_ocr_results/Milano_K28WI5N4Z0HQQLAAYP000A/products/Milano_1_/Milano_1_/Milano_1_/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "completed_at": "2025-12-25T05:19:49.521467"
+}

@@ -1,0 +1,54 @@
+{
+  "productTitle": "Madrid",
+  "features": {
+    "capacity": "6",
+    "jets": "待填写",
+    "pumps": "3"
+  },
+  "measurements": "待填写",
+  "premiumFeatures": [
+    "水底灯",
+    "阀带灯",
+    "缸边灯",
+    "转角灯",
+    "贝拉乔logo灯"
+  ],
+  "insulationFeatures": [
+    "全三明治底支架",
+    "四面保温",
+    "户外缸单层发泡"
+  ],
+  "extraFeatures": [
+    "眉毛部分喷嘴带灯气喷改1寸水喷带清扫喷嘴",
+    "普兰简配蓝牙+共振喇叭",
+    "双面色/黑橡木网纹铝板聚氨酯裙边",
+    "灰色铝转角"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "待填写"
+    },
+    {
+      "Water Capacity": "待填写"
+    },
+    {
+      "Pump": "1个循环LX+2个单速3HPLX（美标）"
+    },
+    {
+      "Controls": "YE-5+K1000+4KW(美标/配2-3个泵选用)"
+    }
+  ],
+  "smartWater": [
+    "臭氧（美标）"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}

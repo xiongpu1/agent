@@ -1,0 +1,53 @@
+{
+  "productTitle": "Vastera",
+  "features": {
+    "capacity": "待填写",
+    "jets": "0",
+    "pumps": "3"
+  },
+  "measurements": "待填写",
+  "premiumFeatures": [
+    "水底灯"
+  ],
+  "insulationFeatures": [
+    "玻璃纤维/半三明治底支架",
+    "四面保温板",
+    "SPA区满泡+冰水区满泡",
+    "带Balboa热泵"
+  ],
+  "extraFeatures": [
+    "眉毛喷嘴/标准孔",
+    "普兰简配蓝牙+共振喇叭（美标）",
+    "实木裙边（刷木蜡油）",
+    "黑橡木PS转角",
+    "PS/灰色一级台阶",
+    "黑色防水织布四叠缸盖"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#000000"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "294 lbs"
+    },
+    {
+      "Water Capacity": "79 gallons"
+    },
+    {
+      "Pump": "2个循环泵+1个单速2HPLX"
+    },
+    {
+      "Controls": "Joyonway Touch Screen"
+    }
+  ],
+  "smartWater": [
+    "臭氧（美标）"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}

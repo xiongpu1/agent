@@ -1,0 +1,27 @@
+=====================
+BASE:  torch.Size([1, 256, 1280])
+PATCHES:  torch.Size([6, 100, 1280])
+=====================
+<|ref|>sub_title<|/ref|><|det|>[[65, 50, 449, 80]]<|/det|>
+## Embrace the Revitalizing Chill  
+
+<|ref|>text<|/ref|><|det|>[[66, 120, 920, 195]]<|/det|>
+Experience the invigorating benefits of cold therapy through our innovative Vinterköld product. Cold therapy, also known as cryotherapy, involves subjecting the body to cold temperatures for therapeutic purposes. With its age- old roots and modern applications, this practice offers diverse and remarkable benefits for your well- being:  
+
+<|ref|>text<|/ref|><|det|>[[92, 220, 890, 575]]<|/det|>
+- Reduced Inflammation: Cold therapy is a natural anti-inflammatory. It helps to constrict blood vessels, reducing blood flow to inflamed areas and thereby alleviating swelling and pain. Whether you're recovering from an intense workout or seeking relief from sore muscles, our Vinterköld can provide the cool comfort your body craves.- Faster Recovery: Athletes and fitness enthusiasts often turn to cold therapy to accelerate recovery times. The controlled exposure to cold temperatures promotes quicker muscle repair, reduces muscle soreness, and aids in preventing overexertion.- Increased Circulation: Paradoxically, cold therapy can lead to improved circulation. As the body responds to cold, it works to keep vital organs warm by increasing blood flow to the core. Once you exit the cold environment, this increased blood flow returns to the extremities, promoting better overall circulation.- Enhanced Mental Well-being: Cold therapy is not just about physical benefits; it can positively impact your mental state too. The shock of cold triggers the release of endorphins, which are natural mood lifters. Many people find that cold therapy leaves them feeling refreshed, invigorated, and more mentally focused.- Boosted Immune System: Regular exposure to cold temperatures has been associated with improvements in the immune system. It stimulates the production of immune cells and activates the body's natural defense mechanisms, helping you stay resilient against illness.  
+
+<|ref|>text<|/ref|><|det|>[[95, 606, 895, 658]]<|/det|>
+With a Vinterköld, you can integrate the power of cold therapy seamlessly into your routine. Whether you're looking to enhance your recovery, reduce inflammation, or simply invigorate your senses, the Vinterköld offers a convenient and effective solution.  
+
+<|ref|>text<|/ref|><|det|>[[95, 670, 590, 688]]<|/det|>
+Embrace the chill and unlock a new realm of well- being today.  
+
+<|ref|>image<|/ref|><|det|>[[225, 720, 792, 925]]<|/det|>
+==================================================
+image size:  (1170, 1654)
+valid image tokens:  781
+output texts tokens (valid):  519
+compression ratio:  0.66
+==================================================
+===============save results:===============

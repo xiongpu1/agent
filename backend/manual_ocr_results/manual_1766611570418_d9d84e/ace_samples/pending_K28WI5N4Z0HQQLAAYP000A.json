@@ -1,0 +1,57 @@
+{
+  "question": "Milano",
+  "context": "[diagram] result.mmd\n[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/manual_1766611570418_d9d84e/products/Milano_1_/Milano_1_/Milano_1_/result.mmd\n\n[diagram] result.mmd\n[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/manual_1766611570418_d9d84e/products/Milano_1_/Milano_1_/Milano_1_/result.mmd",
+  "prediction": {
+    "productTitle": "Milano",
+    "features": {
+      "capacity": "2",
+      "jets": "10",
+      "pumps": "1"
+    },
+    "measurements": "70\" × 33\" × 37\"",
+    "premiumFeatures": [
+      "Underwater Mood Lighting",
+      "Valve Light",
+      "Logo Light"
+    ],
+    "insulationFeatures": [
+      "Fiberglass Bottom Insulation with 316 Stainless Steel Frame and Galvanized Single Bottom Support with Aluminum Foil",
+      "Four-Sided Wall Insulation",
+      "Outdoor Single-Layer Foam Body Insulation"
+    ],
+    "extraFeatures": [
+      "Edge Jets with Lighting",
+      "Bluetooth Audio System with Resonance Speaker (EU/US Compatible)",
+      "Black Oak Wood Grain PU Skirt Panel",
+      "Black Oak PS Corner Trim"
+    ],
+    "Specifications": [
+      {
+        "Cabinet Color": "#ffffff"
+      },
+      {
+        "Shell Color": "#ffffff"
+      },
+      {
+        "Dry Weight": "293 lbs"
+      },
+      {
+        "Water Capacity": "79 gallons"
+      },
+      {
+        "Pump": "1 x Dual-Speed 2HPLX Pump (US Standard / 110V / Light Gray Filter)"
+      },
+      {
+        "Controls": "Joyonway Touch Screen"
+      }
+    ],
+    "smartWater": [
+      "Ozonator (US Standard)"
+    ],
+    "images": {
+      "product": "/api/files/manual_ocr_results/manual_1766611570418_d9d84e/products/Milano_1_/Milano_1_/Milano_1_/images/0.jpg",
+      "background": "/back/back.png"
+    }
+  },
+  "saved_at": "2026-01-06T08:50:12.552555Z"
+}

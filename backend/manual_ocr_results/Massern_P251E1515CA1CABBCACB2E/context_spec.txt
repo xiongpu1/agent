@@ -1,0 +1,136 @@
+Extract product specification information from the following context. If某些字段缺失或无法确定，请使用"待填写"作为占位。严格返回 JSON。
+产品配置指令：第1+2位（缸体颜色+开孔配置）：进口芝麻绿+标准孔；第3+4位（喷嘴配置）：灰色钻石旋转喷/标准数量；第5位（电源标准）：220-240V/50Hz欧插（16A）；第6+7位（控制系统）：YJ-3+K1000+3KW；第8+9位（水泵配置）：1个循环LX+1个单速3HPLX+1个单速1HP；第10位（风泵配置）：1个0.9HP加热风泵；第11位（消毒系统）：臭氧；第12位（多媒体）：带2个共振喇叭底座；第13位（灯光配置）：带水底灯+阀带灯+缸边灯；第14位（底保温）：单底支架；第15位（侧保温配置）：帘子保温；第16位（缸体保温）：满泡；第17位（裙边）：咖啡色生态裙边；第18位（转角）：灰色生态转角；第19位（台阶）：黑色二级台阶；第20位（缸盖/缸罩）：灰色加厚90-120缸盖；第21位（外加热/吊杆/划桨/其他配置）：电动进排水+贝拉乔logo灯；第22位（包装）：铁托盘包装（立放）
+产品文件概览（上下文/OCR）：共 54 个文件，全文已在上下文展开
+
+上下文：
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/result.mmd
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/result.mmd
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/result.mmd
+
+[diagram] result.mmd
+# Masrren（梅索伦-双区冰水缸）操作工艺
+
+## 一、产品概述：
+
+### 1、基础数据：
+
+产品规格：2150*2150*1000mm；
+
+冰水区座位深度：620mm，底部深度850mm；
+
+SPA区座位1深度：585mm，座位2深度640mm，底部深度802mm；
+
+产品包装尺寸：2150*2150*1130mm（平放包装）；
+
+装箱方式：2个叠装，每个都带托盘，40HQ装10套；
+
+产品毛重： 净重： 水容量：spa区820L+冰水区330L
+
+### 2、产品配置：
+
+<table><tr><td>适合人数</td><td>亚克力</td><td>喷嘴总数</td><td>4.5寸</td><td>3.5寸</td><td>2寸</td><td>1寸</td><td>小喷泉+阀</td><td>调气</td><td>过滤器</td></tr><tr><td>4</td><td>国产<br/>云彩白</td><td>22</td><td>3</td><td>1</td><td>18</td><td>1<br/>(臭氧出口)</td><td>3+1</td><td>2</td><td>2</td></tr><tr><td colspan="10"></td></tr><tr><td>消毒</td><td>水底灯</td><td>控制器</td><td>面板</td><td>循环泵</td><td>水泵</td><td>裙边</td><td>缸体保温</td><td>框架</td><td>缸盖</td></tr><tr><td>1*臭氧</td><td>2</td><td>P68B123<br/>双区特用</td><td>PB565-001</td><td>冰水区：<br/>WE10+热泵</td><td>SPA区：<br/>1*2HP 双速</td><td>聚氨酯</td><td>单泡</td><td>玻璃钢单<br/>底铝架</td><td>64-88<br/>2件</td></tr></table>
+
+## 二、工艺操作
+
+### 1、成型注意事项：
+
+3.5mm厚国产板材成型后底部拐角偏薄，容易打折，需注意；
+
+成型后检查冰水区过滤器、控制面板、冰水区台阶位置是否成型到位，四边侧面不得有冷筋；
+
+[diagram] result.mmd
+2、铺毡注意事项：
+
+整缸底部偏薄，成型后要先用树脂和表面毡包底，防止鼓包变形；
+
+冰水区大圆底部背面不需要铺毡（因为要裁切掉）；
+
+四周木块高度要与安装阀的突起造型高度持平或略高，以免安装支架时阀的突起造型抵住支架；
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/result.mmd
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/result.mmd
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/result.mmd
+
+[diagram] result.mmd
+# Masrren（梅索伦-双区冰水缸）操作工艺
+
+## 一、产品概述：
+
+### 1、基础数据：
+
+产品规格：2150*2150*1000mm；
+
+冰水区座位深度：620mm，底部深度850mm；
+
+SPA区座位1深度：585mm，座位2深度640mm，底部深度802mm；
+
+产品包装尺寸：2150*2150*1130mm（平放包装）；
+
+装箱方式：2个叠装，每个都带托盘，40HQ装10套；
+
+产品毛重： 净重： 水容量：spa区820L+冰水区330L
+
+### 2、产品配置：
+
+<table><tr><td>适合人数</td><td>亚克力</td><td>喷嘴总数</td><td>4.5寸</td><td>3.5寸</td><td>2寸</td><td>1寸</td><td>小喷泉+阀</td><td>调气</td><td>过滤器</td></tr><tr><td>4</td><td>国产<br/>云彩白</td><td>22</td><td>3</td><td>1</td><td>18</td><td>1<br/>(臭氧出口)</td><td>3+1</td><td>2</td><td>2</td></tr><tr><td colspan="10"></td></tr><tr><td>消毒</td><td>水底灯</td><td>控制器</td><td>面板</td><td>循环泵</td><td>水泵</td><td>裙边</td><td>缸体保温</td><td>框架</td><td>缸盖</td></tr><tr><td>1*臭氧</td><td>2</td><td>P68B123<br/>双区特用</td><td>PB565-001</td><td>冰水区：<br/>WE10+热泵</td><td>SPA区：<br/>1*2HP 双速</td><td>聚氨酯</td><td>单泡</td><td>玻璃钢单<br/>底铝架</td><td>64-88<br/>2件</td></tr></table>
+
+## 二、工艺操作
+
+### 1、成型注意事项：
+
+3.5mm厚国产板材成型后底部拐角偏薄，容易打折，需注意；
+
+成型后检查冰水区过滤器、控制面板、冰水区台阶位置是否成型到位，四边侧面不得有冷筋；
+
+[diagram] result.mmd
+2、铺毡注意事项：
+
+整缸底部偏薄，成型后要先用树脂和表面毡包底，防止鼓包变形；
+
+冰水区大圆底部背面不需要铺毡（因为要裁切掉）；
+
+四周木块高度要与安装阀的突起造型高度持平或略高，以免安装支架时阀的突起造型抵住支架；
+
+
+候选产品图片（请从中选出最适合作为 images.product 的一张）：
+1. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.jpg (image/jpeg)
+   reverse_prompt: 深色环境中，一个圆形浴缸内泛着青绿色光，水面上方有三股细小水流喷出，营造静谧氛围。
+2. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.jpg (image/jpeg)
+   reverse_prompt: 深色背景中，一个带紫色灯光的按摩浴缸内水波荡漾，中央有喷水装置，左侧圆形区域泛蓝光。
+3. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg (image/jpeg)
+   reverse_prompt: 白色按摩浴缸俯视图，内设多个喷水孔、两个黑色盖口及圆形凹槽座位区。
+4. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg (image/jpeg)
+   reverse_prompt: 白色浴缸内标注“重点检查位置”，红色圆圈标出多个区域，包括大圆形凹槽及小孔位。
+5. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.jpg (image/jpeg)
+   reverse_prompt: 白色模具上标有“无需铺毡”及红色叉号，右侧展示其内部绿色结构与管道。
+6. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg (image/jpeg)
+   reverse_prompt: 水泥基座上布满白色管道与阀门，红色标注提示“四周木块垫层高度要与阀的突起位置持平或略高一点，以免支架安装时被抵住”。
+7. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.jpg (image/jpeg)
+   reverse_prompt: 深色环境中，一个圆形浴缸内泛着青绿色光，水面上方有三股细小水流喷出，营造静谧氛围。
+8. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.jpg (image/jpeg)
+   reverse_prompt: 深色背景中，一个带紫色灯光的按摩浴缸内水波荡漾，中央有喷水装置，左侧圆形区域泛蓝光。
+9. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg (image/jpeg)
+   reverse_prompt: 白色按摩浴缸俯视图，内设多个喷水孔、两个黑色盖口及圆形凹槽座位区。
+10. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg (image/jpeg)
+   reverse_prompt: 白色浴缸内标注“重点检查位置”，红色圆圈标出多个区域，包括大圆形凹槽及小孔位。
+11. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.jpg (image/jpeg)
+   reverse_prompt: 白色模具上标有“无需铺毡”及红色叉号，右侧展示其内部绿色结构与管道。
+12. path: /api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg (image/jpeg)
+   reverse_prompt: 水泥基座上布满白色管道与阀门，红色标注提示“四周木块垫层高度要与阀的突起位置持平或略高一点，以免支架安装时被抵住”。
+
+要求：
+- 在 Specifications/字段提取的基础上，若提供了候选产品图片，请选择最能代表产品的图片，将其路径填入 images.product；若无合适图片，保持默认 "/back/product.png"。
+- - 若提供了候选产品图片列表，必须从列表中选择一条路径填入 images.product（不得保留默认或填写列表外路径）。
+- 若列表为空或无候选图片，则使用默认 "/back/product.png"。
+- 若字段无法从上下文确定，请统一填写 "待填写"（不得返回 "未知"/"Unknown"/"N/A" 等）。
+- 仅返回 JSON。若推断到产品称呼，可使用该称呼作为 productTitle；否则使用 "Massern"。

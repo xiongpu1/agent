@@ -1,0 +1,1597 @@
+{
+  "session_id": "Vastera_Q11AC1E1B0HSABACBPAIKG",
+  "product_name": "Vastera",
+  "bom_code": "Q11AC1E1B0HSABACBPAIKG",
+  "bom_type": "iceTub",
+  "created_at": "2025-12-21T16:47:52.512627",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "Vastera_Manual_EU_3-40_C_20240918-1766335672507105409",
+      "name": "Vastera_Manual_EU_3-40_C_20240918.pdf",
+      "size": 1351556,
+      "type": "application/pdf",
+      "path": "manual_uploads/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918.pdf",
+      "url": "/api/files/manual_uploads/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918.pdf",
+      "lastModified": 1766335672507,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 1,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "Vastera_Manual_EU_3-40_C_20240918.pdf",
+      "source_size": 1351556,
+      "source_mime": "application/pdf",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page001",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 157245,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page001.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001.stdout.md",
+              "type": "text/markdown",
+              "size": 496,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page001"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 35,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page001"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 160968,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page001"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/images/0.txt",
+              "type": "text/plain",
+              "size": 162,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page001/Vastera_Manual_EU_3-40_C_20240918__page001/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 2,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page002",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 15621,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page002.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002.stdout.md",
+              "type": "text/markdown",
+              "size": 2903,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page002"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 2215,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page002"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 252518,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page002"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/images/0.txt",
+              "type": "text/plain",
+              "size": 126,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page002/Vastera_Manual_EU_3-40_C_20240918__page002/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 3,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page003",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 12850,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 30957,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 15715,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "3.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/3.jpg",
+              "type": "image/jpeg",
+              "size": 20903,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/3.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page003.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003.stdout.md",
+              "type": "text/markdown",
+              "size": 1130,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page003"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 490,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page003"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 157777,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page003"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/0.txt",
+              "type": "text/plain",
+              "size": 109,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/1.txt",
+              "type": "text/plain",
+              "size": 153,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/2.txt",
+              "type": "text/plain",
+              "size": 118,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "3.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/3.txt",
+              "type": "text/plain",
+              "size": 180,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page003/Vastera_Manual_EU_3-40_C_20240918__page003/images/3.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 4,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page004",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page004.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004.stdout.md",
+              "type": "text/markdown",
+              "size": 958,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page004"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 475,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page004"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 167544,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page004/Vastera_Manual_EU_3-40_C_20240918__page004/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page004"
+            }
+          ]
+        },
+        {
+          "page_number": 5,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page005",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page005.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005.stdout.md",
+              "type": "text/markdown",
+              "size": 2587,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page005"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1649,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page005"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 231572,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page005/Vastera_Manual_EU_3-40_C_20240918__page005/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page005"
+            }
+          ]
+        },
+        {
+          "page_number": 6,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page006",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page006.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006.stdout.md",
+              "type": "text/markdown",
+              "size": 1782,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page006"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 958,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page006"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 156017,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page006/Vastera_Manual_EU_3-40_C_20240918__page006/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page006"
+            }
+          ]
+        },
+        {
+          "page_number": 7,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page007",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page007.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007.stdout.md",
+              "type": "text/markdown",
+              "size": 3253,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page007"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1962,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page007"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 234627,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page007/Vastera_Manual_EU_3-40_C_20240918__page007/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page007"
+            }
+          ]
+        },
+        {
+          "page_number": 8,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page008",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 19625,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 8823,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page008.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008.stdout.md",
+              "type": "text/markdown",
+              "size": 2243,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page008"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1276,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page008"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 175471,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page008"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/0.txt",
+              "type": "text/plain",
+              "size": 182,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/1.txt",
+              "type": "text/plain",
+              "size": 124,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page008/Vastera_Manual_EU_3-40_C_20240918__page008/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 9,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page009",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 13710,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 13994,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page009.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009.stdout.md",
+              "type": "text/markdown",
+              "size": 2719,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page009"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1048,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page009"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 148088,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page009"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/0.txt",
+              "type": "text/plain",
+              "size": 123,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/1.txt",
+              "type": "text/plain",
+              "size": 169,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page009/Vastera_Manual_EU_3-40_C_20240918__page009/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 10,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page010",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 97413,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page010.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010.stdout.md",
+              "type": "text/markdown",
+              "size": 611,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page010"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 94,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page010"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 132673,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page010"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/images/0.txt",
+              "type": "text/plain",
+              "size": 135,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page010/Vastera_Manual_EU_3-40_C_20240918__page010/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 11,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page011",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 26922,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 15054,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 5521,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page011.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011.stdout.md",
+              "type": "text/markdown",
+              "size": 2044,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page011"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 995,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page011"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 168418,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page011"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/0.txt",
+              "type": "text/plain",
+              "size": 142,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/1.txt",
+              "type": "text/plain",
+              "size": 200,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/2.txt",
+              "type": "text/plain",
+              "size": 138,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page011/Vastera_Manual_EU_3-40_C_20240918__page011/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 12,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page012",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 12723,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 6583,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 4420,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "3.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/3.jpg",
+              "type": "image/jpeg",
+              "size": 1952,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/3.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "4.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/4.jpg",
+              "type": "image/jpeg",
+              "size": 2034,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/4.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page012.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012.stdout.md",
+              "type": "text/markdown",
+              "size": 2496,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page012"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1315,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page012"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 184148,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page012"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/0.txt",
+              "type": "text/plain",
+              "size": 147,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/1.txt",
+              "type": "text/plain",
+              "size": 127,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/2.txt",
+              "type": "text/plain",
+              "size": 148,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "3.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/3.txt",
+              "type": "text/plain",
+              "size": 126,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/3.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "4.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/4.txt",
+              "type": "text/plain",
+              "size": 117,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page012/Vastera_Manual_EU_3-40_C_20240918__page012/images/4.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 13,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page013",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 18790,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page013.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013.stdout.md",
+              "type": "text/markdown",
+              "size": 2289,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page013"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1079,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page013"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 186386,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page013"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/images/0.txt",
+              "type": "text/plain",
+              "size": 137,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page013/Vastera_Manual_EU_3-40_C_20240918__page013/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 14,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page014",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page014.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014.stdout.md",
+              "type": "text/markdown",
+              "size": 2516,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page014"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1405,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page014"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 180477,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page014/Vastera_Manual_EU_3-40_C_20240918__page014/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page014"
+            }
+          ]
+        },
+        {
+          "page_number": 15,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page015",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 6625,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 8585,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 6647,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "3.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/3.jpg",
+              "type": "image/jpeg",
+              "size": 8152,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/3.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "4.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/4.jpg",
+              "type": "image/jpeg",
+              "size": 7381,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/4.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "5.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/5.jpg",
+              "type": "image/jpeg",
+              "size": 6002,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/5.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "6.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/6.jpg",
+              "type": "image/jpeg",
+              "size": 11192,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/6.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page015.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015.stdout.md",
+              "type": "text/markdown",
+              "size": 2373,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page015"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 933,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page015"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 173273,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page015"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/0.txt",
+              "type": "text/plain",
+              "size": 126,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/1.txt",
+              "type": "text/plain",
+              "size": 102,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/2.txt",
+              "type": "text/plain",
+              "size": 108,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "3.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/3.txt",
+              "type": "text/plain",
+              "size": 99,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/3.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "4.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/4.txt",
+              "type": "text/plain",
+              "size": 99,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/4.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "5.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/5.txt",
+              "type": "text/plain",
+              "size": 111,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/5.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "6.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/6.txt",
+              "type": "text/plain",
+              "size": 129,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page015/Vastera_Manual_EU_3-40_C_20240918__page015/images/6.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 16,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page016",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 20770,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 7975,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 14339,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page016.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016.stdout.md",
+              "type": "text/markdown",
+              "size": 1433,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page016"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 385,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page016"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 127107,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page016"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/0.txt",
+              "type": "text/plain",
+              "size": 124,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/1.txt",
+              "type": "text/plain",
+              "size": 112,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/2.txt",
+              "type": "text/plain",
+              "size": 132,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page016/Vastera_Manual_EU_3-40_C_20240918__page016/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 17,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page017",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 13119,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 18140,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 19150,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page017.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017.stdout.md",
+              "type": "text/markdown",
+              "size": 1291,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page017"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 463,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page017"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 143603,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page017"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/0.txt",
+              "type": "text/plain",
+              "size": 102,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/1.txt",
+              "type": "text/plain",
+              "size": 174,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/2.txt",
+              "type": "text/plain",
+              "size": 105,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page017/Vastera_Manual_EU_3-40_C_20240918__page017/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 18,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page018",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 8923,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 4479,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page018.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018.stdout.md",
+              "type": "text/markdown",
+              "size": 1831,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page018"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 792,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page018"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 134825,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page018"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/0.txt",
+              "type": "text/plain",
+              "size": 121,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/1.txt",
+              "type": "text/plain",
+              "size": 87,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page018/Vastera_Manual_EU_3-40_C_20240918__page018/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 19,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page019",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 9799,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 9075,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page019.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019.stdout.md",
+              "type": "text/markdown",
+              "size": 2143,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page019"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1064,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page019"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 163476,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page019"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/0.txt",
+              "type": "text/plain",
+              "size": 105,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/1.txt",
+              "type": "text/plain",
+              "size": 129,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page019/Vastera_Manual_EU_3-40_C_20240918__page019/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 20,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page020",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page020.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020.stdout.md",
+              "type": "text/markdown",
+              "size": 2915,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page020"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1687,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page020"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 209366,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page020/Vastera_Manual_EU_3-40_C_20240918__page020/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page020"
+            }
+          ]
+        },
+        {
+          "page_number": 21,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page021",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page021.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021.stdout.md",
+              "type": "text/markdown",
+              "size": 1855,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page021"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 916,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page021"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 131580,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page021/Vastera_Manual_EU_3-40_C_20240918__page021/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page021"
+            }
+          ]
+        },
+        {
+          "page_number": 22,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page022",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 36118,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 36740,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page022.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022.stdout.md",
+              "type": "text/markdown",
+              "size": 1160,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page022"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 377,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page022"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 151760,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page022"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/0.txt",
+              "type": "text/plain",
+              "size": 181,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/1.txt",
+              "type": "text/plain",
+              "size": 153,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page022/Vastera_Manual_EU_3-40_C_20240918__page022/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 23,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page023",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 26750,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 28908,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page023.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023.stdout.md",
+              "type": "text/markdown",
+              "size": 779,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page023"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 219,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page023"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 107988,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page023"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/0.txt",
+              "type": "text/plain",
+              "size": 137,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/1.txt",
+              "type": "text/plain",
+              "size": 116,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page023/Vastera_Manual_EU_3-40_C_20240918__page023/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        },
+        {
+          "page_number": 24,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page024",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page024.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024.stdout.md",
+              "type": "text/markdown",
+              "size": 2685,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page024"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1638,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page024"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 179846,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page024/Vastera_Manual_EU_3-40_C_20240918__page024/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page024"
+            }
+          ]
+        },
+        {
+          "page_number": 25,
+          "image_stem": "Vastera_Manual_EU_3-40_C_20240918__page025",
+          "artifacts": [
+            {
+              "name": "Vastera_Manual_EU_3-40_C_20240918__page025.stdout.md",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025.stdout.md",
+              "type": "text/markdown",
+              "size": 2210,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page025"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1052,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page025"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 138818,
+              "url": "/api/files/manual_ocr_results/Vastera_Q11AC1E1B0HSABACBPAIKG/products/Vastera_Manual_EU_3-40_C_20240918/Vastera_Manual_EU_3-40_C_20240918__page025/Vastera_Manual_EU_3-40_C_20240918__page025/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Vastera_Manual_EU_3-40_C_20240918__page025"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "completed_at": "2025-12-21T16:57:37.023490"
+}

@@ -1,0 +1,55 @@
+{
+  "productTitle": "Massern",
+  "features": {
+    "capacity": "4",
+    "jets": "22",
+    "pumps": "3"
+  },
+  "measurements": "2150\" × 2150\" × 1000\"",
+  "premiumFeatures": [
+    "Underwater Light",
+    "Valve Light",
+    "Edge Light"
+  ],
+  "insulationFeatures": [
+    "Single Bottom Frame",
+    "Curtain Insulation",
+    "Full Foam"
+  ],
+  "extraFeatures": [
+    "Gray Diamond Rotating Jets",
+    "2 Resonance Speaker Bases",
+    "Gray Eco Skirt",
+    "Gray Eco Corner",
+    "Gray Two-Step Curved Step",
+    "Electric Inlet/Drainage",
+    "Bellagio Logo Light"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#c4c4c4"
+    },
+    {
+      "Dry Weight": "待填写"
+    },
+    {
+      "Water Capacity": "1150 liters"
+    },
+    {
+      "Pump": "1个循环LX+1个单速3HPLX+1个单速1HP"
+    },
+    {
+      "Controls": "YJ-3+K1000+3KW"
+    }
+  ],
+  "smartWater": [
+    "Ozonator"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/DSC09930_/DSC09930_/DSC09930_/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}

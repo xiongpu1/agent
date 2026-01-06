@@ -1,0 +1,289 @@
+{
+  "session_id": "Madrid_K39IB3L3P0HSUCAAOD00FE",
+  "product_name": "Madrid",
+  "bom_code": "K39IB3L3P0HSUCAAOD00FE",
+  "bom_type": "outdoor",
+  "created_at": "2025-12-24T08:39:09.888133",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "Madrid_1_-1766565549876198863",
+      "name": "Madrid_1_.png",
+      "size": 6652933,
+      "type": "image/png",
+      "path": "manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_.png",
+      "url": "/api/files/manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_.png",
+      "lastModified": 1766565549876,
+      "previewUrl": ""
+    },
+    {
+      "id": "Madrid_2_-1766565549880198793",
+      "name": "Madrid_2_.png",
+      "size": 6548676,
+      "type": "image/png",
+      "path": "manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_.png",
+      "url": "/api/files/manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_.png",
+      "lastModified": 1766565549880,
+      "previewUrl": ""
+    },
+    {
+      "id": "Madrid_3_-1766565549884198724",
+      "name": "Madrid_3_.jpg",
+      "size": 5014786,
+      "type": "image/jpeg",
+      "path": "manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_.jpg",
+      "url": "/api/files/manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_.jpg",
+      "lastModified": 1766565549884,
+      "previewUrl": ""
+    },
+    {
+      "id": "Madrid_4_-1766565549884198724",
+      "name": "Madrid_4_.jpg",
+      "size": 5040627,
+      "type": "image/jpeg",
+      "path": "manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_.jpg",
+      "url": "/api/files/manual_uploads/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_.jpg",
+      "lastModified": 1766565549884,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 4,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "Madrid_1_.png",
+      "source_size": 6652933,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Madrid_1_",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 365602,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Madrid_1_.stdout.md",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/Madrid_1_.stdout.md",
+              "type": "text/markdown",
+              "size": 424,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/Madrid_1_.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Madrid_1_"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Madrid_1_"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 369936,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Madrid_1_"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/images/0.txt",
+              "type": "text/plain",
+              "size": 159,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_1_/Madrid_1_/Madrid_1_/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "Madrid_2_.png",
+      "source_size": 6548676,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Madrid_2_",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 394710,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Madrid_2_.stdout.md",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/Madrid_2_.stdout.md",
+              "type": "text/markdown",
+              "size": 423,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/Madrid_2_.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Madrid_2_"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Madrid_2_"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 393294,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Madrid_2_"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/images/0.txt",
+              "type": "text/plain",
+              "size": 126,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_2_/Madrid_2_/Madrid_2_/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "Madrid_3_.jpg",
+      "source_size": 5014786,
+      "source_mime": "image/jpeg",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Madrid_3_",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 574215,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Madrid_3_.stdout.md",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/Madrid_3_.stdout.md",
+              "type": "text/markdown",
+              "size": 424,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/Madrid_3_.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Madrid_3_"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Madrid_3_"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 580092,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Madrid_3_"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/images/0.txt",
+              "type": "text/plain",
+              "size": 132,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_3_/Madrid_3_/Madrid_3_/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "Madrid_4_.jpg",
+      "source_size": 5040627,
+      "source_mime": "image/jpeg",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Madrid_4_",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 499517,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Madrid_4_.stdout.md",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/Madrid_4_.stdout.md",
+              "type": "text/markdown",
+              "size": 424,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/Madrid_4_.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Madrid_4_"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Madrid_4_"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 502345,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Madrid_4_"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/images/0.txt",
+              "type": "text/plain",
+              "size": 129,
+              "url": "/api/files/manual_ocr_results/Madrid_K39IB3L3P0HSUCAAOD00FE/products/Madrid_4_/Madrid_4_/Madrid_4_/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "completed_at": "2025-12-24T08:39:16.721957"
+}

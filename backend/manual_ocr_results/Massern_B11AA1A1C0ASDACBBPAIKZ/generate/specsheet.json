@@ -1,0 +1,55 @@
+{
+  "productTitle": "Massern",
+  "features": {
+    "capacity": "4",
+    "jets": "22",
+    "pumps": "1"
+  },
+  "measurements": "2150\" × 2150\" × 1000\"",
+  "premiumFeatures": [
+    "水底灯",
+    "阀带灯",
+    "缸边灯",
+    "转角灯"
+  ],
+  "insulationFeatures": [
+    "单底支架",
+    "电机面保温板",
+    "满泡",
+    "Balboa热泵"
+  ],
+  "extraFeatures": [
+    "眉毛水喷（标准）",
+    "普兰简配蓝牙+共振喇叭（美标）",
+    "柚木色生态裙边",
+    "黑橡木PS转角",
+    "灰色二级台阶"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#000000"
+    },
+    {
+      "Shell Color": "#000000"
+    },
+    {
+      "Dry Weight": "待填写"
+    },
+    {
+      "Water Capacity": "1150 liters"
+    },
+    {
+      "Pump": "1个LX循环系统"
+    },
+    {
+      "Controls": "YJ-2+K300+2KW"
+    }
+  ],
+  "smartWater": [
+    "臭氧"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/Massern_B11AA1A1C0ASDACBBPAIKZ/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}

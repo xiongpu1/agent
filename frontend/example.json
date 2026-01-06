@@ -1,0 +1,20 @@
+{
+    "specsheet": {
+    "productTitle": "Vastera",
+    "features": { "capacity": "1", "jets": "0", "pumps": "2" },
+    "measurements": "70\" × 33\" × 37\"",
+    "premiumFeatures": ["LED Jet Illumination", "Underwater Mood Lighting", "Perimeter & Valve Laser Lighting", "Corner Laser Lighting", "LED Glow Cupholders"],
+    "insulationFeatures": ["Polyfoam Insulation", "Triple-Layered Side Insulation", "Enviro-Seal Base"],
+    "extraFeatures": ["Bluetooth Audio System", "Heater/Chiller Ready"],
+    "Specifications": [
+      {"Cabinet Color": ["#c4c4c4", "#666666"]},
+      {"Shell Color": "#c4c4c4"},
+      {"Dry Weight": "293 lbs"},
+      {"Water Capacity": "79 gallons"},
+      {"Pump": "1 x Chiller"},
+      {"Controls": "Joyonway Touch Screen"}
+    ],
+    "smartWater": ["Ozonator", "Filtration System", "Circulation Pump *"],
+    "images": { "product": "/back/product.png", "background": "/back/back.png" }
+    }
+}

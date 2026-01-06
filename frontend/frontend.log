@@ -1,0 +1,564 @@
+nohup: ignoring input
+
+> multiagent@0.0.0 dev
+> vite --host 0.0.0.0 --port 36963
+
+
+  VITE v6.4.1  ready in 329 ms
+
+  ➜  Local:   http://localhost:36963/
+  ➜  Network: http://10.18.20.167:36963/
+3:48:16 PM [vite] (client) hmr update /src/views/Home.vue
+3:56:15 PM [vite] (client) hmr update /src/views/Home.vue
+4:17:59 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue
+4:18:22 PM [vite] (client) page reload src/router/index.js
+4:18:23 PM [vite] (client) Pre-transform error: Failed to resolve import "@/views/PromptPlaybook.vue" from "src/router/index.js". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/router/index.js:9:29
+  7  |  import ManualReview from '@/views/ManualReview.vue'
+  8  |  import ProductManual from '@/views/ProductManual.vue'
+  9  |  import PromptPlaybook from '@/views/PromptPlaybook.vue'
+     |                              ^
+  10 |  
+  11 |  const routes = [
+4:18:23 PM [vite] Internal server error: Failed to resolve import "@/views/PromptPlaybook.vue" from "src/router/index.js". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/router/index.js:9:29
+  7  |  import ManualReview from '@/views/ManualReview.vue'
+  8  |  import ProductManual from '@/views/ProductManual.vue'
+  9  |  import PromptPlaybook from '@/views/PromptPlaybook.vue'
+     |                              ^
+  10 |  
+  11 |  const routes = [
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+4:19:04 PM [vite] (client) hmr update /src/views/Home.vue
+4:19:04 PM [vite] (client) Pre-transform error: Failed to resolve import "@/views/PromptPlaybook.vue" from "src/router/index.js". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/router/index.js:9:29
+  7  |  import ManualReview from '@/views/ManualReview.vue'
+  8  |  import ProductManual from '@/views/ProductManual.vue'
+  9  |  import PromptPlaybook from '@/views/PromptPlaybook.vue'
+     |                              ^
+  10 |  
+  11 |  const routes = [
+4:19:04 PM [vite] Internal server error: Failed to resolve import "@/views/PromptPlaybook.vue" from "src/router/index.js". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/router/index.js:9:29
+  7  |  import ManualReview from '@/views/ManualReview.vue'
+  8  |  import ProductManual from '@/views/ProductManual.vue'
+  9  |  import PromptPlaybook from '@/views/PromptPlaybook.vue'
+     |                              ^
+  10 |  
+  11 |  const routes = [
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+4:21:01 PM [vite] (client) page reload src/views/PromptPlaybook.vue
+4:21:02 PM [vite] (client) Pre-transform error: At least one <template> or <script> is required in a single file component. /root/workspace/syp/agent/frontend/src/views/PromptPlaybook.vue
+  Plugin: vite:vue
+  File: /root/workspace/syp/agent/frontend/src/views/PromptPlaybook.vue
+4:34:57 PM [vite] (client) hmr update /src/views/Home.vue?vue&type=style&index=0&scoped=2dc54a20&lang.css
+4:36:07 PM [vite] (client) hmr update /src/views/Home.vue
+4:36:51 PM [vite] (client) hmr update /src/views/Home.vue
+9:29:00 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+9:29:00 PM [vite] Internal server error: Attribute name cannot contain U+0022 ("), U+0027 ('), and U+003C (<).
+  Plugin: vite:vue
+  File: /root/workspace/syp/agent/frontend/src/views/PromptPlaybook.vue:20:29
+  18 |          <el-input v-model="productFilter" placeholder="输入产品前缀
+  19 |  
+  20 |        <div class="main-panel">
+     |                               ^
+  21 |          <el-card class="playbook-card">
+  22 |            <template #header>
+      at createCompilerError (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1364:17)
+      at Object.emitError [as onerr] (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2991:5)
+      at Tokenizer.stateInAttrName (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:854:16)
+      at Tokenizer.parse (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1103:16)
+      at Object.baseParse (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3030:13)
+      at Object.parse (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:910:23)
+      at Object.parse$1 [as parse] (/root/workspace/syp/agent/frontend/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1801:24)
+      at createDescriptor (file:///root/workspace/syp/agent/frontend/node_modules/@vitejs/plugin-vue/dist/index.mjs:71:43)
+      at handleHotUpdate (file:///root/workspace/syp/agent/frontend/node_modules/@vitejs/plugin-vue/dist/index.mjs:2198:26)
+      at async handleHMRUpdate (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39242:33)
+9:37:53 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue, /src/views/PromptPlaybook.vue?vue&type=style&index=0&scoped=73648ae0&lang.css
+9:51:37 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+9:56:20 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+9:57:38 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+10:01:30 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+10:06:42 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+10:51:03 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue
+10:52:54 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+11:01:12 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue, /src/views/PromptPlaybook.vue?vue&type=style&index=0&scoped=73648ae0&lang.css
+11:04:19 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+11:04:50 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue, /src/views/PromptPlaybook.vue?vue&type=style&index=0&scoped=73648ae0&lang.css
+11:08:57 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+11:23:52 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+11:24:09 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+11:31:01 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue
+11:31:46 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue, /src/views/PromptPlaybook.vue?vue&type=style&index=0&scoped=73648ae0&lang.css
+11:34:48 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue?vue&type=style&index=0&scoped=73648ae0&lang.css
+11:35:22 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+11:37:09 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue, /src/views/PromptPlaybook.vue?vue&type=style&index=0&scoped=73648ae0&lang.css
+11:41:48 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+12:08:39 AM [vite] http proxy error: /api/products
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+12:08:39 AM [vite] http proxy error: /api/accessories
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+12:08:39 AM [vite] http proxy error: /api/products
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+12:08:39 AM [vite] http proxy error: /api/accessories
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+12:08:39 AM [vite] http proxy error: /api/products
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+12:08:39 AM [vite] http proxy error: /api/products
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+12:08:39 AM [vite] http proxy error: /api/prompt-playbooks?playbook_type=spec
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:08:39 AM [vite] http proxy error: /api/prompt-playbooks/datasets?limit=20
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:08:39 AM [vite] http proxy error: /api/accessories
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:08:59 AM [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:08:59 AM [vite] http proxy error: /api/accessories
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:15:53 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+12:19:47 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+1:28:04 AM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+1:28:04 AM [vite] http proxy error: /api/products
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+1:28:04 AM [vite] http proxy error: /api/accessories
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+1:28:04 AM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+1:28:04 AM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+1:28:04 AM [vite] http proxy error: /api/products
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)
+1:28:04 AM [vite] http proxy error: /api/accessories
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+1:28:04 AM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D/ocr
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+1:52:37 AM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue
+1:54:19 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+2:01:01 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+2:33:32 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+2:42:07 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+2:42:36 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+10:10:26 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+10:27:05 AM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue
+10:27:26 AM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+12:09:53 PM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:09:53 PM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D/ocr
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:09:54 PM [vite] http proxy error: /api/manual-sessions/Massern_O151E1515CA1CABBAAEB2D/progress
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:09:56 PM [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:09:56 PM [vite] http proxy error: /api/accessories
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:09:57 PM [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+12:09:57 PM [vite] http proxy error: /api/accessories
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+6:00:25 PM [vite] (client) hmr update /src/views/Home.vue
+6:01:07 PM [vite] (client) hmr update /src/views/Home.vue
+6:01:21 PM [vite] (client) hmr update /src/views/Home.vue
+6:01:32 PM [vite] (client) hmr update /src/views/Home.vue
+6:08:48 PM [vite] (client) hmr update /src/views/PromptPlaybook.vue
+2:42:47 PM [vite] (client) hmr update /src/views/ProductManual.vue
+3:25:46 PM [vite] (client) hmr update /src/views/ProductManual.vue
+3:25:46 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:25
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { fabric } from 'fabric'
+     |                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:25:46 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:25
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { fabric } from 'fabric'
+     |                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:25:47 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:25
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { fabric } from 'fabric'
+     |                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:26:02 PM [vite] (client) page reload src/views/ProductManual.vue
+3:26:03 PM [vite] (client) Pre-transform error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+3:26:10 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:26:13 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:26:21 PM [vite] (client) page reload src/views/ProductManual.vue
+3:26:22 PM [vite] (client) Pre-transform error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+3:26:30 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:26:32 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:27:23 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:28:19 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:28:25 PM [vite] Internal server error: Failed to resolve import "fabric" from "src/views/ProductManual.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/views/ProductManual.vue:1024:89
+  2  |  import html2canvas from 'html2canvas'
+  3  |  import jsPDF from 'jspdf'
+  4  |  import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage } from 'fabric'
+     |                                                                                          ^
+  5  |  import { useRoute, useRouter } from 'vue-router'
+  6  |  import { Promotion, Picture, Document } from '@element-plus/icons-vue'
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:31:53 PM [vite] (client) ✨ new dependencies optimized: fabric
+3:31:53 PM [vite] (client) ✨ optimized dependencies changed. reloading
+3:35:53 PM [vite] (client) hmr update /src/views/ProductManual.vue
+3:40:43 PM [vite] (client) hmr update /src/views/ProductManual.vue?vue&type=style&index=0&scoped=7db57eb8&lang.css
+3:47:30 PM [vite] (client) hmr update /src/views/ProductManual.vue
+3:48:45 PM [vite] (client) hmr update /src/views/ProductManual.vue
+3:50:25 PM [vite] (client) page reload src/router/index.js
+3:50:26 PM [vite] (client) Pre-transform error: Failed to resolve import "@/views/PosterCanvasEditor.vue" from "src/router/index.js". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/router/index.js:9:33
+  7  |  import ManualReview from '@/views/ManualReview.vue'
+  8  |  import ProductManual from '@/views/ProductManual.vue'
+  9  |  import PosterCanvasEditor from '@/views/PosterCanvasEditor.vue'
+     |                                  ^
+  10 |  import PromptPlaybook from '@/views/PromptPlaybook.vue'
+  11 |  
+3:50:27 PM [vite] Internal server error: Failed to resolve import "@/views/PosterCanvasEditor.vue" from "src/router/index.js". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /root/workspace/syp/agent/frontend/src/router/index.js:9:33
+  7  |  import ManualReview from '@/views/ManualReview.vue'
+  8  |  import ProductManual from '@/views/ProductManual.vue'
+  9  |  import PosterCanvasEditor from '@/views/PosterCanvasEditor.vue'
+     |                                  ^
+  10 |  import PromptPlaybook from '@/views/PromptPlaybook.vue'
+  11 |  
+      at TransformPluginContext._formatLog (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42528:41)
+      at TransformPluginContext.error (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42525:16)
+      at normalizeUrl (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40504:23)
+      at async file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40623:37
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:40550:7)
+      at async EnvironmentPluginContainer.transform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:42323:18)
+      at async loadAndTransform (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:35739:27)
+      at async viteTransformMiddleware (file:///root/workspace/syp/agent/frontend/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:37254:24)
+3:51:46 PM [vite] (client) page reload src/views/PosterCanvasEditor.vue
+3:54:31 PM [vite] (client) hmr update /src/views/ProductManual.vue, /src/views/ProductManual.vue?vue&type=style&index=0&scoped=7db57eb8&lang.css
+4:06:50 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+4:23:41 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+4:30:33 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+4:31:41 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+4:33:20 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+4:37:52 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+4:45:11 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+4:52:45 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+4:54:27 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+4:56:35 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:03:23 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:04:34 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+5:05:39 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:08:33 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:08:51 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+5:13:44 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:14:13 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:14:37 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+5:23:40 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:28:08 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:40:38 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:42:23 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:45:28 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:50:59 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:54:44 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:57:43 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:04:14 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+6:08:44 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:15:29 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+6:23:24 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+6:25:54 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:34:41 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:39:53 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:48:28 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:55:56 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:01:27 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+7:05:28 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+7:09:58 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:12:53 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:17:00 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+7:20:49 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:25:12 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:28:51 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:31:52 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:33:37 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:33:38 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:39:01 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:39:23 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:39:37 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:42:10 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:43:13 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:45:37 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:46:55 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:48:45 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+7:57:07 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+7:59:21 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:20:52 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:34:27 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:36:51 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:42:23 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:43:36 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:44:23 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:48:04 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:49:09 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:49:43 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:50:11 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:50:17 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:54:15 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:54:26 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:55:18 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:55:35 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:55:48 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+8:57:10 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:01:59 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:04:46 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:04:48 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:04:51 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:04:54 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:07:57 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:15:49 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:32:44 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:48:00 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:49:35 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:50:09 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+10:28:09 PM [vite] (client) hmr update /src/views/ProductManual.vue
+10:38:04 PM [vite] (client) hmr update /src/views/ProductManual.vue
+10:46:32 PM [vite] (client) hmr update /src/views/ProductManual.vue
+10:47:00 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:00:33 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:01:12 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:02:37 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:18:40 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:21:18 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:28:36 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:30:26 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:30:29 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:30:30 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:30:31 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:32:28 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:33:20 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:35:18 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:40:24 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:41:13 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:43:53 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:48:55 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:54:57 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:56:26 PM [vite] (client) hmr update /src/views/ProductManual.vue
+10:14:17 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:18:18 AM [vite] (client) hmr update /src/views/ProductManual.vue
+12:05:16 PM [vite] (client) hmr update /src/views/ProductManual.vue, /src/views/ProductManual.vue?vue&type=style&index=0&scoped=7db57eb8&lang.css
+12:06:27 PM [vite] (client) hmr update /src/views/ProductManual.vue
+2:47:09 PM [vite] (client) hmr update /src/views/ProductManual.vue
+5:15:14 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:26:53 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:28:56 PM [vite] (client) hmr update /src/views/ProductManual.vue
+10:34:47 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css

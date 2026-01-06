@@ -1,0 +1,358 @@
+{
+  "session_id": "Massern_P251E1515CA1CABBCACB2E",
+  "product_name": "Massern",
+  "bom_code": "P251E1515CA1CABBCACB2E",
+  "bom_type": "outdoor",
+  "created_at": "2025-12-21T16:10:50.337362",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "Masrren__1-2-1766333450324054926",
+      "name": "Masrren__1-2.pdf",
+      "size": 339056,
+      "type": "application/pdf",
+      "path": "manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2.pdf",
+      "url": "/api/files/manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2.pdf",
+      "lastModified": 1766333450324,
+      "previewUrl": ""
+    },
+    {
+      "id": "DSC00016-1766333450328054861",
+      "name": "DSC00016.jpg",
+      "size": 7605598,
+      "type": "image/jpeg",
+      "path": "manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/DSC00016.jpg",
+      "url": "/api/files/manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/DSC00016.jpg",
+      "lastModified": 1766333450328,
+      "previewUrl": ""
+    },
+    {
+      "id": "DSC00019-1766333450332054796",
+      "name": "DSC00019.jpg",
+      "size": 6800058,
+      "type": "image/jpeg",
+      "path": "manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/DSC00019.jpg",
+      "url": "/api/files/manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/DSC00019.jpg",
+      "lastModified": 1766333450332,
+      "previewUrl": ""
+    },
+    {
+      "id": "DSC09954_2-1766333450336054731",
+      "name": "DSC09954_2.png",
+      "size": 7590366,
+      "type": "image/png",
+      "path": "manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2.png",
+      "url": "/api/files/manual_uploads/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2.png",
+      "lastModified": 1766333450336,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 4,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "DSC00016.jpg",
+      "source_size": 7605598,
+      "source_mime": "image/jpeg",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "DSC00016",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 753007,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "DSC00016.stdout.md",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/DSC00016.stdout.md",
+              "type": "text/markdown",
+              "size": 497,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/DSC00016.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "DSC00016"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "DSC00016"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 777771,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "DSC00016"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.txt",
+              "type": "text/plain",
+              "size": 123,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "DSC00019.jpg",
+      "source_size": 6800058,
+      "source_mime": "image/jpeg",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "DSC00019",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 733126,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "DSC00019.stdout.md",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/DSC00019.stdout.md",
+              "type": "text/markdown",
+              "size": 580,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/DSC00019.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "DSC00019"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "DSC00019"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 762701,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "DSC00019"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.txt",
+              "type": "text/plain",
+              "size": 126,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "DSC09954_2.png",
+      "source_size": 7590366,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "DSC09954_2",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 259998,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "DSC09954_2.stdout.md",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/DSC09954_2.stdout.md",
+              "type": "text/markdown",
+              "size": 529,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/DSC09954_2.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "DSC09954_2"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "DSC09954_2"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 246663,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "DSC09954_2"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.txt",
+              "type": "text/plain",
+              "size": 99,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "Masrren__1-2.pdf",
+      "source_size": 339056,
+      "source_mime": "application/pdf",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Masrren__1-2__page001",
+          "artifacts": [
+            {
+              "name": "Masrren__1-2__page001.stdout.md",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page001/Masrren__1-2__page001/Masrren__1-2__page001.stdout.md",
+              "type": "text/markdown",
+              "size": 4965,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page001/Masrren__1-2__page001/Masrren__1-2__page001.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Masrren__1-2__page001"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page001/Masrren__1-2__page001/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 1570,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page001/Masrren__1-2__page001/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Masrren__1-2__page001"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page001/Masrren__1-2__page001/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 299083,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page001/Masrren__1-2__page001/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Masrren__1-2__page001"
+            }
+          ]
+        },
+        {
+          "page_number": 2,
+          "image_stem": "Masrren__1-2__page002",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 40480,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.jpg",
+              "type": "image/jpeg",
+              "size": 75422,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg",
+              "type": "image/jpeg",
+              "size": 58453,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Masrren__1-2__page002.stdout.md",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/Masrren__1-2__page002.stdout.md",
+              "type": "text/markdown",
+              "size": 614,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/Masrren__1-2__page002.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Masrren__1-2__page002"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 389,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Masrren__1-2__page002"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 292571,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Masrren__1-2__page002"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.txt",
+              "type": "text/plain",
+              "size": 117,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "1.txt",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.txt",
+              "type": "text/plain",
+              "size": 102,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
+              "name": "2.txt",
+              "path": "manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.txt",
+              "type": "text/plain",
+              "size": 174,
+              "url": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "completed_at": "2025-12-21T16:12:42.537014"
+}

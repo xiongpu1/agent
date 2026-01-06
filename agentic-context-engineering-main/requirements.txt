@@ -1,0 +1,11 @@
+# ACE Framework Requirements
+groq>=0.4.0
+datasets>=2.14.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Development (optional)
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0

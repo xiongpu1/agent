@@ -1,0 +1,61 @@
+{
+  "question": "Massern",
+  "context": "[diagram] result.mmd\n冰水区和 SPA 区的排水器在同一侧，且左边是冰水区排水，右边是 SPA 区排水；\n\n包装配件：纸芯\\*2（浮筒过滤器纸芯+压力过滤器纸芯）\n\n压力过滤器亚克力盖板\\*2（提前由木制雕刻后贴 EVA 垫）\n\n1 米 3/8 白网管\n\n台阶\n\nS 勾\n\n缸盖（2 件），单独发，不包在缸内；\n\n[diagram] result.mmd\n平放包装，每个缸配一个托盘；\n\n[diagram] result.mmd\n冰水区和 SPA 区的排水器在同一侧，且左边是冰水区排水，右边是 SPA 区排水；\n\n包装配件：纸芯\\*2（浮筒过滤器纸芯+压力过滤器纸芯）\n\n压力过滤器亚克力盖板\\*2（提前由木制雕刻后贴 EVA 垫）\n\n1 米 3/8 白网管\n\n台阶\n\nS 勾\n\n缸盖（2 件），单独发，不包在缸内；\n\n[diagram] result.mmd\n平放包装，每个缸配一个托盘；",
+  "prediction": {
+    "productTitle": "Massern",
+    "features": {
+      "capacity": "待填写",
+      "jets": "待填写",
+      "pumps": "1"
+    },
+    "measurements": "待填写",
+    "premiumFeatures": [
+      "水底灯",
+      "阀带灯",
+      "缸边灯",
+      "转角灯"
+    ],
+    "insulationFeatures": [
+      "单底支架",
+      "电机面保温板",
+      "满泡沫保温"
+    ],
+    "extraFeatures": [
+      "眉毛水喷（标准）",
+      "普兰简配蓝牙+共振喇叭（美标）",
+      "柚木色生态裙边",
+      "黑橡木PS转角",
+      "灰色二级台阶",
+      "黑色常规厚度缸盖",
+      "带Balboa热泵"
+    ],
+    "Specifications": [
+      {
+        "Cabinet Color": "#87CEEB"
+      },
+      {
+        "Shell Color": "#87CEEB"
+      },
+      {
+        "Dry Weight": "待填写"
+      },
+      {
+        "Water Capacity": "待填写"
+      },
+      {
+        "Pump": "1个LX循环系统"
+      },
+      {
+        "Controls": "YJ-2+K300+2KW"
+      }
+    ],
+    "smartWater": [
+      "臭氧"
+    ],
+    "images": {
+      "product": "/api/files/manual_ocr_results/Massern_C31AA1A1C0ASDACBBPAIKE/products/Masrren_/Masrren___page011/Masrren___page011/images/0.jpg",
+      "background": "/back/back.png"
+    }
+  },
+  "saved_at": "2025-12-29T04:31:13.216537Z"
+}

@@ -1,0 +1,755 @@
+[
+  {
+    "header": "Cover",
+    "blocks": [
+      {
+        "type": "cover",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "title": "Masrren 双区冰水缸",
+        "sizeText": "2150×2150×1000mm",
+        "backSrc": "/instruction_book/back.jpg",
+        "productSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+        "model": "P251E1515"
+      }
+    ]
+  },
+  {
+    "header": "Embrace the Revitalizing Chill",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Embrace the Revitalizing Chill",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "Masrren 双区冰水缸融合冷疗与 SPA 功能，提供专业级恢复体验。冰水区快速降温，有效缓解肌肉酸痛与炎症；SPA 区通过多点喷射按摩促进血液循环，提升身心放松效果。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "Reduced Inflammation: 冷水刺激收缩血管，减少炎症反应。",
+          "Faster Recovery: 加速乳酸代谢，缩短运动后恢复时间。",
+          "Increased Circulation: 冷热交替刺激血流循环，增强供氧能力。",
+          "Enhanced Mental Well-being: 激活副交感神经，改善专注力与情绪。",
+          "Boosted Immune System: 适度冷刺激可激活免疫细胞活性。"
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "双区分控设计，冰水区（330L）与 SPA 区（820L）独立运行，满足不同使用需求。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "采用国产云彩白亚克力材质，搭配玻璃钢底+铝架结构，兼顾美观、强度与保温性能。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "imageFloat-bottom-left",
+        "text": null,
+        "items": null,
+        "src": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "imageFloat-bottom-right",
+        "text": null,
+        "items": null,
+        "src": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00016/DSC00016/DSC00016/images/0.jpg",
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Premium Materials",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Premium Materials",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "Masrren 采用高品质材料组合：3.5mm 国产云彩白亚克力表面光滑耐刮；玻璃钢底层增强结构强度；铝制框架防腐耐用；单泡聚氨酯保温层减少热量散失；关键管路配备保温套，提升能效。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "grid4",
+        "text": null,
+        "items": [
+          {
+            "index": 1,
+            "title": "Acrylic Surface",
+            "imgSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg"
+          },
+          {
+            "index": 2,
+            "title": "Aluminum Frame",
+            "imgSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg"
+          },
+          {
+            "index": 3,
+            "title": "Tri-layered Side Cabinet",
+            "imgSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg"
+          },
+          {
+            "index": 4,
+            "title": "Insulation Sleeve",
+            "imgSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.jpg"
+          }
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Contents",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Contents",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "contents",
+        "text": null,
+        "items": [
+          {
+            "title": "Installation & User Manual",
+            "page": 5
+          },
+          {
+            "title": "How To Set Up",
+            "page": 6
+          },
+          {
+            "title": "Important Safety Instructions",
+            "page": 7
+          },
+          {
+            "title": "Specification",
+            "page": 9
+          },
+          {
+            "title": "Touchscreen Control Panel",
+            "page": 10
+          },
+          {
+            "title": "Troubleshooting",
+            "page": 11
+          }
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Installation & User Manual",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Installation & User Manual",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "callout-warning",
+        "text": "Warning! 安装前请确保地面水平、承重足够，并预留足够操作空间。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "callout-error",
+        "text": "Install per manual; 不按说明安装可能导致设备损坏或失去保修资格。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "callout-warning",
+        "text": "Ensure clearance / ambient temp / 搬运时避免倾斜超过30度，防止内部组件移位。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "To ensure optimal performance after refilling",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": "callout-align"
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "Connect power and start control panel",
+          "Run 20–30s, bleed filter 20–40s until water flows, then tighten",
+          "If no circulation, repeat steps 1–2"
+        ],
+        "src": null,
+        "ordered": null,
+        "className": "callout-align"
+      }
+    ]
+  },
+  {
+    "header": "How To Set Up",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "How To Set Up",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "开箱后检查配件是否齐全，将设备放置于坚实平整地面，加水至推荐水位线。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": "lead"
+      },
+      {
+        "type": "paragraph",
+        "text": "推荐先阅读安全信息，再开始冷疗",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "steps",
+        "text": null,
+        "items": [
+          "放置设备并加水至推荐水位。",
+          "打开滤芯放气螺丝排气。",
+          "接通 110V/60Hz 电源并设定温度。",
+          "等待冷却后开始体验。",
+          "定期清洁消毒。"
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Important Safety Instructions",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Important Safety Instructions",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "READ AND FOLLOW ALL INSTRUCTIONS",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": "lead"
+      },
+      {
+        "type": "paragraph",
+        "text": "为保障使用安全，请务必遵守以下指导。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "Health Disclaimer: 如有心血管疾病、高血压等，请先咨询医生。",
+          "Temperature Awareness: 初次使用建议从 10°C 以上开始，时间不超过 5 分钟。",
+          "Gradual Adaptation: 每周逐步增加时长，避免冷休克风险。",
+          "Safety Precautions: 儿童、孕妇及体弱者需在成人监护下使用。",
+          "Maintenance/Power Safety: 定期更换滤芯，确保接地良好，避免湿手操作。"
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Important Safety Instructions",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Important Safety Instructions",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "heading",
+        "text": "WARNING:",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "level": 2
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "People with infectious diseases should not use a spa or hot tub.",
+          "Do not use drugs or alcohol before/during use.",
+          "Prolonged immersion may be injurious to health."
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "heading",
+        "text": "CAUTION:",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "level": 2
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "Maintain water chemistry per instructions."
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "* Please read the instructions carefully and use according to the instructions.\nChildren should use this product under the close supervision of adults.",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": "warning-text"
+      },
+      {
+        "type": "heading",
+        "text": "WARNING:",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "After transporting, let tub rest 24h before turning on chiller.",
+          "Use cloth/pliers to remove back cover cap carefully.",
+          "Wind baffle is consumable; magnet-backed.",
+          "ER03 indicates air in pipes; exhaust at filter."
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "divider",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "heading",
+        "text": "Package List",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "image",
+        "text": null,
+        "items": null,
+        "src": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg",
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Specification",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Specification",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "spec-box",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "imageSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+        "specs": {
+          "topLeft": {
+            "title": "Dimensions",
+            "items": [
+              "2150×2150×1000mm"
+            ]
+          },
+          "topRight": {
+            "title": "Water Capacity",
+            "items": [
+              "SPA: 820L",
+              "Ice Bath: 330L"
+            ]
+          },
+          "leftTop": {
+            "title": "Material",
+            "items": [
+              "Acrylic: 3.5mm Cloud White",
+              "Frame: Aluminum + FRP"
+            ]
+          },
+          "leftMiddle1": {
+            "title": "Pump",
+            "items": [
+              "Ice: WE10 + Heat Pump",
+              "SPA: 2HP Dual Speed"
+            ]
+          },
+          "leftMiddle2": {
+            "title": "Control",
+            "items": [
+              "P68B123 Dual-zone Controller"
+            ]
+          },
+          "leftBottom": {
+            "title": "Insulation",
+            "items": [
+              "Single-layer PU Foam"
+            ]
+          },
+          "rightTop": {
+            "title": "Jets",
+            "items": [
+              "Total: 22",
+              "4.5\": 3",
+              "3.5\": 1",
+              "2\": 18"
+            ]
+          },
+          "rightMiddle": {
+            "title": "Lighting",
+            "items": [
+              "Underwater LED ×2"
+            ]
+          },
+          "rightBottom": {
+            "title": "Cover",
+            "items": [
+              "2-piece, 64–88mm thick"
+            ]
+          }
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "规格图示标注主要部件位置与参数。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "grid2",
+        "text": null,
+        "items": [
+          {
+            "type": "image",
+            "src": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg"
+          },
+          {
+            "type": "list",
+            "ordered": true,
+            "items": [
+              "Insulation Sleeves",
+              "Chiller",
+              "Control box",
+              "Circulation Pump",
+              "Ozone Sterilizer"
+            ]
+          }
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Touchscreen Control Panel",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Touchscreen Control Panel",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "paragraph",
+        "text": "触控面板（型号 PB565-001）安装于机身外侧预留开孔处，通过防水航空插头与主控箱连接。安装时需断电操作，确保密封圈完好，走线避免拉扯。面板功能包括：开关机、双区独立温控（冰水区 1–15°C，SPA 区 20–40°C）、循环泵启停、灯光控制、童锁及故障代码显示（如 ER03 表示管路进气）。",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "image",
+        "text": null,
+        "items": null,
+        "src": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg",
+        "ordered": null,
+        "className": null
+      }
+    ]
+  },
+  {
+    "header": "Troubleshooting",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Troubleshooting",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "list",
+        "text": null,
+        "items": [
+          "Where to find Serial Number on Masrren?",
+          "If after-sales service needed, provide this serial number."
+        ],
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "ts-section",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "index": 1,
+        "images": [
+          "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+          "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg",
+          "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg"
+        ],
+        "magnifier": {
+          "serial": "P251E1515CA1CABBCACB2E",
+          "qrSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/0.jpg",
+          "qrVisible": true,
+          "qrSize": 78,
+          "qrMargin": "6px auto 8px",
+          "bgSrc": "",
+          "lines": [
+            "Masrren",
+            "Cloud White",
+            "2150*2150*1000mm",
+            "P251E1515",
+            "K100CIAICOBOALOANDAOKA",
+            "MOD15946"
+          ]
+        }
+      },
+      {
+        "type": "ts-section",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "index": 2,
+        "images": [
+          "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC00019/DSC00019/DSC00019/images/0.jpg",
+          "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/1.jpg",
+          "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg"
+        ],
+        "magnifier": {
+          "bgSrc": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/Masrren__1-2/Masrren__1-2__page002/Masrren__1-2__page002/images/2.jpg",
+          "qrSrc": ""
+        }
+      }
+    ]
+  },
+  {
+    "header": "Troubleshooting",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Troubleshooting",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "troubleTable",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "headers": [
+          "Symptom",
+          "Possible Solutions"
+        ],
+        "groups": [
+          {
+            "title": "Start-up problem",
+            "items": [
+              {
+                "symptom": "Pump won't prime",
+                "description": "Air trapped in pump.",
+                "solutions": [
+                  "Remove airlock",
+                  "Check water level"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Power and system problems",
+            "items": [
+              {
+                "symptom": "System won’t start or breaker trips",
+                "solutions": [
+                  "Check power / contact technician"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "header": "Troubleshooting",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Troubleshooting",
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null
+      },
+      {
+        "type": "troubleTable",
+        "text": null,
+        "items": null,
+        "src": null,
+        "ordered": null,
+        "className": null,
+        "headers": [
+          "Symptom",
+          "Possible Solutions"
+        ],
+        "groups": [
+          {
+            "title": "Chiller problems",
+            "items": [
+              {
+                "symptom": "Water does not get cold",
+                "solutions": [
+                  "Set to low-temp range",
+                  "Clean/replace filter",
+                  "Remove airlock",
+                  "Check water level",
+                  "Open gate valves"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Other problems",
+            "items": [
+              {
+                "symptom": "Water is murky / bad smell / temp mismatch",
+                "solutions": [
+                  "Clean or change water",
+                  "Check filter/ozone",
+                  "Probe calibration"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "session_id": "Atlantic_20_112B353I0HYUCAAND00NFA",
+  "product_name": "Atlantic 20",
+  "bom_code": "112B353I0HYUCAAND00NFA",
+  "bom_type": "pool",
+  "created_at": "2025-12-24T09:42:44.229114",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "Atlantic20-1766569364227903279",
+      "name": "Atlantic20.png",
+      "size": 2105858,
+      "type": "image/png",
+      "path": "manual_uploads/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20.png",
+      "url": "/api/files/manual_uploads/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20.png",
+      "lastModified": 1766569364227,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 1,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "Atlantic20.png",
+      "source_size": 2105858,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "Atlantic20",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 125105,
+              "url": "/api/files/manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "Atlantic20.stdout.md",
+              "path": "manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/Atlantic20.stdout.md",
+              "type": "text/markdown",
+              "size": 422,
+              "url": "/api/files/manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/Atlantic20.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "Atlantic20"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "Atlantic20"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 128859,
+              "url": "/api/files/manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "Atlantic20"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/images/0.txt",
+              "type": "text/plain",
+              "size": 135,
+              "url": "/api/files/manual_ocr_results/Atlantic_20_112B353I0HYUCAAND00NFA/products/Atlantic20/Atlantic20/Atlantic20/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "completed_at": "2025-12-24T09:42:46.602111"
+}

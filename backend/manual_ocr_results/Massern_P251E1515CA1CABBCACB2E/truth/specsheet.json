@@ -1,0 +1,54 @@
+{
+  "productTitle": "Massern",
+  "features": {
+    "capacity": "4",
+    "jets": "22",
+    "pumps": "3"
+  },
+  "measurements": "2150\" × 2150\" × 1000\"",
+  "premiumFeatures": [
+    "水底灯",
+    "阀带灯",
+    "缸边灯"
+  ],
+  "insulationFeatures": [
+    "单底支架",
+    "帘子保温",
+    "满泡沫保温",
+    "电动进排水"
+  ],
+  "extraFeatures": [
+    "灰色钻石旋转喷/标准数量",
+    "带2个共振喇叭底座",
+    "咖啡色生态裙边",
+    "灰色生态转角",
+    "黑色二级台阶"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#2e8b57"
+    },
+    {
+      "Shell Color": "#2e8b57"
+    },
+    {
+      "Dry Weight": "300 千克"
+    },
+    {
+      "Water Capacity": "1150 升"
+    },
+    {
+      "Pump": "1个循环LX+1个单速3HPLX+1个单速1HP"
+    },
+    {
+      "Controls": "YJ-3+K1000+3KW"
+    }
+  ],
+  "smartWater": [
+    "臭氧"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/Massern_P251E1515CA1CABBCACB2E/products/DSC09954_2/DSC09954_2/DSC09954_2/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}
