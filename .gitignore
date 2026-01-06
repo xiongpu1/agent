@@ -1,0 +1,5 @@
+
+# ignore generated / large dirs
+backend/structured_processed_files/
+frontend/node_modules/
+backend/data_storage/
