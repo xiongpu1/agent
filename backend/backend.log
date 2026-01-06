@@ -3287,22 +3287,48 @@ INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Massern_O151E1515CA1CABBAA
 INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/DSC09930_/DSC09930_/DSC09930_/images/0.jpg HTTP/1.1" 200 OK
 INFO:     100.64.10.208:0 - "GET /api/bom/session/Massern_O151E1515CA1CABBAAEB2D HTTP/1.1" 404 Not Found
 INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/DSC09930_/DSC09930_/DSC09930_/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/DSC09930_/DSC09930_/DSC09930_/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/DSC09930_/DSC09930_/DSC09930_/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page002/Masrren___page002/images/1.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page002/Masrren___page002/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page003/Masrren___page003/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page002/Masrren___page002/images/2.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page003/Masrren___page003/images/1.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page004/Masrren___page004/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page004/Masrren___page004/images/1.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page005/Masrren___page005/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page006/Masrren___page006/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page006/Masrren___page006/images/1.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page006/Masrren___page006/images/2.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page007/Masrren___page007/images/0.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page007/Masrren___page007/images/1.jpg HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page008/Masrren___page008/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/filTraceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/bin/uvicorn", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/click/core.py", line 1462, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/click/core.py", line 1383, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/click/core.py", line 1246, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/click/core.py", line 814, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/main.py", line 423, in main
+    run(
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/main.py", line 588, in run
+    ChangeReload(config, target=server.run, sockets=[sock]).run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/supervisors/basereload.py", line 53, in run
+    for changes in self:
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/supervisors/basereload.py", line 72, in __next__
+    return self.should_restart()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/supervisors/statreload.py", line 32, in should_restart
+    for file in self.iter_py_files():
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/supervisors/statreload.py", line 52, in iter_py_files
+    for path in list(reload_dir.rglob("*.py")):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/pathlib.py", line 968, in rglob
+    for p in selector.select_from(self):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/pathlib.py", line 408, in _select_from
+    for p in successor_select(starting_point, is_dir, exists, scandir):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/pathlib.py", line 355, in _select_from
+    with scandir(parent_path) as scandir_it:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/pathlib.py", line 938, in _scandir
+    return os.scandir(self)
+           ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/workspace/syp/agent/backend/structured_processed_files/2025_10_16_💿 产品索引- Bellagio Product Catalog/技术资料/图纸/户外缸图纸/32030-Malawi'
+asrren___page008/Masrren___page008/images/0.jpg HTTP/1.1" 200 OK
 INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page009/Masrren___page009/images/0.jpg HTTP/1.1" 200 OK
 INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page010/Masrren___page010/images/0.jpg HTTP/1.1" 200 OK
 INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Massern_O151E1515CA1CABBAAEB2D/products/Masrren_/Masrren___page010/Masrren___page010/images/1.jpg HTTP/1.1" 200 OK

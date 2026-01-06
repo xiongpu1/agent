@@ -9,6 +9,51 @@
 
 ---
 
+## 快速开始
+
+### 1) 启动 Neo4j（本地/服务器）
+
+后端目录内提供了 `docker-compose.yml`，可以直接启动 Neo4j：
+
+```bash
+cd backend
+docker compose up -d
+```
+
+默认端口：
+
+- **Neo4j Browser**：`http://localhost:7474`
+- **Bolt**：`bolt://localhost:7687`
+
+### 2) 启动后端（FastAPI）
+
+后端入口文件为 `backend/api_server.py`。
+
+```bash
+cd backend
+
+# 配置环境变量
+# 后端会读取 backend/.env
+cp .env.example .env  # 若存在示例文件
+
+# 安装依赖（两种方式二选一）
+uv venv .venv && source .venv/bin/activate
+uv pip install -r requirements.txt
+
+# 启动服务（默认端口 8001）
+uvicorn api_server:app --host 0.0.0.0 --port 8001
+```
+
+### 3) 启动前端（Vue3 + Vite）
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
 ## 目录结构
 
 ```
@@ -16,6 +61,12 @@ agent/
 ├── backend/     # FastAPI 服务与数据处理流水线
 └── frontend/    # Vue3 前端（规格页/海报/说明书编辑与展示）
 ```
+
+本仓库会忽略部分体积较大的生成目录（见根目录 `.gitignore`），例如：
+
+- `backend/structured_processed_files/`
+- `backend/data_storage/`
+- `frontend/node_modules/`
 
 ---
 
@@ -50,7 +101,7 @@ cp .env.example .env   # 若存在示例文件
 # 编辑 .env，填写 Neo4j / LLM / DeepSeek OCR 等配置
 uv venv .venv && source .venv/bin/activate
 uv pip install -r requirements.txt  # 或 pip / uv pip sync
-uvicorn api_server:app --host 0.0.0.0 --port 8000
+uvicorn api_server:app --host 0.0.0.0 --port 8001
 ```
 
 ---
