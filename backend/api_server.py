@@ -10,8 +10,8 @@ import re
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Query, Body
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Literal, List, Optional
+from pydantic import BaseModel, Field
+from typing import Any, Dict, List, Literal, Optional
 from dotenv import load_dotenv
 
 # 添加项目根目录到 Python 路径
@@ -106,6 +106,9 @@ from src.prompt_playbook import (
     get_system_prompt,
     PROMPT_PLAYBOOK_TYPES,
 )
+
+from src.poster_analyzer import analyze_reference as poster_analyze_reference
+from src.poster_analyzer import generate_copy as poster_generate_copy
 
 
 PROMPT_SNAPSHOT_FILES = {
@@ -237,6 +240,22 @@ class PromptPlaybookAceRequest(BaseModel):
 
 class PromptPlaybookDatasetDeleteRequest(BaseModel):
     file_path: str
+
+
+class PosterAnalyzeReferenceRequest(BaseModel):
+    image_url: str | None = None
+    prompt: str | None = None
+    model: str | None = None
+    font_candidates: List[str] | None = None
+
+
+class PosterGenerateCopyRequest(BaseModel):
+    step1_result: Dict[str, Any]
+    requirements: str | None = None
+    target_language: str | None = None
+    model: str | None = None
+    product_image_url: str | None = None
+    background_image_url: str | None = None
 
 
 @app.get("/")
@@ -454,6 +473,49 @@ async def serve_file(file_path: str):
         raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
 
     return FileResponse(resolved)
+
+
+@app.post("/api/poster/analyze_reference")
+async def analyze_poster_reference(
+    payload: PosterAnalyzeReferenceRequest = Body(...),
+):
+    payload_image_url = (payload.image_url or "").strip() or None
+    if not payload_image_url:
+        raise HTTPException(status_code=400, detail="请提供 image_url")
+
+    try:
+        return await poster_analyze_reference(
+            image_url=payload_image_url,
+            prompt_extra=(payload.prompt or None),
+            model=(payload.model or None),
+            font_candidates=(payload.font_candidates or None),
+        )
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"海报参考图分析失败: {exc}") from exc
+
+
+@app.post("/api/poster/generate_copy")
+async def generate_poster_copy(
+    payload: PosterGenerateCopyRequest = Body(...),
+):
+    if not isinstance(payload.step1_result, dict) or not payload.step1_result:
+        raise HTTPException(status_code=400, detail="请提供 step1_result")
+
+    try:
+        return await poster_generate_copy(
+            step1_result=payload.step1_result,
+            requirements=(payload.requirements or None),
+            target_language=(payload.target_language or None),
+            model=(payload.model or None),
+            product_image_url=(payload.product_image_url or None),
+            background_image_url=(payload.background_image_url or None),
+        )
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"海报文案生成失败: {exc}") from exc
 
 
 @app.post("/api/manual/insert-neo4j")
@@ -963,6 +1025,12 @@ class ManualBookTruthSaveRequest(BaseModel):
     manual_book: List[ManualBookData]
 
 
+class ManualBookVariantsPayload(BaseModel):
+    product_name: str
+    bom_code: str
+    variants: Dict[str, str] = Field(default_factory=dict)
+
+
 class ManualSpecsheetTruthSaveRequest(BaseModel):
     product_name: str
     bom_code: str
@@ -1004,6 +1072,52 @@ async def save_manual_book_truth(payload: ManualBookTruthSaveRequest):
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=f"保存说明书 truth 失败: {exc}") from exc
+
+
+@app.get("/api/manual/book/variants")
+async def get_manual_book_variants(product_name: str, bom_code: str):
+    try:
+        product_dir = _resolve_manual_product_dir(product_name, bom_code)
+        truth_path = product_dir / "truth" / "manual_variants.json"
+        if not truth_path.exists():
+            raise HTTPException(status_code=404, detail="未找到已保存的说明书版本配置")
+        raw = json.loads(truth_path.read_text(encoding="utf-8"))
+        if not isinstance(raw, dict):
+            raise HTTPException(status_code=500, detail="说明书版本配置文件格式错误：不是对象")
+        variants = raw.get("variants") if isinstance(raw.get("variants"), dict) else raw
+        if not isinstance(variants, dict):
+            raise HTTPException(status_code=500, detail="说明书版本配置格式错误")
+        # Ensure all values are strings
+        normalized = {str(k): str(v) for k, v in variants.items()}
+        return {"variants": normalized}
+    except HTTPException:
+        raise
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"读取说明书版本配置失败: {exc}") from exc
+
+
+@app.post("/api/manual/book/variants")
+async def save_manual_book_variants(payload: ManualBookVariantsPayload):
+    try:
+        product_dir = _resolve_manual_product_dir(payload.product_name, payload.bom_code)
+        truth_dir = product_dir / "truth"
+        truth_dir.mkdir(parents=True, exist_ok=True)
+        target_path = truth_dir / "manual_variants.json"
+        target_path.write_text(
+            json.dumps({"variants": payload.variants}, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        return {"variants": payload.variants}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"保存说明书版本配置失败: {exc}") from exc
 
 
 @app.post("/api/manual/specsheet/truth", response_model=SpecsheetResponse)

@@ -1,0 +1,85 @@
+{
+  "session_id": "Test_K28WI5N4Z0HQQLAAYP000A",
+  "product_name": "Test",
+  "bom_code": "K28WI5N4Z0HQQLAAYP000A",
+  "bom_type": "outdoor",
+  "created_at": "2026-01-07T10:32:39.256227",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "20260104165858_1006_20-1767781959249181063",
+      "name": "20260104165858_1006_20.png",
+      "size": 1241705,
+      "type": "image/png",
+      "path": "manual_uploads/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20.png",
+      "url": "/api/files/manual_uploads/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20.png",
+      "lastModified": 1767781959249,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 1,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "20260104165858_1006_20.png",
+      "source_size": 1241705,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "20260104165858_1006_20",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 143207,
+              "url": "/api/files/manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "20260104165858_1006_20.stdout.md",
+              "path": "manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.stdout.md",
+              "type": "text/markdown",
+              "size": 1088,
+              "url": "/api/files/manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "20260104165858_1006_20"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 352,
+              "url": "/api/files/manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "20260104165858_1006_20"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 148365,
+              "url": "/api/files/manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "20260104165858_1006_20"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
+              "type": "text/plain",
+              "size": 208,
+              "url": "/api/files/manual_ocr_results/Test_K28WI5N4Z0HQQLAAYP000A/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "completed_at": "2026-01-07T10:34:33.457220"
+}

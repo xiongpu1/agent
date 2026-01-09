@@ -118,6 +118,116 @@ export async function saveManualSpecsheetTruth(productName, bomCode, specsheet) 
   return data.specsheet || null
 }
 
+export async function getManualBookVariants(productName, bomCode) {
+  if (!productName) throw new Error('Missing productName')
+  if (!bomCode) throw new Error('Missing bomCode')
+  const query = `?product_name=${encodeURIComponent(productName)}&bom_code=${encodeURIComponent(bomCode)}`
+  const response = await fetch(`${API_BASE_URL}/api/manual/book/variants${query}`)
+  if (response.status === 404) return null
+  const data = await handleResponse(response, 'Failed to fetch manual book variants')
+  return data.variants && typeof data.variants === 'object' ? data.variants : null
+}
+
+export async function saveManualBookVariants(productName, bomCode, variants) {
+  if (!productName) throw new Error('Missing productName')
+  if (!bomCode) throw new Error('Missing bomCode')
+  const response = await fetch(`${API_BASE_URL}/api/manual/book/variants`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      product_name: productName,
+      bom_code: bomCode,
+      variants: variants && typeof variants === 'object' ? variants : {}
+    })
+  })
+  const data = await handleResponse(response, 'Failed to save manual book variants')
+  return data.variants && typeof data.variants === 'object' ? data.variants : null
+}
+
+export async function analyzePosterReference({
+  file,
+  image_url,
+  prompt,
+  model,
+  font_candidates,
+} = {}) {
+  const toDataUrl = (f) =>
+    new Promise((resolve, reject) => {
+      try {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = () => reject(new Error('Failed to read image file'))
+        reader.readAsDataURL(f)
+      } catch (e) {
+        reject(e)
+      }
+    })
+
+  let resolvedImageUrl = image_url
+  if (file) {
+    resolvedImageUrl = await toDataUrl(file)
+  }
+
+  const response = await fetch(`${API_BASE_URL}/api/poster/analyze_reference`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      image_url: resolvedImageUrl || null,
+      prompt: prompt || null,
+      model: model || null,
+      font_candidates: Array.isArray(font_candidates) ? font_candidates : null,
+    }),
+  })
+  return handleResponse(response, 'Failed to analyze poster reference')
+}
+
+export async function generatePosterCopy({
+  step1_result,
+  requirements,
+  target_language,
+  model,
+  product_file,
+  product_image_url,
+  background_file,
+  background_image_url,
+} = {}) {
+  const toDataUrl = (f) =>
+    new Promise((resolve, reject) => {
+      try {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = () => reject(new Error('Failed to read image file'))
+        reader.readAsDataURL(f)
+      } catch (e) {
+        reject(e)
+      }
+    })
+
+  let resolvedProductUrl = product_image_url
+  if (product_file) {
+    resolvedProductUrl = await toDataUrl(product_file)
+  }
+
+  let resolvedBackgroundUrl = background_image_url
+  if (background_file) {
+    resolvedBackgroundUrl = await toDataUrl(background_file)
+  }
+
+  const response = await fetch(`${API_BASE_URL}/api/poster/generate_copy`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      step1_result: step1_result && typeof step1_result === 'object' ? step1_result : null,
+      requirements: requirements || null,
+      target_language: target_language || null,
+      model: model || null,
+      product_image_url: resolvedProductUrl || null,
+      background_image_url: resolvedBackgroundUrl || null,
+    }),
+  })
+  return handleResponse(response, 'Failed to generate poster copy')
+}
+
 /**
  * Legacy helper: generate specsheet using docs grouped by product/accessory.
  * (Kept for backward compatibility on other pages.)

@@ -38,16 +38,247 @@
     </el-dialog>
 
     <div class="top-right">
-      <div class="zoom-pill">
-        <el-button size="small" text @click="decZoom">-</el-button>
-        <div class="zoom-text">{{ Math.round(zoom * 100) }}%</div>
-        <el-button size="small" text @click="incZoom">+</el-button>
+      <div class="top-right-inner">
+        <div class="zoom-pill">
+          <el-button size="small" text @click="decZoom">-</el-button>
+          <div class="zoom-text">{{ Math.round(zoom * 100) }}%</div>
+          <el-button size="small" text @click="incZoom">+</el-button>
+        </div>
+        <el-button class="panel-toggle-btn" size="small" circle :icon="Operation" @click="togglePanel" />
       </div>
     </div>
 
     <div class="left-toolbar">
       <el-button class="tool-btn" size="small" text @click="addText">文字</el-button>
       <el-button class="tool-btn" size="small" text @click="triggerPickImage">图片</el-button>
+    </div>
+
+    <div class="right-panel" :class="{ open: rightPanelOpen }" @click.stop>
+      <div class="panel-header">
+        <el-radio-group v-model="rightPanelKey" size="small">
+          <el-radio-button label="export">导出</el-radio-button>
+          <el-radio-button label="layers">图层</el-radio-button>
+          <el-radio-button label="props">属性</el-radio-button>
+          <el-radio-button label="gen">海报生成</el-radio-button>
+        </el-radio-group>
+        <el-button size="small" text @click="rightPanelOpen = false">收起</el-button>
+      </div>
+
+      <div class="panel-body">
+        <template v-if="rightPanelKey === 'export'">
+          <div class="panel-actions">
+            <el-button type="primary" @click="saveDraft">保存草稿</el-button>
+            <el-button @click="exportPng">导出 PNG</el-button>
+            <el-button @click="exportPdf">导出 PDF</el-button>
+          </div>
+        </template>
+
+        <template v-else-if="rightPanelKey === 'layers'">
+          <div class="layers-list">
+            <div
+              v-for="item in layerItems"
+              :key="item.id"
+              class="layer-item"
+              :class="{ active: item.id === activeLayerId }"
+              @click="selectLayer(item.id)"
+            >
+              <div class="layer-name">{{ item.label }}</div>
+              <div class="layer-meta">{{ item.meta }}</div>
+              <div class="layer-actions" @click.stop>
+                <button class="layer-btn" type="button" title="上移一层" :disabled="item.lockedBottom" @click="moveLayerById(item.id, 'up')">上</button>
+                <button class="layer-btn" type="button" title="下移一层" :disabled="item.lockedBottom" @click="moveLayerById(item.id, 'down')">下</button>
+                <button class="layer-btn" type="button" title="置顶" :disabled="item.lockedBottom" @click="moveLayerById(item.id, 'top')">顶</button>
+                <button class="layer-btn" type="button" title="置底" :disabled="item.lockedBottom" @click="moveLayerById(item.id, 'bottom')">底</button>
+              </div>
+            </div>
+            <div v-if="layerItems.length === 0" class="panel-empty">暂无图层</div>
+          </div>
+        </template>
+
+        <template v-else-if="rightPanelKey === 'props'">
+          <div v-if="!activeObject" class="panel-empty">请先选中一个对象</div>
+          <div v-else class="props-form">
+            <div class="pf-row">
+              <div class="pf-label">X</div>
+              <el-input-number v-model="propForm.x" :step="1" :controls="true" @change="applyPropForm" />
+            </div>
+            <div class="pf-row">
+              <div class="pf-label">Y</div>
+              <el-input-number v-model="propForm.y" :step="1" :controls="true" @change="applyPropForm" />
+            </div>
+            <div class="pf-row">
+              <div class="pf-label">缩放</div>
+              <el-input-number v-model="propForm.scale" :step="0.02" :min="0.02" :max="50" :controls="true" @change="applyPropForm" />
+            </div>
+            <div class="pf-row">
+              <div class="pf-label">旋转</div>
+              <el-input-number v-model="propForm.angle" :step="1" :min="-360" :max="360" :controls="true" @change="applyPropForm" />
+            </div>
+            <div class="pf-row">
+              <div class="pf-label">透明度</div>
+              <el-input-number v-model="propForm.opacity" :step="0.05" :min="0" :max="1" :controls="true" @change="applyPropForm" />
+            </div>
+          </div>
+        </template>
+
+        <template v-else-if="rightPanelKey === 'gen'">
+          <div class="gen-layout">
+            <div class="gen-col">
+              <div class="gen-col-title">上传参考图</div>
+
+              <div class="gen-row">
+                <div class="gen-label">参考图</div>
+                <div class="gen-actions">
+                  <el-button size="small" @click="triggerRefLocalUpload">本地上传</el-button>
+                  <el-button size="small" @click="openRefKbPicker">知识库选择</el-button>
+                  <el-button size="small" @click="useActiveImageAsRef">使用已选图片</el-button>
+                </div>
+              </div>
+
+              <div v-if="refPreviewUrl" class="gen-preview">
+                <div class="gen-preview-wrap">
+                  <img :src="refPreviewUrl" alt="reference" />
+                  <div v-if="posterOverlayBoxes.length" class="gen-overlay">
+                    <div v-for="box in posterOverlayBoxes" :key="box.key" class="gen-box" :style="box.style">
+                      <div class="gen-box-label">{{ box.label }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="panel-empty">请选择一张参考图（支持本地/知识库/画板选中图片）</div>
+
+              <div class="gen-row" style="margin-top: 10px;">
+                <el-button type="primary" :loading="posterAnalyzeLoading" @click="analyzeReferenceImage">分析参考图框架</el-button>
+                <el-button text :disabled="!posterAnalysisResult && !posterAnalyzeError" @click="clearPosterAnalysis">清空</el-button>
+              </div>
+
+              <div v-if="posterAnalyzeError" class="gen-error">{{ posterAnalyzeError }}</div>
+
+              <div class="gen-col gen-col-full" style="margin-top: 10px;">
+                <div class="gen-col-title">生成文案与风格</div>
+                <el-input
+                  v-model="posterStep2Requirements"
+                  type="textarea"
+                  :rows="4"
+                  placeholder="例如：面向美国经销商销售按摩浴缸，主打节能、舒适、易安装"
+                />
+                <div class="gen-row" style="margin-top: 10px;">
+                  <div class="gen-label" style="font-weight: 500; opacity: 0.85;">上传素材图辅助生成</div>
+                  <el-switch v-model="posterStep2SendImages" />
+                  <div class="gen-label" style="margin-left: 10px; opacity: 0.6;">关闭可明显加速</div>
+                </div>
+                <div class="gen-actions" style="margin-top: 10px;">
+                  <el-button type="primary" :loading="posterStep2Loading" @click="generatePosterCopyStep2">生成文案与风格</el-button>
+                  <el-button text @click="clearStep2Assets">清空素材</el-button>
+                  <el-button text @click="clearStep2All">清空</el-button>
+                </div>
+              </div>
+
+              <div v-if="posterStep2Error" class="gen-error">{{ posterStep2Error }}</div>
+            </div>
+
+            <div class="gen-col">
+              <div class="gen-col-title">海报框架</div>
+
+              <div class="gen-row">
+                <div class="gen-label">整体风格</div>
+              </div>
+              <el-input v-model="posterFramework.style.notes" type="textarea" :rows="4" placeholder="可手动补充风格描述，或用 Step2 生成结果覆盖" />
+
+              <div class="gen-row" style="margin-top: 10px;">
+                <div class="gen-label">尺寸</div>
+              </div>
+              <div class="gen-size-row">
+                <div class="gen-size-item">
+                  <div class="gen-size-label">W</div>
+                  <el-input-number v-model="posterFramework.size.width" :min="1" :step="10" @change="onFrameworkSizeChange" />
+                </div>
+                <div class="gen-size-item">
+                  <div class="gen-size-label">H</div>
+                  <el-input-number v-model="posterFramework.size.height" :min="1" :step="10" @change="onFrameworkSizeChange" />
+                </div>
+              </div>
+
+              <div class="gen-assets-row" style="margin-top: 10px;">
+                <div class="gen-asset-block">
+                  <div class="gen-row">
+                    <div class="gen-label">背景图</div>
+                  </div>
+                  <div class="gen-actions gen-actions-compact">
+                    <el-button size="small" @click="triggerStep2BackgroundUpload">本地上传</el-button>
+                    <el-button size="small" @click="openStep2BackgroundKbPicker">知识库选择</el-button>
+                    <el-button size="small" @click="useActiveImageAsStep2Background">已选</el-button>
+                  </div>
+                  <div v-if="step2BackgroundPreviewUrl" class="gen-asset-preview gen-asset-preview--small">
+                    <img :src="step2BackgroundPreviewUrl" alt="background" />
+                  </div>
+                </div>
+
+                <div class="gen-asset-block">
+                  <div class="gen-row">
+                    <div class="gen-label">产品图</div>
+                  </div>
+                  <div class="gen-actions gen-actions-compact">
+                    <el-button size="small" @click="triggerStep2ProductUpload">本地上传</el-button>
+                    <el-button size="small" @click="openStep2ProductKbPicker">知识库选择</el-button>
+                    <el-button size="small" @click="useActiveImageAsStep2Product">已选</el-button>
+                  </div>
+                  <div v-if="step2ProductPreviewUrl" class="gen-asset-preview gen-asset-preview--small">
+                    <img :src="step2ProductPreviewUrl" alt="product" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="gen-row" style="margin-top: 10px;">
+                <div class="gen-label">标题文字</div>
+              </div>
+              <el-input v-model="posterFramework.text.title" placeholder="标题" />
+
+              <div class="gen-row" style="margin-top: 10px;">
+                <div class="gen-label">标题下文字</div>
+              </div>
+              <el-input v-model="posterFramework.text.subtitle" placeholder="副标题" />
+
+              <div class="gen-row" style="margin-top: 10px;">
+                <div class="gen-label">卖点</div>
+                <div class="gen-actions">
+                  <el-button size="small" text @click="addFrameworkSellpoint">添加</el-button>
+                </div>
+              </div>
+              <div class="gen-sellpoints">
+                <div v-for="(sp, idx) in posterFramework.text.sellpoints" :key="sp.id" class="gen-sellpoint-item">
+                  <el-input v-model="sp.text" :placeholder="`卖点${idx + 1}`" />
+                  <el-button size="small" text @click="removeFrameworkSellpoint(idx)">删除</el-button>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div class="gen-col gen-col-full" style="margin-top: 12px;">
+            <div class="gen-col-title">预览图</div>
+            <div class="gen-row" style="margin-top: -2px;">
+              <div class="gen-label" style="font-weight: 500; opacity: 0.85;">显示框</div>
+              <el-switch v-model="previewShowBoxes" />
+              <div class="gen-label" style="margin-left: 12px; font-weight: 500; opacity: 0.85;">自动保存草稿</div>
+              <el-switch v-model="autoSaveAfterExportToCanvas" />
+              <el-button size="small" style="margin-left: auto;" @click="exportPreviewToCanvas">导出到画布</el-button>
+            </div>
+            <div v-if="previewBaseUrl" ref="previewCanvasRef" class="gen-preview-canvas" :style="previewContainerStyle">
+              <img ref="previewBgRef" class="gen-preview-bg" :src="previewBaseUrl" alt="preview" @load="onPreviewBgLoad" />
+              <img v-if="previewProductUrl" class="gen-preview-product" :src="previewProductUrl" alt="product" :style="previewProductStyle" />
+              <div v-if="previewShowBoxes" class="gen-preview-box-layer">
+                <div v-for="b in previewTextBoxes" :key="b.key" class="gen-preview-box" :style="b.style"></div>
+              </div>
+              <div v-for="item in previewTextItems" :key="item.key" class="gen-preview-text" :style="item.style">
+                {{ item.text }}
+              </div>
+            </div>
+            <div v-else class="panel-empty">请先选择参考图并完成分析</div>
+          </div>
+        </template>
+      </div>
     </div>
 
     <div class="stage" ref="stageRef">
@@ -62,9 +293,47 @@
         ref="objToolbarRef"
         :style="{ left: objOverlay.left + 'px', top: objOverlay.top + 'px' }"
       >
+        <template v-if="activeIsTextbox">
+          <el-select
+            class="tool tool-el-select"
+            :model-value="textTool.fontFamily"
+            size="small"
+            :teleported="true"
+            popper-class="obj-toolbar-popper"
+            @update:model-value="(v) => onTextToolChange('fontFamily', v)"
+          >
+            <el-option v-for="f in textToolFontOptions" :key="f" :label="f" :value="f">
+              <div class="font-opt">
+                <div class="font-opt-name">{{ f }}</div>
+                <div class="font-opt-sample" :style="{ fontFamily: f }">AaBb 你好 123</div>
+              </div>
+            </el-option>
+          </el-select>
+          <input class="tool tool-number" type="number" min="8" max="300" :value="textTool.fontSize" @change="(e) => onTextToolChange('fontSize', e?.target?.value)" />
+          <input class="tool tool-color" type="color" :value="textTool.fill" @input="(e) => onTextToolChange('fill', e?.target?.value)" />
+          <button class="tool" type="button" :data-active="textTool.bold ? '1' : '0'" @click="toggleTextBold">加粗</button>
+          <span class="tool tool-sep"></span>
+        </template>
+        <template v-if="activeIsSelection">
+          <button class="tool" type="button" @click="groupActiveSelection">成组</button>
+          <span class="tool tool-sep"></span>
+          <button class="tool" type="button" @click="alignActiveSelection('left')">左对齐</button>
+          <button class="tool" type="button" @click="alignActiveSelection('hcenter')">水平居中</button>
+          <button class="tool" type="button" @click="alignActiveSelection('right')">右对齐</button>
+          <span class="tool tool-sep"></span>
+          <button class="tool" type="button" @click="alignActiveSelection('top')">上对齐</button>
+          <button class="tool" type="button" @click="alignActiveSelection('vcenter')">垂直居中</button>
+          <button class="tool" type="button" @click="alignActiveSelection('bottom')">下对齐</button>
+          <span class="tool tool-sep"></span>
+        </template>
+        <template v-else-if="activeIsGroup">
+          <button class="tool" type="button" @click="ungroupActiveGroup">取消成组</button>
+          <span class="tool tool-sep"></span>
+        </template>
+        <button class="tool" type="button" @click="moveActiveLayer('up')">上移</button>
+        <button class="tool" type="button" @click="moveActiveLayer('down')">下移</button>
         <button class="tool" type="button" @click="duplicateActive">复制</button>
         <button class="tool" type="button" @click="rotateActive">旋转</button>
-        <button class="tool" type="button" @click="downloadActive">下载</button>
         <button class="tool danger" type="button" @click="removeActive">删除</button>
       </div>
 
@@ -90,16 +359,21 @@
     </div>
 
     <input ref="imageInputRef" type="file" accept="image/*" style="display:none" @change="onPickImage" />
+    <input ref="refImageInputRef" type="file" accept="image/*" style="display:none" @change="onPickRefImage" />
+    <input ref="step2ProductInputRef" type="file" accept="image/*" style="display:none" @change="onPickStep2Product" />
+    <input ref="step2BackgroundInputRef" type="file" accept="image/*" style="display:none" @change="onPickStep2Background" />
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import jsPDF from 'jspdf'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage, Point as FabricPoint, Rect as FabricRect, Shadow as FabricShadow, Pattern as FabricPattern } from 'fabric'
+import { Operation } from '@element-plus/icons-vue'
+import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage, Point as FabricPoint, Rect as FabricRect, Shadow as FabricShadow, Pattern as FabricPattern, Group as FabricGroup, ActiveSelection as FabricActiveSelection } from 'fabric'
 import { useManualStore } from '@/stores/manualStore'
+import { analyzePosterReference, generatePosterCopy } from '@/services/api'
 
 const router = useRouter()
 const route = useRoute()
@@ -113,11 +387,28 @@ const DRAFT_KEY = 'posterCanvasDraft'
 const canvasEl = ref(null)
 const stageRef = ref(null)
 const imageInputRef = ref(null)
+const refImageInputRef = ref(null)
+const step2ProductInputRef = ref(null)
+const step2BackgroundInputRef = ref(null)
 const objToolbarRef = ref(null)
 const objSizeTagRef = ref(null)
 
 const canvasInstance = ref(null)
 const zoom = ref(1)
+
+const rightPanelOpen = ref(false)
+const rightPanelKey = ref('props')
+const activeObjectRef = ref(null)
+
+const activeType = computed(() => {
+  const o = activeObjectRef.value
+  return String(o?.type || '')
+})
+
+const activeIsSelection = computed(() => activeType.value.toLowerCase() === 'activeselection')
+const activeIsGroup = computed(() => activeType.value.toLowerCase() === 'group')
+
+const propForm = reactive({ x: 0, y: 0, scale: 1, angle: 0, opacity: 1 })
 
 const initError = ref('')
 
@@ -157,9 +448,1271 @@ const clipboard = ref(null)
 const clipboardData = ref(null)
 const pasteCount = ref(0)
 
+const historyUndo = ref([])
+const historyRedo = ref([])
+let historyEnabled = false
+let historyApplying = false
+let historyTimer = null
+const HISTORY_MAX = 60
+
+const getCanvasSnapshot = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return null
+  try {
+    return JSON.stringify(canvas.toJSON(['data']))
+  } catch (e) {
+    try {
+      return JSON.stringify(canvas.toJSON())
+    } catch (e2) {
+      return null
+    }
+  }
+}
+
+const pushHistorySnapshot = (snap) => {
+  if (!snap) return
+  const u = historyUndo.value
+  if (u.length && u[u.length - 1] === snap) return
+  u.push(snap)
+  if (u.length > HISTORY_MAX) u.splice(0, u.length - HISTORY_MAX)
+  historyRedo.value.splice(0, historyRedo.value.length)
+}
+
+const scheduleHistory = () => {
+  if (!historyEnabled || historyApplying) return
+  try {
+    if (historyTimer) clearTimeout(historyTimer)
+  } catch (e) {}
+  historyTimer = setTimeout(() => {
+    historyTimer = null
+    if (!historyEnabled || historyApplying) return
+    const snap = getCanvasSnapshot()
+    pushHistorySnapshot(snap)
+  }, 180)
+}
+
+const initHistoryForCanvas = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  historyUndo.value.splice(0, historyUndo.value.length)
+  historyRedo.value.splice(0, historyRedo.value.length)
+  historyEnabled = true
+  historyApplying = false
+  const snap = getCanvasSnapshot()
+  if (snap) historyUndo.value.push(snap)
+
+  // record key interactions
+  try {
+    canvas.on('object:added', scheduleHistory)
+    canvas.on('object:removed', scheduleHistory)
+    canvas.on('object:modified', (opt) => {
+      try {
+        const t = opt?.target
+        if (t && String(t.type || '') === 'textbox') {
+          bakeTextboxScaling(t)
+        }
+      } catch (e) {}
+      scheduleHistory()
+    })
+    canvas.on('text:changed', scheduleHistory)
+  } catch (e) {}
+}
+
+const isLockedBottomLayer = (o) => {
+  const role = String(o?.data?.role || '')
+  return role === 'artboard' || role === 'poster_background'
+}
+
+const getMovableObjects = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return []
+  try {
+    return (canvas.getObjects() || []).filter((o) => o && !isLockedBottomLayer(o))
+  } catch (e) {
+    return []
+  }
+}
+
+const getFirstMovableCanvasIndex = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return 0
+  const objs = canvas.getObjects ? canvas.getObjects() : []
+  let maxLockedIdx = -1
+  objs.forEach((o, idx) => {
+    if (o && isLockedBottomLayer(o)) maxLockedIdx = Math.max(maxLockedIdx, idx)
+  })
+  return Math.max(0, maxLockedIdx + 1)
+}
+
+const sanitizeActiveSelection = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const obj = canvas.getActiveObject()
+  if (!obj || String(obj.type || '').toLowerCase() !== 'activeselection') return
+
+  try {
+    const all = typeof obj.getObjects === 'function' ? (obj.getObjects() || []) : []
+    const locked = all.filter((o) => o && isLockedBottomLayer(o))
+    if (!locked.length) return
+    locked.forEach((o) => {
+      try {
+        if (typeof obj.remove === 'function') obj.remove(o)
+      } catch (e) {}
+    })
+    const remain = typeof obj.getObjects === 'function' ? (obj.getObjects() || []) : []
+    if (remain.length <= 1) {
+      canvas.discardActiveObject()
+      if (remain[0]) canvas.setActiveObject(remain[0])
+    }
+  } catch (e) {}
+}
+
+const reorderObject = (obj, dir) => {
+  const canvas = canvasInstance.value
+  if (!canvas || !obj) return
+  if (isLockedBottomLayer(obj)) return
+
+  const movable = getMovableObjects()
+  const idx = movable.indexOf(obj)
+  if (idx < 0) return
+  const firstIdx = getFirstMovableCanvasIndex()
+
+  let targetIdx = idx
+  if (dir === 'up') targetIdx = Math.min(movable.length - 1, idx + 1)
+  else if (dir === 'down') targetIdx = Math.max(0, idx - 1)
+  else if (dir === 'top') targetIdx = movable.length - 1
+  else if (dir === 'bottom') targetIdx = 0
+  else return
+
+  if (targetIdx === idx) return
+
+  // movable list is in canvas order; map to absolute canvas index
+  const absIndex = firstIdx + targetIdx
+  try {
+    canvas.moveObjectTo(obj, absIndex)
+    canvas.setActiveObject(obj)
+    canvas.requestRenderAll()
+    updateObjOverlay()
+    scheduleHistory()
+  } catch (e) {}
+}
+
+const moveActiveLayer = (dir) => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const obj = canvas.getActiveObject()
+  if (!obj) {
+    ElMessage.warning('请先选中一个对象')
+    return
+  }
+  reorderObject(obj, dir)
+}
+
+const groupActiveSelection = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  sanitizeActiveSelection()
+  const obj = canvas.getActiveObject()
+  if (!obj || String(obj.type || '').toLowerCase() !== 'activeselection') return
+
+  try {
+    const objects = (typeof obj.getObjects === 'function' ? obj.getObjects() : []).filter((o) => o && !isLockedBottomLayer(o))
+    if (objects.length < 2) {
+      ElMessage.warning('请至少选择两个可编辑对象')
+      return
+    }
+
+    const absTopLeftOf = (o) => {
+      try {
+        const r = typeof o.getBoundingRect === 'function' ? o.getBoundingRect(true, true) : null
+        if (r && Number.isFinite(Number(r.left)) && Number.isFinite(Number(r.top))) {
+          return { x: Number(r.left), y: Number(r.top) }
+        }
+      } catch (e) {}
+      return { x: Number(o.left || 0), y: Number(o.top || 0) }
+    }
+
+    // Prefer native ActiveSelection.toGroup() when available.
+    if (typeof obj.toGroup === 'function') {
+      try {
+        try { console.debug('[group] using native toGroup()') } catch (e) {}
+        const group = obj.toGroup()
+        if (!group) return
+        canvas.setActiveObject(group)
+        canvas.requestRenderAll()
+        updateObjOverlay()
+        scheduleHistory()
+        return
+      } catch (err) {
+        ElMessage.error(`成组失败: ${err?.message || String(err)}`)
+      }
+    }
+
+    // Fallback: manually create a Group for Fabric versions without toGroup().
+    try { console.debug('[group] using fallback manual group()') } catch (e) {}
+    const allObjs = canvas.getObjects ? canvas.getObjects() : []
+    const indices = objects.map((o) => allObjs.indexOf(o)).filter((n) => n >= 0)
+    const firstIdx = getFirstMovableCanvasIndex()
+    const targetIndex = Math.max(firstIdx, indices.length ? Math.min(...indices) : firstIdx)
+
+    // Use absolute coords (not relative coords in ActiveSelection) to preserve positions.
+    const absRects = objects
+      .map((o) => {
+        try {
+          const r = typeof o.getBoundingRect === 'function' ? o.getBoundingRect(true, true) : null
+          return { o, r }
+        } catch (e) {
+          return { o, r: null }
+        }
+      })
+      .filter((x) => x.o)
+
+    const originLeft = Math.min(...absRects.map((x) => Number(x.r?.left ?? 0)))
+    const originTop = Math.min(...absRects.map((x) => Number(x.r?.top ?? 0)))
+
+    try { console.debug('[group] origin', { originLeft, originTop, absRects }) } catch (e) {}
+
+    const absCenters = objects.map((o) => {
+      try {
+        const c = typeof o.getCenterPoint === 'function' ? o.getCenterPoint() : null
+        if (c && Number.isFinite(Number(c.x)) && Number.isFinite(Number(c.y))) return { o, c: { x: Number(c.x), y: Number(c.y) } }
+      } catch (e) {}
+      // Fallback center from bounding rect
+      const r = absRects.find((x) => x.o === o)?.r
+      const x = Number(r?.left ?? 0) + Number(r?.width ?? 0) / 2
+      const y = Number(r?.top ?? 0) + Number(r?.height ?? 0) / 2
+      return { o, c: { x, y } }
+    })
+
+    // Convert absolute centers into group-local coords.
+    absCenters.forEach(({ o, c }) => {
+      try {
+        o.set({ originX: 'center', originY: 'center', left: c.x - originLeft, top: c.y - originTop })
+        if (typeof o.setCoords === 'function') o.setCoords()
+      } catch (e) {}
+    })
+
+    // Remove objects first.
+    objects.forEach((o) => {
+      try {
+        if (o && typeof o.setCoords === 'function') o.setCoords()
+      } catch (e) {}
+      try {
+        canvas.remove(o)
+      } catch (e) {}
+    })
+
+    let group = null
+    try {
+      group = new FabricGroup(objects, { left: originLeft, top: originTop, originX: 'left', originY: 'top' })
+    } catch (e) {
+      group = null
+    }
+    if (!group) return
+
+    canvas.add(group)
+    try {
+      canvas.moveObjectTo(group, Math.min(targetIndex, (canvas.getObjects?.() || []).length - 1))
+    } catch (e) {}
+    canvas.setActiveObject(group)
+    canvas.requestRenderAll()
+    updateObjOverlay()
+    scheduleHistory()
+  } catch (e) {}
+}
+
+const ungroupActiveGroup = () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const obj = canvas.getActiveObject()
+  if (!obj || String(obj.type || '').toLowerCase() !== 'group') return
+  if (isLockedBottomLayer(obj)) return
+
+  try {
+    if (typeof obj.toActiveSelection === 'function') {
+      const sel = obj.toActiveSelection()
+      if (sel) {
+        canvas.setActiveObject(sel)
+        sanitizeActiveSelection()
+      }
+      canvas.requestRenderAll()
+      updateObjOverlay()
+      scheduleHistory()
+      return
+    }
+
+    // Fallback: manually restore objects from group.
+    const items = typeof obj.getObjects === 'function' ? (obj.getObjects() || []) : []
+    if (!items.length) return
+    const groupIndex = (canvas.getObjects?.() || []).indexOf(obj)
+
+    const groupMatrix = typeof obj.calcTransformMatrix === 'function' ? obj.calcTransformMatrix() : null
+
+    try {
+      if (typeof obj._restoreObjectsState === 'function') obj._restoreObjectsState()
+    } catch (e) {}
+    try {
+      canvas.remove(obj)
+    } catch (e) {}
+    items.forEach((o) => {
+      try {
+        // Restore absolute coords from group-local coords (supports scaled/rotated group).
+        const l = Number(o.left || 0)
+        const t = Number(o.top || 0)
+        let p = { x: l, y: t }
+        try {
+          if (groupMatrix) {
+            const pt = new FabricPoint(l, t)
+            const abs = pt.transform(groupMatrix)
+            p = { x: abs.x, y: abs.y }
+          }
+        } catch (e) {}
+        o.set({ originX: 'center', originY: 'center', left: p.x, top: p.y })
+        if (typeof o.setCoords === 'function') o.setCoords()
+        canvas.add(o)
+      } catch (e) {}
+    })
+    try {
+      if (typeof FabricActiveSelection === 'function') {
+        const sel = new FabricActiveSelection(items, { canvas })
+        canvas.setActiveObject(sel)
+        sanitizeActiveSelection()
+      }
+    } catch (e) {}
+    try {
+      if (typeof groupIndex === 'number' && groupIndex >= 0) {
+        // keep approx original position in stack
+        const objs = canvas.getObjects?.() || []
+        const firstIdx = getFirstMovableCanvasIndex()
+        const base = Math.max(firstIdx, groupIndex)
+        items.forEach((o, i) => {
+          try {
+            canvas.moveObjectTo(o, Math.min(base + i, objs.length - 1))
+          } catch (e) {}
+        })
+      }
+    } catch (e) {}
+
+    canvas.requestRenderAll()
+    updateObjOverlay()
+    scheduleHistory()
+  } catch (e) {}
+}
+
+const alignActiveSelection = (mode) => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  sanitizeActiveSelection()
+  const sel = canvas.getActiveObject()
+  if (!sel || String(sel.type || '').toLowerCase() !== 'activeselection') return
+
+  let refRect = null
+  try {
+    refRect = sel.getBoundingRect(true, true)
+  } catch (e) {
+    refRect = null
+  }
+  if (!refRect) return
+
+  const objects = (typeof sel.getObjects === 'function' ? sel.getObjects() : []).filter((o) => o && !isLockedBottomLayer(o))
+  if (objects.length < 2) {
+    ElMessage.warning('请至少选择两个可编辑对象')
+    return
+  }
+
+  const refLeft = Number(refRect.left || 0)
+  const refTop = Number(refRect.top || 0)
+  const refRight = refLeft + Number(refRect.width || 0)
+  const refBottom = refTop + Number(refRect.height || 0)
+  const refCenterX = refLeft + Number(refRect.width || 0) / 2
+  const refCenterY = refTop + Number(refRect.height || 0) / 2
+
+  objects.forEach((o) => {
+    try {
+      const r = o.getBoundingRect(true, true)
+      const left = Number(r.left || 0)
+      const top = Number(r.top || 0)
+      const right = left + Number(r.width || 0)
+      const bottom = top + Number(r.height || 0)
+      const centerX = left + Number(r.width || 0) / 2
+      const centerY = top + Number(r.height || 0) / 2
+
+      let dx = 0
+      let dy = 0
+      if (mode === 'left') dx = refLeft - left
+      else if (mode === 'right') dx = refRight - right
+      else if (mode === 'hcenter') dx = refCenterX - centerX
+      else if (mode === 'top') dy = refTop - top
+      else if (mode === 'bottom') dy = refBottom - bottom
+      else if (mode === 'vcenter') dy = refCenterY - centerY
+      else return
+
+      o.set({ left: Number(o.left || 0) + dx, top: Number(o.top || 0) + dy })
+      if (typeof o.setCoords === 'function') o.setCoords()
+    } catch (e) {}
+  })
+
+  try {
+    if (typeof sel.setCoords === 'function') sel.setCoords()
+  } catch (e) {}
+  canvas.requestRenderAll()
+  updateObjOverlay()
+  scheduleHistory()
+}
+
+const moveLayerById = (id, dir) => {
+  const item = (layerItems.value || []).find((x) => x.id === id)
+  const obj = item?.obj
+  if (!obj) return
+  try {
+    const canvas = canvasInstance.value
+    canvas?.setActiveObject?.(obj)
+  } catch (e) {}
+  reorderObject(obj, dir)
+}
+
+const bakeTextboxScaling = (obj) => {
+  const canvas = canvasInstance.value
+  if (!canvas || !obj || String(obj.type || '') !== 'textbox') return
+  const sx = Number(obj.scaleX ?? 1) || 1
+  const sy = Number(obj.scaleY ?? 1) || 1
+  // Only bake when there is meaningful scaling.
+  if (Math.abs(sx - 1) < 1e-3 && Math.abs(sy - 1) < 1e-3) return
+
+  try {
+    const baseFont = Number(obj.fontSize || 0) || 12
+    const baseW = Number(obj.width || 0) || 1
+    const baseH = Number(obj.height || 0) || 1
+    // Use average scale to keep proportions; update box size accordingly.
+    const s = Math.max(0.05, (sx + sy) / 2)
+    obj.set({
+      fontSize: Math.max(8, Math.round(baseFont * s)),
+      width: Math.max(1, baseW * sx),
+      height: Math.max(1, baseH * sy),
+      scaleX: 1,
+      scaleY: 1,
+    })
+    if (typeof obj.setCoords === 'function') obj.setCoords()
+    canvas.requestRenderAll()
+    updateObjOverlay()
+    syncTextToolFromActive()
+    scheduleHistory()
+  } catch (e) {}
+}
+
+const undoCanvas = async () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const u = historyUndo.value
+  if (!u || u.length < 2) return
+  const current = u.pop()
+  if (current) historyRedo.value.push(current)
+  const prev = u[u.length - 1]
+  if (!prev) return
+  historyApplying = true
+  try {
+    await canvas.loadFromJSON(JSON.parse(prev))
+    canvas.requestRenderAll()
+    applySelectionStyleToAll()
+    recalcAllObjectCoords()
+    updateObjOverlay()
+  } catch (e) {
+    // ignore
+  } finally {
+    historyApplying = false
+  }
+}
+
+const redoCanvas = async () => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const r = historyRedo.value
+  if (!r || r.length < 1) return
+  const next = r.pop()
+  if (!next) return
+  pushHistorySnapshot(next)
+  historyApplying = true
+  try {
+    await canvas.loadFromJSON(JSON.parse(next))
+    canvas.requestRenderAll()
+    applySelectionStyleToAll()
+    recalcAllObjectCoords()
+    updateObjOverlay()
+  } catch (e) {
+    // ignore
+  } finally {
+    historyApplying = false
+  }
+}
+
 const imageDialogVisible = ref(false)
 const imageDialogTab = ref('local')
 const kbProductImages = ref([])
+const imageDialogPurpose = ref('insert')
+
+const refPreviewUrl = ref('')
+const refImageUrl = ref('')
+const refImageFile = ref(null)
+const posterAnalyzeLoading = ref(false)
+const posterAnalyzeError = ref('')
+const posterAnalysisResult = ref(null)
+const posterAnalysisDebug = ref('')
+
+const posterStep2Requirements = ref('')
+const posterStep2Loading = ref(false)
+const posterStep2Error = ref('')
+const posterStep2Result = ref(null)
+const posterStep2Debug = ref('')
+const posterStep2ProductFile = ref(null)
+const posterStep2BackgroundFile = ref(null)
+const posterStep2ProductUrl = ref('')
+const posterStep2BackgroundUrl = ref('')
+
+const posterStep2SendImages = ref(false)
+
+const autoSaveAfterExportToCanvas = ref(true)
+
+const posterFramework = reactive({
+  size: {
+    width: 0,
+    height: 0,
+  },
+  style: {
+    notes: '',
+  },
+  text: {
+    title: '',
+    subtitle: '',
+    sellpoints: [],
+  },
+})
+
+const frameworkSizeTouched = ref(false)
+
+const onFrameworkSizeChange = () => {
+  frameworkSizeTouched.value = true
+}
+
+const updateFrameworkSizeFromRef = async () => {
+  if (frameworkSizeTouched.value) return
+
+  try {
+    if (refImageFile.value) {
+      const bitmap = await createImageBitmap(refImageFile.value)
+      const w = Number(bitmap?.width || 0)
+      const h = Number(bitmap?.height || 0)
+      if (Number.isFinite(w) && w > 0) posterFramework.size.width = Math.round(w)
+      if (Number.isFinite(h) && h > 0) posterFramework.size.height = Math.round(h)
+      try { bitmap.close && bitmap.close() } catch (e) {}
+      return
+    }
+
+    const url = String(refPreviewUrl.value || refImageUrl.value || '').trim()
+    if (!url) return
+    await new Promise((resolve) => {
+      const img = new Image()
+      img.onload = () => {
+        const w = Number(img.naturalWidth || img.width || 0)
+        const h = Number(img.naturalHeight || img.height || 0)
+        if (Number.isFinite(w) && w > 0) posterFramework.size.width = Math.round(w)
+        if (Number.isFinite(h) && h > 0) posterFramework.size.height = Math.round(h)
+        resolve(true)
+      }
+      img.onerror = () => resolve(false)
+      img.src = url
+    })
+  } catch (e) {
+    // ignore
+  }
+}
+
+const newFrameworkSellpoint = (text = '') => {
+  return { id: `${Date.now()}_${Math.random().toString(16).slice(2)}`, text: String(text || '') }
+}
+
+const addFrameworkSellpoint = () => {
+  posterFramework.text.sellpoints.push(newFrameworkSellpoint(''))
+}
+
+const removeFrameworkSellpoint = (idx) => {
+  const i = Number(idx)
+  if (!Number.isFinite(i)) return
+  if (i < 0 || i >= posterFramework.text.sellpoints.length) return
+  posterFramework.text.sellpoints.splice(i, 1)
+}
+
+const fillFrameworkFromStep1 = (result) => {
+  if (!result || typeof result !== 'object') return
+
+  const w = Number(result.width || 0)
+  const h = Number(result.height || 0)
+  if (Number.isFinite(w) && w > 0) posterFramework.size.width = Math.round(w)
+  if (Number.isFinite(h) && h > 0) posterFramework.size.height = Math.round(h)
+
+  const styleNotes = result?.style?.notes
+  if (typeof styleNotes === 'string' && styleNotes.trim()) {
+    posterFramework.style.notes = styleNotes.trim()
+  }
+
+  const els = Array.isArray(result.elements) ? result.elements : []
+  const getTextById = (id) => {
+    const el = els.find((e) => String(e?.id || '') === id)
+    const t = el?.text
+    if (typeof t === 'string' && t.trim()) return t.trim()
+    return ''
+  }
+
+  posterFramework.text.title = getTextById('title')
+  posterFramework.text.subtitle = getTextById('subtitle')
+
+  const sellpointEls = els
+    .map((e) => {
+      const id = String(e?.id || '')
+      const m = id.match(/^sellpoint_(\d+)$/)
+      if (!m) return null
+      const n = Number(m[1])
+      if (!Number.isFinite(n)) return null
+      const t = typeof e?.text === 'string' ? e.text.trim() : ''
+      return { n, text: t }
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.n - b.n)
+
+  posterFramework.text.sellpoints.splice(0, posterFramework.text.sellpoints.length)
+  sellpointEls.forEach((sp) => {
+    posterFramework.text.sellpoints.push(newFrameworkSellpoint(sp.text || ''))
+  })
+}
+
+const step2ProductObjectUrl = ref('')
+const step2BackgroundObjectUrl = ref('')
+
+watch(
+  () => posterStep2ProductFile.value,
+  (f) => {
+    try {
+      if (step2ProductObjectUrl.value) URL.revokeObjectURL(step2ProductObjectUrl.value)
+    } catch (e) {}
+    step2ProductObjectUrl.value = ''
+    try {
+      if (f) step2ProductObjectUrl.value = URL.createObjectURL(f)
+    } catch (e) {}
+  }
+)
+
+watch(
+  () => posterStep2BackgroundFile.value,
+  (f) => {
+    try {
+      if (step2BackgroundObjectUrl.value) URL.revokeObjectURL(step2BackgroundObjectUrl.value)
+    } catch (e) {}
+    step2BackgroundObjectUrl.value = ''
+    try {
+      if (f) step2BackgroundObjectUrl.value = URL.createObjectURL(f)
+    } catch (e) {}
+  }
+)
+
+onBeforeUnmount(() => {
+  try {
+    if (step2ProductObjectUrl.value) URL.revokeObjectURL(step2ProductObjectUrl.value)
+  } catch (e) {}
+  try {
+    if (step2BackgroundObjectUrl.value) URL.revokeObjectURL(step2BackgroundObjectUrl.value)
+  } catch (e) {}
+})
+
+const step2ProductPreviewUrl = computed(() => {
+  return step2ProductObjectUrl.value || posterStep2ProductUrl.value || ''
+})
+
+const step2BackgroundPreviewUrl = computed(() => {
+  return step2BackgroundObjectUrl.value || posterStep2BackgroundUrl.value || ''
+})
+
+const previewBaseUrl = computed(() => {
+  return step2BackgroundPreviewUrl.value || refPreviewUrl.value || ''
+})
+
+const previewProductUrl = computed(() => {
+  return step2ProductPreviewUrl.value || ''
+})
+
+const previewBaseSize = computed(() => {
+  const res = posterAnalysisResult.value
+  const w = Number(res?.width || 0)
+  const h = Number(res?.height || 0)
+  return { w: Math.max(1, Math.round(w || 1)), h: Math.max(1, Math.round(h || 1)) }
+})
+
+const previewContainerStyle = computed(() => {
+  const sz = previewBaseSize.value
+  return { aspectRatio: `${sz.w} / ${sz.h}` }
+})
+
+const previewShowBoxes = ref(false)
+const previewCanvasRef = ref(null)
+const previewBgRef = ref(null)
+const previewCanvasWidthPx = ref(0)
+const previewCanvasHeightPx = ref(0)
+const previewBgNatural = reactive({ w: 0, h: 0 })
+
+const previewScale = computed(() => {
+  const sz = previewBaseSize.value
+  const w = Number(sz.w || 1)
+  const px = Number(previewCanvasWidthPx.value || 0)
+  if (!Number.isFinite(w) || w <= 0) return 1
+  if (!Number.isFinite(px) || px <= 0) return 1
+  return Math.max(0.1, px / w)
+})
+
+let previewResizeObserver = null
+onMounted(() => {
+  try {
+    if (typeof ResizeObserver === 'undefined') return
+    previewResizeObserver = new ResizeObserver((entries) => {
+      const el = previewCanvasRef.value
+      if (!el) return
+      const rect = el.getBoundingClientRect?.()
+      const w = rect?.width || el.clientWidth || 0
+      const h = rect?.height || el.clientHeight || 0
+      previewCanvasWidthPx.value = Number(w || 0)
+      previewCanvasHeightPx.value = Number(h || 0)
+    })
+    if (previewCanvasRef.value) previewResizeObserver.observe(previewCanvasRef.value)
+  } catch (e) {}
+})
+
+watch(
+  () => previewBaseUrl.value,
+  async () => {
+    await nextTick()
+    try {
+      if (previewResizeObserver && previewCanvasRef.value) {
+        previewResizeObserver.disconnect()
+        previewResizeObserver.observe(previewCanvasRef.value)
+      }
+    } catch (e) {}
+    try {
+      const el = previewCanvasRef.value
+      if (!el) return
+      const rect = el.getBoundingClientRect?.()
+      const w = rect?.width || el.clientWidth || 0
+      const h = rect?.height || el.clientHeight || 0
+      previewCanvasWidthPx.value = Number(w || 0)
+      previewCanvasHeightPx.value = Number(h || 0)
+    } catch (e) {}
+  }
+)
+
+onBeforeUnmount(() => {
+  try {
+    if (previewResizeObserver) previewResizeObserver.disconnect()
+  } catch (e) {}
+  previewResizeObserver = null
+})
+
+const onPreviewBgLoad = () => {
+  try {
+    const img = previewBgRef.value
+    if (!img) return
+    const nw = Number(img.naturalWidth || 0)
+    const nh = Number(img.naturalHeight || 0)
+    if (Number.isFinite(nw) && nw > 0) previewBgNatural.w = nw
+    if (Number.isFinite(nh) && nh > 0) previewBgNatural.h = nh
+  } catch (e) {}
+}
+
+const bboxToPreviewStyle = (bb) => {
+  // Treat Step1 bbox as layout template on the canvas (container).
+  const cw = Number(previewCanvasWidthPx.value || 0)
+  const ch = Number(previewCanvasHeightPx.value || 0)
+  if (!bb || cw <= 0 || ch <= 0) return null
+  const leftPx = (bb.x0 / 1000) * cw
+  const topPx = (bb.y0 / 1000) * ch
+  const widthPx = ((bb.x1 - bb.x0) / 1000) * cw
+  const heightPx = ((bb.y1 - bb.y0) / 1000) * ch
+  return {
+    left: `${(leftPx / cw) * 100}%`,
+    top: `${(topPx / ch) * 100}%`,
+    width: `${(widthPx / cw) * 100}%`,
+    height: `${(heightPx / ch) * 100}%`,
+    widthPx,
+    heightPx,
+  }
+}
+
+const estimateFontSizeBasePx = (text, boxW, boxH, { kind } = {}) => {
+  const t = String(text || '').trim()
+  if (!t) return Math.max(12, Math.round(boxH * 0.5))
+  const w = Math.max(1, Number(boxW || 1))
+  const h = Math.max(1, Number(boxH || 1))
+  const lineH = 1.18
+  let fs = h * 0.72
+  if (kind === 'sellpoint') fs *= 0.9
+  if (kind === 'subtitle') fs *= 0.95
+  fs = Math.max(10, Math.min(fs, 180))
+
+  const avgChar = 0.56
+  for (let i = 0; i < 8; i++) {
+    const charsPerLine = Math.max(1, Math.floor(w / (fs * avgChar)))
+    const lines = Math.max(1, Math.ceil(t.length / charsPerLine))
+    const needH = lines * fs * lineH
+    if (needH <= h && fs * avgChar * Math.min(t.length, charsPerLine) <= w * 1.02) break
+    fs *= 0.88
+    if (fs < 9) break
+  }
+  return Math.max(10, Math.round(fs))
+}
+
+const fontForElement = (el) => {
+  const result = posterAnalysisResult.value
+  const fg = result?.font_guess
+  const id = String(el?.id || '')
+  let name = null
+  try {
+    if (fg && typeof fg === 'object') {
+      if (fg[id] && typeof fg[id] === 'object') {
+        name = fg[id].name
+      }
+    }
+  } catch (e) {}
+  const n = typeof name === 'string' && name.trim() ? name.trim() : ''
+  if (!n) return 'system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif'
+  return `"${n}", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif`
+}
+
+const weightForElement = (el) => {
+  const id = String(el?.id || '')
+  if (id === 'title') return 700
+  if (id === 'subtitle') return 600
+  if (/^sellpoint_\d+$/.test(id)) return 600
+  return 600
+}
+
+const normalizePreviewBbox = (el) => {
+  const bbox = Array.isArray(el?.bbox) ? el.bbox : null
+  if (!bbox || bbox.length !== 4) return null
+  let y0 = Number(bbox[0])
+  let x0 = Number(bbox[1])
+  let y1 = Number(bbox[2])
+  let x1 = Number(bbox[3])
+  if (![y0, x0, y1, x1].every((n) => Number.isFinite(n))) return null
+
+  const type = String(el?.type || '').toLowerCase()
+  const idText = String(el?.id || '').toLowerCase()
+  const labelText = String(el?.label || '').toLowerCase()
+  const keyText = `${idText} ${labelText}`
+  const iconLike =
+    keyText.includes('icon') ||
+    keyText.includes('badge') ||
+    keyText.includes('logo') ||
+    keyText.includes('stamp') ||
+    keyText.includes('tag') ||
+    keyText.includes('label') ||
+    keyText.includes('drone')
+  const w = x1 - x0
+  const h = y1 - y0
+  if (w > 0 && h > 0) {
+    if (type === 'text') {
+      if (w < h) {
+        ;[y0, x0, y1, x1] = [x0, y0, x1, y1]
+      }
+    } else if (iconLike) {
+      if (w < h) {
+        ;[y0, x0, y1, x1] = [x0, y0, x1, y1]
+      }
+    } else if (type === 'product' || type === 'image') {
+      if (h < w) {
+        ;[y0, x0, y1, x1] = [x0, y0, x1, y1]
+      }
+    }
+  }
+  if (y1 <= y0 || x1 <= x0) return null
+
+  // Step1 bbox is normalized to 0..1000.
+  const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n))
+  y0 = clamp(y0, 0, 1000)
+  y1 = clamp(y1, 0, 1000)
+  x0 = clamp(x0, 0, 1000)
+  x1 = clamp(x1, 0, 1000)
+  if (y1 <= y0 || x1 <= x0) return null
+
+  return { y0, x0, y1, x1 }
+}
+
+const previewProductStyle = computed(() => {
+  const result = posterAnalysisResult.value
+  const els = Array.isArray(result?.elements) ? result.elements : []
+  const el = els.find((e) => String(e?.id || '') === 'main_product')
+  if (!el) return {}
+  const bb = normalizePreviewBbox(el)
+  if (!bb) return {}
+  const st = bboxToPreviewStyle(bb)
+  if (!st) return {}
+  return { left: st.left, top: st.top, width: st.width, height: st.height }
+})
+
+const previewTextBoxes = computed(() => {
+  const result = posterAnalysisResult.value
+  const els = Array.isArray(result?.elements) ? result.elements : []
+  const boxes = []
+  els.forEach((el, idx) => {
+    const type = String(el?.type || '').toLowerCase()
+    if (type !== 'text') return
+    const bb = normalizePreviewBbox(el)
+    if (!bb) return
+    const st = bboxToPreviewStyle(bb)
+    if (!st) return
+    const id = String(el?.id || '')
+    boxes.push({
+      key: String(id || idx),
+      style: {
+        left: st.left,
+        top: st.top,
+        width: st.width,
+        height: st.height,
+      },
+    })
+  })
+  return boxes
+})
+
+const previewTextItems = computed(() => {
+  const result = posterAnalysisResult.value
+  const els = Array.isArray(result?.elements) ? result.elements : []
+  const sz = previewBaseSize.value
+
+  const idToText = {}
+  if (typeof posterFramework.text.title === 'string' && posterFramework.text.title.trim()) idToText.title = posterFramework.text.title.trim()
+  if (typeof posterFramework.text.subtitle === 'string' && posterFramework.text.subtitle.trim()) idToText.subtitle = posterFramework.text.subtitle.trim()
+  const sps = Array.isArray(posterFramework.text.sellpoints) ? posterFramework.text.sellpoints : []
+  sps.forEach((sp, idx) => {
+    const t = String(sp?.text || '').trim()
+    if (!t) return
+    idToText[`sellpoint_${idx + 1}`] = t
+  })
+
+  const items = []
+  els.forEach((el, idx) => {
+    const type = String(el?.type || '').toLowerCase()
+    if (type !== 'text') return
+    const bb = normalizePreviewBbox(el)
+    if (!bb) return
+    const st = bboxToPreviewStyle(bb)
+    if (!st) return
+    const id = String(el?.id || '')
+    const fallbackText = typeof el?.text === 'string' ? el.text.trim() : ''
+    const text = String(idToText[id] || fallbackText || el?.label || id || '').trim()
+    if (!text) return
+    const kind = id === 'title' ? 'title' : (id === 'subtitle' ? 'subtitle' : (/^sellpoint_\d+$/.test(id) ? 'sellpoint' : 'other'))
+    // Font fitting should happen in pixels. Prefer rendered size (after contain) to avoid drift.
+    const boxWpx = Number(st.widthPx || 0) || (((bb.x1 - bb.x0) / 1000) * Number(sz.w || 1))
+    const boxHpx = Number(st.heightPx || 0) || (((bb.y1 - bb.y0) / 1000) * Number(sz.h || 1))
+    const baseFont = estimateFontSizeBasePx(text, boxWpx, boxHpx, { kind })
+    const px = Math.max(10, Math.round(baseFont))
+    items.push({
+      key: String(id || idx),
+      text,
+      style: {
+        left: st.left,
+        top: st.top,
+        width: st.width,
+        height: st.height,
+        fontSize: `${px}px`,
+        fontFamily: fontForElement(el),
+        fontWeight: weightForElement(el),
+      },
+    })
+  })
+  return items
+})
+
+const posterOverlayTextMap = computed(() => {
+  const step2 = posterStep2Result.value
+  const copy = step2?.copy
+  if (!copy || typeof copy !== 'object') return {}
+
+  const out = {}
+  if (typeof copy.title === 'string' && copy.title.trim()) out.title = copy.title.trim()
+  if (typeof copy.subtitle === 'string' && copy.subtitle.trim()) out.subtitle = copy.subtitle.trim()
+  if (typeof copy.cta === 'string' && copy.cta.trim()) out.cta = copy.cta.trim()
+  if (typeof copy.footer === 'string' && copy.footer.trim()) out.footer = copy.footer.trim()
+  if (Array.isArray(copy.sellpoints)) {
+    const sp = copy.sellpoints.map((s) => String(s || '').trim()).filter(Boolean)
+    sp.forEach((t, i) => {
+      out[`sellpoint_${i + 1}`] = t
+    })
+  }
+  return out
+})
+
+const posterOverlayBoxes = computed(() => {
+  const result = posterAnalysisResult.value
+  const els = result?.elements
+  if (!Array.isArray(els) || els.length === 0) return []
+
+  const textMap = posterOverlayTextMap.value || {}
+
+  const safe = (v) => {
+    const n = Number(v)
+    if (!Number.isFinite(n)) return 0
+    return Math.max(0, Math.min(1000, n))
+  }
+
+  const toBox = (el, idx) => {
+    const bbox = Array.isArray(el?.bbox) ? el.bbox : null
+    if (!bbox || bbox.length !== 4) return null
+    let y0 = safe(bbox[0])
+    let x0 = safe(bbox[1])
+    let y1 = safe(bbox[2])
+    let x1 = safe(bbox[3])
+
+    const type = String(el?.type || '').toLowerCase()
+    const idText = String(el?.id || '').toLowerCase()
+    const labelText = String(el?.label || '').toLowerCase()
+    const keyText = `${idText} ${labelText}`
+    const iconLike =
+      keyText.includes('icon') ||
+      keyText.includes('badge') ||
+      keyText.includes('logo') ||
+      keyText.includes('stamp') ||
+      keyText.includes('tag') ||
+      keyText.includes('label') ||
+      keyText.includes('drone')
+    const w = x1 - x0
+    const h = y1 - y0
+
+    // Heuristic: if bbox seems to be [xmin,ymin,xmax,ymax], swap it.
+    if (w > 0 && h > 0) {
+      if (type === 'text') {
+        // text should be wide
+        if (w < h) {
+          ;[y0, x0, y1, x1] = [x0, y0, x1, y1]
+        }
+      } else if (iconLike) {
+        // icons/badges/logos are typically wide and short
+        if (w < h) {
+          ;[y0, x0, y1, x1] = [x0, y0, x1, y1]
+        }
+      } else if (type === 'product' || type === 'image') {
+        // product in posters tends to be tall
+        if (h < w) {
+          ;[y0, x0, y1, x1] = [x0, y0, x1, y1]
+        }
+      }
+    }
+    if (y1 <= y0 || x1 <= x0) return null
+    const left = (x0 / 1000) * 100
+    const top = (y0 / 1000) * 100
+    const width = ((x1 - x0) / 1000) * 100
+    const height = ((y1 - y0) / 1000) * 100
+    const elId = String(el?.id || '')
+    const mapped = elId ? textMap[elId] : ''
+    const label = String(mapped || el?.label || el?.id || `box_${idx}`)
+    return {
+      key: String(el?.id || idx),
+      label,
+      style: {
+        left: `${left}%`,
+        top: `${top}%`,
+        width: `${width}%`,
+        height: `${height}%`,
+      },
+    }
+  }
+
+  return els.map(toBox).filter(Boolean)
+})
+
+const togglePanel = () => {
+  rightPanelOpen.value = !rightPanelOpen.value
+  if (rightPanelOpen.value && !rightPanelKey.value) {
+    rightPanelKey.value = 'props'
+  }
+}
+
+const activeObject = computed(() => activeObjectRef.value)
+
+const activeIsTextbox = computed(() => {
+  const o = activeObject.value
+  return !!o && String(o.type || '') === 'textbox'
+})
+
+const textTool = reactive({
+  fontFamily: 'system-ui',
+  fontSize: 32,
+  fill: '#ffffff',
+  bold: false,
+})
+
+const textToolFontOptions = computed(() => {
+  const opts = new Set([
+    'system-ui',
+    'Inter',
+    'Roboto',
+    'Montserrat',
+    'Poppins',
+    'Oswald',
+    'Bebas Neue',
+    'Noto Sans',
+    'Noto Serif',
+    'Noto Sans SC',
+    'Noto Serif SC',
+    'Source Han Sans SC',
+    'Source Han Serif SC',
+    'Alibaba PuHuiTi',
+  ])
+  try {
+    const fg = posterAnalysisResult.value?.font_guess
+    if (fg && typeof fg === 'object') {
+      Object.values(fg).forEach((v) => {
+        const n = v?.name
+        if (typeof n === 'string' && n.trim()) opts.add(n.trim())
+      })
+    }
+  } catch (e) {}
+  return Array.from(opts)
+})
+
+const syncTextToolFromActive = () => {
+  const o = activeObject.value
+  if (!o || String(o.type || '') !== 'textbox') return
+  try {
+    const ff = typeof o.fontFamily === 'string' && o.fontFamily.trim() ? o.fontFamily.trim() : 'system-ui'
+    const fs = Number(o.fontSize || 0)
+    const fill = typeof o.fill === 'string' && o.fill.trim() ? o.fill.trim() : '#ffffff'
+    const fw = String(o.fontWeight || '').trim()
+    textTool.fontFamily = ff
+    textTool.fontSize = Number.isFinite(fs) && fs > 0 ? Math.round(fs) : 32
+    textTool.fill = fill.startsWith('#') ? fill : '#ffffff'
+    textTool.bold = fw === '700' || fw === 'bold' || Number(fw) >= 700
+  } catch (e) {}
+}
+
+const onTextToolChange = (key, value) => {
+  const canvas = canvasInstance.value
+  const o = activeObject.value
+  if (!canvas || !o || String(o.type || '') !== 'textbox') return
+  try {
+    if (key === 'fontFamily') {
+      const v = String(value || '').trim() || 'system-ui'
+      textTool.fontFamily = v
+      o.set({ fontFamily: v })
+    } else if (key === 'fontSize') {
+      const n = Math.max(8, Math.min(300, Math.round(Number(value || 0) || 0)))
+      if (!Number.isFinite(n) || n <= 0) return
+      textTool.fontSize = n
+      o.set({ fontSize: n })
+    } else if (key === 'fill') {
+      const v = String(value || '').trim() || '#ffffff'
+      textTool.fill = v
+      o.set({ fill: v })
+    }
+    if (typeof o.setCoords === 'function') o.setCoords()
+    canvas.requestRenderAll()
+    updateObjOverlay()
+    scheduleHistory()
+  } catch (e) {}
+}
+
+const toggleTextBold = () => {
+  const canvas = canvasInstance.value
+  const o = activeObject.value
+  if (!canvas || !o || String(o.type || '') !== 'textbox') return
+  try {
+    textTool.bold = !textTool.bold
+    const fw = textTool.bold ? 700 : 400
+    o.set({ fontWeight: fw })
+    if (typeof o.setCoords === 'function') o.setCoords()
+    canvas.requestRenderAll()
+    updateObjOverlay()
+    scheduleHistory()
+  } catch (e) {}
+}
+
+const layerItems = computed(() => {
+  const canvas = canvasInstance.value
+  if (!canvas) return []
+  const items = []
+  try {
+    const objs = canvas.getObjects ? canvas.getObjects() : []
+    objs.forEach((o, idx) => {
+      if (!o) return
+      if (o?.data?.role === 'artboard') return
+      const id = o.__uid || o.__objectId || String(idx)
+      const type = o.type || 'object'
+      const w = Math.round(Math.abs(o.getScaledWidth ? o.getScaledWidth() : (o.width || 0) * (o.scaleX || 1)))
+      const h = Math.round(Math.abs(o.getScaledHeight ? o.getScaledHeight() : (o.height || 0) * (o.scaleY || 1)))
+      let label = '对象'
+      if (type === 'image') label = '图片'
+      if (type === 'textbox') label = String(o.text || '').trim() ? String(o.text).slice(0, 18) : '双击编辑文字'
+      const lockedBottom = isLockedBottomLayer(o)
+      items.push({
+        id,
+        obj: o,
+        label,
+        meta: `${w}×${h}`,
+        lockedBottom,
+      })
+    })
+  } catch (e) {
+    // ignore
+  }
+  return items
+})
+
+const activeLayerId = computed(() => {
+  const o = activeObject.value
+  if (!o) return ''
+  return o.__uid || o.__objectId || ''
+})
+
+const selectLayer = (id) => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const target = (layerItems.value || []).find((x) => x.id === id)?.obj
+  if (!target) return
+  try {
+    canvas.setActiveObject(target)
+    canvas.requestRenderAll()
+  } catch (e) {}
+  syncPropFormFromActive()
+  updateObjOverlay()
+  syncTextToolFromActive()
+}
+
+const syncPropFormFromActive = () => {
+  const o = activeObjectRef.value
+  if (!o) return
+  propForm.x = Math.round(Number(o.left ?? 0))
+  propForm.y = Math.round(Number(o.top ?? 0))
+  const sx = Number(o.scaleX ?? 1) || 1
+  const sy = Number(o.scaleY ?? 1) || 1
+  propForm.scale = Number(((sx + sy) / 2).toFixed(4))
+  propForm.angle = Math.round(Number(o.angle ?? 0))
+  try {
+    syncTextToolFromActive()
+  } catch (e) {}
+  propForm.opacity = Number((Number(o.opacity ?? 1)).toFixed(3))
+}
+
+const applyPropForm = () => {
+  const canvas = canvasInstance.value
+  const o = activeObjectRef.value
+  if (!canvas || !o) return
+  try {
+    const x = Number(propForm.x ?? o.left ?? 0)
+    const y = Number(propForm.y ?? o.top ?? 0)
+    const s = clamp(Number(propForm.scale ?? 1), 0.02, 50)
+    const ang = Number(propForm.angle ?? 0)
+    const op = clamp(Number(propForm.opacity ?? 1), 0, 1)
+    o.set({ left: x, top: y, scaleX: s, scaleY: s, angle: ang, opacity: op })
+    if (typeof o.setCoords === 'function') o.setCoords()
+    canvas.requestRenderAll()
+  } catch (e) {}
+  updateObjOverlay()
+}
 
 const raf = () => new Promise((resolve) => requestAnimationFrame(() => resolve()))
 
@@ -536,7 +2089,13 @@ const updateObjOverlay = () => {
   if (!canvas || !stage) return
   const obj = canvas.getActiveObject()
 
-  if (!obj || obj.type !== 'image') {
+  activeObjectRef.value = obj || null
+  syncPropFormFromActive()
+
+  const t = obj ? String(obj.type || '') : ''
+  const tl = t.toLowerCase()
+  const supported = tl === 'image' || tl === 'textbox' || tl === 'activeselection' || tl === 'group'
+  if (!obj || !supported) {
     objOverlay.visible = false
     objOverlay.sizeVisible = false
     resizeOverlay.visible = false
@@ -565,21 +2124,26 @@ const updateObjOverlay = () => {
   objOverlay.left = Math.max(12, Math.min(sr.centerX, stage.clientWidth - 12))
   objOverlay.top = preferTop ? (sr.top - gap) : (sr.bottom + gap)
 
-  const getScaledDim = (o, key) => {
-    try {
-      if (key === 'w' && typeof o.getScaledWidth === 'function') return o.getScaledWidth()
-      if (key === 'h' && typeof o.getScaledHeight === 'function') return o.getScaledHeight()
-    } catch (e) {}
-    const base = key === 'w' ? (o.width || 0) : (o.height || 0)
-    const scale = key === 'w' ? (o.scaleX || 1) : (o.scaleY || 1)
-    return base * scale
+  // size tag only for images
+  if (t === 'image') {
+    const getScaledDim = (o, key) => {
+      try {
+        if (key === 'w' && typeof o.getScaledWidth === 'function') return o.getScaledWidth()
+        if (key === 'h' && typeof o.getScaledHeight === 'function') return o.getScaledHeight()
+      } catch (e) {}
+      const base = key === 'w' ? (o.width || 0) : (o.height || 0)
+      const scale = key === 'w' ? (o.scaleX || 1) : (o.scaleY || 1)
+      return base * scale
+    }
+    const wText = Math.max(1, Math.round(Math.abs(getScaledDim(obj, 'w'))))
+    const hText = Math.max(1, Math.round(Math.abs(getScaledDim(obj, 'h'))))
+    objOverlay.sizeText = `${wText} × ${hText}`
+    objOverlay.sizeVisible = true
+    objOverlay.sizeLeft = Math.max(12, Math.min((sr.topRight?.x ?? sr.right) - 4, stage.clientWidth - 12))
+    objOverlay.sizeTop = Math.max(12, Math.min((sr.topRight?.y ?? sr.top) - 4, stage.clientHeight - 12))
+  } else {
+    objOverlay.sizeVisible = false
   }
-  const wText = Math.max(1, Math.round(Math.abs(getScaledDim(obj, 'w'))))
-  const hText = Math.max(1, Math.round(Math.abs(getScaledDim(obj, 'h'))))
-  objOverlay.sizeText = `${wText} × ${hText}`
-  objOverlay.sizeVisible = true
-  objOverlay.sizeLeft = Math.max(12, Math.min((sr.topRight?.x ?? sr.right) - 4, stage.clientWidth - 12))
-  objOverlay.sizeTop = Math.max(12, Math.min((sr.topRight?.y ?? sr.top) - 4, stage.clientHeight - 12))
 
   resizeOverlay.visible = true
   resizeOverlay.handles = [
@@ -894,14 +2458,21 @@ const initCanvas = async () => {
     })
 
     canvas.on('selection:created', () => {
+      sanitizeActiveSelection()
       recalcAllObjectCoords()
+      activeObjectRef.value = canvas.getActiveObject() || null
+      syncPropFormFromActive()
       updateObjOverlay()
     })
     canvas.on('selection:updated', () => {
+      sanitizeActiveSelection()
       recalcAllObjectCoords()
+      activeObjectRef.value = canvas.getActiveObject() || null
+      syncPropFormFromActive()
       updateObjOverlay()
     })
     canvas.on('selection:cleared', () => {
+      activeObjectRef.value = null
       updateObjOverlay()
       resizeOverlay.visible = false
       resizeState.active = false
@@ -953,6 +2524,9 @@ const initCanvas = async () => {
         // user canceled
       }
     }
+
+    // Enable undo/redo after optional draft restore.
+    initHistoryForCanvas()
   } catch (e) {
     console.error('PosterCanvasEditor init failed:', e)
     initError.value = e?.message ? `初始化失败：${e.message}` : '初始化失败（请打开控制台查看错误）'
@@ -1006,14 +2580,304 @@ const addText = () => {
   updateObjOverlay()
 }
 
+let exportToCanvasCount = 0
+const exportPreviewToCanvas = async () => {
+  const canvas = canvasInstance.value
+  if (!canvas) {
+    ElMessage.error('画布未初始化成功')
+    return
+  }
+  if (!posterAnalysisResult.value) {
+    ElMessage.warning('请先完成参考图分析')
+    return
+  }
+  const W = Math.max(1, Math.round(Number(posterFramework.size.width || posterAnalysisResult.value?.width || POSTER_CANVAS_WIDTH || 1000)))
+  const H = Math.max(1, Math.round(Number(posterFramework.size.height || posterAnalysisResult.value?.height || POSTER_CANVAS_HEIGHT || 1500)))
+
+  const els = Array.isArray(posterAnalysisResult.value?.elements) ? posterAnalysisResult.value.elements : []
+  const bboxById = (id) => {
+    const el = els.find((e) => String(e?.id || '') === id)
+    const bbox = Array.isArray(el?.bbox) ? el.bbox : null
+    if (!bbox || bbox.length !== 4) return null
+    const y0 = Number(bbox[0])
+    const x0 = Number(bbox[1])
+    const y1 = Number(bbox[2])
+    const x1 = Number(bbox[3])
+    if (![y0, x0, y1, x1].every((n) => Number.isFinite(n))) return null
+    if (y1 <= y0 || x1 <= x0) return null
+    return { y0, x0, y1, x1 }
+  }
+  const rectFromBbox = (bb) => {
+    if (!bb) return null
+    return {
+      left: (bb.x0 / 1000) * W,
+      top: (bb.y0 / 1000) * H,
+      width: ((bb.x1 - bb.x0) / 1000) * W,
+      height: ((bb.y1 - bb.y0) / 1000) * H,
+    }
+  }
+
+  const center = getViewportCenterInWorld()
+  exportToCanvasCount += 1
+  const nudge = 28 * exportToCanvasCount
+  const originLeft = center.x - W / 2 + nudge
+  const originTop = center.y - H / 2 + nudge
+
+  const addLockedImageCover = async (src, { w, h, left, top } = {}) => {
+    const url = String(src || '').trim()
+    if (!url) return null
+    const img = await FabricImage.fromURL(url, { crossOrigin: 'anonymous' })
+    const iw = Number(img.width || 1)
+    const ih = Number(img.height || 1)
+    const cw = Number(w || 1)
+    const ch = Number(h || 1)
+    const scale = Math.max(cw / iw, ch / ih)
+    const dw = iw * scale
+    const dh = ih * scale
+    img.set({
+      left: Number(left || 0) + (cw - dw) / 2,
+      top: Number(top || 0) + (ch - dh) / 2,
+      scaleX: scale,
+      scaleY: scale,
+      selectable: false,
+      evented: false,
+      hasControls: false,
+      hasBorders: false,
+      lockMovementX: true,
+      lockMovementY: true,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+    })
+    img.data = { ...(img.data || {}), role: 'poster_background' }
+    return img
+  }
+
+  const addEditableImageContainBottom = async (src, box, { left, top } = {}) => {
+    const url = String(src || '').trim()
+    if (!url || !box) return null
+    const img = await FabricImage.fromURL(url, { crossOrigin: 'anonymous' })
+    const iw = Number(img.width || 1)
+    const ih = Number(img.height || 1)
+    const bw = Math.max(1, Number(box.width || 1))
+    const bh = Math.max(1, Number(box.height || 1))
+    const scale = Math.min(bw / iw, bh / ih)
+    const dw = iw * scale
+    const dh = ih * scale
+    img.set({
+      left: Number(left || 0) + Number(box.left || 0) + (bw - dw) / 2,
+      top: Number(top || 0) + Number(box.top || 0) + (bh - dh),
+      scaleX: scale,
+      scaleY: scale,
+    })
+    img.data = { ...(img.data || {}), role: 'poster_product' }
+    applySelectionStyle(img)
+    return img
+  }
+
+  const addTextbox = (text, box, { fontFamily, fontWeight } = {}) => {
+    if (!box) return null
+    const t = String(text || '').trim()
+    if (!t) return null
+    const fs = estimateFontSizeBasePx(t, Number(box.width || 1), Number(box.height || 1), { kind: 'other' })
+    const tb = new FabricTextbox(t, {
+      left: originLeft + Number(box.left || 0),
+      top: originTop + Number(box.top || 0),
+      width: Math.max(1, Number(box.width || 1)),
+      height: Math.max(1, Number(box.height || 1)),
+      fontFamily: fontFamily || 'system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif',
+      fontSize: Math.max(10, Math.round(fs)),
+      fontWeight: fontWeight || 600,
+      fill: 'rgba(255,255,255,0.95)',
+      lineHeight: 1.12,
+      textAlign: 'left',
+      shadow: new FabricShadow({ color: 'rgba(0,0,0,0.55)', blur: 8, offsetX: 0, offsetY: 2 }),
+    })
+    tb.data = { ...(tb.data || {}), role: 'poster_text' }
+    applySelectionStyle(tb)
+    return tb
+  }
+
+  try {
+    const bg = await addLockedImageCover(previewBaseUrl.value, { w: W, h: H, left: originLeft, top: originTop })
+    if (bg) canvas.add(bg)
+
+    const productBox = rectFromBbox(bboxById('main_product'))
+    const product = await addEditableImageContainBottom(previewProductUrl.value, productBox, { left: originLeft, top: originTop })
+    if (product) canvas.add(product)
+
+    // Map ids to texts from current framework (already contains Step2 overrides)
+    const idToText = {}
+    if (typeof posterFramework.text.title === 'string' && posterFramework.text.title.trim()) idToText.title = posterFramework.text.title.trim()
+    if (typeof posterFramework.text.subtitle === 'string' && posterFramework.text.subtitle.trim()) idToText.subtitle = posterFramework.text.subtitle.trim()
+    const sps = Array.isArray(posterFramework.text.sellpoints) ? posterFramework.text.sellpoints : []
+    sps.forEach((sp, idx) => {
+      const t = String(sp?.text || '').trim()
+      if (!t) return
+      idToText[`sellpoint_${idx + 1}`] = t
+    })
+
+    const fg = posterAnalysisResult.value?.font_guess
+    const getFont = (id) => {
+      try {
+        const n = fg?.[id]?.name
+        if (typeof n === 'string' && n.trim()) return `"${n.trim()}", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif`
+      } catch (e) {}
+      return 'system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif'
+    }
+
+    const addTextById = (id, kind) => {
+      const bb = bboxById(id)
+      const box = rectFromBbox(bb)
+      if (!box) return
+      const text = idToText[id] || ''
+      if (!String(text || '').trim()) return
+      const fs = estimateFontSizeBasePx(String(text), Number(box.width || 1), Number(box.height || 1), { kind })
+      const tb = new FabricTextbox(String(text), {
+        left: originLeft + Number(box.left || 0),
+        top: originTop + Number(box.top || 0),
+        width: Math.max(1, Number(box.width || 1)),
+        height: Math.max(1, Number(box.height || 1)),
+        fontFamily: getFont(id),
+        fontSize: Math.max(10, Math.round(fs)),
+        fontWeight: id === 'title' ? 700 : 600,
+        fill: 'rgba(255,255,255,0.95)',
+        lineHeight: 1.12,
+        textAlign: 'left',
+        shadow: new FabricShadow({ color: 'rgba(0,0,0,0.55)', blur: 8, offsetX: 0, offsetY: 2 }),
+      })
+      tb.data = { ...(tb.data || {}), role: 'poster_text', posterId: id }
+      applySelectionStyle(tb)
+      canvas.add(tb)
+    }
+
+    addTextById('title', 'title')
+    addTextById('subtitle', 'subtitle')
+    for (let i = 1; i <= 5; i++) {
+      addTextById(`sellpoint_${i}`, 'sellpoint')
+    }
+
+    canvas.requestRenderAll()
+    fitToScreen()
+    ElMessage.success('已导出到画布（可编辑）')
+    if (autoSaveAfterExportToCanvas.value) {
+      try {
+        await saveDraft()
+      } catch (e) {
+        // ignore
+      }
+    }
+  } catch (e) {
+    console.error('exportPreviewToCanvas failed:', e)
+    ElMessage.error('导出到画布失败')
+  }
+}
+
 const triggerPickImage = () => {
   imageDialogTab.value = 'local'
   refreshKbProductImages()
+  imageDialogPurpose.value = 'insert'
   imageDialogVisible.value = true
 }
 
 const triggerLocalImageUpload = () => {
   if (imageInputRef.value) imageInputRef.value.click()
+}
+
+const triggerRefLocalUpload = () => {
+  if (refImageInputRef.value) refImageInputRef.value.click()
+}
+
+const openRefKbPicker = () => {
+  rightPanelKey.value = 'gen'
+  refreshKbProductImages()
+  imageDialogTab.value = 'kb'
+  imageDialogPurpose.value = 'ref'
+  imageDialogVisible.value = true
+}
+
+const openStep2ProductKbPicker = () => {
+  rightPanelKey.value = 'gen'
+  refreshKbProductImages()
+  imageDialogTab.value = 'kb'
+  imageDialogPurpose.value = 'step2_product'
+  imageDialogVisible.value = true
+}
+
+const openStep2BackgroundKbPicker = () => {
+  rightPanelKey.value = 'gen'
+  refreshKbProductImages()
+  imageDialogTab.value = 'kb'
+  imageDialogPurpose.value = 'step2_background'
+  imageDialogVisible.value = true
+}
+
+const setReferenceImageFromUrl = (url) => {
+  if (!url) return
+  refImageFile.value = null
+  refImageUrl.value = url
+  refPreviewUrl.value = url
+  updateFrameworkSizeFromRef()
+}
+
+const setReferenceImageFromFile = (file) => {
+  if (!file) return
+  refImageFile.value = file
+  refImageUrl.value = ''
+  try {
+    refPreviewUrl.value = URL.createObjectURL(file)
+  } catch (e) {
+    refPreviewUrl.value = ''
+  }
+  updateFrameworkSizeFromRef()
+}
+
+const compressImageFile = async (file, { maxSide = 1100, targetBytes = 550 * 1024 } = {}) => {
+  if (!file) return file
+  if (file.size <= targetBytes) return file
+
+  let bitmap = null
+  try {
+    bitmap = await createImageBitmap(file)
+  } catch (e) {
+    return file
+  }
+
+  const w = bitmap.width || 1
+  const h = bitmap.height || 1
+  const scale = Math.min(1, maxSide / Math.max(w, h))
+  const outW = Math.max(1, Math.round(w * scale))
+  const outH = Math.max(1, Math.round(h * scale))
+
+  const canvas = document.createElement('canvas')
+  canvas.width = outW
+  canvas.height = outH
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return file
+  ctx.drawImage(bitmap, 0, 0, outW, outH)
+
+  const toBlobAsync = (type, quality) =>
+    new Promise((resolve) => {
+      try {
+        canvas.toBlob((b) => resolve(b), type, quality)
+      } catch (e) {
+        resolve(null)
+      }
+    })
+
+  let bestBlob = null
+  const type = 'image/jpeg'
+  const qualities = [0.82, 0.72, 0.62, 0.52]
+  for (const q of qualities) {
+    const b = await toBlobAsync(type, q)
+    if (!b) continue
+    bestBlob = b
+    if (b.size <= targetBytes) break
+  }
+
+  if (!bestBlob) return file
+  const name = (file.name || 'reference').replace(/\.(png|jpg|jpeg|webp|bmp|gif)$/i, '') + '.jpg'
+  return new File([bestBlob], name, { type })
 }
 
 const insertImageFromUrl = async (url) => {
@@ -1077,10 +2941,248 @@ const onPickImage = (e) => {
   imageDialogVisible.value = false
 }
 
+const onPickRefImage = (e) => {
+  const f = e?.target?.files && e.target.files[0]
+  if (!f) return
+  ;(async () => {
+    let fileToUse = f
+    try {
+      fileToUse = await compressImageFile(f)
+      if (fileToUse && fileToUse.size < f.size) {
+        ElMessage.success(`已压缩参考图 ${(f.size / 1024).toFixed(0)}KB → ${(fileToUse.size / 1024).toFixed(0)}KB`)
+      }
+    } catch (err) {
+      fileToUse = f
+    }
+    setReferenceImageFromFile(fileToUse)
+  })()
+  try { e.target.value = '' } catch (err) {}
+}
+
 const selectKbProductImage = async (src) => {
   if (!src) return
   imageDialogVisible.value = false
+  const purpose = String(imageDialogPurpose.value || 'insert')
+  if (purpose === 'ref') {
+    setReferenceImageFromUrl(src)
+    return
+  }
+  if (purpose === 'step2_product') {
+    posterStep2ProductFile.value = null
+    posterStep2ProductUrl.value = src
+    return
+  }
+  if (purpose === 'step2_background') {
+    posterStep2BackgroundFile.value = null
+    posterStep2BackgroundUrl.value = src
+    return
+  }
   await insertImageFromUrl(src)
+}
+
+const useActiveImageAsRef = () => {
+  const obj = activeObjectRef.value
+  if (!obj || obj.type !== 'image') {
+    ElMessage.warning('请先选中一张图片对象')
+    return
+  }
+
+  const el = obj.getElement?.() || obj._element || obj._originalElement || null
+  const src = el?.currentSrc || el?.src || obj?.src || ''
+  if (!src) {
+    ElMessage.warning('无法获取选中图片的源地址')
+    return
+  }
+  setReferenceImageFromUrl(src)
+}
+
+const useActiveImageAsStep2Product = () => {
+  const obj = activeObjectRef.value
+  if (!obj || obj.type !== 'image') {
+    ElMessage.warning('请先选中一张图片对象')
+    return
+  }
+  const el = obj.getElement?.() || obj._element || obj._originalElement || null
+  const src = el?.currentSrc || el?.src || obj?.src || ''
+  if (!src) {
+    ElMessage.warning('无法获取选中图片的源地址')
+    return
+  }
+  posterStep2ProductFile.value = null
+  posterStep2ProductUrl.value = src
+}
+
+const useActiveImageAsStep2Background = () => {
+  const obj = activeObjectRef.value
+  if (!obj || obj.type !== 'image') {
+    ElMessage.warning('请先选中一张图片对象')
+    return
+  }
+  const el = obj.getElement?.() || obj._element || obj._originalElement || null
+  const src = el?.currentSrc || el?.src || obj?.src || ''
+  if (!src) {
+    ElMessage.warning('无法获取选中图片的源地址')
+    return
+  }
+  posterStep2BackgroundFile.value = null
+  posterStep2BackgroundUrl.value = src
+}
+
+const clearPosterAnalysis = () => {
+  posterAnalyzeError.value = ''
+  posterAnalysisResult.value = null
+  posterAnalysisDebug.value = ''
+  clearPosterStep2()
+}
+
+const clearPosterStep2 = () => {
+  posterStep2Error.value = ''
+  posterStep2Result.value = null
+  posterStep2Debug.value = ''
+}
+
+const clearStep2Assets = () => {
+  posterStep2ProductFile.value = null
+  posterStep2BackgroundFile.value = null
+  posterStep2ProductUrl.value = ''
+  posterStep2BackgroundUrl.value = ''
+}
+
+const triggerStep2ProductUpload = () => {
+  try {
+    step2ProductInputRef.value?.click?.()
+  } catch (e) {}
+}
+
+const triggerStep2BackgroundUpload = () => {
+  try {
+    step2BackgroundInputRef.value?.click?.()
+  } catch (e) {}
+}
+
+const onPickStep2Product = (e) => {
+  const f = e?.target?.files?.[0]
+  if (!f) return
+  posterStep2ProductFile.value = f
+  posterStep2ProductUrl.value = ''
+  try {
+    e.target.value = ''
+  } catch (err) {}
+}
+
+const onPickStep2Background = (e) => {
+  const f = e?.target?.files?.[0]
+  if (!f) return
+  posterStep2BackgroundFile.value = f
+  posterStep2BackgroundUrl.value = ''
+  try {
+    e.target.value = ''
+  } catch (err) {}
+}
+
+const generatePosterCopyStep2 = async () => {
+  if (!posterAnalysisResult.value) {
+    posterStep2Error.value = '请先完成参考图分析'
+    return
+  }
+
+  posterStep2Loading.value = true
+  posterStep2Error.value = ''
+  try {
+    posterStep2Result.value = null
+    posterStep2Debug.value = ''
+
+    const basePayload = {
+      step1_result: posterAnalysisResult.value,
+      requirements: String(posterStep2Requirements.value || '').trim() || undefined,
+    }
+    const imagePayload = posterStep2SendImages.value
+      ? {
+        product_file: posterStep2ProductFile.value || undefined,
+        product_image_url: !posterStep2ProductFile.value ? (posterStep2ProductUrl.value || undefined) : undefined,
+        background_file: posterStep2BackgroundFile.value || undefined,
+        background_image_url: !posterStep2BackgroundFile.value ? (posterStep2BackgroundUrl.value || undefined) : undefined,
+      }
+      : {}
+
+    const resp = await generatePosterCopy({
+      ...basePayload,
+      ...imagePayload,
+    })
+
+    if (resp?.ok === false) {
+      posterStep2Error.value = resp?.error || 'Step2 生成失败'
+      posterStep2Result.value = null
+      posterStep2Debug.value = resp?.debug ? JSON.stringify(resp.debug, null, 2) : ''
+      return
+    }
+
+    const result = resp?.result ?? null
+    posterStep2Result.value = result
+    posterStep2Debug.value = resp?.debug ? JSON.stringify(resp.debug, null, 2) : ''
+
+    try {
+      const copy = result?.copy
+      if (copy && typeof copy === 'object') {
+        if (typeof copy.title === 'string' && copy.title.trim()) posterFramework.text.title = copy.title.trim()
+        if (typeof copy.subtitle === 'string' && copy.subtitle.trim()) posterFramework.text.subtitle = copy.subtitle.trim()
+        if (Array.isArray(copy.sellpoints)) {
+          const sp = copy.sellpoints.map((s) => String(s || '').trim()).filter(Boolean)
+          const step1 = posterAnalysisResult.value
+          const els = Array.isArray(step1?.elements) ? step1.elements : []
+          const expected = els.filter((e) => /^sellpoint_\d+$/.test(String(e?.id || ''))).length
+          const finalSp = expected > 0 ? sp.slice(0, expected) : []
+          posterFramework.text.sellpoints.splice(0, posterFramework.text.sellpoints.length)
+          finalSp.forEach((t) => posterFramework.text.sellpoints.push(newFrameworkSellpoint(t)))
+        }
+      }
+      const style = result?.style_guidance
+      if (style && typeof style === 'object') {
+        const notes = style.notes
+        if (typeof notes === 'string' && notes.trim()) posterFramework.style.notes = notes.trim()
+      }
+    } catch (e) {}
+  } catch (e) {
+    posterStep2Error.value = e?.message || String(e)
+  } finally {
+    posterStep2Loading.value = false
+  }
+}
+
+const analyzeReferenceImage = async () => {
+  if (!refImageFile.value && !refImageUrl.value) {
+    posterAnalyzeError.value = '请先选择参考图'
+    return
+  }
+
+  posterAnalyzeLoading.value = true
+  posterAnalyzeError.value = ''
+  try {
+    posterAnalysisResult.value = null
+    posterAnalysisDebug.value = ''
+    const resp = await analyzePosterReference({
+      file: refImageFile.value || undefined,
+      image_url: refImageUrl.value || undefined,
+    })
+    if (resp?.ok === false) {
+      posterAnalyzeError.value = resp?.error || 'JSON 解析失败，已展示原始返回'
+      posterAnalysisResult.value = null
+      posterAnalysisDebug.value = resp?.debug ? JSON.stringify(resp.debug, null, 2) : ''
+      return
+    }
+
+    const result = resp?.result ?? null
+    posterAnalysisResult.value = result
+    posterAnalysisDebug.value = resp?.debug ? JSON.stringify(resp.debug, null, 2) : ''
+
+    try {
+      fillFrameworkFromStep1(result)
+    } catch (e) {}
+  } catch (e) {
+    posterAnalyzeError.value = e?.message || String(e)
+  } finally {
+    posterAnalyzeLoading.value = false
+  }
 }
 
 const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.bmp', '.gif']
@@ -1366,6 +3468,7 @@ const duplicateActive = async () => {
     canvas.setActiveObject(cloned)
     canvas.requestRenderAll()
     updateObjOverlay()
+    try { ElMessage.success('已复制') } catch (e) {}
   } catch (e) {
     ElMessage.error('复制失败')
   }
@@ -1480,6 +3583,20 @@ const onKeyDown = (e) => {
     e.preventDefault()
   }
   const isMod = e.ctrlKey || e.metaKey
+  if (isMod && (e.key === 'z' || e.key === 'Z')) {
+    e.preventDefault()
+    if (e.shiftKey) {
+      redoCanvas()
+    } else {
+      undoCanvas()
+    }
+    return
+  }
+  if (isMod && (e.key === 'y' || e.key === 'Y')) {
+    e.preventDefault()
+    redoCanvas()
+    return
+  }
   if (isMod && (e.key === 'c' || e.key === 'C')) {
     e.preventDefault()
     copyActive()
@@ -1516,8 +3633,8 @@ const rotateActive = () => {
   const canvas = canvasInstance.value
   if (!canvas) return
   const obj = canvas.getActiveObject()
-  if (!obj || obj.type !== 'image') {
-    ElMessage.warning('请先选中一张图片')
+  if (!obj || (obj.type !== 'image' && obj.type !== 'textbox')) {
+    ElMessage.warning('请先选中一个对象')
     return
   }
   const nextAngle = ((obj.angle || 0) + 90) % 360
@@ -1698,6 +3815,24 @@ const pasteActive = async () => {
   z-index: 30;
 }
 
+.top-right-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-toggle-btn {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.panel-toggle-btn :deep(.el-icon) {
+  font-size: 18px;
+}
+
 .zoom-pill {
   display: flex;
   align-items: center;
@@ -1739,6 +3874,407 @@ const pasteActive = async () => {
 
 .left-toolbar :deep(.el-button + .el-button) {
   margin-left: 0;
+}
+
+.right-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: clamp(440px, 48vw, 760px);
+  z-index: 31;
+  background: rgba(255, 255, 255, 0.96);
+  border-left: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: -10px 0 24px rgba(17, 24, 39, 0.08);
+  transform: translateX(100%);
+  transition: transform 0.18s ease-out;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+
+.right-panel.open {
+  transform: translateX(0%);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.panel-body {
+  flex: 1;
+  overflow: auto;
+  padding: 12px;
+}
+
+.layers-list {
+  display: grid;
+  gap: 8px;
+}
+
+.gen-section {
+  display: grid;
+  gap: 10px;
+}
+
+.gen-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(360px, 1.25fr);
+  gap: 12px;
+}
+
+@media (max-width: 1180px) {
+  .gen-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gen-col-full {
+  grid-column: 1 / -1;
+}
+
+.gen-col {
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.gen-col-title {
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.92);
+  font-size: 13px;
+}
+
+.gen-size-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.gen-size-item {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.gen-size-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.8);
+}
+
+.gen-sellpoints {
+  display: grid;
+  gap: 8px;
+}
+
+.gen-sellpoint-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.gen-preview-canvas {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.gen-preview-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gen-preview-box-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.gen-preview-box {
+  position: absolute;
+  border: 2px solid rgba(239, 68, 68, 0.95);
+  box-sizing: border-box;
+}
+
+.gen-preview-product {
+  position: absolute;
+  object-fit: contain;
+  object-position: 50% 100%;
+  border-radius: 10px;
+}
+
+.gen-preview-text {
+  position: absolute;
+  padding: 2px 3px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+  line-height: 1.12;
+  overflow: hidden;
+  word-break: break-word;
+  white-space: pre-wrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gen-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.gen-label {
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.9);
+  font-weight: 600;
+}
+
+.gen-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gen-actions-compact {
+  gap: 6px;
+}
+
+.gen-assets-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 1180px) {
+  .gen-assets-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gen-asset-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.layer-item {
+  position: relative;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 10px;
+  padding: 10px 10px;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  display: grid;
+  gap: 4px;
+}
+
+.layer-item:hover {
+  background: rgba(243, 244, 246, 0.9);
+}
+
+.layer-item.active {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.layer-name {
+  font-weight: 700;
+  color: rgba(17, 24, 39, 0.92);
+  font-size: 13px;
+}
+
+.layer-meta {
+  font-size: 12px;
+  color: rgba(17, 24, 39, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.layer-actions {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.layer-btn {
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.30);
+  background: rgba(15, 23, 42, 0.14);
+  color: rgba(15, 23, 42, 0.78);
+  border-radius: 8px;
+  padding: 4px 7px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.layer-btn:hover {
+  background: rgba(15, 23, 42, 0.20);
+}
+
+.layer-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.gen-preview {
+  margin: 8px 0 12px;
+}
+
+.gen-preview-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.gen-preview-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.gen-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.gen-box {
+  position: absolute;
+  border: 2px solid rgba(64, 158, 255, 0.95);
+  box-sizing: border-box;
+}
+
+.gen-box-label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+  background: rgba(64, 158, 255, 0.95);
+  padding: 1px 6px;
+  border-radius: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gen-preview {
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.gen-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.gen-error {
+  color: #b42318;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.gen-asset-preview {
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  overflow: hidden;
+}
+
+.gen-asset-preview--small {
+  padding: 6px;
+}
+
+.gen-asset-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.gen-asset-preview--small img {
+  max-height: 120px;
+  object-fit: cover;
+}
+
+.layer-item {
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 10px;
+  padding: 10px 10px;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  display: grid;
+  gap: 4px;
+}
+
+.layer-item:hover {
+  background: rgba(243, 244, 246, 0.9);
+}
+
+.layer-item.active {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.layer-name {
+  font-weight: 700;
+  color: rgba(17, 24, 39, 0.92);
+  font-size: 13px;
+}
+
+.layer-meta {
+  font-size: 12px;
+  color: rgba(17, 24, 39, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.props-form {
+  display: grid;
+  gap: 10px;
+}
+
+.pf-row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.pf-label {
+  color: rgba(17, 24, 39, 0.7);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .obj-overlay {
@@ -1804,6 +4340,113 @@ const pasteActive = async () => {
 
 .obj-toolbar .tool:hover {
   background: rgba(255, 255, 255, 0.10);
+}
+
+.obj-toolbar .tool-select {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 12px;
+  pointer-events: auto;
+}
+
+.obj-toolbar .tool-number {
+  width: 64px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 12px;
+  pointer-events: auto;
+}
+
+.obj-toolbar .tool-color {
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.35);
+  pointer-events: auto;
+}
+
+.obj-toolbar .tool-el-select {
+  pointer-events: auto;
+}
+
+.obj-toolbar .tool-el-select .el-select__wrapper {
+  min-height: 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.35);
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.obj-toolbar .tool-el-select .el-select__selected-item,
+.obj-toolbar .tool-el-select .el-select__input {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 12px;
+}
+
+:global(.obj-toolbar-popper) {
+  --el-bg-color-overlay: rgba(15, 23, 42, 0.98);
+  --el-text-color-regular: rgba(255, 255, 255, 0.96);
+  --el-fill-color-light: rgba(255, 255, 255, 0.10);
+  --el-border-color-light: rgba(255, 255, 255, 0.18);
+}
+
+:global(.obj-toolbar-popper .el-select-dropdown) {
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+:global(.obj-toolbar-popper .el-select-dropdown__item) {
+  height: auto;
+  padding: 12px 12px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+:global(.obj-toolbar-popper .el-select-dropdown__item:hover) {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+:global(.obj-toolbar-popper .el-select-dropdown__item.is-selected) {
+  color: rgba(96, 165, 250, 0.98);
+}
+
+.font-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.font-opt-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.font-opt-sample {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.obj-toolbar .tool[data-active='1'] {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.obj-toolbar .tool-sep {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.14);
+  margin: 0 6px;
+  border-radius: 1px;
 }
 
 .obj-toolbar .tool.danger {

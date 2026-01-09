@@ -230,7 +230,61 @@
 
             <!-- 产品图片（叠加在顶部与正文之间） -->
             <el-tooltip :content="PRODUCT_UPLOAD_TIPS" placement="top">
-              <img class="product-photo" :src="productPhotoSrc" alt="product" @click="onClickProduct" :style="{ '--product-x': productAnchor.x, '--product-y': productAnchor.y }" />
+              <div
+                class="product-photo-wrap"
+                :style="{ '--product-x': productAnchor.x, '--product-y': productAnchor.y }"
+                @mousedown="onProductPhotoMouseDown"
+              >
+                <img
+                  class="product-photo"
+                  :src="productPhotoSrc"
+                  alt="product"
+                  @click="onProductPhotoClick"
+                  :style="{ transform: `scale(${productPhotoScale}) rotate(${productPhotoRotate}deg)` }"
+                />
+                <div class="product-photo-tools" @mousedown.stop @click.stop>
+                  <el-button
+                    class="photo-tool-btn"
+                    size="small"
+                    text
+                    @click.stop="decProductPhotoScale"
+                  >
+                    -
+                  </el-button>
+                  <el-button
+                    class="photo-tool-btn"
+                    size="small"
+                    text
+                    @click.stop="incProductPhotoScale"
+                  >
+                    +
+                  </el-button>
+                  <el-button
+                    class="photo-tool-btn"
+                    size="small"
+                    text
+                    @click.stop="rotateProductPhoto(-5)"
+                  >
+                    ⟲
+                  </el-button>
+                  <el-button
+                    class="photo-tool-btn"
+                    size="small"
+                    text
+                    @click.stop="rotateProductPhoto(5)"
+                  >
+                    ⟳
+                  </el-button>
+                  <el-button
+                    class="photo-tool-btn"
+                    size="small"
+                    text
+                    @click.stop="resetProductPhotoTransform"
+                  >
+                    Reset
+                  </el-button>
+                </div>
+              </div>
             </el-tooltip>
 
             <!-- 内容区域 -->
@@ -755,9 +809,30 @@
               <el-button size="small" type="info" plain style="margin-left:8px">查看 RAG 来源</el-button>
               <el-button size="small" type="primary" plain style="margin-left:8px" @click="handleGenerateManualBook" :loading="loadingManualBook">生成说明书</el-button>
             </div>
+
+            <div v-if="currentVariantSelectorGroup" class="variant-panel">
+              <div class="variant-title">页面版本</div>
+              <div class="variant-row">
+                <div class="variant-label">{{ currentVariantSelectorGroup.label }}</div>
+                <el-radio-group
+                  size="small"
+                  :model-value="selectedVariants[currentVariantSelectorGroup.key]"
+                  @change="(val) => onVariantSelectionChange(currentVariantSelectorGroup.key, val)"
+                >
+                  <el-radio-button
+                    v-for="opt in currentVariantSelectorGroup.options"
+                    :key="opt.id"
+                    :label="opt.id"
+                  >
+                    {{ opt.label }}
+                  </el-radio-button>
+                </el-radio-group>
+              </div>
+            </div>
+
             <div class="page-ops">
               <div class="ops-title">当前页操作</div>
-              <div class="ops-current">当前页：{{ displayTocPage(currentPageIndex + 1) }} · {{ deriveTitle(manualPages[currentPageIndex] || {}) }}</div>
+              <div class="ops-current">当前页：{{ displayTocPage(currentPageIndex + 1) }} · {{ deriveTitle(currentPage || {}) }}</div>
               <div class="ops-row">
                 <el-button size="small" plain @click="addBlankPage(currentPageIndex, 'before')">上方添加空白页</el-button>
                 <el-button size="small" plain @click="addBlankPage(currentPageIndex, 'after')">下方添加空白页</el-button>
@@ -1059,6 +1134,8 @@ import {
   getSavedManualSpecsheet,
   saveManualBookTruth,
   saveManualSpecsheetTruth,
+  getManualBookVariants,
+  saveManualBookVariants,
   generateManualBookFromOcr
 } from '@/services/api'
 import { BOM_CONFIG } from '@/constants/bomOptions'
@@ -1943,15 +2020,32 @@ const loadScript = (src) =>
 // 规格页导出
 const promoRef = ref(null)
 
+const resolvePromoCanvasEl = async () => {
+  // promo canvas sits under v-if (tab switch) and may not be in DOM immediately.
+  // Retry a few frames to make export more robust.
+  for (let i = 0; i < 5; i += 1) {
+    await nextTick()
+    const el = promoRef.value
+    if (el) return el
+    const fallback = document.querySelector('.promo-wrap .promo-canvas')
+    if (fallback) return fallback
+    await new Promise((r) => requestAnimationFrame(r))
+  }
+  return null
+}
+
 const exportPromo = async () => {
-  await loadScript('https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js')
-  const el = promoRef.value
-  if (!el || !window.html2canvas) {
+  if (!html2canvas) {
+    ElMessage.error('导出失败：html2canvas 未就绪')
+    return
+  }
+  const el = await resolvePromoCanvasEl()
+  if (!el) {
     ElMessage.error('导出失败：未找到规格页画布')
     return
   }
   const scale = Math.max(2, Math.ceil(window.devicePixelRatio || 1)) * 2
-  const canvas = await window.html2canvas(el, { scale, backgroundColor: '#ffffff', useCORS: true })
+  const canvas = await html2canvas(el, { scale, backgroundColor: '#ffffff', useCORS: true })
   const a = document.createElement('a')
   a.href = canvas.toDataURL('image/png')
   a.download = `${name.value || productName.value || '规格页'}-规格页.png`
@@ -1959,7 +2053,7 @@ const exportPromo = async () => {
 }
 
 const exportPromoPdfEditable = async () => {
-  const el = promoRef.value
+  const el = await resolvePromoCanvasEl()
   if (!el) {
     ElMessage.error('导出失败：未找到规格页画布')
     return
@@ -2007,9 +2101,8 @@ const exportPromoPdfEditable = async () => {
 const posterRef = ref(null)
 
 const exportPoster = async () => {
-  await loadScript('https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js')
   const el = posterRef.value
-  if (!el || !window.html2canvas) {
+  if (!el || !html2canvas) {
     ElMessage.error('导出失败：未找到海报画布')
     return
   }
@@ -2033,7 +2126,7 @@ const exportPoster = async () => {
     }
     if (maskEl) maskEl.style.display = 'none'
 
-    canvas = await window.html2canvas(el, { scale, backgroundColor: '#ffffff', useCORS: true })
+    canvas = await html2canvas(el, { scale, backgroundColor: '#ffffff', useCORS: true })
 
     if (bgEl) bgEl.style.backgroundImage = bgEl.dataset.prevBg || prevBg
     if (maskEl) maskEl.style.display = ''
@@ -2176,8 +2269,17 @@ const displayTocPage = (realPageNumber) => {
 // 可替换的图片资源
 const productPhotoSrc = ref('/back/product.png')
 const backgroundSrc = ref('/back/back.png')
+const productPhotoScale = ref(1)
+const productPhotoRotate = ref(0)
 // 产品图片锚点（固定值）
 const productAnchor = ref({ ...PRODUCT_ANCHOR })
+const _productDragState = reactive({
+  active: false,
+  moved: false,
+  startX: 0,
+  startY: 0,
+  startedAt: 0,
+})
 const productInputRef = ref(null)
 const backgroundInputRef = ref(null)
 
@@ -2189,6 +2291,98 @@ const onClickProduct = () => {
   productDialogTab.value = 'local'
   refreshKbProductImages()
   productDialogVisible.value = true
+}
+
+const onProductPhotoClick = (e) => {
+  // If a drag just happened, swallow the click so it won't open replace dialog.
+  if (_productDragState.moved) {
+    _productDragState.moved = false
+    return
+  }
+  onClickProduct()
+}
+
+const clampNumber = (value, min, max) => Math.min(max, Math.max(min, value))
+
+const _parsePercent = (value, fallback) => {
+  const raw = String(value ?? '').trim()
+  const n = Number(raw.replace('%', ''))
+  return Number.isFinite(n) ? n : fallback
+}
+
+const _updateProductAnchorFromClient = (clientX, clientY) => {
+  const el = promoRef.value
+  if (!el || !el.getBoundingClientRect) return
+  const rect = el.getBoundingClientRect()
+  if (!rect.width || !rect.height) return
+
+  const xPct = ((clientX - rect.left) / rect.width) * 100
+  const yPct = ((clientY - rect.top) / rect.height) * 100
+
+  const clampedX = clampNumber(xPct, -10, 110)
+  const clampedY = clampNumber(yPct, -10, 110)
+  productAnchor.value = {
+    ...productAnchor.value,
+    x: `${clampedX.toFixed(2)}%`,
+    y: `${clampedY.toFixed(2)}%`,
+  }
+}
+
+const _onProductPhotoMouseMove = (ev) => {
+  if (!_productDragState.active) return
+  if (!ev.altKey) {
+    _productDragState.active = false
+    return
+  }
+  const dx = ev.clientX - _productDragState.startX
+  const dy = ev.clientY - _productDragState.startY
+  if (!_productDragState.moved && Math.hypot(dx, dy) > 4) {
+    _productDragState.moved = true
+  }
+  _updateProductAnchorFromClient(ev.clientX, ev.clientY)
+}
+
+const _endProductPhotoDrag = () => {
+  if (!_productDragState.active) return
+  _productDragState.active = false
+  window.removeEventListener('mousemove', _onProductPhotoMouseMove)
+  window.removeEventListener('mouseup', _endProductPhotoDrag)
+}
+
+const onProductPhotoMouseDown = (ev) => {
+  // Only start dragging when holding Alt + left mouse.
+  if (!ev || ev.button !== 0 || !ev.altKey) return
+  ev.preventDefault()
+  ev.stopPropagation()
+
+  _productDragState.active = true
+  _productDragState.moved = false
+  _productDragState.startX = ev.clientX
+  _productDragState.startY = ev.clientY
+  _productDragState.startedAt = Date.now()
+
+  // Immediate update so the image follows the cursor from the first move.
+  _updateProductAnchorFromClient(ev.clientX, ev.clientY)
+
+  window.addEventListener('mousemove', _onProductPhotoMouseMove)
+  window.addEventListener('mouseup', _endProductPhotoDrag)
+}
+
+const incProductPhotoScale = () => {
+  productPhotoScale.value = clampNumber(Number(productPhotoScale.value || 1) + 0.1, 0.2, 3)
+}
+
+const decProductPhotoScale = () => {
+  productPhotoScale.value = clampNumber(Number(productPhotoScale.value || 1) - 0.1, 0.2, 3)
+}
+
+const rotateProductPhoto = (delta) => {
+  productPhotoRotate.value = clampNumber(Number(productPhotoRotate.value || 0) + Number(delta || 0), -180, 180)
+}
+
+const resetProductPhotoTransform = () => {
+  productPhotoScale.value = 1
+  productPhotoRotate.value = 0
 }
 
 const triggerLocalProductUpload = () => {
@@ -3244,6 +3438,26 @@ const manualPages = ref([
       //       · src: 图片 URL
       //       · pos: 位置（bottom-left|bottom-right|top-left|top-right）
       header: 'Embrace the Revitalizing Chill',
+      variantId: 'A',
+      blocks: [
+        { type: 'heading', text: 'Embrace the Revitalizing Chill' },
+        { type: 'paragraph', text: 'Experience the invigorating benefits of cold therapy through our innovative Masren product. Cold therapy, also known as cryotherapy, involves subjecting the body to cold temperatures for therapeutic purposes. With its age-old roots and modern applications, this practice offers diverse and remarkable benefits for your well-being:' },
+        { type: 'list', items: [
+          'Reduced Inflammation:Cold therapy is a natural anti-inflammatory. It helps to constrict blood vessels, reducing blood flow to inflamed areas and thereby alleviating swelling and pain. Whether you\'re recovering from an intense workout or seeking relief from sore muscles, our Masren can provide the cool comfort your body craves.',
+          'Faster Recovery: Athletes and fitness enthusiasts often turn to cold therapy to accelerate recovery times. The controlled exposure to cold temperatures promotes quicker muscle repair, reduces muscle soreness, and aids in preventing overexertion.',
+          'Increased Circulation: Paradoxically, cold therapy can lead to improved circulation. As the body responds to cold, it works to keep vital organs warm by increasing blood flow to the core. Once you exit the cold environment, this increased blood flow returns to the extremities, promoting better overall circulation.',
+          'Enhanced Mental Well-being: Cold therapy is not just about physical benefits; it can positively impact your mental state too. The shock of cold triggers the release of endorphins, which are natural mood lifters. Many people find that cold therapy leaves them feeling refreshed, invigorated, and more mentally focused.',
+          'Boosted Immune System: Regular exposure to cold temperatures has been associated with improvements in the immune system. It stimulates the production of immune cells and activates the body\'s natural defense mechanisms, helping you stay resilient against illness.'
+        ] },
+        { type: 'paragraph', text: 'With a Masren, you can integrate the power of cold therapy seamlessly into your routine. Whether you\'re looking to enhance your recovery, reduce inflammation, or simply invigorate your senses, the Masren offers a convenient and effective solution.' },
+        { type: 'paragraph', text: 'Embrace the chill and unlock a new realm of well-being today.' },
+        { type: 'imageFloat-bottom-left', src: '/instruction_book/product.png' },
+        { type: 'imageFloat-bottom-right', src: '/instruction_book/cold.png' }
+      ]
+    },
+    {
+      header: 'Embrace the Revitalizing Chill',
+      variantId: 'B',
       blocks: [
         { type: 'heading', text: 'Embrace the Revitalizing Chill' },
         { type: 'paragraph', text: 'Experience the invigorating benefits of cold therapy through our innovative Masren product. Cold therapy, also known as cryotherapy, involves subjecting the body to cold temperatures for therapeutic purposes. With its age-old roots and modern applications, this practice offers diverse and remarkable benefits for your well-being:' },
@@ -3268,6 +3482,7 @@ const manualPages = ref([
       //   · { type: 'grid4', items } 四宫格
       //       items: [{ index?: number 手动序号, title: string 标题, imgSrc?: string 图片 }]
       header: 'Premium Materials',
+      variantId: 'A',
       blocks: [
         { type: 'heading', text: 'Premium Materials' },
         { type: 'paragraph', text: 'Embrace the chill and rejuvenate your body and mind with our product, showcasing an Acrylic Surface for aesthetics, an AluCombo Cabinet for efficient cooling, an aluminum frame for durability, and an insulated pipe sleeve to prevent condensation. Perfect for year-round outdoor use, energy-efficient, and reliable. Enjoy hassle-free cooling without water-related concerns.' },
@@ -3276,6 +3491,19 @@ const manualPages = ref([
           { index: 2, title: 'Aluminum Frame', imgSrc: '/instruction_book/Acrylic_Surface.png' },
           { index: 3, title: 'Tri-layered Side Cabinet', imgSrc: '/instruction_book/Acrylic_Surface.png' },
           { index: 4, title: 'Insulation Sleeve', imgSrc: '/instruction_book/Acrylic_Surface.png' }
+        ] }
+      ]
+    },
+    {
+      header: 'Premium Materials',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Premium Materials' },
+        { type: 'paragraph', text: 'Embrace the chill and rejuvenate your body and mind with our product, showcasing an Acrylic  Surface for aesthetics, and an insulated pipe sleeve to prevent condensation. Perfect for  year-round outdoor use, energy-efficient, and reliable. Enjoy hassle-free cooling without  water-related concerns.' },
+        { type: 'grid4', items: [
+          { index: 1, title: 'Acrylic Surface', imgSrc: '/instruction_book/Acrylic_Surface.png' },
+          { index: 2, title: 'Aluminum Frame', imgSrc: '/instruction_book/Acrylic_Surface.png' },
+          { index: 3, title: 'Tri-layered Side Cabinet', imgSrc: '/instruction_book/Acrylic_Surface.png' }
         ] }
       ]
     },
@@ -3340,6 +3568,7 @@ const manualPages = ref([
       //   · { type: 'paragraph', text, className? } 引导说明
       //   · { type: 'steps', items: string[] } 步骤（自动编号）
       header: 'How To Set Up',
+      variantId: 'A',
       blocks: [
         { type: 'heading', text: 'How To Set Up' },
         { type: 'paragraph', className: 'lead', text: "If you're excited to reap the benefits of your Masrren, start by following these simple guidelines to embark on your journey." },
@@ -3354,12 +3583,106 @@ const manualPages = ref([
       ]
     },
     {
+      header: 'How To Set Up',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'How To Set Up' },
+        { type: 'paragraph', className: 'lead', text: "If you're excited to reap the benefits of your Masrren, start by following these simple guidelines to embark on your journey." },
+        { type: 'paragraph', text: 'We understand your enthusiasm, but we strongly recommend reading the entire instruction manual, paying special attention to the safety information, before beginning your cold therapy sessions with the Masrren. Your safety and maximum enjoyment are our top priorities.' },
+        { type: 'steps', items: [
+          'Place your Masrren in a suitable location and fill it with water to tub until the water level reaches the recommended mark as specified.',
+          'Open the air bleed screw to exhaust air from the filter and pump housing.',
+          'Plug the cold tub into a 120V / 60Hz power source and set the desired temperature using the control panel.',
+          'Within a few hours, you can enjoy the refreshing experience of cold water therapy.',
+          'We highly recommend regularly cleaning and sanitizing.'
+        ] }
+      ]
+    },
+    {
+      header: 'How To Set Up',
+      variantId: 'C',
+      blocks: [
+        { type: 'heading', text: 'How To Set Up' },
+        { type: 'heading', level: 2, text: 'Pre-Delivery Checklist' },
+        { type: 'paragraph', text: 'Most cities and counties require permits for exterior construction and electrical circuits. In addition, some communities have codes requiring residential barriers such as fencing and/or self-closing gates on property to prevent unsupervised access to the property by children. Your dealer can provide information on which permits may be required and how to obtain them prior to the delivery of your spa.' },
+        { type: 'heading', level: 2, text: 'Before Delivery' },
+        { type: 'list', items: [
+          'Plan your delivery route',
+          'Choose a suitable location for the spa',
+          'Lay a 5 - 8 cm concrete slab',
+          'Install dedicated electrical supply'
+        ] },
+        { type: 'heading', level: 2, text: 'After Delivery' },
+        { type: 'list', items: [
+          'Place spa on slab',
+          'Connect electrical components',
+          '* Check spa and register serial number.'
+        ] },
+        { type: 'image', src: '/instruction_book/package_list.png' }
+      ]
+    },
+    {
+      header: 'How To Set Up',
+      variantId: 'C',
+      blocks: [
+        { type: 'heading', text: 'How To Set Up' },
+        { type: 'heading', level: 2, text: 'Planning the Best Location' },
+        { type: 'paragraph', text: 'Safety First' },
+        { type: 'paragraph', text: 'Do not place your spa within 10 feet (3 m) of overhead power lines.' },
+        { type: 'heading', level: 2, text: 'Consider How You Will Use Your Spa' },
+        { type: 'paragraph', text: 'How you intend to use your spa will help you determine where you should position it. For example, will you use your spa for recreational or therapeutic purposes? If your spa is mainly used for family recreation, be sure to leave plenty of room around it for activity. If you will use it for relaxation and therapy, you will probably want to create a specific mood around it.' },
+        { type: 'heading', level: 2, text: 'Plan for Your Environment' },
+        { type: 'paragraph', text: 'If you live in a region where it snows in the winter or rains frequently, place the spa near a house entry. By doing this, you will have a place to change clothes and not be uncomfortable.' },
+        { type: 'heading', level: 2, text: 'Consider Your Privacy' },
+        { type: 'paragraph', text: "In a cold-weather climate, bare trees won't provide much privacy. Think of your spa's surroundings during all seasons to determine your best privacy options. Consider the view of your neighbors as well when you plan the location of your spa." },
+        { type: 'heading', level: 2, text: 'Provide a View with Your Spa' },
+        { type: 'paragraph', text: 'Think about the direction you will be facing when sitting in your spa. Do you have a special landscaped area in your yard that you find enjoyable? Perhaps there is an area that catches a soothing breeze during the day or a lovely sunset in the evening.' },
+        { type: 'heading', level: 2, text: 'Keep Your Spa Clean' },
+        { type: 'paragraph', text: "In planning your spa's location, consider a location where the path to and from the house can be kept clean and free of debris. Prevent dirt and contaminants from being tracked into your spa by placing a foot mat at the spa's entrance where the bathers can clean their feet before entering your spa." },
+        { type: 'paragraph', className: 'warning-text', text: 'Guide to Transportation, Placement, and Installation of the Heat Pump:\nWhen transporting or storing the Heat Pump in temp mini, do not lay it on its side. It must be placed upright to prevent issues such as internal component compression, pipeline breakage, fin damage, and refrigerant leakage.\n\nAdditionally, after being transported to the factory or customer site, it should be kept idle for more than 24 hours before powering on or testing.\n\n* Suitable for products with a built-in temp.mini heat pump' },
+        { type: 'image', src: '/instruction_book/package_list.png' }
+      ]
+    },
+    {
+      header: 'How To Set Up',
+      variantId: 'C',
+      blocks: [
+        { type: 'heading', text: 'How To Set Up' },
+        { type: 'heading', level: 2, text: 'Clearance for Service Access' },
+        { type: 'paragraph', text: 'While you are planning where to locate your spa, you need to determine how much access you will need for service.' },
+        { type: 'paragraph', text: 'All spa models require a minimum of three feet / one meter access to all sides of the spa for potential service. For this reason, the spa should never be placed in a manner where any side is permanently blocked. Examples include placing the spa against a building, structural posts or columns, or a fence.' },
+        { type: 'paragraph', text: 'Spa models require access to all sides in case they need service or repair. See the figure below.' },
+        { type: 'paragraph', text: 'If you are planning to enclose or surround your spa with a deck, make sure there is easy access for service or repair.' },
+        { type: 'paragraph', text: 'Spas require clearance on all sides of the spa.' },
+        { type: 'image', src: '/instruction_book/package_list.png' }
+      ]
+    },
+    {
       // - header: string 页面标题
       // - blocks:
       //   · { type: 'heading', text } 标题
       //   · { type: 'paragraph', text, className? } 提示
       //   · { type: 'list', items: string[] } 安全要点（items 可含 HTML，如 <br/>、<ul>）
       header: 'Important Safety Instructions',
+      variantId: 'A',
+      blocks: [
+        { type: 'heading', text: 'Important Safety Instructions' },
+        { type: 'paragraph', className: 'lead', text: 'READ AND FOLLOW ALL INSTRUCTIONS' },
+        { type: 'paragraph', text: 'Taking the plunge is a significant step, and we disclaim all liability for damages due to failure to follow the provided guidelines.' },
+        { type: 'list', items: [
+          'Health Disclaimer<br/>If unsure, consult your doctor before using the Masrren. While generally suitable for most individuals, those with reduced mobility or sensory/cognitive abilities should use the Masrren under supervision and only if knowledgeable about safe usage and potential risks.',
+          'Temperature Awareness<br/>Start with a higher temperature (59°F / 15°C) and a shorter duration (1–2 minutes).',
+          'Gradual Adaptation<br/>Tolerance to cold water varies. Gradually increase Masrren usage time. Sudden immersion can shock the body; enter slowly, keeping face, shoulders, and hands above water until breathing is steady.',
+          'Cold Exposure Risks<br/>Cold shock response decreases with exposure experience. Hypothermia is a risk—it can lead to loss of consciousness and heart failure. Duration in cold water depends on factors like temperature, body size, and experience. Consult your doctor. Start with brief dips to find limits. Exit if uncomfortable.',
+          'Safety Precautions<ul><li>Supervise children around the Masrren.</li><li>Pregnant women, children, and those with medical conditions must consult a doctor before using.</li><li>Avoid alcohol or drugs before use.</li><li>Do not use in extreme weather or flood conditions.</li><li>Ensure proper drainage to avoid water accumulation.</li></ul>',
+          'Maintenance<ul><li>Be cautious when entering and exiting the Masrren.</li><li>Keep the inlet clean to protect the pump.</li><li>Avoid using electrical appliances nearby when empty.</li><li>Use only approved cleaning agents; rinse thoroughly.</li><li>Do not pressure wash the Masrren.</li><li>Keep the cover on to prevent injuries and water ingress.</li><li>For repairs, consult Masrren\'s approved engineers.</li></ul>',
+          'Power Supply Safety<br/>Ensure the power supply is on an GFCI protected circuit for safety.'
+        ] }
+      ]
+    },
+    {
+      header: 'Important Safety Instructions',
+      variantId: 'B',
       blocks: [
         { type: 'heading', text: 'Important Safety Instructions' },
         { type: 'paragraph', className: 'lead', text: 'READ AND FOLLOW ALL INSTRUCTIONS' },
@@ -3385,6 +3708,7 @@ const manualPages = ref([
       //   · { type: 'divider' } 分割线
       //   · { type: 'image', src, fullWidth?, rotate?, marginTop? } 插图
       header: 'Important Safety Instructions',
+      variantId: 'A',
       blocks: [
         { type: 'heading', text: 'Important Safety Instructions' },
         { type: 'heading', level: 2, text: 'WARNING:' },
@@ -3404,12 +3728,120 @@ const manualPages = ref([
         { type: 'list', items: [
           'After transporting or installing the cold plunge, let the tub rest for 24 hours before turning on the chiller. Note: Failing to do so may result in chiller malfunction.',
           'To remove the back cover, wrap the cap with a cloth or use cloth gloves. Then, use pliers to grip the cap and pull it outward to remove it.',
-          "The wind baffle inside the back cover of the Balta's ventilation system is a consumable item. It has a magnetic strip on the back that adheres to the chiller. If it breaks, it does not affect its functionality.",
+          'If the control panel displays the ER03 code, it indicates there is air in the pipes. The air should be released through the exhaust port on the filter.',
+          "The wind baffle inside the back cover of the Balta's ventilation system is a consumable item. It has a magnetic strip on the back that adheres to the chiller. If it breaks, it does not affect its functionality."
+        ] },
+        { type: 'heading', text: 'WARNING:' },
+        { type: 'list', items: [
+          'When the temperature is below 23°F (-5°C), heat pump will work in a very low efficency. Therefore it is important to manually activate the winter anti-freeze mode which is required to prevent the heat pump and pipes in cold zone from freezing and cracking.',
+          'To prevent freezing, the product should either be powered on or drained when the temperature is between 23°F (-5°C) and 32°F (0°C).',
+          'When the temperature falls below 23°F (-5°C), it is mandatory to drain the water to prevent freezing.'
+        ] }
+      ]
+    },
+    {
+      header: 'Important Safety Instructions',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Important Safety Instructions' },
+        { type: 'heading', level: 2, text: 'WARNING:' },
+        { type: 'list', items: [
+          'People with infectious diseases should not use a spa or hot tub.',
+          'To avoid injury, exercise care when entering or exiting the spa or hot tub.',
+          'Do not use drugs or alcohol before or during the use of a spa or hot tub to avoid unconsciousness and possible drowning.',
+          'Do not use a spa or hot tub immediately following strenuous exercise.',
+          'Prolonged immersion in a spa or hot tub may be injurious to your health.'
+        ] },
+        { type: 'heading', level: 2, text: 'CAUTION:' },
+        { type: 'list', items: [
+          "Maintain water chemistry in accordance with manufacturer's instructions."
+        ] },
+        { type: 'paragraph', className: 'warning-text', text: '* Please read the instructions carefully and use according to the instructions.\nChildren should use this product under the close supervision of adults.' },
+        { type: 'heading', text: 'WARNING:' },
+        { type: 'list', items: [
+          'After transporting or installing the cold plunge, let the tub rest for 24 hours before turning on the chiller. Note: Failing to do so may result in chiller malfunction.',
+          'To remove the back cover, wrap the cap with a cloth or use cloth gloves. Then, use pliers to grip the cap and pull it outward to remove it.',
           'If the control panel displays the ER03 code, it indicates there is air in the pipes. The air should be released through the exhaust port on the filter.'
         ] },
-        { type: 'divider' },
-        { type: 'heading', text: 'Package List' },
-        { type: 'image', src: '/instruction_book/package_list.png' }
+        { type: 'heading', text: 'WARNING:' },
+        { type: 'list', items: [
+          'When the temperature is below 23°F (-5°C), heat pump will work in a very low efficency. Therefore it is important to manually activate the winter anti-freeze mode which is required to prevent the heat pump and pipes in cold zone from freezing and cracking.',
+          'To prevent freezing, the product should either be powered on or drained when the temperature is between 23°F (-5°C) and 32°F (0°C).',
+          'When the temperature falls below 23°F (-5°C), it is mandatory to drain the water to prevent freezing.'
+        ] }
+      ]
+    },
+    {
+      header: 'Important Safety Instructions',
+      variantId: 'C',
+      blocks: [
+        { type: 'heading', text: 'Important Safety Instructions' },
+        { type: 'paragraph', className: 'lead', text: 'READ AND FOLLOW ALL INSTRUCTIONS.' },
+
+        { type: 'list', className: 'safety-box', items: [
+          '<strong>DANGER -- Risk of accidental drowning:</strong><br/>Do not allow children to be in or around the spa unless a responsible adult supervises them. Keep the spa cover on and locked when not in use. See instructions enclosed with your cover for locking procedures.'
+        ] },
+        { type: 'list', className: 'safety-box', items: [
+          '<strong>DANGER -- Risk of injury:</strong><br/>The suction fittings in this spa are sized to match the specific water flow created by the pump. Should the need arise to replace the suction fittings, or the pump, be sure the flow rates are compatible.<br/><br/>Never operate the spa if the suction fitting or filter baskets are broken or missing. Never replace a suction fitting with one that is rated less than the flow rate marked on the original suction fitting.'
+        ] },
+        { type: 'list', className: 'safety-box', items: [
+          '<strong>DANGER -- Risk of electric shock:</strong><br/>Install the spa at least 5 feet (1.5 meters) from all metal surfaces. As an alternative, a spa may be installed within 5 feet of metal surfaces if each metal surface is permanently bonded by a minimum #8 AWG solid copper conductor to the outside of the spa\'s control box.<br/><br/>Do not permit any external electrical appliances, such as lights, telephones, radios, televisions, and etc., within five feet (1.5 meters) of the spa. Never attempt to operate any electrical device from inside the spa.<br/><br/>Replace a damaged power cord immediately.<br/><br/>Do not bury the power cord.<br/><br/>Connect to a grounded, grounding-type receptacle only.'
+        ] },
+
+        { type: 'heading', level: 2, text: 'WARNING -- To reduce the risk of injury:' },
+        { type: 'list', items: [
+          'The spa water should never exceed 104°F (40°C). Water temperatures between 100°F (38°C) and 104°F (40°C) are considered safe for a healthy adult. Lower water temperatures are recommended for young children and when spa use exceeds 10 minutes.',
+          'High water temperatures have a high potential for causing fetal damage during pregnancy. Women who are pregnant, or who think they are pregnant, should always check with their physician prior to spa usage.',
+          'The use of alcohol, drugs or medication before or during spa use may lead to unconsciousness, with the possibility of drowning.',
+          'Persons suffering from obesity, a medical history of heart disease, low or high blood pressure, circulatory system problems or diabetes should consult a physician before using the spa.',
+          'Persons using medications should consult a physician before using the spa since some medications may induce drowsiness while others may affect heart rate, blood pressure and circulation.'
+        ] },
+        { type: 'imageFloat-center', src: '/instruction_book/Exclamation.png', width: 520 }
+      ]
+    },
+    {
+      header: 'Important Safety Instructions',
+      variantId: 'C',
+      blocks: [
+        { type: 'heading', text: 'Important Safety Instructions' },
+
+        { type: 'list', className: 'safety-box', items: [
+          '<strong>HYPERTHERMIA DANGER:</strong><br/>Prolonged exposure to hot air or water can in 4°C above 37°C. While hyperthermia has many health benefits, it is important not to allow your body\'s core temperature to rise above 103°F (39.5°C).<br/><br/>Symptoms of excessive hyperthermia include dizziness, lethargy, drowsiness and fainting. The effects of excessive hyperthermia may include:',
+          'Failure to perceive heat',
+          'Failure to recognize the need to exit spa or hot tub',
+          'Unawareness of impending hazard',
+          'Fetal damage in pregnant women',
+          'Physical inability to exit the spa',
+          'Unconsciousness'
+        ] },
+
+        { type: 'list', className: 'safety-lines', items: [
+          '<strong>WARNING:</strong> The use of alcohol, drugs, or medication can greatly increase the risk of fatal hyperthermia.',
+          '<strong>WARNING:</strong> People with infectious diseases should not use a spa or hot tub.',
+          '<strong>WARNING:</strong> To avoid injury, exercise care when entering or exiting the spa or hot tub.',
+          '<strong>WARNING:</strong> Do not use drugs or alcohol before or during the use of a spa or hot tub to avoid unconsciousness and possible drowning.',
+          '<strong>WARNING:</strong> Do not use a spa or hot tub immediately following strenuous exercise.',
+          '<strong>WARNING:</strong> Prolonged immersion in a spa or hot tub may be injurious to your health.'
+        ] },
+
+        { type: 'list', className: 'safety-lines', items: [
+          '<strong>CAUTION:</strong> Maintain water chemistry in accordance with manufacturer\'s instructions.'
+        ] },
+        { type: 'paragraph', className: 'warning-text', text: '* Please read the instructions carefully and use according to the instructions. Children should use this product under the close supervision of adults.' },
+        { type: 'imageFloat-center', src: '/instruction_book/Stop.png', width: 520 }
+      ]
+    },
+    {
+      header: 'Important Safety Instructions',
+      variantId: 'C',
+      blocks: [
+        { type: 'heading', text: 'Important Safety Instructions' },
+        { type: 'list', className: 'safety-lines', items: [
+          '<strong>WARNING:</strong> All electrical hookups must be performed by a licensed electrician.',
+          '<strong>WARNING:</strong> Spas with a cord must be connected to a dedicated 115-volt, 20-amp, GFCI-protected, grounded circuit.<br/>Spas without a cord must be connected to an electrical subpanel containing dedicated GFCI breakers to supply power to the spa',
+          '<strong>WARNING:</strong> Removing or bypassing any Ground Fault Circuit Interrupter (GFCI) breaker will result in an unsafe spa and will void the spa\'s warranty."'
+        ] },
+        { type: 'imageFloat-center', src: '/instruction_book/Exclamation.png', width: 520 }
       ]
     },
     {
@@ -3459,6 +3891,16 @@ const manualPages = ref([
       //   · { type: 'paragraph', text } 简述
       //   · { type: 'image', src, fullWidth?, rotate?, marginTop? } 插图
       header: 'Touchscreen Control Panel',
+      variantId: 'A',
+      blocks: [
+        { type: 'heading', text: 'Touchscreen Control Panel' },
+        { type: 'paragraph', text: 'Control Panel Installation Instructions' },
+        { type: 'image', src: '/instruction_book/Touchscreen_Control_Panel.png' }
+      ]
+    },
+    {
+      header: 'Touchscreen Control Panel',
+      variantId: 'B',
       blocks: [
         { type: 'heading', text: 'Touchscreen Control Panel' },
         { type: 'paragraph', text: 'Control Panel Installation Instructions' },
@@ -3482,6 +3924,7 @@ const manualPages = ref([
       //         lines?: string[] 放大镜下说明文字
       //       }
       header: 'Troubleshooting',
+      variantId: 'A',
       blocks: [
         { type: 'heading', text: 'Troubleshooting' },
         { type: 'list', items: [
@@ -3516,6 +3959,34 @@ const manualPages = ref([
       ]
     },
     {
+      header: 'Troubleshooting',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Troubleshooting' },
+        { type: 'heading', level: 2, text: 'Basic Troubleshooting' },
+        { type: 'paragraph', text: 'The troubleshooting guidance provided here is intended to cover the most common problems a spa owner may encounter. For more in-depth troubleshooting, go to www.bellagioluxury.com.' },
+        { type: 'troubleTable', headers: ['Symptom','Possible Solutions'], groups: [
+          { title: 'Problems starting up', items: [
+            { symptom: "Pump won't prime", solutions: 'See priming instructions on page 14.' },
+            { symptom: 'Breaker keeps shutting off', solutions: 'Reset the GFCI breaker. If this continues, contact your dealer or a qualified spa technician.' },
+          ]},
+          { title: 'Power and system problems', items: [
+            { symptom: "System won’t start up or breaker keeps shutting off", solutions: 'Power may be shut off. Turn on GFCI circuit breaker. If this continues, contact your dealer or a qualified spa technician.' },
+            { symptom: "Control panel doesn’t respond", solutions: [
+              'Turn on or reset the GFCI circuit breaker. If this does not solve the problem, contact your dealer or a qualified spa technician.',
+              "If you hear the pump running but the control panel doesn’t respond, contact your dealer."
+            ] },
+            { symptom: 'Spa does not turn off', solutions: [
+              'Spa may be trying to heat up. Check if spa is in Ready or Rest mode.',
+              'In cold climates, if spa is not equipped with full foam or any kind of insulation, it will try to maintain the set temperature. Set the spa to low temperature range and set the temperature to 80°F.',
+              'Spa may be in filter cycle. If it is, this is normal and no adjustment is necessary.'
+            ] },
+            { symptom: 'Message on the control panel', solutions: 'There may be a problem. Please scan the QR code on page 15 for instructions.' }
+          ]}
+        ] }
+      ]
+    },
+    {
       // - header: string 页面标题
       // - blocks:
       //   · { type: 'heading', text } 标题
@@ -3524,6 +3995,7 @@ const manualPages = ref([
       //       groups: [{ title: string, items }]
       //         · items: 数组 { symptom: string, description?: string, solutions: string | string[] }
       header: 'Troubleshooting',
+      variantId: 'A',
       blocks: [
         { type: 'heading', text: 'Troubleshooting' },
         { type: 'troubleTable', headers: ['Symptom','Possible Solutions'], groups: [
@@ -3542,11 +4014,39 @@ const manualPages = ref([
       ]
     },
     {
+      header: 'Troubleshooting',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Troubleshooting' },
+        { type: 'troubleTable', headers: ['Symptom','Possible Solutions'], groups: [
+          { title: 'Heat problems', items: [
+            { symptom: 'Spa water does not get hot', solutions: [
+              'Spa may be in low temperature range. Set the spa to high temperature range.',
+              'The filter may be dirty or may need to be replaced. Clean or replace the filter.',
+              'The water level may be too low. Fill the spa with water level at 4 to 6 inches from the top.',
+              'The temperature is not turned up high enough. Raise temperature on topside control.',
+              'Cover the spa. The cover will keep heat in the spa and help keep heat from escaping. Make sure the cover is on at all times when spa is not in use.',
+              'The heater element may be old, deteriorated, coated with scale, or defective. Contact your dealer for more assistance.',
+              'The gate valves may be partially or completely closed. NEVER OPERATE YOUR SPA WITH THE GATE VALVES CLOSED!'
+            ] },
+            { symptom: 'Spa overheats - temperature greater than 110°F / 43°C', solutions: [
+              'Overheating can occur during summer months and may not necessarily indicate a malfunction. When it occurs, a message code may also appear on the control panel.',
+              'Temperature may be set too high. Turn the set temperature down to a lower temperature.',
+              'Filtration time may be too long. Turn the filtration cycles down during the warm months.',
+              'The spa may not be properly ventilated. Make sure the front of the spa is not blocked to allow air flow.',
+              'High speed pumps may have been running too long. Limit pump running time to no more than 15 to 30 minutes.'
+            ] }
+          ]}
+        ] }
+      ]
+    },
+    {
       // - header: string 页面标题
       // - blocks:
       //   · { type: 'heading', text } 标题
       //   · { type: 'troubleTable', headers, groups }（同上）
       header: 'Troubleshooting',
+      variantId: 'A',
       blocks: [
         { type: 'heading', text: 'Troubleshooting' },
         { type: 'troubleTable', headers: ['Symptom','Possible Solutions'], groups: [
@@ -3571,8 +4071,99 @@ const manualPages = ref([
               'Check if there is a green light on the ozonator. Change the water if it has become too dirty.'
             ] },
             { symptom: 'Bad smell', solutions: 'If the water looks clean and clear there should be no adverse smells. Run a clean cycle several times. If the water looks murky, drain and change it.' },
-            { symptom: 'The temperature differs from what the thermometer shows', solutions: 'The internal temperature probe is calibrated to within 0.3° +/- . There could be an issue with the temperature sensor or PCB board.' }
+            { symptom: 'The temperature differs from what the thermometer shows', solutions: 'The internal temperature probe is calibrated to within 0.3° +/- . There could be an issue with the temperature sensor or PCB board.' },
+            { symptom: 'Air lock', solutions: 'For the product with the Ozonator, it is recommended to clean the air intake hose using a brush once a year to prevent air line clogging' }
           ]}
+        ] }
+      ]
+    },
+    {
+      header: 'Troubleshooting',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Troubleshooting' },
+        { type: 'troubleTable', headers: ['Symptom','Possible Solutions'], groups: [
+          { title: 'Water pressure problems', items: [
+            { symptom: 'Low water pressure', solutions: [
+              'Jet valves may be partially or fully closed. Open the jet valves.',
+              'Filter cartridge may be dirty. Clean or replace the filter.',
+              'Pump may have airlock. Remove airlock by priming spa (page 13).',
+              'The suction fittings may be blocked. Remove any debris that may be blocking them.',
+              'The filter skimmer may be blocked. Remove the blockage.',
+              'Gate valves may be closed. Open gate valves. Note: Never operate your spa with the gate valves closed!',
+              'Spa may be running in filtration mode. Press JETS or JETS 1 button to turn on high speed pump.'
+            ] },
+            { symptom: 'No water pressure (no water stream from any jets)', solutions: [
+              'Power may be switched off. Turn the power back on.',
+              'The pump may be defective. After you have tried all other troubleshooting, contact your dealer for assistance.'
+            ] },
+            { symptom: 'Jets surge on and off', solutions: 'Water level may be too low. Add water to normal level.' }
+          ]},
+          { title: 'Pump problems', items: [
+            { symptom: 'Pump runs constantly – will not shut off', solutions: 'There may be a problem with circuit board. Contact your dealer' },
+            { symptom: 'Noisy pump', solutions: [
+              'The water level may be too low. Fill the spa with water level at 4 to 6 inches from the top.',
+              'Filter cartridge may be dirty. Clean or replace the filter.',
+              'Pump may have airlock. Remove airlock by priming spa (page 13)',
+              'The suction fittings may be blocked. Remove any debris that may be blocking the suction fittings.',
+              'Gate valves may be closed. Open gate valves. Note: Never operate your spa with the gate valves closed!',
+              'Air may be leaking into the suction line. Contact your dealer for assistance.',
+              'Debris may be inside the pump. Contact your dealer for assistance.',
+              'Noise may be a sign of damage. Contact your dealer for service.'
+            ] },
+            
+          ]}
+        ] },
+        { type: 'paragraph', className: 'warranty-title', text: 'LIMITED WARRANTY' },
+        { type: 'list', className: 'warranty-lines', items: [
+          '<strong>Five Years on Spa Shell Structure:</strong><br/>The spa shell structure is warranted against water loss due to defects in materials or workmanship for five (5) years from the original date of delivery.',
+          '<strong>Five Years on Spa Shell Surface:</strong><br/>The acrylic spa shell is warranted against cracking, blistering or delaminating due to defects in materials or workmanship for five (5) years from the original date of delivery. Surface checking is not included.',
+          '<strong>Two Years on Spa Plumbing:</strong><br/>Spa fittings and plumbing are warranted against leaks due to defects in materials or workmanship for 2 years from the original date of delivery.'
+        ] }
+      ]
+    },
+    {
+      header: 'Troubleshooting',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Troubleshooting' },
+        { type: 'troubleTable', headers: ['Symptom','Possible Solutions'], groups: [
+          { title: 'Pump problems', items: [
+            { symptom: 'Pump turns off during operation', solutions: [
+              'Automatic timer may have completed its cycle. Press JETS or JETS 1 button to start the cycle again.',
+              'Pump may have overheated due to the vents on the equipment door being blocked. Make sure the front of the spa is not blocked to allow air flow.',
+              'The pump motor may be defective. Contact your dealer for assistance.'
+            ] },
+            { symptom: 'Pump has a burning smell while running', solutions: 'A burning smell may be a sign of damage. Contact your dealer for service.' },
+            { symptom: 'Pump does not run', solutions: [
+              'Pump may have over heated. Let it cool for an hour and try operating the spa for a shorter time.',
+              'Power to the spa may be shut off. Turn on or reset the GFCI circuit breaker. If this does not solve the problem, contact your dealer or a qualified spa technician.'
+            ] }
+          ]}
+        ] },
+        { type: 'paragraph', className: 'warranty-title', text: 'LIMITED WARRANTY' },
+        { type: 'list', className: 'warranty-lines', items: [
+          '<strong>Two Years on Standard Spa Equipment - Electronic Spa Control Systems, Jet Pump(s), Circulation Pump and Heater:</strong><br/>The spa equipment systems are warranted against failure due to defects in materials or workmanship for two years from the date of delivery.',
+          '<strong>One Year on Sterilizer:</strong><br/>The sterilizer is warranted against failure due to defects in materials or workmanship for one year from the original date of delivery.',
+          '<strong>One Year on Blower:</strong><br/>The blower is warranted against failure due to defects in materials or workmanship for one year from the original date of delivery.'
+        ] }
+      ]
+    },
+    {
+      header: 'Troubleshooting',
+      variantId: 'B',
+      blocks: [
+        { type: 'heading', text: 'Troubleshooting' },
+        { type: 'paragraph', className: 'warranty-title', text: 'LIMITED WARRANTY' },
+        { type: 'list', className: 'warranty-lines', items: [
+          '<strong>One Year on Audio and Video System Components:</strong><br/>The factory installed audio and video components (i.e. power supply, stereo topside, IR sensor, cables, wires, etc.) are warranted against failure due to defects in materials or workmanship for one (1) year from the original date of delivery.',
+          '<strong>One Year on L.E.D.\'s:</strong><br/>The factory installed L.E.D.\'s are warranted against failure due to defects in materials or workmanship for one (1) year from the original date of delivery.',
+          '<strong>One Year on Spa Cabinet:</strong><br/>The spa cabinet is warranted to be free of defects in materials or workmanship for one year from the original date of delivery. Normal wear or appearance is not included. This warranty does not include damage caused in delivery, variations in color, wear or appearance, as all wood reacts differently to environmental conditions.',
+          '<strong>Ninety Days on Spa Pillows and Filter Box:</strong><br/>Pillows and filter box are subject to water chemistry variation and are warranted for ninety (90) days from original date of delivery.',
+          '<strong>Spa Covers:</strong><br/>Spa covers are warranted to be free of defects in materials and workmanship for a period of two (2) years on vinyl and one (1) year on foam core.',
+          '<strong>Spa Accessories:</strong><br/>The spa accessories are warranted by the accessory manufacturer and are specifically excluded. Please see the respective product manufacturer\'s warranty for details.',
+          '<strong>In-field labor shall be covered by dealers.</strong>',
+          '<strong>Limited Warranty should be read in conjunction with Warranty Performance.</strong>'
         ] }
       ]
     },
@@ -3583,7 +4174,140 @@ const manualInitialPages = JSON.parse(JSON.stringify(manualPages.value))
 const manualPagesRef = ref(null)
 const currentPageRef = ref(null)
 const currentPageIndex = ref(0)
-const currentPage = computed(() => manualPages.value[currentPageIndex.value])
+
+const VARIANT_GROUP_BY_HEADER = {
+  'Embrace the Revitalizing Chill': { key: 'embrace', label: 'Embrace the Revitalizing Chill' },
+  'How To Set Up': { key: 'how_to_set_up', label: 'How To Set Up' },
+  'Important Safety Instructions': { key: 'important_safety_instructions', label: 'Important Safety Instructions' },
+  'Premium Materials': { key: 'premium_materials', label: 'Premium Materials' },
+  'Touchscreen Control Panel': { key: 'touchscreen_control_panel', label: 'Touchscreen Control Panel' },
+  'Troubleshooting': { key: 'troubleshooting', label: 'Troubleshooting' },
+}
+
+const selectedVariants = reactive({})
+const variantsLoading = ref(false)
+const variantsLoadedKey = ref('')
+let _variantsSaveTimer = null
+
+const manualPagesWithMeta = computed(() => {
+  const pages = Array.isArray(manualPages.value) ? manualPages.value : []
+  const occurrenceByGroup = {}
+  return pages.map((page, rawIndex) => {
+    const header = page?.header
+    const group = header && VARIANT_GROUP_BY_HEADER[header] ? VARIANT_GROUP_BY_HEADER[header] : null
+    const groupKey = group ? group.key : null
+    const variantId = page?.variantId ? String(page.variantId) : 'A'
+
+    let order = null
+    if (groupKey) {
+      const k = `${groupKey}__${variantId}`
+      occurrenceByGroup[k] = (occurrenceByGroup[k] || 0) + 1
+      order = occurrenceByGroup[k]
+    }
+
+    return {
+      page,
+      rawIndex,
+      header,
+      variantGroup: groupKey,
+      variantLabel: group ? group.label : null,
+      variantId,
+      variantOrder: order,
+    }
+  })
+})
+
+const ensureVariantDefaults = () => {
+  manualPagesWithMeta.value.forEach((row) => {
+    if (!row.variantGroup) return
+    if (!selectedVariants[row.variantGroup]) {
+      selectedVariants[row.variantGroup] = row.variantId || 'A'
+    }
+  })
+}
+
+const visibleManualPagesWithMeta = computed(() => {
+  ensureVariantDefaults()
+  const rows = manualPagesWithMeta.value
+  const filtered = rows.filter((row) => {
+    if (!row.variantGroup) return true
+    const sel = selectedVariants[row.variantGroup]
+    return String(row.variantId) === String(sel)
+  })
+
+  // Keep multi-page sections in a stable order
+  filtered.sort((a, b) => {
+    if (a.rawIndex !== b.rawIndex) return a.rawIndex - b.rawIndex
+    const ao = a.variantOrder ?? 0
+    const bo = b.variantOrder ?? 0
+    return ao - bo
+  })
+  return filtered
+})
+
+const visibleManualPages = computed(() => visibleManualPagesWithMeta.value.map((r) => r.page))
+
+const currentPage = computed(() => visibleManualPages.value[currentPageIndex.value])
+
+const currentVariantSelectorGroup = computed(() => {
+  const header = currentPage.value?.header
+  const group = header && VARIANT_GROUP_BY_HEADER[header] ? VARIANT_GROUP_BY_HEADER[header] : null
+  if (!group) return null
+
+  // options for this group
+  const optionsSet = new Set()
+  manualPagesWithMeta.value.forEach((row) => {
+    if (row.variantGroup === group.key) optionsSet.add(row.variantId)
+  })
+  const order = { A: 0, B: 1, C: 2 }
+  const options = Array.from(optionsSet)
+    .map((id) => ({ id, label: id }))
+    .sort((a, b) => {
+      const ao = order[String(a.id)]
+      const bo = order[String(b.id)]
+      const av = typeof ao === 'number' ? ao : 99
+      const bv = typeof bo === 'number' ? bo : 99
+      if (av !== bv) return av - bv
+      return String(a.id).localeCompare(String(b.id))
+    })
+
+  if (options.length < 2) return null
+  return {
+    key: group.key,
+    label: group.label,
+    options,
+  }
+})
+
+const visibleIndexToRawIndex = (visibleIndex) => {
+  const row = visibleManualPagesWithMeta.value[Number(visibleIndex)]
+  return row ? row.rawIndex : Number(visibleIndex)
+}
+
+const variantSelectorGroups = computed(() => {
+  const byKey = {}
+  manualPagesWithMeta.value.forEach((row) => {
+    const g = row.variantGroup
+    if (!g) return
+    byKey[g] = byKey[g] || {
+      key: g,
+      label: row.variantLabel || g,
+      options: {},
+    }
+    byKey[g].options[row.variantId] = byKey[g].options[row.variantId] || {
+      id: row.variantId,
+      label: row.variantId,
+    }
+  })
+
+  return Object.values(byKey)
+    .map((g) => ({
+      key: g.key,
+      label: g.label,
+      options: Object.values(g.options).sort((a, b) => String(a.id).localeCompare(String(b.id))),
+    }))
+    .filter((g) => g.options.length >= 2)
+})
 const userZoom = ref(1)
 // 计算缩放，移除垂直滚动，由左侧目录直接切换（以原始A4画布 820px 宽为基准）
 const BASE_WIDTH = 820
@@ -3652,8 +4376,47 @@ const resetZoom = () => {
 }
 
 const goToPage = (pageNumber) => {
-  const idx = clamp((pageNumber | 0) - 1, 0, (manualPages.value?.length || 1) - 1)
+  const idx = clamp((pageNumber | 0) - 1, 0, (visibleManualPages.value?.length || 1) - 1)
   currentPageIndex.value = idx
+}
+
+const addBlankPage = (index, pos) => {
+  const rawIndex = visibleIndexToRawIndex(index)
+  const insertAt = pos === 'before' ? rawIndex : rawIndex + 1
+  const neighbor = manualPages.value[rawIndex]
+  const inferred = neighbor ? (neighbor.header || deriveTitle(neighbor) || 'Blank Page') : 'Blank Page'
+  manualPages.value.splice(insertAt, 0, { header: inferred, blocks: [] })
+  nextTick(() => {
+    // 跳到新插入的空白页，保证侧栏与页眉同步
+    // Recompute and jump to the inserted page in visible list.
+    const targetVisibleIndex = visibleManualPagesWithMeta.value.findIndex((r) => r.rawIndex === insertAt)
+    if (targetVisibleIndex >= 0) goToPage(targetVisibleIndex + 1)
+  })
+}
+
+const deleteBlankPage = (index) => {
+  const pg = manualPages.value[index]
+  if (pg && (!pg.blocks || pg.blocks.length === 0)) {
+    manualPages.value.splice(index, 1)
+    nextTick(() => {
+      goToPage(Math.max(1, index))
+    })
+  }
+}
+
+const deleteAnyPage = (index) => {
+  const rawIndex = visibleIndexToRawIndex(index)
+  const pg = manualPages.value[rawIndex]
+  if (!pg) return
+  if (pg.blocks && pg.blocks.length > 0) {
+    const ok = window.confirm('该页包含内容，确认删除？此操作不可撤销')
+    if (!ok) return
+  }
+  manualPages.value.splice(rawIndex, 1)
+  const nextIndex = Math.min(index, (visibleManualPages.value?.length || 1) - 1)
+  nextTick(() => {
+    goToPage(Math.max(1, nextIndex + 1))
+  })
 }
 
 const deriveTitle = (page) => {
@@ -3668,10 +4431,10 @@ const deriveTitle = (page) => {
 }
 
 const sidebarItems = computed(() => {
-  const total = (manualPages.value || []).length
+  const total = (visibleManualPages.value || []).length
   return Array.from({ length: total }, (_, i) => ({
     page: i + 1,
-    title: deriveTitle(manualPages.value[i] || {})
+    title: deriveTitle(visibleManualPages.value[i] || {})
   }))
 })
 
@@ -3707,7 +4470,7 @@ const setByPath = (obj, path, value) => {
 }
 
 const makeManualPath = (pageIndex, blockIndex, tail) => {
-  const p = Number(pageIndex)
+  const p = visibleIndexToRawIndex(pageIndex)
   const b = Number(blockIndex)
   return `pages.${p}.blocks.${b}` + (tail ? `.${tail}` : '')
 }
@@ -3760,9 +4523,73 @@ const onEditManualWithCaret = (evt, path, useHTML = false) => {
 }
 
 const onEditManualPageTitle = (evt) => {
-  const path = `pages.${currentPageIndex.value}.customTitle`
+  const path = `pages.${visibleIndexToRawIndex(currentPageIndex.value)}.customTitle`
   onEditManualWithCaret(evt, path)
 }
+
+const onVariantSelectionChange = async (groupKey, variantId) => {
+  if (!groupKey) return
+  selectedVariants[groupKey] = String(variantId)
+
+  // Jump to the first page in this group under the newly selected variant.
+  await nextTick()
+  const targetIndex = visibleManualPagesWithMeta.value.findIndex(
+    (r) => r.variantGroup === groupKey
+  )
+  if (targetIndex >= 0) {
+    currentPageIndex.value = targetIndex
+  } else {
+    currentPageIndex.value = clamp(currentPageIndex.value, 0, (visibleManualPages.value?.length || 1) - 1)
+  }
+
+  // Persist selection (debounced)
+  const pn = (productName.value || name.value || '').trim()
+  const bc = (bomCode.value || '').trim()
+  if (!pn || !bc) return
+  if (_variantsSaveTimer) clearTimeout(_variantsSaveTimer)
+  _variantsSaveTimer = setTimeout(async () => {
+    try {
+      await saveManualBookVariants(pn, bc, { ...selectedVariants })
+      variantsLoadedKey.value = `${pn}__${bc}`
+    } catch (e) {
+      // silent fail
+    }
+  }, 350)
+}
+
+const tryLoadSavedManualVariants = async () => {
+  const pn = (productName.value || name.value || '').trim()
+  const bc = (bomCode.value || '').trim()
+  if (!pn || !bc) return false
+  const loadKey = `${pn}__${bc}`
+  if (variantsLoadedKey.value === loadKey || variantsLoading.value) return false
+  variantsLoading.value = true
+  try {
+    const saved = await getManualBookVariants(pn, bc)
+    if (saved && typeof saved === 'object') {
+      Object.keys(saved).forEach((k) => {
+        selectedVariants[k] = String(saved[k])
+      })
+    }
+    variantsLoadedKey.value = loadKey
+    return true
+  } catch (e) {
+    variantsLoadedKey.value = loadKey
+    return false
+  } finally {
+    variantsLoading.value = false
+  }
+}
+
+watch(
+  [productName, bomCode, tab],
+  async () => {
+    if (tab.value !== 'manual') return
+    await nextTick()
+    await tryLoadSavedManualVariants()
+  },
+  { immediate: true }
+)
 
 const getContentsFor = (pageIndex) => {
   const pages = manualPages.value || []
@@ -4177,14 +5004,34 @@ onMounted(() => {
 .poster-specs .s-value { color: #ffffff; font-weight: 800; font-size: 10px; line-height: 1.05; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; width: fit-content; max-width: 100%; padding-bottom: 1px; border-bottom: 1px solid rgba(255,255,255,0.9); }
 .poster-specs .spec:last-child .s-value { font-size: 8px; }
 /* 产品图片叠加样式 */
-.product-photo { position: absolute; left: var(--product-x, 78%); top: var(--product-y, 22%); transform: translate(-50%, -50%); width: auto; height: auto; max-width: 380px; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5)); z-index: 5; pointer-events: auto; cursor: pointer; }
+.product-photo-wrap { position: absolute; left: var(--product-x, 78%); top: var(--product-y, 22%); transform: translate(-50%, -50%); z-index: 5; pointer-events: auto; }
+.product-photo { width: auto; height: auto; max-width: 380px; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5)); cursor: pointer; transform-origin: center center; transition: transform 0.12s ease-out; display: block; }
+.product-photo-tools { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; padding: 6px 8px; background: rgba(17, 24, 39, 0.65); border-radius: 10px; opacity: 0; pointer-events: none; transition: opacity 0.12s ease-out; }
+.product-photo-wrap:hover .product-photo-tools { opacity: 1; pointer-events: auto; }
+.photo-tool-btn {
+  --el-button-text-color: #ffffff;
+  --el-button-hover-text-color: #ffffff;
+  --el-button-active-text-color: #ffffff;
+  --el-button-bg-color: transparent;
+  --el-button-hover-bg-color: rgba(255, 255, 255, 0.12);
+  --el-button-active-bg-color: rgba(255, 255, 255, 0.18);
+  --el-button-border-color: rgba(255, 255, 255, 0.2);
+  --el-button-hover-border-color: rgba(255, 255, 255, 0.35);
+  --el-button-active-border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 0 6px;
+  min-height: 22px;
+  height: 22px;
+  line-height: 22px;
+  font-weight: 600;
+}
 .right-col { padding-top: 230px; padding-left: 30px; position: relative; z-index: 3; }
 
 /* Manual layout */
 .manual-layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; min-height: 600px; align-items: start; }
-.manual-toc { position: sticky; top: 16px; align-self: start; height: calc(100vh - 32px); padding: 12px; border: 1px solid #ebeef5; border-radius: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.02); display: grid; grid-template-rows: auto auto auto 1fr; gap: 12px; }
+.manual-toc { position: sticky; top: 16px; align-self: start; height: calc(100vh - 32px); padding: 12px; border: 1px solid #ebeef5; border-radius: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 12px; min-height: 0; }
 .toc-title { font-weight: 700; margin-bottom: 8px; }
-.toc-scroll { overflow: auto; padding-right: 6px; }
+.toc-scroll { overflow: auto; padding-right: 6px; flex: 1; min-height: 0; }
 .toc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
 .toc-link { width: 100%; text-align: left; background: transparent; border: none; padding: 6px 8px; border-radius: 6px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .15s ease; color: #000; }
 .toc-link:hover { background: #f3f4f6; }
@@ -4240,6 +5087,33 @@ onMounted(() => {
 .note-info { background: #eff6ff; color: #1d4ed8; }
 .note-warning { background: #fff7ed; color: #b45309; }
 .divider { border: 0; border-top: 1px solid #e5e7eb; margin: 6px 0; }
+
+.list.safety-lines ul { list-style: none; padding-left: 0; margin: 0; }
+.list.safety-lines li { margin: 6px 0; }
+
+.list.safety-box { background: #eef1f4; border-radius: 10px; padding: 14px 16px; }
+.list.safety-box ul { margin: 0; padding-left: 18px; }
+.list.safety-box li:first-child { list-style: none; margin-left: -18px; }
+.list.safety-box li { margin: 6px 0; }
+
+.appendix-bar { background: #a3a3a3; color: #ffffff; border-radius: 999px; padding: 10px 14px; text-align: center; font-weight: 800; letter-spacing: 0.8px; margin: 4px 0 10px; font-family: 'AgencyFB-Bold', 'Agency FB', Impact, 'Segoe UI', Arial, sans-serif; }
+
+.list.warranty-box { background: #eef1f4; border-radius: 10px; padding: 12px 16px; }
+.list.warranty-box ul { list-style: none; padding-left: 0; margin: 0; }
+.list.warranty-box li { margin: 8px 0; }
+.list.warranty-box li strong { display: block; font-weight: 800; margin-bottom: 4px; }
+
+.warranty-title { text-align: center; font-weight: 900; font-size: 20px; letter-spacing: 0.8px; margin: 10px 0 6px; color: #4a90bf; font-family: 'AgencyFB-Bold', 'Agency FB', Impact, 'Segoe UI', Arial, sans-serif; }
+.warranty-title::after { content: ''; display: block; height: 1px; background: #4a90bf; border-radius: 2px; margin-top: 6px; }
+
+.list.warranty-lines ul { list-style: none; padding-left: 0; margin: 0; }
+.list.warranty-lines li { padding: 10px 12px; margin: 10px 0; }
+.list.warranty-lines li { background: transparent; }
+.list.warranty-lines li strong { display: block; font-weight: 800; margin-bottom: 4px; }
+.list.warranty-lines li::marker { content: '' !important; }
+
+.img-float.center { left: 50%; top: 56%; transform: translate(-50%, -50%); width: auto; }
+.img-float.center img { width: 520px; max-width: 520px; opacity: 0.07; filter: brightness(0) saturate(100%); }
 
 /* Floating images on the page (e.g., product and cold icon) */
 .img-float { position: absolute; pointer-events: none; }
