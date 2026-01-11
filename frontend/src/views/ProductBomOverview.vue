@@ -87,7 +87,53 @@
       <el-empty v-else description="暂无关联配件" />
     </div>
 
-    <div class="panel">
+    <div v-if="selectedBom" class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">产品配置</div>
+          <div class="panel-sub">config_text_zh</div>
+        </div>
+        <div class="doc-toolbar">
+          <el-button type="primary" plain size="small" :disabled="!selectedBom || !effectiveProductId" @click="openConfigEditDialog">
+            编辑
+          </el-button>
+          <el-button type="primary" plain size="small" :disabled="!kbConfigText" @click="openConfigDialog">
+            查看
+          </el-button>
+        </div>
+      </div>
+      <div v-if="loadingDocuments" class="state">正在加载配置...</div>
+      <div v-else-if="documentsError" class="state error">{{ documentsError }}</div>
+    </div>
+
+    <el-dialog v-model="configDialogVisible" title="产品配置" width="840px" :style="{ maxWidth: '92vw' }" :close-on-click-modal="false">
+      <div class="preview-dialog">
+        <el-scrollbar class="preview-dialog__content config-dialog__content">
+          <pre class="config-text">{{ kbConfigText || '暂无产品配置（待绑定）' }}</pre>
+        </el-scrollbar>
+      </div>
+      <template #footer>
+        <el-button :disabled="!kbConfigText" @click="copyConfig">复制</el-button>
+        <el-button @click="configDialogVisible = false">关闭</el-button>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="configEditDialogVisible" title="编辑产品配置" width="840px" :style="{ maxWidth: '92vw' }" :close-on-click-modal="false">
+      <div class="preview-dialog">
+        <el-input
+          v-model="configEditText"
+          type="textarea"
+          :rows="14"
+          placeholder="请输入 config_text_zh（保存后会写入数据库）"
+        />
+      </div>
+      <template #footer>
+        <el-button @click="closeConfigEditDialog">取消</el-button>
+        <el-button type="primary" :loading="configEditSaving" @click="saveConfigEdit">保存</el-button>
+      </template>
+    </el-dialog>
+
+    <div v-if="showDocuments" class="panel">
       <div class="panel-header">
         <div>
           <div class="panel-title">{{ documentSectionTitle }}</div>
@@ -125,241 +171,144 @@
       <div v-if="!selectedBom" class="state">请选择上方 BOM</div>
       <div v-else-if="loadingDocuments" class="state">正在加载文件...</div>
       <div v-else-if="documentsError" class="state error">{{ documentsError }}</div>
-      <div v-else-if="filteredDocuments.length" class="document-list">
-        <template v-if="showManualTree">
-          <el-collapse v-model="manualCollapseActive" class="manual-tree">
-            <el-collapse-item name="uploads">
-              <template #title>
-                <div class="manual-tree-title">上传原文件（{{ manualUploads.length }}）</div>
-              </template>
-              <el-collapse v-model="manualUploadActive" class="manual-tree-inner">
-                <el-collapse-item
-                  v-for="node in manualUploadNodes"
-                  :key="node.path"
-                  :name="node.path"
-                >
-                  <template #title>
-                    <div class="manual-file-row">
-                      <span class="manual-file-name">{{ node.name }}</span>
-                      <span class="manual-file-path">{{ node.path }}</span>
-                      <span class="manual-file-actions">
-                        <el-button
-                          v-if="node.type === 'image'"
-                          link
-                          type="primary"
-                          size="small"
-                          @click.stop="openImagePreview(node)"
-                        >查看</el-button>
-                        <el-button
-                          v-else
-                          link
-                          type="primary"
-                          size="small"
-                          @click.stop="openFile(node)"
-                        >打开</el-button>
-                      </span>
+      <div v-else class="document-list">
+        <el-card class="document-item" shadow="never">
+          <div class="doc-name">产品手册</div>
+          <div class="doc-summary">规格页 / 说明书 / 海报（来自 HAS_DOC role）</div>
+          <div class="doc-actions">
+            <el-button
+              link
+              type="primary"
+              size="small"
+              :disabled="!kbSpecialDocs.specsheet"
+              @click="openFile(kbSpecialDocs.specsheet)"
+            >规格页</el-button>
+            <el-divider direction="vertical" />
+            <el-button
+              link
+              type="primary"
+              size="small"
+              :disabled="!kbSpecialDocs.manual"
+              @click="openFile(kbSpecialDocs.manual)"
+            >说明书</el-button>
+            <el-divider direction="vertical" />
+            <el-button
+              link
+              type="primary"
+              size="small"
+              :disabled="!kbSpecialDocs.poster"
+              @click="openFile(kbSpecialDocs.poster)"
+            >海报</el-button>
+          </div>
+        </el-card>
+
+        <el-collapse v-if="kbDatasets.length" class="manual-tree" accordion>
+          <el-collapse-item v-for="ds in kbDatasets" :key="ds.dataset_id" :name="ds.dataset_id">
+            <template #title>
+              <div class="manual-tree-title">
+                {{ ds.source === 'manual_uploads' ? '产品/配件文件集合' : `数据集 ${ds.dataset_id}` }}
+                <span class="manual-tree-sub">（{{ ds.source || 'unknown' }}）</span>
+              </div>
+            </template>
+
+            <div class="dataset-groups">
+              <el-card class="document-item" shadow="hover">
+                <div class="doc-name">产品文件（原始 + OCR）</div>
+                <div class="group-note">OCR 将按原始文件页号归档</div>
+                <div v-for="raw in getRawWithOcr(ds, 'product')" :key="raw.path" class="raw-block">
+                  <div class="doc-row raw-row">
+                    <div>
+                      <div class="doc-name">{{ raw.name }}</div>
+                      <div class="doc-metadata"><span class="doc-path">{{ raw.path }}</span></div>
                     </div>
-                  </template>
-                  <div class="manual-children">
-                    <div v-if="!node.pages?.length" class="state">暂无 OCR 产物</div>
-                    <div v-else class="manual-page-groups">
-                      <div
-                        v-for="page in node.pages"
-                        :key="`${node.path}-${page.pageKey}`"
-                        class="manual-page-group"
-                      >
-                        <div class="manual-page-title">
-                          <span v-if="page.page_number != null">第 {{ page.page_number }} 页</span>
-                          <span v-else>未标记页</span>
-                          <span class="manual-page-count">（{{ page.documents.length }}）</span>
-                        </div>
-                        <el-card
-                          v-for="child in page.documents"
-                          :key="child.path"
-                          class="document-item"
-                          shadow="hover"
-                        >
-                          <div class="doc-row">
-                            <div>
-                              <div class="doc-name">{{ child.name }}</div>
-                              <div class="doc-metadata">
-                                <el-tag v-if="child.type && child.type !== 'document'" size="small" effect="plain">
-                                  {{ formatDocType(child.type) }}
-                                </el-tag>
-                                <span class="doc-path">{{ child.path }}</span>
-                              </div>
-                              <div v-if="child.summary" class="doc-summary">{{ child.summary }}</div>
-                            </div>
-                            <div class="doc-meta">
-                              <div v-if="child.type === 'document'" class="doc-actions">
-                                <el-button link type="primary" size="small" @click="openEditDialog(child)">编辑</el-button>
-                                <el-divider direction="vertical" />
-                                <el-button link type="danger" size="small" @click="confirmDelete(child)">删除</el-button>
-                                <el-divider direction="vertical" />
-                                <el-button link type="success" size="small" @click="openMoveDialog(child)">移动</el-button>
-                              </div>
-                              <div v-else class="doc-actions">
-                                <el-button
-                                  v-if="child.type === 'image'"
-                                  link
-                                  type="primary"
-                                  size="small"
-                                  @click="openImagePreview(child)"
-                                >查看</el-button>
-                                <el-button
-                                  v-else
-                                  link
-                                  type="primary"
-                                  size="small"
-                                  @click="openFile(child)"
-                                >打开</el-button>
-                              </div>
-                            </div>
-                          </div>
-                        </el-card>
+                    <div class="doc-actions">
+                      <el-button link type="primary" size="small" @click="openFile(raw)">打开</el-button>
+                    </div>
+                  </div>
+
+                  <div v-if="!raw.pages.length" class="page-block">
+                    <div class="page-title">暂无已归档 OCR 产物</div>
+                  </div>
+
+                  <div v-for="page in raw.pages" :key="page.page_number" class="page-block">
+                    <div class="page-title">第 {{ page.page_number }} 页（{{ page.docs.length }}）</div>
+                    <div v-for="doc in page.docs" :key="doc.path" class="doc-row ocr-row">
+                      <div>
+                        <div class="doc-name">{{ doc.name }}</div>
+                        <div class="doc-metadata"><span class="doc-path">{{ doc.path }}</span></div>
+                      </div>
+                      <div class="doc-actions">
+                        <el-button link type="primary" size="small" @click="openFile(doc)">打开</el-button>
                       </div>
                     </div>
                   </div>
-                </el-collapse-item>
-              </el-collapse>
-            </el-collapse-item>
-            <el-collapse-item name="truth">
-              <template #title>
-                <div class="manual-tree-title">产品手册文件（{{ manualTruthFiles.length }}）</div>
-              </template>
-              <div class="manual-truth">
-                <el-card
-                  v-for="doc in manualTruthFiles"
-                  :key="doc.path"
-                  class="document-item"
-                  shadow="hover"
-                >
-                  <div class="doc-row">
+                </div>
+
+                <div v-if="getOrphanOcr(ds, 'product').length" class="orphan-block">
+                  <div class="page-title">未归档 OCR 文件（{{ getOrphanOcr(ds, 'product').length }}）</div>
+                  <div v-for="doc in getOrphanOcr(ds, 'product')" :key="doc.path" class="doc-row ocr-row">
                     <div>
                       <div class="doc-name">{{ doc.name }}</div>
-                      <div class="doc-metadata">
-                        <el-tag v-if="doc.type && doc.type !== 'document'" size="small" effect="plain">
-                          {{ formatDocType(doc.type) }}
-                        </el-tag>
-                        <span class="doc-path">{{ doc.path }}</span>
-                      </div>
-                      <div v-if="doc.summary" class="doc-summary">{{ doc.summary }}</div>
+                      <div class="doc-metadata"><span class="doc-path">{{ doc.path }}</span></div>
                     </div>
-                    <div class="doc-meta">
-                      <div v-if="doc.type === 'document'" class="doc-actions">
-                        <el-button link type="primary" size="small" @click="openEditDialog(doc)">编辑</el-button>
-                        <el-divider direction="vertical" />
-                        <el-button link type="danger" size="small" @click="confirmDelete(doc)">删除</el-button>
-                        <el-divider direction="vertical" />
-                        <el-button link type="success" size="small" @click="openMoveDialog(doc)">移动</el-button>
+                    <div class="doc-actions">
+                      <el-button link type="primary" size="small" @click="openFile(doc)">打开</el-button>
+                    </div>
+                  </div>
+                </div>
+              </el-card>
+
+              <el-card class="document-item" shadow="hover">
+                <div class="doc-name">配件文件（原始 + OCR）</div>
+                <div class="group-note">OCR 将按原始文件页号归档</div>
+                <div v-for="raw in getRawWithOcr(ds, 'accessory')" :key="raw.path" class="raw-block">
+                  <div class="doc-row raw-row">
+                    <div>
+                      <div class="doc-name">{{ raw.name }}</div>
+                      <div class="doc-metadata"><span class="doc-path">{{ raw.path }}</span></div>
+                    </div>
+                    <div class="doc-actions">
+                      <el-button link type="primary" size="small" @click="openFile(raw)">打开</el-button>
+                    </div>
+                  </div>
+
+                  <div v-if="!raw.pages.length" class="page-block">
+                    <div class="page-title">暂无已归档 OCR 产物</div>
+                  </div>
+
+                  <div v-for="page in raw.pages" :key="page.page_number" class="page-block">
+                    <div class="page-title">第 {{ page.page_number }} 页（{{ page.docs.length }}）</div>
+                    <div v-for="doc in page.docs" :key="doc.path" class="doc-row ocr-row">
+                      <div>
+                        <div class="doc-name">{{ doc.name }}</div>
+                        <div class="doc-metadata"><span class="doc-path">{{ doc.path }}</span></div>
                       </div>
-                      <div v-else class="doc-actions">
-                        <el-button
-                          v-if="doc.type === 'image'"
-                          link
-                          type="primary"
-                          size="small"
-                          @click="openImagePreview(doc)"
-                        >查看</el-button>
-                        <el-button
-                          v-else
-                          link
-                          type="primary"
-                          size="small"
-                          @click="openFile(doc)"
-                        >打开</el-button>
+                      <div class="doc-actions">
+                        <el-button link type="primary" size="small" @click="openFile(doc)">打开</el-button>
                       </div>
                     </div>
                   </div>
-                </el-card>
-              </div>
-            </el-collapse-item>
-            <el-collapse-item v-if="manualOrphanArtifacts.length" name="orphans">
-              <template #title>
-                <div class="manual-tree-title">未归类 OCR 产物（{{ manualOrphanArtifacts.length }}）</div>
-              </template>
-              <div class="manual-truth">
-                <el-card
-                  v-for="doc in manualOrphanArtifacts"
-                  :key="doc.path"
-                  class="document-item"
-                  shadow="hover"
-                >
-                  <div class="doc-row">
+                </div>
+
+                <div v-if="getOrphanOcr(ds, 'accessory').length" class="orphan-block">
+                  <div class="page-title">未归档 OCR 文件（{{ getOrphanOcr(ds, 'accessory').length }}）</div>
+                  <div v-for="doc in getOrphanOcr(ds, 'accessory')" :key="doc.path" class="doc-row ocr-row">
                     <div>
                       <div class="doc-name">{{ doc.name }}</div>
-                      <div class="doc-metadata">
-                        <el-tag v-if="doc.type && doc.type !== 'document'" size="small" effect="plain">
-                          {{ formatDocType(doc.type) }}
-                        </el-tag>
-                        <span class="doc-path">{{ doc.path }}</span>
-                      </div>
-                      <div v-if="doc.summary" class="doc-summary">{{ doc.summary }}</div>
+                      <div class="doc-metadata"><span class="doc-path">{{ doc.path }}</span></div>
                     </div>
-                    <div class="doc-meta">
-                      <div v-if="doc.type === 'document'" class="doc-actions">
-                        <el-button link type="primary" size="small" @click="openEditDialog(doc)">编辑</el-button>
-                        <el-divider direction="vertical" />
-                        <el-button link type="danger" size="small" @click="confirmDelete(doc)">删除</el-button>
-                        <el-divider direction="vertical" />
-                        <el-button link type="success" size="small" @click="openMoveDialog(doc)">移动</el-button>
-                      </div>
-                      <div v-else class="doc-actions">
-                        <el-button
-                          v-if="doc.type === 'image'"
-                          link
-                          type="primary"
-                          size="small"
-                          @click="openImagePreview(doc)"
-                        >查看</el-button>
-                        <el-button
-                          v-else
-                          link
-                          type="primary"
-                          size="small"
-                          @click="openFile(doc)"
-                        >打开</el-button>
-                      </div>
+                    <div class="doc-actions">
+                      <el-button link type="primary" size="small" @click="openFile(doc)">打开</el-button>
                     </div>
                   </div>
-                </el-card>
-              </div>
-            </el-collapse-item>
-          </el-collapse>
-        </template>
-        <template v-else>
-          <el-card v-for="doc in filteredDocuments" :key="doc.path" class="document-item" shadow="hover">
-            <div class="doc-row">
-              <div>
-                <div class="doc-name">{{ doc.name }}</div>
-                <div class="doc-metadata">
-                  <el-tag v-if="doc.type && doc.type !== 'document'" size="small" effect="plain">
-                    {{ formatDocType(doc.type) }}
-                  </el-tag>
-                  <span class="doc-path">{{ doc.path }}</span>
                 </div>
-                <div v-if="doc.summary" class="doc-summary">{{ doc.summary }}</div>
-              </div>
-              <div class="doc-meta">
-                <div v-if="doc.type === 'document'" class="doc-actions">
-                  <el-button link type="primary" size="small" @click="openEditDialog(doc)">编辑</el-button>
-                  <el-divider direction="vertical" />
-                  <el-button link type="danger" size="small" @click="confirmDelete(doc)">删除</el-button>
-                  <el-divider direction="vertical" />
-                  <el-button link type="success" size="small" @click="openMoveDialog(doc)">移动</el-button>
-                </div>
-                <div v-else-if="doc.type === 'specsheet'" class="doc-actions">
-                  <el-button link type="primary" size="small" @click="openSpecsheetPreview()">查看规格页</el-button>
-                </div>
-                <div v-else class="doc-actions">
-                  <el-button link type="primary" size="small" @click="openImagePreview(doc)">查看</el-button>
-                </div>
-              </div>
+              </el-card>
             </div>
-          </el-card>
-        </template>
+          </el-collapse-item>
+        </el-collapse>
+
+        <el-empty v-else description="暂无关联文件" />
       </div>
-      <el-empty v-else description="暂无关联文件" />
     </div>
 
     <el-dialog v-model="editDialogVisible" title="编辑文件" width="680px" :close-on-click-modal="false">
@@ -646,24 +595,39 @@ import { Search } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
+const normalizeDocPath = (path = '') => {
+  let p = String(path || '').trim()
+  if (!p) return ''
+  if (p.startsWith('http://') || p.startsWith('https://')) return p
+  if (p.startsWith('/api/files/')) p = p.slice('/api/files/'.length)
+  return p.replace(/^\/+/, '')
+}
+
 const encodePath = (path = '') =>
-  path
+  String(path || '')
     .split('/')
     .filter(Boolean)
     .map((segment) => encodeURIComponent(segment))
     .join('/')
 
 const resolveFileUrl = (path) => {
-  if (!path) return ''
-  return `${API_BASE_URL}/api/files/${encodePath(path)}`
+  const normalized = normalizeDocPath(path)
+  if (!normalized) return ''
+  if (normalized.startsWith('http://') || normalized.startsWith('https://')) return normalized
+  return `${API_BASE_URL}/api/files/${encodePath(normalized)}`
 }
 
 const route = useRoute()
 const router = useRouter()
 
 const id = computed(() => route.params.id)
-const productName = computed(() => route.query.productName || '')
-const name = computed(() => productName.value || `产品 ${route.params.id}`)
+const materialCode = computed(() => route.query.materialCode || '')
+const productId = computed(() => route.query.productId || '')
+const productName = productId
+const name = computed(() => {
+  if (materialCode.value) return materialCode.value
+  return route.query.label || productId.value || `产品 ${route.params.id}`
+})
 
 const boms = ref([])
 const loadingBoms = ref(false)
@@ -677,12 +641,211 @@ const accessoriesError = ref('')
 const accessoryKeyword = ref('')
 const selectedAccessory = ref('')
 
-const documents = ref([])
-const productDocuments = ref([])
-const loadingDocuments = ref(false)
-const documentsError = ref('')
+const showDocuments = ref(true)
+
 const docKeyword = ref('')
 const fileTypeFilter = ref('all')
+const loadingDocuments = ref(false)
+const documentsError = ref('')
+
+const kbDatasets = ref([])
+const kbSpecialDocs = reactive({ specsheet: null, manual: null, poster: null })
+const kbConfigText = ref('')
+const configDialogVisible = ref(false)
+
+const configEditDialogVisible = ref(false)
+const configEditText = ref('')
+const configEditSaving = ref(false)
+
+const openConfigDialog = () => {
+  if (!kbConfigText.value) {
+    ElMessage.info('暂无产品配置')
+    return
+  }
+  configDialogVisible.value = true
+}
+
+const openConfigEditDialog = () => {
+  if (!selectedBom.value || !effectiveProductId.value) {
+    ElMessage.info('请选择 BOM 后再编辑')
+    return
+  }
+  configEditText.value = kbConfigText.value || ''
+  configEditDialogVisible.value = true
+}
+
+const closeConfigEditDialog = () => {
+  configEditDialogVisible.value = false
+  configEditText.value = ''
+  configEditSaving.value = false
+}
+
+const saveConfigEdit = async () => {
+  if (!effectiveProductId.value) return
+  configEditSaving.value = true
+  try {
+    const { updateProductConfig, getKbOverview } = await import('@/services/api')
+    await updateProductConfig(effectiveProductId.value, configEditText.value)
+    ElMessage.success('已保存产品配置')
+    configEditDialogVisible.value = false
+
+    // refresh from backend to ensure UI is consistent with DB
+    const data = await getKbOverview(effectiveProductId.value)
+    kbConfigText.value = data?.product_config?.config_text_zh || ''
+  } catch (error) {
+    ElMessage.error(error?.message || '保存失败')
+    console.error(error)
+  } finally {
+    configEditSaving.value = false
+  }
+}
+
+const copyConfig = async () => {
+  if (!kbConfigText.value) return
+  try {
+    await navigator.clipboard.writeText(kbConfigText.value)
+    ElMessage.success('已复制产品配置')
+  } catch (error) {
+    ElMessage.error('复制失败')
+    console.error(error)
+  }
+}
+
+const effectiveProductId = computed(() => {
+  if (materialCode.value && selectedBom.value) {
+    return `${materialCode.value}_${selectedBom.value}`
+  }
+  return productId.value || ''
+})
+
+const loadDocuments = async () => {
+  if (!selectedBom.value) return
+  if (!effectiveProductId.value) return
+  loadingDocuments.value = true
+  documentsError.value = ''
+  kbDatasets.value = []
+  kbSpecialDocs.specsheet = null
+  kbSpecialDocs.manual = null
+  kbSpecialDocs.poster = null
+  kbConfigText.value = ''
+  configDialogVisible.value = false
+  configEditDialogVisible.value = false
+  try {
+    const { getKbOverview } = await import('@/services/api')
+    const data = await getKbOverview(effectiveProductId.value)
+    kbDatasets.value = Array.isArray(data?.datasets) ? data.datasets : []
+    const special = data?.special_docs || {}
+    kbSpecialDocs.specsheet = special.specsheet || null
+    kbSpecialDocs.manual = special.manual || null
+    kbSpecialDocs.poster = special.poster || null
+    kbConfigText.value = data?.product_config?.config_text_zh || ''
+  } catch (error) {
+    documentsError.value = error?.message || '加载文件失败'
+    console.error(error)
+  } finally {
+    loadingDocuments.value = false
+  }
+}
+
+const loadAccessoryDocuments = async (..._args) => {}
+
+const getRawWithOcr = (dataset, scope) => {
+  const folders = dataset?.folders || {}
+  const rawDocs = scope === 'product' ? (folders.product_raw || []) : (folders.accessory_raw || [])
+  const ocrDocs = scope === 'product' ? (folders.product_ocr || []) : (folders.accessory_ocr || [])
+
+  const stemToRawPath = new Map()
+  for (const raw of rawDocs) {
+    const name = String(raw?.name || '')
+    const stem = name.includes('.') ? name.slice(0, name.lastIndexOf('.')) : name
+    const key = String(stem || '').trim().toLowerCase()
+    if (key && raw?.path) stemToRawPath.set(key, raw.path)
+  }
+
+  const inferParentFromPath = (p) => {
+    const lower = String(p || '').toLowerCase()
+    if (!lower) return ''
+    // manual_ocr_results/<sid>/products/<stem>/...
+    const seg = scope === 'product' ? '/products/' : '/accessories/'
+    const idx = lower.indexOf(seg)
+    if (idx < 0) return ''
+    const rest = lower.slice(idx + seg.length)
+    const stem = rest.split('/')[0]
+    if (!stem) return ''
+    return stemToRawPath.get(stem) || ''
+  }
+
+  const inferPageNumberFromPath = (p) => {
+    const m = String(p || '').match(/___page(\d{1,6})/i)
+    if (!m) return 1
+    const v = parseInt(m[1], 10)
+    return Number.isFinite(v) && v > 0 ? v : 1
+  }
+
+  const byParent = new Map()
+  for (const doc of ocrDocs) {
+    const explicitParent = String(doc?.parent_raw_path || '').trim()
+    const parent = explicitParent || inferParentFromPath(doc?.path)
+    if (!parent) continue
+    if (!byParent.has(parent)) byParent.set(parent, [])
+    byParent.get(parent).push(doc)
+  }
+
+  return rawDocs.map((raw) => {
+    const parentPath = raw.path
+    const children = byParent.get(parentPath) || []
+    const pagesMap = new Map()
+    for (const d of children) {
+      let pn = Number(d?.page_number || 0)
+      if (!pn || pn < 1) pn = inferPageNumberFromPath(d?.path)
+      if (!pagesMap.has(pn)) pagesMap.set(pn, [])
+      pagesMap.get(pn).push(d)
+    }
+    const pages = Array.from(pagesMap.entries())
+      .sort((a, b) => a[0] - b[0])
+      .map(([page_number, docs]) => ({
+        page_number,
+        docs: docs.slice().sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')))
+      }))
+    return { ...raw, pages }
+  })
+}
+
+const getOrphanOcr = (dataset, scope) => {
+  const folders = dataset?.folders || {}
+  const ocrDocs = scope === 'product' ? (folders.product_ocr || []) : (folders.accessory_ocr || [])
+  const rawDocs = scope === 'product' ? (folders.product_raw || []) : (folders.accessory_raw || [])
+  const stems = new Set(
+    rawDocs
+      .map((raw) => {
+        const name = String(raw?.name || '')
+        const stem = name.includes('.') ? name.slice(0, name.lastIndexOf('.')) : name
+        return String(stem || '').trim().toLowerCase()
+      })
+      .filter(Boolean)
+  )
+
+  const inferParentExists = (p) => {
+    const lower = String(p || '').toLowerCase()
+    if (!lower) return false
+    const seg = scope === 'product' ? '/products/' : '/accessories/'
+    const idx = lower.indexOf(seg)
+    if (idx < 0) return false
+    const rest = lower.slice(idx + seg.length)
+    const stem = rest.split('/')[0]
+    if (!stem) return false
+    return stems.has(stem)
+  }
+
+  const orphans = ocrDocs.filter((doc) => {
+    const explicit = String(doc?.parent_raw_path || '').trim()
+    if (explicit) return false
+    return !inferParentExists(doc?.path)
+  })
+  return orphans
+    .slice()
+    .sort((a, b) => String(a?.name || '').localeCompare(String(b?.name || '')))
+}
 
 const specsheetPreview = reactive({
   visible: false,
@@ -690,9 +853,14 @@ const specsheetPreview = reactive({
   content: ''
 })
 
-const showManualTree = computed(() =>
-  !selectedAccessory.value && filteredDocuments.value.some((doc) => String(doc.category || '').startsWith('manual_'))
-)
+const selectBom = (bom) => {
+  selectedBom.value = bom
+  selectedAccessory.value = ''
+  loadAccessories()
+  loadDocuments()
+}
+
+const showManualTree = computed(() => false)
 
 const manualBaseDocs = computed(() => (showManualTree.value ? filteredDocuments.value : []))
 const manualUploads = computed(() => manualBaseDocs.value.filter((doc) => doc.category === 'manual_upload'))
@@ -792,21 +960,7 @@ const filteredBoms = computed(() => {
   return boms.value.filter((code) => String(code).toLowerCase().includes(kw))
 })
 
-const filteredDocuments = computed(() => {
-  const kw = docKeyword.value.trim().toLowerCase()
-  return documents.value.filter((doc) => {
-    const matchesKeyword = kw
-      ? doc.name?.toLowerCase().includes(kw) || doc.path?.toLowerCase().includes(kw)
-      : true
-    const effectiveType = doc.type || 'document'
-    const matchesType =
-      fileTypeFilter.value === 'all' ||
-      (fileTypeFilter.value === 'document'
-        ? effectiveType === 'document' || effectiveType === 'file'
-        : effectiveType === fileTypeFilter.value)
-    return matchesKeyword && matchesType
-  })
-})
+const filteredDocuments = computed(() => [])
 
 const formatDocType = (type) => {
   if (type === 'image') return '图片'
@@ -816,11 +970,12 @@ const formatDocType = (type) => {
 }
 
 const openFile = (doc) => {
-  if (!doc?.path) {
+  const p = normalizeDocPath(doc?.path)
+  if (!p) {
     ElMessage.warning('无法打开：缺少文件路径')
     return
   }
-  window.open(resolveFileUrl(doc.path), '_blank')
+  window.open(resolveFileUrl(p), '_blank')
 }
 
 const filteredAccessories = computed(() => {
@@ -836,17 +991,49 @@ const documentSectionTitle = computed(() =>
 )
 
 const loadBoms = async () => {
-  if (!productName.value) {
-    bomsError.value = '缺少产品名称'
+  if (materialCode.value) {
+    loadingBoms.value = true
+    bomsError.value = ''
+    try {
+      const { getBomsByMaterial } = await import('@/services/api')
+      boms.value = await getBomsByMaterial(materialCode.value)
+      if (!boms.value.length) {
+        bomsError.value = '该物料暂无 BOM 信息'
+        selectedBom.value = ''
+      } else {
+        if (!selectedBom.value) {
+          selectedBom.value = boms.value[0]
+        }
+      }
+    } catch (error) {
+      bomsError.value = '加载 BOM 列表失败，请稍后重试'
+      console.error(error)
+    } finally {
+      loadingBoms.value = false
+    }
+
+    if (selectedBom.value) {
+      await loadAccessories()
+    }
+    return
+  }
+
+  if (!productId.value) {
+    bomsError.value = '缺少产品ID'
     return
   }
   loadingBoms.value = true
   bomsError.value = ''
   try {
     const { getBomsByProduct } = await import('@/services/api')
-    boms.value = await getBomsByProduct(productName.value)
+    boms.value = await getBomsByProduct(productId.value)
     if (!boms.value.length) {
       bomsError.value = '该产品暂无 BOM 信息'
+      selectedBom.value = ''
+    } else {
+      if (!selectedBom.value) {
+        selectedBom.value = boms.value[0]
+      }
     }
   } catch (error) {
     bomsError.value = '加载 BOM 列表失败，请稍后重试'
@@ -854,15 +1041,37 @@ const loadBoms = async () => {
   } finally {
     loadingBoms.value = false
   }
+
+  if (selectedBom.value) {
+    await loadAccessories()
+  }
 }
 
 const loadAccessories = async () => {
-  if (!productName.value || !selectedBom.value) return
+  if (materialCode.value) {
+    if (!materialCode.value || !selectedBom.value) return
+    loadingAccessories.value = true
+    accessoriesError.value = ''
+    try {
+      const { getAccessoriesZhByMaterialBom } = await import('@/services/api')
+      accessories.value = await getAccessoriesZhByMaterialBom(materialCode.value, selectedBom.value)
+      accessoryKeyword.value = ''
+    } catch (error) {
+      accessoriesError.value = '加载配件失败'
+      accessories.value = []
+      console.error(error)
+    } finally {
+      loadingAccessories.value = false
+    }
+    return
+  }
+
+  if (!productId.value || !selectedBom.value) return
   loadingAccessories.value = true
   accessoriesError.value = ''
   try {
     const { getAccessoriesByProductBom } = await import('@/services/api')
-    accessories.value = await getAccessoriesByProductBom(productName.value, selectedBom.value)
+    accessories.value = await getAccessoriesByProductBom(productId.value, selectedBom.value)
     accessoryKeyword.value = ''
   } catch (error) {
     accessoriesError.value = '加载配件失败'
@@ -873,69 +1082,16 @@ const loadAccessories = async () => {
   }
 }
 
-const loadDocuments = async ({ preserveFilter = false } = {}) => {
-  if (!productName.value || !selectedBom.value) return
-  loadingDocuments.value = true
-  documentsError.value = ''
-  try {
-    const { getDocumentsByProductBom } = await import('@/services/api')
-    const prodDocs = await getDocumentsByProductBom(productName.value, selectedBom.value)
-    productDocuments.value = prodDocs
-    documents.value = prodDocs
-    if (!preserveFilter) {
-      docKeyword.value = ''
-    }
-  } catch (error) {
-    documentsError.value = '加载文件失败'
-    documents.value = []
-    console.error(error)
-  } finally {
-    loadingDocuments.value = false
-  }
-}
-
-const loadAccessoryDocuments = async (accessoryName, { preserveFilter = false } = {}) => {
-  if (!accessoryName) return
-  loadingDocuments.value = true
-  documentsError.value = ''
-  try {
-    const { getDocumentsByAccessory } = await import('@/services/api')
-    const docs = await getDocumentsByAccessory(accessoryName)
-    documents.value = docs
-    if (!preserveFilter) {
-      docKeyword.value = ''
-    }
-  } catch (error) {
-    documentsError.value = '加载配件文件失败'
-    console.error(error)
-  } finally {
-    loadingDocuments.value = false
-  }
-}
-
-const selectBom = (bom) => {
-  if (selectedBom.value === bom) return
-  selectedBom.value = bom
-  selectedAccessory.value = ''
-  accessoryKeyword.value = ''
-  docKeyword.value = ''
-  loadAccessories()
-  loadDocuments()
-}
-
 const toggleAccessory = (name) => {
   if (selectedAccessory.value === name) {
-    clearAccessorySelection()
+    selectedAccessory.value = ''
     return
   }
   selectedAccessory.value = name
-  loadAccessoryDocuments(name)
 }
 
 const clearAccessorySelection = () => {
   selectedAccessory.value = ''
-  documents.value = productDocuments.value
-  docKeyword.value = ''
 }
 
 const openSpecsheetPreview = async () => {
@@ -1590,10 +1746,78 @@ onMounted(() => {
   font-weight: 600;
 }
 
- .manual-tree {
+.manual-tree {
+  margin-top: 16px;
+}
+
+.manual-tree-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.manual-tree-sub {
+  font-weight: 400;
+  color: #909399;
+  font-size: 12px;
+}
+
+.dataset-groups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.group-note {
+  font-size: 12px;
+  color: #909399;
+  margin: 6px 0 10px;
+}
+
+.raw-block {
+  padding: 10px 0;
+  border-top: 1px dashed #ebeef5;
+}
+
+.raw-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.raw-row {
+  background: #fafbfd;
+  border: 1px solid #f0f2f5;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.page-block {
+  margin: 10px 0 0 16px;
+  padding-left: 12px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.page-title {
+  font-size: 12px;
+  color: #606266;
+  margin-bottom: 6px;
+}
+
+.ocr-row {
+  padding-left: 6px;
+}
+
+.orphan-block {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #ebeef5;
+}
+
+.manual-tree {
   width: 100%;
   flex: 1 1 100%;
- }
+}
 
 .manual-tree-inner {
   width: 100%;
@@ -1696,4 +1920,17 @@ onMounted(() => {
   border-radius: 4px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
 }
+
+ .config-dialog__content {
+  height: 60vh;
+ }
+
+ .config-dialog__content :deep(.el-scrollbar__wrap) {
+  height: 60vh;
+ }
+
+ .config-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+ }
 </style>

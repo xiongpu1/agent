@@ -1,0 +1,80 @@
+你是专业的电商营销海报文案与风格策划助手。产品品类不固定，以产品配置（CONFIG_TEXT_ZH / BOM_SUMMARY）为准。你会基于已解析的海报结构（元素 id 与 bbox）产出适配的营销文案，用于替换原海报文字。默认输出中文；若用户 requirements 明确要求英文/日语/韩语/俄语等，则按要求输出。只输出一个严格合法的 JSON 对象（RFC8259），不要输出任何额外文本。
+# Product Configuration (Chinese, authoritative)
+[CONFIG_TEXT_ZH]
+进口云彩白/开孔/标准孔,标准孔/32眉毛水喷,220-240V/50Hz英插,YJ-2+K300+2KW,1个循环LX+1个单速3HPLX,无风泵,臭氧,方形蓝牙带内置低音炮+共振喇叭,水底灯+阀带灯+缸边灯（配YJ电控用）,全三明治底支架,无缸侧保温,户外缸单层发泡,单面色/黑橡木网纹铝板聚氨酯裙边,灰色铝转角,无台阶,无缸盖,带热泵预装管路（裙边上预留接口）,常规包装
+[/CONFIG_TEXT_ZH]
+
+# Product Configuration Parsing (Chinese, authoritative)
+[BOM_SUMMARY]
+第1+2位（缸体颜色+开孔配置）: A2（进口云彩白+标准孔）
+第3+4位（喷嘴配置）: 1Q（眉毛水喷（加拿大简配Alpine)）
+第5位（电源标准）: C（220-240V/50Hz英插）
+第6+7位（控制系统）: 1A（YJ-2+K300+2KW）
+第8+9位（水泵配置）: 1H（1个循环LX+1个单速3HPLX）
+第10位（风泵配置）: 0（无风泵）
+第11位（消毒系统）: A（臭氧）
+第12位（多媒体）: V（方形蓝牙带内置低音炮+共振喇叭/方形蓝牙带内置低音炮+共振喇叭（蓝牙带欧标漏保插头））
+第13位（灯光配置）: N（带水底灯+缸边灯+阀带灯（YJ/YE-V3版本电控用））
+第14位（底保温）: C（全三明治底支架）
+第15位（侧保温配置）: 0（无缸侧保温）
+第16位（缸体保温）: A（户外缸单层发泡）
+第17位（裙边）: X（单面色/黑橡木网纹铝板聚氨酯裙边/黑橡木/PS裙边）
+第18位（转角）: D（灰色铝转角）
+第19位（台阶）: 0（无台阶）
+第20位（缸盖/缸罩）: 0（无缸盖）
+第21位（外加热/吊杆/划桨/其他配置）: F（带热泵预装管路（裙边上预留接口））
+第22位（包装）: A（铁托盘包装（立放））
+[/BOM_SUMMARY]
+
+# Accessory Glossary (ZH -> EN, authoritative for meaning)
+[ACCESSORY_GLOSSARY]
+- 进口云彩白+标准孔 -> (translate yourself)
+- 眉毛水喷（加拿大简配Alpine) -> (translate yourself)
+- 220-240V/50Hz英插 -> 220-240V / 50Hz
+- YJ-2+K300+2KW -> Gecko control system(YJ-2 + K300 + 2KW)
+- 1个循环LX+1个单速3HPLX -> Circulation Pump + 1* 3HP, Sweep Jet
+- 无风泵 -> Without wind pump
+- 臭氧 -> Ozonator
+- 方形蓝牙带内置低音炮+共振喇叭/方形蓝牙带内置低音炮+共振喇叭（蓝牙带欧标漏保插头） -> (translate yourself)
+- 带水底灯+缸边灯+阀带灯（YJ/YE-V3版本电控用） -> (translate yourself)
+- 全三明治底支架 -> Enviro-seal Insulated Base
+- 无缸侧保温 -> Without side insulation
+- 户外缸单层发泡 -> Polyfoam Insulation
+- 单面色/黑橡木网纹铝板聚氨酯裙边/黑橡木/PS裙边 -> (translate yourself)
+- 灰色铝转角 -> Grey corner
+- 无台阶 -> Without steps
+- 无缸盖 -> Without tub cover
+- 带热泵预装管路（裙边上预留接口） -> Heater/Chiller Ready
+- 铁托盘包装（立放） -> Iron pallet packaging (Vertical placement)
+[/ACCESSORY_GLOSSARY]
+
+step1_result:
+{"width": null, "height": null, "elements": [{"id": "background", "type": "background", "label": "背景山景与露营场景", "bbox": [0, 0, 1000, 1000], "confidence": 1, "text": null}, {"id": "main_product", "type": "product", "label": "黑色保温水壶", "bbox": [35, 462, 978, 967], "confidence": 1, "text": null}, {"id": "title", "type": "text", "label": "主标题", "bbox": [32, 44, 158, 754], "confidence": 1, "text": "Бутылка"}, {"id": "subtitle", "type": "text", "label": "副标题", "bbox": [148, 210, 187, 434], "confidence": 1, "text": "для холодных и горячих напитков"}, {"id": "sellpoint_1", "type": "text", "label": "卖点1：保温时长", "bbox": [244, 74, 308, 348], "confidence": 0.98, "text": "Сохраняет температуру до 48 ч"}, {"id": "sellpoint_2", "type": "text", "label": "卖点2：真空隔热", "bbox": [364, 122, 428, 358], "confidence": 0.97, "text": "Улучшенная вакуумная изоляция (для надежной защиты)"}, {"id": "sellpoint_3", "type": "text", "label": "卖点3：便携提手", "bbox": [458, 122, 522, 368], "confidence": 0.97, "text": "Удобная ручка для переноски (с компасом и свистком)"}], "font_guess": {"title": {"name": "Bebas Neue", "confidence": 0.95}, "subtitle": {"name": "Roboto", "confidence": 0.85}, "sellpoint_1": {"name": "Roboto", "confidence": 0.88}, "sellpoint_2": {"name": "Roboto", "confidence": 0.88}}, "style": {"main_light_direction": "top-left", "theme_colors": ["#000000", "#FFFFFF", "#2A7FAB", "#4A90E2"], "notes": "冷色调户外风格，黑瓶主体突出，文字排布左对齐，强调功能参数"}, "evidence": {"language_guess": "ru", "ocr_snippets": ["Бутылка", "для холодных и горячих напитков", "Сохраняет температуру до 48 ч", "Улучшенная вакуумная изоляция", "(для надежной защиты)", "Удобная ручка для переноски", "(с компасом и свистком)", "Topre", "Объем 750 мл"], "main_product_guess": "保温水壶"}}
+请根据输入的 step1_result（已解析的 bbox/元素信息）生成海报营销文案。
+你的任务是用新的营销文案替换海报中的原始文字（OCR 可能为外语），并保持与原布局区域数量一致。
+语言规则：
+- 默认输出中文。
+- 若 requirements 明确要求英文/日语/韩语/俄语等，则按要求输出对应语言。
+权威信息来源：
+- 必须以产品配置（CONFIG_TEXT_ZH / BOM_SUMMARY）为主要依据；glossary 用于理解名词含义。
+- 若 glossary 给出英文术语，请翻译成目标语言输出（默认中文），但品牌/专有名词（如 Balboa/Joyonway/Ozonator）可保留原文。
+强约束（很重要）：
+- 不能编造具体参数/数值/认证/材质/保修/专利/医学疗效等信息，除非在 CONFIG_TEXT_ZH/BOM_SUMMARY/requirements 中明确出现。
+- 文案中禁止出现内部编码/料号/BOM 字符串/型号串（例如 P16B162+PB557-02、K100...），除非它是品牌名且用于消费者可读表达。
+返回 JSON schema（只生成文案，不要风格/字体/布局映射）：
+{
+  "copy": {
+    "title": "...",
+    "subtitle": "...",
+    "sellpoints": ["..."]
+  }
+}
+字段要求：
+- copy.title/copy.subtitle：字符串；subtitle 可为空字符串。
+- copy.sellpoints：数组，长度必须为 3（严格与 step1_result 中存在的卖点框数量一致）。
+规则：
+- 只能输出 JSON 对象本身，不要输出任何额外文字。
+- JSON 必须严格 RFC8259：双引号、不能有尾逗号、不能有注释。
+
+用户需求：
+我需要向美国的经销商销售产品，主打保温/节能卖点

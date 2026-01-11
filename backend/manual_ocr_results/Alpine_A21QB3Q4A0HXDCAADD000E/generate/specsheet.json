@@ -1,0 +1,50 @@
+{
+  "productTitle": "Alpine",
+  "features": {
+    "capacity": "待填写",
+    "jets": "32",
+    "pumps": "1"
+  },
+  "measurements": "待填写",
+  "premiumFeatures": [
+    "Underwater Mood Lighting",
+    "Valve Light",
+    "Tub Edge Light",
+    "Corner Light"
+  ],
+  "insulationFeatures": [
+    "Enviro-seal Insulated Base",
+    "Frame insulation",
+    "Polyfoam Insulation"
+  ],
+  "extraFeatures": [
+    "Bluetooth audio system"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "待填写"
+    },
+    {
+      "Water Capacity": "待填写"
+    },
+    {
+      "Pump": "1* 2 spd 3HP"
+    },
+    {
+      "Controls": "Gecko control system(YJ-2 + K806 + 4KW)"
+    }
+  ],
+  "smartWater": [
+    "Ozonator"
+  ],
+  "images": {
+    "product": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/DSC09871_/DSC09871_/DSC09871_/images/0.jpg",
+    "background": "/back/back.png"
+  }
+}

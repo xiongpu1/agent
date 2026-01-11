@@ -33,6 +33,168 @@ load_dotenv()
 BACKEND_ROOT = Path(__file__).resolve().parent.parent
 
 
+def upsert_manual_dataset(
+    *,
+    product_id: str,
+    dataset_id: str,
+    source: str,
+    created_at: str | None = None,
+) -> None:
+    pid = (product_id or "").strip()
+    did = (dataset_id or "").strip()
+    if not pid or not did:
+        return
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                MERGE (ds:Dataset {dataset_id: $dataset_id})
+                ON CREATE SET ds.created_at = CASE WHEN $created_at IS NULL OR $created_at = '' THEN datetime({timezone: 'UTC'}) ELSE datetime($created_at) END
+                SET ds.source = $source
+                MERGE (p)-[:HAS_DATASET]->(ds)
+                """,
+                {
+                    "product_id": pid,
+                    "dataset_id": did,
+                    "source": source,
+                    "created_at": created_at,
+                },
+            )
+    finally:
+        driver.close()
+
+
+def upsert_manual_folder(*, dataset_id: str, folder_path: str, kind: str) -> None:
+    did = (dataset_id or "").strip()
+    fpath = (folder_path or "").strip()
+    if not did or not fpath:
+        return
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            session.run(
+                """
+                MATCH (ds:Dataset {dataset_id: $dataset_id})
+                MERGE (f:Folder {path: $folder_path})
+                SET f.kind = $kind
+                MERGE (ds)-[:HAS_FOLDER]->(f)
+                """,
+                {
+                    "dataset_id": did,
+                    "folder_path": fpath,
+                    "kind": kind,
+                },
+            )
+    finally:
+        driver.close()
+
+
+def upsert_manual_document(
+    *,
+    doc_path: str,
+    name: str | None = None,
+    mime_type: str | None = None,
+    doc_kind: str | None = None,
+    created_at: str | None = None,
+    parent_raw_path: str | None = None,
+    source_name: str | None = None,
+    page_number: int | None = None,
+) -> None:
+    dpath = (doc_path or "").strip()
+    if not dpath:
+        return
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            session.run(
+                """
+                MERGE (d:Document {path: $path})
+                ON CREATE SET d.created_at = CASE WHEN $created_at IS NULL OR $created_at = '' THEN datetime({timezone: 'UTC'}) ELSE datetime($created_at) END
+                SET d.name = coalesce($name, d.name),
+                    d.mime_type = coalesce($mime_type, d.mime_type),
+                    d.doc_kind = coalesce($doc_kind, d.doc_kind),
+                    d.parent_raw_path = CASE WHEN $parent_raw_path IS NULL OR $parent_raw_path = '' THEN d.parent_raw_path ELSE $parent_raw_path END,
+                    d.source_name = CASE WHEN $source_name IS NULL OR $source_name = '' THEN d.source_name ELSE $source_name END,
+                    d.page_number = CASE WHEN $page_number IS NULL THEN d.page_number ELSE $page_number END
+                """,
+                {
+                    "path": dpath,
+                    "name": name,
+                    "mime_type": mime_type,
+                    "doc_kind": doc_kind,
+                    "created_at": created_at,
+                    "parent_raw_path": parent_raw_path,
+                    "source_name": source_name,
+                    "page_number": page_number,
+                },
+            )
+    finally:
+        driver.close()
+
+
+def upsert_manual_contains(*, folder_path: str, doc_path: str) -> None:
+    fpath = (folder_path or "").strip()
+    dpath = (doc_path or "").strip()
+    if not fpath or not dpath:
+        return
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            session.run(
+                """
+                MATCH (f:Folder {path: $folder_path})
+                MATCH (d:Document {path: $doc_path})
+                MERGE (f)-[:CONTAINS]->(d)
+                """,
+                {"folder_path": fpath, "doc_path": dpath},
+            )
+    finally:
+        driver.close()
+
+
+def delete_manual_contains_and_gc_document(*, folder_path: str, doc_path: str) -> None:
+    """Remove CONTAINS edge and delete Document if it has no remaining CONTAINS refs."""
+
+    fpath = (folder_path or "").strip()
+    dpath = (doc_path or "").strip()
+    if not fpath or not dpath:
+        return
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            session.run(
+                """
+                MATCH (f:Folder {path: $folder_path})-[r:CONTAINS]->(d:Document {path: $doc_path})
+                DELETE r
+                """,
+                {"folder_path": fpath, "doc_path": dpath},
+            )
+
+            session.run(
+                """
+                MATCH (d:Document {path: $doc_path})
+                WITH d, size([(f:Folder)-[:CONTAINS]->(d) | f]) AS ref_count
+                WHERE ref_count = 0
+                DETACH DELETE d
+                """,
+                {"doc_path": dpath},
+            )
+    finally:
+        driver.close()
+
+
 def get_neo4j_config() -> Neo4jConfig:
     """Get Neo4j configuration from environment variables."""
     return Neo4jConfig(
@@ -42,7 +204,7 @@ def get_neo4j_config() -> Neo4jConfig:
     )
 
 
-def get_all_product_names() -> List[str]:
+def get_all_product_names() -> List[Dict[str, Any]]:
     """
     Get all unique product English names from Neo4j.
     
@@ -52,26 +214,531 @@ def get_all_product_names() -> List[str]:
     neo4j_config = get_neo4j_config()
     driver = get_neo4j_driver(neo4j_config)
     
-    product_names = []
+    products: List[Dict[str, Any]] = []
     try:
         with driver.session() as session:
             result = session.run(
                 """
                 MATCH (p:Product)
-                WHERE p.english_name IS NOT NULL AND p.english_name <> ''
-                RETURN DISTINCT p.english_name AS english_name
-                ORDER BY p.english_name
+                WHERE p.product_id IS NOT NULL AND p.product_id <> ''
+                RETURN DISTINCT
+                    p.product_id AS product_id,
+                    coalesce(p.display_name_en, '') AS display_name_en,
+                    coalesce(p.display_name_zh, '') AS display_name_zh,
+                    coalesce(p.material_code, '') AS material_code,
+                    coalesce(p.bom_id, '') AS bom_id,
+                    coalesce(p.product_type_zh, '') AS product_type_zh
+                ORDER BY p.product_id
                 """
             )
             
             for record in result:
-                english_name = record["english_name"]
-                if english_name:
-                    product_names.append(english_name)
+                product_id = record["product_id"]
+                if not product_id:
+                    continue
+                products.append(
+                    {
+                        "product_id": product_id,
+                        "display_name_en": record.get("display_name_en") or "",
+                        "display_name_zh": record.get("display_name_zh") or "",
+                        "material_code": record.get("material_code") or "",
+                        "bom_id": record.get("bom_id") or "",
+                        "product_type_zh": record.get("product_type_zh") or "",
+                    }
+                )
     finally:
         driver.close()
 
-    return sorted(list(set(product_names)))
+    return products
+
+
+def get_boms_by_product_id(product_id: str) -> List[str]:
+    """Get BOM ids for a specific product_id."""
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    boms: List[str] = []
+    pid = (product_id or "").strip()
+    if not pid:
+        return []
+
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                RETURN DISTINCT p.bom_id AS bom_id
+                ORDER BY bom_id
+                """,
+                {"product_id": pid},
+            )
+            for record in result:
+                bom_id = record.get("bom_id")
+                if bom_id:
+                    boms.append(str(bom_id))
+    finally:
+        driver.close()
+
+    return boms
+
+
+def get_all_material_codes() -> List[str]:
+    """Get all unique material_code values."""
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    materials: List[str] = []
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (m:Material)
+                WHERE m.material_code IS NOT NULL AND m.material_code <> ''
+                RETURN DISTINCT m.material_code AS material_code
+                ORDER BY material_code
+                """
+            )
+            for record in result:
+                code = record.get("material_code")
+                if code:
+                    materials.append(str(code))
+    finally:
+        driver.close()
+
+    return materials
+
+
+def get_boms_by_material_code(material_code: str) -> List[str]:
+    """List bom_id values for a given material_code."""
+    mc = (material_code or "").strip()
+    if not mc:
+        return []
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    boms: List[str] = []
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (m:Material {material_code: $material_code})-[:HAS_PRODUCT]->(p:Product)
+                WHERE p.bom_id IS NOT NULL AND p.bom_id <> ''
+                RETURN DISTINCT p.bom_id AS bom_id
+                ORDER BY bom_id
+                """,
+                {"material_code": mc},
+            )
+            for record in result:
+                bom_id = record.get("bom_id")
+                if bom_id:
+                    boms.append(str(bom_id))
+    finally:
+        driver.close()
+
+    return boms
+
+
+def get_accessories_zh_by_material_bom(material_code: str, bom_id: str) -> List[str]:
+    """List accessory Chinese names for a given material_code + bom_id."""
+    mc = (material_code or "").strip()
+    bid = (bom_id or "").strip()
+    if not mc or not bid:
+        return []
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    names: List[str] = []
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (p:Product {material_code: $material_code, bom_id: $bom_id})-[:USES_BOM]->(b:BOM {bom_id: $bom_id})
+                MATCH (b)-[r:HAS_ACCESSORY]->(a:Accessory)
+                RETURN r.order AS ord, a.name_zh AS name_zh
+                ORDER BY ord ASC, name_zh ASC
+                """,
+                {"material_code": mc, "bom_id": bid},
+            )
+            seen = set()
+            for record in result:
+                zh = record.get("name_zh")
+                if not zh:
+                    continue
+                zh_s = str(zh)
+                if zh_s in seen:
+                    continue
+                seen.add(zh_s)
+                names.append(zh_s)
+
+            if not names:
+                fallback = session.run(
+                    """
+                    MATCH (p:Product {material_code: $material_code, bom_id: $bom_id})
+                    MATCH (p)-[r:HAS_ACCESSORY]->(a:Accessory)
+                    RETURN r.order AS ord, a.name_zh AS name_zh
+                    ORDER BY ord ASC, name_zh ASC
+                    """,
+                    {"material_code": mc, "bom_id": bid},
+                )
+                seen = set()
+                for record in fallback:
+                    zh = record.get("name_zh")
+                    if not zh:
+                        continue
+                    zh_s = str(zh)
+                    if zh_s in seen:
+                        continue
+                    seen.add(zh_s)
+                    names.append(zh_s)
+    finally:
+        driver.close()
+
+    return names
+
+
+def get_accessories_by_product_bom_id(product_id: str, bom_id: str) -> List[str]:
+    """Get accessories connected to a product_id. bom_id is used as a safety filter."""
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    pid = (product_id or "").strip()
+    bid = (bom_id or "").strip()
+    if not pid or not bid:
+        return []
+
+    accessories: List[str] = []
+    try:
+        with driver.session() as session:
+            result = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id, bom_id: $bom_id})-[:USES_BOM]->(b:BOM {bom_id: $bom_id})
+                MATCH (b)-[r:HAS_ACCESSORY]->(a:Accessory)
+                RETURN r.order AS ord, coalesce(a.name, a.name_zh, '') AS name
+                ORDER BY ord ASC, name ASC
+                """,
+                {"product_id": pid, "bom_id": bid},
+            )
+            seen = set()
+            for record in result:
+                name = record.get("name")
+                if not name:
+                    continue
+                name_s = str(name)
+                if name_s in seen:
+                    continue
+                seen.add(name_s)
+                accessories.append(name_s)
+
+            if not accessories:
+                fallback = session.run(
+                    """
+                    MATCH (p:Product {product_id: $product_id, bom_id: $bom_id})
+                    MATCH (p)-[r:HAS_ACCESSORY]->(a:Accessory)
+                    RETURN r.order AS ord, coalesce(a.name, a.name_zh, '') AS name
+                    ORDER BY ord ASC, name ASC
+                    """,
+                    {"product_id": pid, "bom_id": bid},
+                )
+                seen = set()
+                for record in fallback:
+                    name = record.get("name")
+                    if not name:
+                        continue
+                    name_s = str(name)
+                    if name_s in seen:
+                        continue
+                    seen.add(name_s)
+                    accessories.append(name_s)
+    finally:
+        driver.close()
+
+    return accessories
+
+
+def get_kb_overview_by_product_id(product_id: str) -> Dict[str, Any]:
+    """Return grouped documents for KB overview using new Dataset/Folder/Document schema."""
+
+    pid = (product_id or "").strip()
+    if not pid:
+        return {"product": {"product_id": ""}, "special_docs": {}, "datasets": []}
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    special_docs: Dict[str, Dict[str, Any]] = {}
+    datasets_by_id: Dict[str, Dict[str, Any]] = {}
+    product_meta: Dict[str, Any] = {"product_id": pid}
+    product_config: Dict[str, Any] = {"config_text_zh": ""}
+
+    try:
+        with driver.session() as session:
+            prod = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                RETURN p.product_id AS product_id,
+                       coalesce(p.material_code, '') AS material_code,
+                       coalesce(p.bom_id, '') AS bom_id,
+                       coalesce(p.display_name_en, '') AS display_name_en,
+                       coalesce(p.display_name_zh, '') AS display_name_zh,
+                       coalesce(p.product_type_zh, '') AS product_type_zh
+                """,
+                {"product_id": pid},
+            ).single()
+            if prod:
+                product_meta = {
+                    "product_id": prod.get("product_id") or pid,
+                    "material_code": prod.get("material_code") or "",
+                    "bom_id": prod.get("bom_id") or "",
+                    "display_name_en": prod.get("display_name_en") or "",
+                    "display_name_zh": prod.get("display_name_zh") or "",
+                    "product_type_zh": prod.get("product_type_zh") or "",
+                }
+
+            cfg = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                OPTIONAL MATCH (p)-[:HAS_CONFIG]->(pc:ProductConfig)
+                RETURN coalesce(pc.config_text_zh, '') AS config_text_zh
+                """,
+                {"product_id": pid},
+            ).single()
+            if cfg:
+                product_config = {"config_text_zh": cfg.get("config_text_zh") or ""}
+
+            docs = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)
+                WITH hd, d
+                WHERE d IS NOT NULL
+                RETURN coalesce(hd.role, '') AS role,
+                       d.path AS path,
+                       coalesce(d.name, '') AS name,
+                       coalesce(d.mime_type, '') AS mime_type,
+                       coalesce(d.doc_kind, '') AS doc_kind,
+                       d.created_at AS created_at
+                """,
+                {"product_id": pid},
+            )
+            for record in docs:
+                role = (record.get("role") or "").strip()
+                if role not in {"specsheet", "manual", "poster"}:
+                    continue
+                path = record.get("path")
+                if not path:
+                    continue
+                special_docs[role] = {
+                    "role": role,
+                    "path": path,
+                    "name": record.get("name") or os.path.basename(str(path)),
+                    "mime_type": record.get("mime_type") or "",
+                    "doc_kind": record.get("doc_kind") or "",
+                    "created_at": record.get("created_at"),
+                }
+
+            # Fallback: if special docs are not yet linked in Neo4j, load from on-disk truth outputs.
+            # This supports workflows where manual/specsheet JSON is stored under manual_ocr_results/<product_id>/truth.
+            try:
+                truth_dir = (BACKEND_ROOT / "manual_ocr_results" / pid / "truth").resolve()
+                truth_dir.relative_to(BACKEND_ROOT.resolve())
+            except Exception:
+                truth_dir = None
+
+            if truth_dir and truth_dir.exists() and truth_dir.is_dir():
+                if "manual" not in special_docs:
+                    manual_truth = truth_dir / "manual_book.json"
+                    if manual_truth.exists() and manual_truth.is_file():
+                        rel = manual_truth.resolve().relative_to(BACKEND_ROOT.resolve()).as_posix()
+                        special_docs["manual"] = {
+                            "role": "manual",
+                            "path": rel,
+                            "name": manual_truth.name,
+                            "mime_type": "application/json",
+                            "doc_kind": "manual_book",
+                            "created_at": None,
+                        }
+
+                if "specsheet" not in special_docs:
+                    spec_truth = truth_dir / "specsheet.json"
+                    if spec_truth.exists() and spec_truth.is_file():
+                        rel = spec_truth.resolve().relative_to(BACKEND_ROOT.resolve()).as_posix()
+                        special_docs["specsheet"] = {
+                            "role": "specsheet",
+                            "path": rel,
+                            "name": spec_truth.name,
+                            "mime_type": "application/json",
+                            "doc_kind": "specsheet",
+                            "created_at": None,
+                        }
+
+            rows = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)
+                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)
+                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)
+                RETURN coalesce(ds.dataset_id, '') AS dataset_id,
+                       coalesce(ds.source, '') AS source,
+                       ds.created_at AS dataset_created_at,
+                       coalesce(f.path, '') AS folder_path,
+                       coalesce(f.kind, '') AS folder_kind,
+                       coalesce(doc.path, '') AS doc_path,
+                       coalesce(doc.name, '') AS doc_name,
+                       coalesce(doc.mime_type, '') AS doc_mime_type,
+                       coalesce(doc.doc_kind, '') AS doc_kind,
+                       doc.created_at AS doc_created_at,
+                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,
+                       coalesce(doc.source_name, '') AS source_name,
+                       coalesce(doc.page_number, 0) AS page_number
+                """,
+                {"product_id": pid},
+            )
+
+            for record in rows:
+                dataset_id = (record.get("dataset_id") or "").strip()
+                if not dataset_id:
+                    continue
+
+                ds_entry = datasets_by_id.get(dataset_id)
+                if not ds_entry:
+                    ds_entry = {
+                        "dataset_id": dataset_id,
+                        "source": record.get("source") or "",
+                        "created_at": record.get("dataset_created_at"),
+                        "folders": {
+                            "product_raw": [],
+                            "accessory_raw": [],
+                            "product_ocr": [],
+                            "accessory_ocr": [],
+                        },
+                    }
+                    datasets_by_id[dataset_id] = ds_entry
+
+                folder_kind = (record.get("folder_kind") or "").strip()
+                if folder_kind not in ds_entry["folders"]:
+                    continue
+
+                doc_path = record.get("doc_path")
+                if not doc_path:
+                    continue
+                ds_entry["folders"][folder_kind].append(
+                    {
+                        "path": doc_path,
+                        "name": record.get("doc_name") or os.path.basename(str(doc_path)),
+                        "mime_type": record.get("doc_mime_type") or "",
+                        "doc_kind": record.get("doc_kind") or "",
+                        "created_at": record.get("doc_created_at"),
+                        "folder_path": record.get("folder_path") or "",
+                        "parent_raw_path": record.get("parent_raw_path") or "",
+                        "source_name": record.get("source_name") or "",
+                        "page_number": int(record.get("page_number") or 0),
+                    }
+                )
+    finally:
+        driver.close()
+
+    return {
+        "product": product_meta,
+        "product_config": product_config,
+        "special_docs": special_docs,
+        "datasets": list(datasets_by_id.values()),
+    }
+
+
+def update_product_config_text_zh(product_id: str, config_text_zh: str) -> Dict[str, Any]:
+    pid = (product_id or "").strip()
+    if not pid:
+        raise ValueError("product_id 不能为空")
+
+    text = (config_text_zh or "").strip()
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            record = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                MERGE (pc:ProductConfig {product_id: $product_id})
+                SET pc.config_text_zh = $config_text_zh,
+                    pc.updated_at = datetime({timezone: 'UTC'})
+                MERGE (p)-[:HAS_CONFIG]->(pc)
+                RETURN pc.config_text_zh AS config_text_zh
+                """,
+                {"product_id": pid, "config_text_zh": text},
+            ).single()
+
+            if not record:
+                raise ValueError(f"Product '{pid}' not found")
+
+            return {"product_id": pid, "config_text_zh": record.get("config_text_zh") or ""}
+    finally:
+        driver.close()
+
+
+def upsert_product_has_doc(
+    *,
+    product_id: str,
+    role: str,
+    doc_path: str,
+    name: str | None = None,
+    mime_type: str | None = None,
+    doc_kind: str | None = None,
+) -> Dict[str, Any]:
+    pid = (product_id or "").strip()
+    if not pid:
+        raise ValueError("product_id 不能为空")
+
+    dpath = (doc_path or "").strip().replace("\\", "/").lstrip("/")
+    if dpath.startswith("/api/files/"):
+        dpath = dpath[len("/api/files/") :].lstrip("/")
+    if not dpath:
+        raise ValueError("doc_path 不能为空")
+
+    r = (role or "").strip()
+    if r not in {"specsheet", "manual", "poster"}:
+        raise ValueError("role 必须是 specsheet/manual/poster")
+
+    doc_name = (name or "").strip() or os.path.basename(dpath)
+    mt = (mime_type or "").strip()
+    dk = (doc_kind or "").strip()
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            record = session.run(
+                """
+                MATCH (p:Product {product_id: $product_id})
+                OPTIONAL MATCH (p)-[old:HAS_DOC {role: $role}]->(:Document)
+                DELETE old
+                MERGE (d:Document {path: $path})
+                SET d.name = $name,
+                    d.mime_type = $mime_type,
+                    d.doc_kind = $doc_kind,
+                    d.updated_at = datetime({timezone: 'UTC'})
+                MERGE (p)-[r:HAS_DOC {role: $role}]->(d)
+                SET r.updated_at = datetime({timezone: 'UTC'})
+                RETURN d.path AS path
+                """,
+                {
+                    "product_id": pid,
+                    "role": r,
+                    "path": dpath,
+                    "name": doc_name,
+                    "mime_type": mt,
+                    "doc_kind": dk,
+                },
+            ).single()
+
+            if not record:
+                raise ValueError(f"Product '{pid}' not found")
+
+            return {"product_id": pid, "role": r, "path": record.get("path") or dpath}
+    finally:
+        driver.close()
 
 
 def _normalize_document_path(path: Optional[str]) -> str:
@@ -461,12 +1128,12 @@ def get_boms_by_product_name(product_name: str) -> List[str]:
             result = session.run(
                 """
                 MATCH (p:Product)
-                WHERE p.english_name = $product_name
-                AND p.bom_version IS NOT NULL AND p.bom_version <> ''
-                RETURN DISTINCT p.bom_version AS bom_version
-                ORDER BY p.bom_version
+                WHERE p.product_id = $product_id
+                AND p.bom_id IS NOT NULL AND p.bom_id <> ''
+                RETURN DISTINCT p.bom_id AS bom_version
+                ORDER BY bom_version
                 """,
-                {"product_name": product_name}
+                {"product_id": product_name}
             )
             
             for record in result:
@@ -479,30 +1146,40 @@ def get_boms_by_product_name(product_name: str) -> List[str]:
     return sorted(boms)
 
 
-def get_all_accessory_names() -> List[str]:
+def get_all_accessory_names() -> List[Dict[str, Any]]:
     """Get all unique accessory names from Neo4j."""
     neo4j_config = get_neo4j_config()
     driver = get_neo4j_driver(neo4j_config)
 
-    accessory_names: List[str] = []
+    accessory_items: List[Dict[str, Any]] = []
     try:
         with driver.session() as session:
             result = session.run(
                 """
                 MATCH (a:Accessory)
-                WHERE a.name IS NOT NULL AND a.name <> ''
-                RETURN DISTINCT a.name AS name
-                ORDER BY a.name
+                WHERE a.name_zh IS NOT NULL AND a.name_zh <> ''
+                RETURN DISTINCT
+                    a.name_zh AS name_zh,
+                    coalesce(a.name_en, '') AS name_en,
+                    coalesce(a.name, '') AS name
+                ORDER BY a.name_zh
                 """
             )
             for record in result:
-                name = record["name"]
-                if name:
-                    accessory_names.append(name)
+                name_zh = record.get("name_zh")
+                if not name_zh:
+                    continue
+                accessory_items.append(
+                    {
+                        "name_zh": name_zh,
+                        "name_en": record.get("name_en") or "",
+                        "name": record.get("name") or "",
+                    }
+                )
     finally:
         driver.close()
 
-    return sorted(list(set(accessory_names)))
+    return accessory_items
 
 
 def get_accessories_by_product_bom(product_name: str, bom_version: str) -> List[str]:
@@ -516,17 +1193,23 @@ def get_accessories_by_product_bom(product_name: str, bom_version: str) -> List[
             result = session.run(
                 """
                 MATCH (p:Product)
-                WHERE p.english_name = $product_name AND p.bom_version = $bom_version
-                MATCH (p)-[:HAS]->(a:Accessory)
-                RETURN DISTINCT a.name AS name
-                ORDER BY a.name
+                WHERE p.product_id = $product_id AND p.bom_id = $bom_id
+                MATCH (p)-[r:HAS_ACCESSORY]->(a:Accessory)
+                RETURN r.order AS ord, coalesce(a.name, a.name_zh, '') AS name
+                ORDER BY ord ASC, name ASC
                 """,
-                {"product_name": product_name, "bom_version": bom_version},
+                {"product_id": product_name, "bom_id": bom_version},
             )
+            seen = set()
             for record in result:
                 name = record["name"]
-                if name:
-                    accessories.append(name)
+                if not name:
+                    continue
+                name_s = str(name)
+                if name_s in seen:
+                    continue
+                seen.add(name_s)
+                accessories.append(name_s)
     finally:
         driver.close()
 

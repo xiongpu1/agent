@@ -18,10 +18,18 @@ from uuid import uuid4
 from fastapi import UploadFile
 from pdf2image import convert_from_path
 
-from src.api_queries import BACKEND_ROOT
+from src.api_queries import (
+    BACKEND_ROOT,
+    delete_manual_contains_and_gc_document,
+    upsert_manual_contains,
+    upsert_manual_dataset,
+    upsert_manual_document,
+    upsert_manual_folder,
+)
 from src.run_deepseekocr import IMG_EXTS, run_ocr
 from src.manual_progress import progress_manager
 from src.prompt_reverse import run_prompt_reverse_for_entries, DEFAULT_USER_PROMPT
+from src.rag_bom import decode_bom_code
 
 MANUAL_UPLOAD_ROOT = BACKEND_ROOT / "manual_uploads"
 MANUAL_OCR_ROOT = BACKEND_ROOT / "manual_ocr_results"
@@ -108,6 +116,21 @@ def load_session_record(session_id: str) -> dict | None:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
+        return None
+
+
+def _infer_bom_type(bom_code: str | None, bom_type: str | None = None) -> str | None:
+    bt = (bom_type or "").strip()
+    if bt:
+        return bt
+    code = (bom_code or "").strip()
+    if not code:
+        return None
+    try:
+        decoded = decode_bom_code(code)
+        inferred = (decoded or {}).get("bom_type")
+        return (str(inferred).strip() if inferred else None) or None
+    except Exception:
         return None
 
 
@@ -219,6 +242,213 @@ def generate_session_id(product_name: str | None, bom_code: str | None) -> str:
     return f"manual_{timestamp}_{suffix}"
 
 
+def init_manual_session_entry(
+    product_name: str,
+    bom_code: str | None,
+    bom_type: str | None = None,
+    *,
+    material_code: str | None = None,
+    bom_id: str | None = None,
+) -> dict:
+    """Create (or reuse) a manual OCR session without uploading files.
+
+    This is used by BOM click navigation to prepare a stable session folder under
+    manual_uploads/<session_id> with an empty session.json record.
+    Note: manual_ocr_results is created only when OCR actually runs.
+    """
+
+    ensure_directories()
+    if not product_name or not product_name.strip():
+        raise ValueError("product_name 不能为空")
+
+    product_part = _sanitize_identifier(product_name, "product")
+    bom_part = _sanitize_identifier(bom_code, "bom")
+    session_id = f"{product_part}_{bom_part}"
+
+    binding = _compute_product_binding(material_code, bom_id)
+
+    existing = load_session_record(session_id)
+    if existing:
+        inferred_type = _infer_bom_type(existing.get("bom_code"), existing.get("bom_type"))
+        if inferred_type and not (existing.get("bom_type") or "").strip():
+            existing["bom_type"] = inferred_type
+        # Allow upgrading legacy sessions with Product binding.
+        if binding.get("product_id") and not (existing.get("product_id") or "").strip():
+            existing.update(binding)
+        save_session_record(existing)
+        _ensure_manual_dataset_graph(existing)
+        return existing
+
+    base_dir = session_dir(session_id)
+    (base_dir / "products").mkdir(parents=True, exist_ok=True)
+    (base_dir / "accessories").mkdir(parents=True, exist_ok=True)
+
+    inferred_type = _infer_bom_type(bom_code, bom_type)
+    payload = {
+        "session_id": session_id,
+        "product_name": product_name.strip(),
+        "bom_code": (bom_code or "").strip() or None,
+        "bom_type": inferred_type,
+        **binding,
+        "created_at": datetime.utcnow().isoformat(),
+        "status": "pending",
+        "product_files": [],
+        "accessory_files": [],
+        "product_upload_count": 0,
+        "accessory_upload_count": 0,
+        "product_ocr_groups": [],
+        "accessory_ocr_groups": [],
+    }
+    save_session_record(payload)
+    _ensure_manual_dataset_graph(payload)
+    return payload
+
+
+def _compute_product_binding(material_code: str | None, bom_id: str | None) -> dict:
+    mc = (material_code or "").strip()
+    bid = (bom_id or "").strip()
+    if not mc or not bid:
+        return {"product_id": None, "material_code": mc or None, "bom_id": bid or None}
+    return {"product_id": f"{mc}_{bid}", "material_code": mc, "bom_id": bid}
+
+
+def _ensure_manual_dataset_graph(record: dict) -> None:
+    product_id = (record.get("product_id") or "").strip()
+    if not product_id:
+        return
+
+    dataset_id = (record.get("session_id") or "").strip()
+    if not dataset_id:
+        return
+
+    created_at = record.get("created_at")
+    upsert_manual_dataset(product_id=product_id, dataset_id=dataset_id, source="manual_uploads", created_at=created_at)
+
+    base_dir = session_dir(dataset_id)
+    output_dir = ocr_dir(dataset_id)
+    upsert_manual_folder(
+        dataset_id=dataset_id,
+        folder_path=_safe_relative_to_backend(base_dir / "products"),
+        kind="product_raw",
+    )
+    upsert_manual_folder(
+        dataset_id=dataset_id,
+        folder_path=_safe_relative_to_backend(base_dir / "accessories"),
+        kind="accessory_raw",
+    )
+    upsert_manual_folder(
+        dataset_id=dataset_id,
+        folder_path=_safe_relative_to_backend(output_dir / "products"),
+        kind="product_ocr",
+    )
+    upsert_manual_folder(
+        dataset_id=dataset_id,
+        folder_path=_safe_relative_to_backend(output_dir / "accessories"),
+        kind="accessory_ocr",
+    )
+
+
+def _sync_uploaded_files_to_graph(record: dict, *, label: str, paths: List[Path]) -> None:
+    if not paths:
+        return
+    product_id = (record.get("product_id") or "").strip()
+    dataset_id = (record.get("session_id") or "").strip()
+    if not product_id or not dataset_id:
+        return
+
+    _ensure_manual_dataset_graph(record)
+
+    base_dir = session_dir(dataset_id)
+    if label == "products":
+        folder_path = _safe_relative_to_backend(base_dir / "products")
+    else:
+        folder_path = _safe_relative_to_backend(base_dir / "accessories")
+
+    now = datetime.utcnow().isoformat()
+    for file_path in paths:
+        rel = _safe_relative_to_backend(file_path)
+        upsert_manual_document(
+            doc_path=rel,
+            name=file_path.name,
+            mime_type=guess_mime(file_path),
+            doc_kind="file",
+            created_at=now,
+        )
+        upsert_manual_contains(folder_path=folder_path, doc_path=rel)
+
+
+def _sync_ocr_outputs_to_graph(record: dict) -> None:
+    product_id = (record.get("product_id") or "").strip()
+    dataset_id = (record.get("session_id") or "").strip()
+    if not product_id or not dataset_id:
+        return
+
+    _ensure_manual_dataset_graph(record)
+
+    def map_kind(kind: str | None, mime: str | None) -> str:
+        k = (kind or "").strip().lower()
+        m = (mime or "").strip().lower()
+        if k == "image" or m.startswith("image/"):
+            return "ocr_image"
+        if k in {"markdown", "diagram"}:
+            return "ocr_md"
+        if m.endswith("json") or m == "application/json" or k == "json":
+            return "ocr_json"
+        return "ocr_file"
+
+    def build_raw_lookup(files: list) -> dict:
+        lookup: dict[str, str] = {}
+        for item in files or []:
+            if not isinstance(item, dict):
+                continue
+            name = (item.get("name") or "").strip()
+            path = (item.get("path") or "").strip()
+            if not name or not path:
+                continue
+            lookup[name] = path
+            lookup[name.lower()] = path
+        return lookup
+
+    product_raw_by_name = build_raw_lookup(record.get("product_files", []) or [])
+    accessory_raw_by_name = build_raw_lookup(record.get("accessory_files", []) or [])
+
+    output_dir = ocr_dir(dataset_id)
+    now = datetime.utcnow().isoformat()
+
+    def sync_groups(groups: list, *, label: str) -> None:
+        raw_lookup = product_raw_by_name if label == "products" else accessory_raw_by_name
+        folder_path = _safe_relative_to_backend(output_dir / label)
+        for group in groups or []:
+            source_name = (group or {}).get("source_name") or ""
+            parent_raw_path = raw_lookup.get(source_name) or raw_lookup.get(str(source_name).lower()) or ""
+            for page in (group or {}).get("pages", []) or []:
+                page_number = page.get("page_number")
+                try:
+                    page_number_int = int(page_number) if page_number is not None else 1
+                except Exception:
+                    page_number_int = 1
+                if page_number_int <= 0:
+                    page_number_int = 1
+                for artifact in (page or {}).get("artifacts", []) or []:
+                    rel = (artifact or {}).get("path")
+                    if not rel:
+                        continue
+                    upsert_manual_document(
+                        doc_path=rel,
+                        name=(artifact or {}).get("name"),
+                        mime_type=(artifact or {}).get("type"),
+                        doc_kind=map_kind((artifact or {}).get("kind"), (artifact or {}).get("type")),
+                        created_at=now,
+                        parent_raw_path=parent_raw_path,
+                        source_name=source_name,
+                        page_number=page_number_int,
+                    )
+                    upsert_manual_contains(folder_path=folder_path, doc_path=rel)
+
+    sync_groups(record.get("product_ocr_groups", []) or [], label="products")
+    sync_groups(record.get("accessory_ocr_groups", []) or [], label="accessories")
+
+
 def _create_manual_session_entry_sync(
     product_name: str,
     bom_code: str | None,
@@ -239,11 +469,15 @@ def _create_manual_session_entry_sync(
     saved_product_paths = persist_uploads(product_files, product_dir)
     saved_accessory_paths = persist_uploads(accessory_files, accessory_dir)
 
+    inferred_type = _infer_bom_type(bom_code, bom_type)
     payload = {
         "session_id": session_id,
         "product_name": product_name.strip(),
         "bom_code": (bom_code or "").strip() or None,
-        "bom_type": (bom_type or "").strip() or None,
+        "bom_type": inferred_type,
+        "product_id": None,
+        "material_code": None,
+        "bom_id": None,
         "created_at": datetime.utcnow().isoformat(),
         "status": "pending",
         "product_files": build_file_records(saved_product_paths),
@@ -574,7 +808,154 @@ def _append_uploads_to_session(
         session_record["accessory_upload_count"] = session_record.get("accessory_upload_count", 0) + len(new_accessory_paths)
 
     save_session_record(session_record)
+    _sync_uploaded_files_to_graph(session_record, label="products", paths=new_product_paths)
+    _sync_uploaded_files_to_graph(session_record, label="accessories", paths=new_accessory_paths)
     return session_record
+
+
+async def append_manual_session_uploads(
+    session_id: str,
+    product_files: List[UploadFile],
+    accessory_files: List[UploadFile],
+) -> dict:
+    record = load_session_record(session_id)
+    if not record:
+        raise ValueError("Manual OCR session not found")
+    return _append_uploads_to_session(record, product_files, accessory_files)
+
+
+def delete_manual_session_upload(session_id: str, relative_path: str) -> dict:
+    """Delete an uploaded original file under manual_uploads/<session_id> and update session record."""
+
+    record = load_session_record(session_id)
+    if not record:
+        raise ValueError("Manual OCR session not found")
+
+    rel = (relative_path or "").strip().lstrip("/")
+    if not rel:
+        raise ValueError("Missing file path")
+
+    base_dir = session_dir(session_id).resolve()
+    abs_path = (BACKEND_ROOT / rel).resolve()
+    if not abs_path.exists() or not abs_path.is_file():
+        raise ValueError("File not found")
+
+    try:
+        abs_path.relative_to(base_dir)
+    except ValueError as exc:
+        raise ValueError("Invalid file path") from exc
+
+    products_dir = (base_dir / "products").resolve()
+    accessories_dir = (base_dir / "accessories").resolve()
+    in_products = False
+    in_accessories = False
+    try:
+        abs_path.relative_to(products_dir)
+        in_products = True
+    except ValueError:
+        pass
+    try:
+        abs_path.relative_to(accessories_dir)
+        in_accessories = True
+    except ValueError:
+        pass
+    if not in_products and not in_accessories:
+        raise ValueError("Only original uploads can be deleted")
+
+    abs_path.unlink(missing_ok=True)
+
+    def _basename(p: str) -> str:
+        try:
+            return Path(str(p)).name
+        except Exception:
+            return str(p).split("/")[-1]
+
+    def _stem(name: str) -> str:
+        n = (name or "").strip()
+        if not n:
+            return ""
+        if "." in n:
+            return n[: n.rfind(".")]
+        return n
+
+    def _delete_ocr_outputs(*, label: str, source_name: str) -> list[str]:
+        """Delete OCR artifacts for a given source file name.
+
+        Returns the list of artifact relative paths removed (for Neo4j cleanup).
+        """
+
+        removed_paths: list[str] = []
+        stem = _stem(source_name)
+        if not stem:
+            return removed_paths
+
+        # Remove from session record groups first so we know which artifact paths to clean up.
+        groups_key = "product_ocr_groups" if label == "products" else "accessory_ocr_groups"
+        old_groups = record.get(groups_key, []) or []
+        kept_groups: list[dict] = []
+        for g in old_groups:
+            g_source = (g or {}).get("source_name") or (g or {}).get("sourceName") or ""
+            g_source_s = str(g_source)
+            if g_source_s == source_name or _stem(g_source_s) == stem:
+                for page in (g or {}).get("pages", []) or []:
+                    for art in (page or {}).get("artifacts", []) or []:
+                        p = (art or {}).get("path")
+                        if p:
+                            removed_paths.append(str(p).lstrip("/"))
+                continue
+            kept_groups.append(g)
+        record[groups_key] = kept_groups
+
+        # Delete OCR output directory under manual_ocr_results/<session_id>/<label>/<stem>/...
+        out_root = (ocr_dir(session_id) / label).resolve()
+        candidates = []
+        primary = (out_root / stem).resolve()
+        if primary.exists() and primary.is_dir():
+            candidates.append(primary)
+        else:
+            # Fallback: case-insensitive / prefix match.
+            try:
+                for child in out_root.iterdir():
+                    if child.is_dir() and child.name.lower() == stem.lower():
+                        candidates.append(child)
+                if not candidates:
+                    for child in out_root.iterdir():
+                        if child.is_dir() and child.name.lower().startswith(stem.lower()):
+                            candidates.append(child)
+            except Exception:
+                candidates = candidates
+
+        for d in candidates:
+            shutil.rmtree(d, ignore_errors=True)
+
+        return removed_paths
+
+    def _filter_files(files: list) -> list:
+        return [item for item in (files or []) if (item.get("path") or "").lstrip("/") != rel]
+
+    removed_ocr_paths: list[str] = []
+
+    if in_products:
+        record["product_files"] = _filter_files(record.get("product_files", []))
+        record["product_upload_count"] = len(record.get("product_files", []))
+        removed_ocr_paths = _delete_ocr_outputs(label="products", source_name=_basename(rel))
+    if in_accessories:
+        record["accessory_files"] = _filter_files(record.get("accessory_files", []))
+        record["accessory_upload_count"] = len(record.get("accessory_files", []))
+        removed_ocr_paths = _delete_ocr_outputs(label="accessories", source_name=_basename(rel))
+
+    # Sync graph: remove CONTAINS and gc Document if unreferenced.
+    folder_path = _safe_relative_to_backend(products_dir if in_products else accessories_dir)
+    delete_manual_contains_and_gc_document(folder_path=folder_path, doc_path=rel)
+
+    # Sync graph for OCR artifacts removed.
+    if removed_ocr_paths:
+        ocr_folder_path = _safe_relative_to_backend(ocr_dir(session_id) / ("products" if in_products else "accessories"))
+        for p in removed_ocr_paths:
+            delete_manual_contains_and_gc_document(folder_path=ocr_folder_path, doc_path=p)
+
+    save_session_record(record)
+    return record
 
 
 def _build_entries_from_output_dir(output_dir: Path, label: str) -> List[dict]:
@@ -694,6 +1075,7 @@ def _run_manual_session_sync(session_id: str) -> dict:
         record["warnings"] = errors
 
     save_session_record(record)
+    _sync_ocr_outputs_to_graph(record)
     progress_manager.mark_complete(session_id, True)
     return record
 
@@ -754,11 +1136,16 @@ async def handle_manual_ocr(
         if not record:
             raise ValueError("指定的 session_id 不存在")
         record = _append_uploads_to_session(record, product_files, accessory_files)
-        if bom_type:
-            record["bom_type"] = bom_type
+        if bom_type and bom_type.strip():
+            record["bom_type"] = bom_type.strip()
+        elif not (record.get("bom_type") or "").strip():
+            inferred = _infer_bom_type(record.get("bom_code"), None)
+            if inferred:
+                record["bom_type"] = inferred
         save_session_record(record)
     else:
-        record = _create_manual_session_entry_sync(product_name, bom_code, product_files, accessory_files, bom_type)
+        inferred_type = _infer_bom_type(bom_code, bom_type)
+        record = _create_manual_session_entry_sync(product_name, bom_code, product_files, accessory_files, inferred_type)
         session_id = record["session_id"]
 
     return await asyncio.to_thread(_run_manual_session_sync, session_id)

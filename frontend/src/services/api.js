@@ -58,6 +58,46 @@ export async function generateManualBookFromOcr(payload) {
   }
 }
 
+/**
+ * Plan manual book variant selection (A/B/C) per section group, and optionally generate pages only when uncertain.
+ * @param {{documents: object[], product_name?: string, bom_code?: string, session_id?: string, llm_provider?: string, llm_model?: string}} payload
+ * @returns {Promise<{variants: object, generated_pages: object, prompt_text?: string, system_prompt?: string}>}
+ */
+export async function planManualBookVariants(payload) {
+  const response = await fetch(`${API_BASE_URL}/api/manual/book/variant_plan`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload ?? { documents: [] }),
+  })
+  const data = await handleResponse(response, 'Failed to plan manual book variants')
+  return {
+    variants: data.variants && typeof data.variants === 'object' ? data.variants : {},
+    generated_pages: data.generated_pages && typeof data.generated_pages === 'object' ? data.generated_pages : {},
+    prompt_text: data.prompt_text || '',
+    system_prompt: data.system_prompt || ''
+  }
+}
+
+/**
+ * One-shot manual generation: single LLM call returns variants + generated_pages + fixed_pages.
+ * @param {{documents: object[], product_name: string, bom_code: string, session_id?: string, llm_provider?: string, llm_model?: string}} payload
+ * @returns {Promise<{variants: object, generated_pages: object, fixed_pages: object, prompt_text?: string, system_prompt?: string}>}
+ */
+export async function generateManualBookOneShot(payload) {
+  const response = await fetch(`${API_BASE_URL}/api/manual/book/one_shot`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload ?? { documents: [] }),
+  })
+  const data = await handleResponse(response, 'Failed to generate manual book (one-shot)')
+  return {
+    variants: data.variants && typeof data.variants === 'object' ? data.variants : {},
+    fixed_pages: data.fixed_pages && typeof data.fixed_pages === 'object' ? data.fixed_pages : {},
+    prompt_text: data.prompt_text || '',
+    system_prompt: data.system_prompt || ''
+  }
+}
+
 export async function getSavedManualBook(productName, bomCode) {
   if (!productName) throw new Error('Missing productName')
   if (!bomCode) throw new Error('Missing bomCode')
@@ -82,7 +122,7 @@ export async function getSavedManualSpecsheet(productName, bomCode) {
   return data.specsheet || null
 }
 
-export async function saveManualBookTruth(productName, bomCode, manualBookPages) {
+export async function saveManualBookTruth(productName, bomCode, manualBookPages, targetFolder = 'truth') {
   if (!productName) throw new Error('Missing productName')
   if (!bomCode) throw new Error('Missing bomCode')
   const response = await fetch(`${API_BASE_URL}/api/manual/book/truth`, {
@@ -91,7 +131,8 @@ export async function saveManualBookTruth(productName, bomCode, manualBookPages)
     body: JSON.stringify({
       product_name: productName,
       bom_code: bomCode,
-      manual_book: Array.isArray(manualBookPages) ? manualBookPages : []
+      manual_book: Array.isArray(manualBookPages) ? manualBookPages : [],
+      target_folder: targetFolder
     })
   })
   const data = await handleResponse(response, 'Failed to save manual book truth')
@@ -186,6 +227,9 @@ export async function generatePosterCopy({
   requirements,
   target_language,
   model,
+  product_name,
+  bom_code,
+  bom_type,
   product_file,
   product_image_url,
   background_file,
@@ -221,6 +265,9 @@ export async function generatePosterCopy({
       requirements: requirements || null,
       target_language: target_language || null,
       model: model || null,
+      product_name: product_name || null,
+      bom_code: bom_code || null,
+      bom_type: bom_type || null,
       product_image_url: resolvedProductUrl || null,
       background_image_url: resolvedBackgroundUrl || null,
     }),
@@ -286,7 +333,29 @@ export async function saveSpecsheet(productName, bomVersion, specsheet) {
 export async function getProducts() {
   const response = await fetch(`${API_BASE_URL}/api/products`)
   const data = await handleResponse(response, 'Failed to fetch products')
-  return data.products || []
+  return Array.isArray(data.products) ? data.products : []
+}
+
+export async function getMaterials() {
+  const response = await fetch(`${API_BASE_URL}/api/materials`)
+  const data = await handleResponse(response, 'Failed to fetch materials')
+  return Array.isArray(data.materials) ? data.materials : []
+}
+
+export async function getBomsByMaterial(materialCode) {
+  const response = await fetch(`${API_BASE_URL}/api/materials/${encodeURIComponent(materialCode)}/boms`)
+  if (response.status === 404) return []
+  const data = await handleResponse(response, 'Failed to fetch BOMs for material')
+  return data.boms || []
+}
+
+export async function getAccessoriesZhByMaterialBom(materialCode, bomId) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/materials/${encodeURIComponent(materialCode)}/boms/${encodeURIComponent(bomId)}/accessories`
+  )
+  if (response.status === 404) return []
+  const data = await handleResponse(response, 'Failed to fetch accessories for material BOM')
+  return data.accessories || []
 }
 
 /**
@@ -314,6 +383,22 @@ export async function getDocumentsByProductBom(productName, bomVersion) {
   )
   const data = await handleResponse(response, 'Failed to fetch documents for BOM')
   return Array.isArray(data.documents) ? data.documents : []
+}
+
+export async function getKbOverview(productId) {
+  const response = await fetch(`${API_BASE_URL}/api/products/${encodeURIComponent(productId)}/kb_overview`)
+  if (response.status === 404) return null
+  return handleResponse(response, 'Failed to fetch KB overview')
+}
+
+export async function updateProductConfig(productId, configTextZh) {
+  if (!productId) throw new Error('Missing productId')
+  const response = await fetch(`${API_BASE_URL}/api/products/${encodeURIComponent(productId)}/config`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ config_text_zh: configTextZh ?? '' }),
+  })
+  return handleResponse(response, 'Failed to update product config')
 }
 
 /**
@@ -430,9 +515,9 @@ export async function getUnmatchedDocumentDetail(docPath) {
  * @param {string} bomVersion
  * @returns {Promise<{name:string, path:string, created_at?:string}[]>}
  */
-export async function getAccessoriesByProductBom(productName, bomVersion) {
+export async function getAccessoriesByProductBom(productId, bomId) {
   const response = await fetch(
-    `${API_BASE_URL}/api/products/${encodeURIComponent(productName)}/boms/${encodeURIComponent(bomVersion)}/accessories`
+    `${API_BASE_URL}/api/products/${encodeURIComponent(productId)}/boms/${encodeURIComponent(bomId)}/accessories`
   )
   const data = await handleResponse(response, 'Failed to fetch accessories for BOM')
   return data.accessories || []
@@ -445,7 +530,7 @@ export async function getAccessoriesByProductBom(productName, bomVersion) {
 export async function getAccessories() {
   const response = await fetch(`${API_BASE_URL}/api/accessories`)
   const data = await handleResponse(response, 'Failed to fetch accessories')
-  return data.accessories || []
+  return Array.isArray(data.accessories) ? data.accessories : []
 }
 
 /**
@@ -453,8 +538,8 @@ export async function getAccessories() {
  * @param {string} productName
  * @returns {Promise<{name:string, path:string, created_at?:string}[]>}
  */
-export async function getBomsByProduct(productName) {
-  const response = await fetch(`${API_BASE_URL}/api/products/${encodeURIComponent(productName)}/boms`)
+export async function getBomsByProduct(productId) {
+  const response = await fetch(`${API_BASE_URL}/api/products/${encodeURIComponent(productId)}/boms`)
   if (response.status === 404) return []
   const data = await handleResponse(response, 'Failed to fetch BOMs')
   return data.boms || []
@@ -544,6 +629,21 @@ export async function createManualSession({ productName, bomCode, productFiles =
   return handleResponse(response, 'Failed to create manual session')
 }
 
+export async function initManualSession({ productName, bomCode, bomType, materialCode, bomId } = {}) {
+  const response = await fetch(`${API_BASE_URL}/api/manual-sessions/init`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      product_name: productName || '',
+      bom_code: bomCode || '',
+      bom_type: bomType || '',
+      material_code: materialCode || '',
+      bom_id: bomId || ''
+    })
+  })
+  return handleResponse(response, 'Failed to init manual session')
+}
+
 export async function runManualOcr(productName, productFiles = [], accessoryFiles = [], options = {}) {
   const { sessionId } = options
   const formData = new FormData()
@@ -602,7 +702,29 @@ export async function getManualSession(sessionId) {
   if (response.status === 404) {
     throw new Error('未找到该 OCR 记录，可能已被删除')
   }
-  return handleResponse(response, 'Failed to fetch manual OCR session')
+  return handleResponse(response, 'Failed to fetch manual session')
+}
+
+export async function appendManualSessionUploads(sessionId, { productFiles = [], accessoryFiles = [] } = {}) {
+  if (!sessionId) throw new Error('Missing sessionId')
+  const formData = new FormData()
+  appendFilesToFormData(formData, 'product_files', productFiles)
+  appendFilesToFormData(formData, 'accessory_files', accessoryFiles)
+  const response = await fetch(`${API_BASE_URL}/api/manual-sessions/${encodeURIComponent(sessionId)}/uploads`, {
+    method: 'POST',
+    body: formData
+  })
+  return handleResponse(response, 'Failed to append manual session uploads')
+}
+
+export async function deleteManualSessionUpload(sessionId, path) {
+  if (!sessionId) throw new Error('Missing sessionId')
+  if (!path) throw new Error('Missing file path')
+  const response = await fetch(
+    `${API_BASE_URL}/api/manual-sessions/${encodeURIComponent(sessionId)}/uploads?path=${encodeURIComponent(path)}`,
+    { method: 'DELETE' }
+  )
+  return handleResponse(response, 'Failed to delete manual session upload')
 }
 
 export async function deleteManualSession(sessionId) {

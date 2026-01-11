@@ -495,6 +495,97 @@ def _get_ref_accessories_prompt_text(product_name: Optional[str], bom_code: Opti
     return text
 
 
+def _get_product_config_and_accessory_glossary(
+    product_name: Optional[str],
+    bom_code: Optional[str],
+) -> Tuple[str, str]:
+    name = (product_name or "").strip()
+    bom = (bom_code or "").strip()
+    if not name or not bom:
+        return "", ""
+
+    pid = f"{name}_{bom}".strip()
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+
+    config_text_zh = ""
+    glossary_lines: List[str] = []
+    try:
+        with driver.session() as session:
+            cfg = session.run(
+                """
+                OPTIONAL MATCH (p1:Product {product_id: $product_id})-[:HAS_CONFIG]->(pc1:ProductConfig)
+                OPTIONAL MATCH (p2:Product {material_code: $material_code, bom_id: $bom_id})-[:HAS_CONFIG]->(pc2:ProductConfig)
+                OPTIONAL MATCH (p3:Product {english_name: $english_name, bom_version: $bom_version})-[:HAS_CONFIG]->(pc3:ProductConfig)
+                WITH coalesce(pc1.config_text_zh, pc2.config_text_zh, pc3.config_text_zh, '') AS config_text_zh
+                RETURN config_text_zh AS config_text_zh
+                """,
+                {
+                    "product_id": pid,
+                    "material_code": name,
+                    "bom_id": bom,
+                    "english_name": name,
+                    "bom_version": bom,
+                },
+            ).single()
+            if cfg:
+                config_text_zh = (cfg.get("config_text_zh") or "").strip()
+
+            acc_rows = session.run(
+                """
+                OPTIONAL MATCH (p1:Product {product_id: $product_id})
+                OPTIONAL MATCH (p2:Product {material_code: $material_code, bom_id: $bom_id})
+                OPTIONAL MATCH (p3:Product {english_name: $english_name, bom_version: $bom_version})
+                WITH [p1, p2, p3] AS ps
+                UNWIND ps AS p
+                WITH DISTINCT p
+                WHERE p IS NOT NULL
+                OPTIONAL MATCH (p)-[:USES_BOM]->(b:BOM {bom_id: $bom_id})-[r1:HAS_ACCESSORY]->(a1:Accessory)
+                OPTIONAL MATCH (p)-[r2:HAS_ACCESSORY]->(a2:Accessory)
+                WITH collect({ord: r1.order, zh: coalesce(a1.name_zh, ''), en: coalesce(a1.name_en, '')})
+                     + collect({ord: r2.order, zh: coalesce(a2.name_zh, ''), en: coalesce(a2.name_en, '')}) AS rows
+                UNWIND rows AS row
+                WITH row
+                WHERE row.zh IS NOT NULL AND row.zh <> ''
+                RETURN row.ord AS ord,
+                       row.zh AS name_zh,
+                       row.en AS name_en
+                ORDER BY ord ASC, name_zh ASC
+                """,
+                {
+                    "product_id": pid,
+                    "material_code": name,
+                    "bom_id": bom,
+                    "english_name": name,
+                    "bom_version": bom,
+                },
+            )
+
+            seen = set()
+            for record in acc_rows:
+                name_zh = (record.get("name_zh") or "").strip()
+                if not name_zh:
+                    continue
+                key = name_zh.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                name_en = (record.get("name_en") or "").strip()
+                if name_en:
+                    glossary_lines.append(f"- {name_zh} -> {name_en}")
+                else:
+                    glossary_lines.append(f"- {name_zh} -> (translate yourself)")
+    finally:
+        driver.close()
+
+    glossary_text = "\n".join(glossary_lines).strip()
+    if len(glossary_text) > 2400:
+        glossary_text = glossary_text[:2400] + "..."
+
+    return config_text_zh, glossary_text
+
+
 def _build_llm_prompt_text(
     context_text: str,
     title_hint: Optional[str],
@@ -502,6 +593,8 @@ def _build_llm_prompt_text(
     bom_summary: Optional[str] = None,
     doc_summary: Optional[str] = None,
     ref_accessories_text: Optional[str] = None,
+    config_text_zh: Optional[str] = None,
+    accessory_glossary_text: Optional[str] = None,
 ) -> str:
     """Build the user prompt text sent to LLM, given context and images."""
     multimodal_segments = multimodal_segments or []
@@ -522,15 +615,41 @@ def _build_llm_prompt_text(
         multimodal_brief = "\n\n候选产品图片（请从中选出最适合作为 images.product 的一张）：\n" + "\n".join(image_candidates)
 
     bom_text = f"\n产品配置指令：{bom_summary}" if bom_summary else ""
-    ref_text = f"\n参考产品配置：{ref_accessories_text}" if ref_accessories_text else ""
+    ref_text = ""
     doc_text = f"\n产品文件概览（上下文/OCR）：{doc_summary}" if doc_summary else ""
+
+    cfg_text = (config_text_zh or "").strip()
+    glossary_text = (accessory_glossary_text or "").strip()
+    header = ""
+    if cfg_text or glossary_text:
+        header = (
+            "You are extracting product specification information and MUST return STRICT JSON ONLY.\n\n"
+            "# Priority of sources (very important)\n"
+            "1) Product configuration original text (Chinese) is authoritative.\n"
+            "2) Accessory bilingual glossary (ZH -> EN) is authoritative for English naming.\n"
+            "3) The rest of the context (OCR/diagrams) is secondary.\n\n"
+        )
+        if cfg_text:
+            header += (
+                "# Product Configuration (Chinese, authoritative)\n"
+                "[CONFIG_TEXT_ZH]\n"
+                f"{cfg_text}\n"
+                "[/CONFIG_TEXT_ZH]\n\n"
+            )
+        if glossary_text:
+            header += (
+                "# Accessory Glossary (ZH -> EN, use EXACT English if provided)\n"
+                "[ACCESSORY_GLOSSARY]\n"
+                f"{glossary_text}\n"
+                "[/ACCESSORY_GLOSSARY]\n\n"
+            )
 
     image_choice_rule = (
         "- 若提供了候选产品图片列表，必须从列表中选择一条路径填入 images.product（不得保留默认或填写列表外路径）。\n"
         "- 若列表为空或无候选图片，则使用默认 \"/back/product.png\"。\n"
     )
 
-    return f"""Extract product specification information from the following context. If某些字段缺失或无法确定，请使用\"待填写\"作为占位。严格返回 JSON。{bom_text}{ref_text}{doc_text}
+    return f"""{header}Extract product specification information from the following context. If某些字段缺失或无法确定，请使用\"待填写\"作为占位。严格返回 JSON。{bom_text}{ref_text}{doc_text}
 
 上下文：
 {context_text}
@@ -541,6 +660,7 @@ def _build_llm_prompt_text(
 - Preserve brand/model/proper nouns and technical terms as-is whenever possible (e.g., Joyonway, Bluetooth, Ozonator). Only translate surrounding descriptions.
 - 在 Specifications/字段提取的基础上，若提供了候选产品图片，请选择最能代表产品的图片，将其路径填入 images.product；若无合适图片，保持默认 "/back/product.png"。
 - {image_choice_rule.strip()}
+- 对于表示“缺失/不包含/没有”的配置项（例如：无台阶、无缸盖、无外接加热管路、无风泵、Without steps/No cover/Without XXX 等），不要把它们写入规格页的功能列表字段（premiumFeatures/insulationFeatures/extraFeatures/smartWater 等）；这些字段只写“实际包含/具备”的卖点与配置。
 - 若字段无法从上下文确定，请统一填写 "待填写"（不得返回 "未知"/"Unknown"/"N/A" 等）。
 - 仅返回 JSON。若推断到产品称呼，可使用该称呼作为 productTitle；否则使用 "{title_hint or 'OCR Generated Specsheet'}"。"""
 
@@ -569,6 +689,8 @@ def _extract_specsheet_from_context(
     bom_summary: Optional[str] = None,
     doc_summary: Optional[str] = None,
     ref_accessories_text: Optional[str] = None,
+    config_text_zh: Optional[str] = None,
+    accessory_glossary_text: Optional[str] = None,
     llm_provider: Optional[str] = None,
     llm_model: Optional[str] = None,
 ) -> Tuple[SpecsheetData, List[Dict[str, Any]], str, str]:
@@ -602,6 +724,8 @@ def _extract_specsheet_from_context(
         bom_summary=bom_summary,
         doc_summary=doc_summary,
         ref_accessories_text=ref_accessories_text,
+        config_text_zh=config_text_zh,
+        accessory_glossary_text=accessory_glossary_text,
     )
 
     playbook_rules_text = _get_spec_playbook_rules_text(SPEC_PLAYBOOK_RULES_LIMIT)
@@ -1115,10 +1239,17 @@ def get_specsheet_from_provided_docs(
     if not context_text.strip():
         raise ValueError("未提供可用于生成的文档内容")
 
+    config_text_zh, accessory_glossary_text = _get_product_config_and_accessory_glossary(
+        product_name,
+        bom_version,
+    )
+
     specsheet_data, chunks, _prompt_text, _system_prompt_unused = _extract_specsheet_from_context(
         context_text,
         pseudo_chunks,
         title_hint=f"{product_name} {bom_version}".strip(),
+        config_text_zh=config_text_zh,
+        accessory_glossary_text=accessory_glossary_text,
     )
     return specsheet_data, chunks
 
@@ -1156,7 +1287,12 @@ def generate_specsheet_from_ocr_request(
     if not (request.documents or []):
         doc_summary = "未提供 OCR 文档，仅使用 BOM 配置生成"
 
-    ref_accessories_text = _get_ref_accessories_prompt_text(request.product_name, request.bom_code)
+    ref_accessories_text = None
+
+    config_text_zh, accessory_glossary_text = _get_product_config_and_accessory_glossary(
+        request.product_name,
+        request.bom_code,
+    )
 
     # 使用产品名/BOM 号作为标题提示，帮助 LLM 生成更贴近的称呼
     title_hint = request.product_name or request.bom_code or "Generated Specsheet"
@@ -1169,6 +1305,8 @@ def generate_specsheet_from_ocr_request(
         bom_summary=bom_summary,
         doc_summary=doc_summary,
         ref_accessories_text=ref_accessories_text,
+        config_text_zh=config_text_zh,
+        accessory_glossary_text=accessory_glossary_text,
         llm_provider=getattr(request, "llm_provider", None),
         llm_model=getattr(request, "llm_model", None),
     )

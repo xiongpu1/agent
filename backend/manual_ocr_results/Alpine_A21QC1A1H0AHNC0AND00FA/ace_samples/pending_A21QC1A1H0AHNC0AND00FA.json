@@ -1,0 +1,56 @@
+{
+  "question": "Alpine",
+  "context": "[diagram] result.mmd\n# Бутъина\n\nДЛЯ ХОЛОДНЫХ\nИ ГОРЯЧИХ НАПИТКОВ\n\nСохранёт температура\n\nдо 48ч\n\nУлучшенная\nвакуумная изоляция\n(для надежной защиты)\n\nУдобная ручка\nдля переноски\n(с компактом и связкой)\n\n[diagram] result.mmd\n# Бутъина\n\nДЛЯ ХОЛОДНЫХ\nИ ГОРЯЧИХ НАПИТКОВ\n\nСохранёт температура\n\nдо 48ч\n\nУлучшенная\nвакуумная изоляция\n(для надежной защиты)\n\nУдобная ручка\nдля переноски\n(с компактом и связкой)",
+  "prediction": {
+    "productTitle": "Alpine",
+    "features": {
+      "capacity": "6-7",
+      "jets": "32",
+      "pumps": "2"
+    },
+    "measurements": "98\" × 91\" × 35\"",
+    "premiumFeatures": [
+      "Underwater Mood Lighting",
+      "Edge Lighting",
+      "Valve Lighting"
+    ],
+    "insulationFeatures": [
+      "Enviro-seal Insulated Base",
+      "Polyfoam Insulation"
+    ],
+    "extraFeatures": [
+      "Bluetooth audio system (Bluetooth + subwoofer)",
+      "Grey skirt, Aluminum Skirt with Polyfoam Insulation",
+      "Grey corner",
+      "Heater/Chiller Ready"
+    ],
+    "Specifications": [
+      {
+        "Cabinet Color": "#ffffff"
+      },
+      {
+        "Shell Color": "#ffffff"
+      },
+      {
+        "Dry Weight": "977 lbs"
+      },
+      {
+        "Water Capacity": "296 gallons"
+      },
+      {
+        "Pump": "Circulation Pump + 1* 3HP, Sweep Jet"
+      },
+      {
+        "Controls": "Gecko control system(YJ-2 + K300 + 2KW)"
+      }
+    ],
+    "smartWater": [
+      "Ozonator"
+    ],
+    "images": {
+      "product": "/back/product.png",
+      "background": "/back/back.png"
+    }
+  },
+  "saved_at": "2026-01-10T17:23:09.548565Z"
+}

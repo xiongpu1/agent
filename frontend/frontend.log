@@ -790,3 +790,133 @@ Error: connect ECONNREFUSED 127.0.0.1:8001
 6:10:35 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
 6:43:43 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
 6:44:21 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+5:05:36 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+5:07:05 PM [vite] (client) hmr update /src/views/Home.vue
+5:07:20 PM [vite] (client) hmr update /src/views/Home.vue
+5:07:29 PM [vite] (client) hmr update /src/views/Home.vue
+5:07:45 PM [vite] (client) hmr update /src/views/ProductBoms.vue
+5:07:56 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+5:08:27 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+5:08:28 PM [vite] Internal server error: [vue/compiler-sfc] Identifier 'selectBom' has already been declared. (260:6)
+
+/root/workspace/syp/agent/frontend/src/views/ProductBomOverview.vue
+899|  }
+900|  
+901|  const selectBom = (bom) => {
+   |        ^
+902|    if (selectedBom.value === bom) return
+903|    selectedBom.value = bom
+  Plugin: vite:vue
+  File: /root/workspace/syp/agent/frontend/src/views/ProductBomOverview.vue:260:6
+  196|                                  <el-divider direction="vertical" />
+  197|                                  <el-button link type="danger" size="small" @click="confirmDelete(child)">删除</el-button>
+  198|                                  <el-divider direction="vertical" />
+     |                                               ^
+  199|                                  <el-button link type="success" size="small" @click="openMoveDialog(child)">移动</el-button>
+  200|                                </div>
+      at constructor (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+      at Parser.raise (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+      at ScopeHandler.checkRedeclarationInScope (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:1646:19)
+      at ScopeHandler.declareName (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:1612:12)
+      at Parser.declareNameFromIdentifier (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+      at Parser.checkIdentifier (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+      at Parser.checkLVal (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:7527:12)
+      at Parser.parseVarId (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:13488:10)
+      at Parser.parseVar (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:13459:12)
+      at Parser.parseVarStatement (/root/workspace/syp/agent/frontend/node_modules/@babel/parser/lib/index.js:13306:10)
+5:09:50 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+5:13:27 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+5:25:03 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+5:26:15 PM [vite] (client) hmr update /src/views/Home.vue
+5:27:18 PM [vite] (client) hmr update /src/views/Home.vue
+5:27:37 PM [vite] (client) hmr update /src/views/Home.vue
+5:28:17 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+5:33:19 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+6:37:16 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+6:40:42 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+6:44:22 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+6:45:56 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+6:49:16 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+6:52:23 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+6:57:00 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+6:59:42 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+7:03:51 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue, /src/views/ProductBomOverview.vue?vue&type=style&index=0&scoped=238b5fd6&lang.css
+7:06:04 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue, /src/views/ProductBomOverview.vue?vue&type=style&index=0&scoped=238b5fd6&lang.css
+7:11:34 PM [vite] (client) hmr update /src/views/Home.vue
+7:12:03 PM [vite] (client) hmr update /src/views/ProductBoms.vue
+8:01:18 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+8:02:03 PM [vite] (client) hmr update /src/views/ProductBoms.vue
+8:07:27 PM [vite] (client) hmr update /src/views/ManualReview.vue
+8:12:57 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+8:14:55 PM [vite] (client) hmr update /src/views/ManualReview.vue
+8:15:49 PM [vite] (client) hmr update /src/views/ManualReview.vue?vue&type=style&index=0&scoped=8b6cb2ed&lang.css
+8:20:34 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+8:21:55 PM [vite] (client) hmr update /src/views/ManualReview.vue
+8:23:07 PM [vite] (client) hmr update /src/views/ManualReview.vue
+8:28:01 PM [vite] (client) hmr update /src/views/ManualReview.vue
+8:28:44 PM [vite] (client) hmr update /src/views/ManualReview.vue, /src/views/ManualReview.vue?vue&type=style&index=0&scoped=8b6cb2ed&lang.css
+9:02:01 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+9:02:24 PM [vite] (client) hmr update /src/views/ProductBoms.vue
+9:34:08 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+9:35:43 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+9:36:12 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue?vue&type=style&index=0&scoped=238b5fd6&lang.css
+9:42:43 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+9:48:48 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+9:49:04 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue?vue&type=style&index=0&scoped=238b5fd6&lang.css
+9:53:59 PM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+10:05:17 PM [vite] (client) hmr update /src/views/ManualReview.vue
+12:42:17 AM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+12:43:00 AM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+1:04:55 AM [vite] (client) hmr update /src/views/ProductBomOverview.vue
+1:31:49 AM [vite] (client) hmr update /src/views/ProductManual.vue
+9:24:46 AM [vite] (client) hmr update /src/views/ProductManual.vue
+9:31:43 AM [vite] (client) hmr update /src/views/ProductManual.vue
+9:47:44 AM [vite] (client) hmr update /src/views/ProductManual.vue
+9:51:13 AM [vite] (client) hmr update /src/views/ProductManual.vue
+9:52:04 AM [vite] (client) hmr update /src/views/ProductManual.vue
+9:54:08 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:03:39 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:06:49 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:14:45 AM [vite] (client) hmr update /src/views/ProductManual.vue, /src/views/ProductManual.vue?vue&type=style&index=0&scoped=7db57eb8&lang.css
+10:31:03 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:38:54 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:47:10 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:47:52 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:48:02 AM [vite] (client) hmr update /src/views/ProductManual.vue
+10:59:27 AM [vite] (client) hmr update /src/views/ProductManual.vue
+11:01:21 AM [vite] (client) hmr update /src/views/ProductManual.vue
+11:02:15 AM [vite] (client) hmr update /src/views/ProductManual.vue
+11:04:23 AM [vite] (client) hmr update /src/views/ProductManual.vue
+11:54:42 AM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+11:57:47 AM [vite] (client) hmr update /src/views/ProductManual.vue
+12:00:02 PM [vite] (client) hmr update /src/views/ProductManual.vue
+12:30:22 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+12:31:52 PM [vite] (client) hmr update /src/views/ProductManual.vue
+12:32:22 PM [vite] (client) hmr update /src/views/ProductManual.vue
+12:48:25 PM [vite] (client) hmr update /src/views/ProductManual.vue
+12:54:18 PM [vite] (client) hmr update /src/views/ProductManual.vue
+5:07:18 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+5:09:47 PM [vite] (client) hmr update /src/views/ProductManual.vue
+5:30:06 PM [vite] (client) hmr update /src/views/ProductManual.vue
+5:30:07 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+5:56:04 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+5:57:38 PM [vite] (client) hmr update /src/views/ProductManual.vue
+6:27:38 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:01:04 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:01:19 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:12:01 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:12:01 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+7:16:25 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:18:13 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:23:13 PM [vite] (client) hmr update /src/views/ProductManual.vue
+7:33:26 PM [vite] (client) hmr update /src/views/ProductManual.vue
+11:51:25 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+11:57:55 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+12:03:15 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+12:07:11 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue, /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+12:35:38 AM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+12:35:39 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+1:12:15 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+1:17:43 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+1:18:43 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+1:27:08 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css

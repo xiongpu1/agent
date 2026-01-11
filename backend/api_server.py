@@ -5,13 +5,13 @@ Provides endpoints for products, BOMs, and specsheet data.
 import os
 import sys
 import json
-from pathlib import Path
 import re
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Literal
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Query, Body
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import Any, Dict, List, Literal, Optional
 from dotenv import load_dotenv
 
 # 添加项目根目录到 Python 路径
@@ -24,8 +24,14 @@ load_dotenv(project_root / ".env")
 from src.api_queries import (
     get_all_product_names,
     get_all_accessory_names,
-    get_boms_by_product_name,
-    get_accessories_by_product_bom,
+    get_all_material_codes,
+    get_boms_by_material_code,
+    get_accessories_zh_by_material_bom,
+    get_boms_by_product_id,
+    get_accessories_by_product_bom_id,
+    get_kb_overview_by_product_id,
+    update_product_config_text_zh,
+    upsert_product_has_doc,
     get_documents_by_product_bom,
     get_documents_by_accessory,
     get_document_detail,
@@ -67,6 +73,10 @@ from src.specsheet_models import (
     ManualBookFromOcrRequest,
     ManualBookResponse,
     ManualBookData,
+    ManualBookVariantPlanRequest,
+    ManualBookVariantPlanResponse,
+    ManualBookOneShotRequest,
+    ManualBookOneShotResponse,
 )
 from src.specsheet_storage import (
     save_specsheet_for_session,
@@ -83,6 +93,9 @@ from src.bom_storage import save_bom_code_to_file, load_bom_code_for_session
 from src.manual_ocr import (
     create_manual_session_entry,
     handle_manual_ocr,
+    init_manual_session_entry,
+    append_manual_session_uploads,
+    delete_manual_session_upload,
     list_session_records,
     load_session_record,
     run_manual_session,
@@ -94,6 +107,10 @@ from src.manual_progress import progress_manager
 from src.manual_book import (
     MANUAL_BOOK_SYSTEM_PROMPT,
     generate_manual_book_from_ocr as run_manual_book_from_ocr,
+    MANUAL_VARIANT_PLAN_SYSTEM_PROMPT,
+    plan_manual_variants_from_context,
+    MANUAL_ONE_SHOT_SYSTEM_PROMPT,
+    generate_manual_one_shot,
 )
 from src.prompt_playbook import (
     list_prompt_playbooks,
@@ -202,6 +219,10 @@ class DocumentAttachRequest(BaseModel):
     accessory_name: str | None = None
 
 
+class ProductConfigUpdateRequest(BaseModel):
+    config_text_zh: str = Field(default="")
+
+
 class InsertProductDocument(BaseModel):
     name: str | None = None
     path: str | None = None
@@ -254,8 +275,19 @@ class PosterGenerateCopyRequest(BaseModel):
     requirements: str | None = None
     target_language: str | None = None
     model: str | None = None
+    product_name: str | None = None
+    bom_code: str | None = None
+    bom_type: str | None = None
     product_image_url: str | None = None
     background_image_url: str | None = None
+
+
+class ManualSessionInitRequest(BaseModel):
+    product_name: str
+    bom_code: str | None = None
+    bom_type: str | None = None
+    material_code: str | None = None
+    bom_id: str | None = None
 
 
 @app.get("/")
@@ -289,6 +321,42 @@ async def get_accessories():
         raise HTTPException(status_code=500, detail=f"Failed to fetch accessories: {str(e)}")
 
 
+@app.get("/api/materials")
+async def get_materials():
+    """Get all material codes."""
+    try:
+        materials = get_all_material_codes()
+        return {"materials": materials}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch materials: {str(e)}")
+
+
+@app.get("/api/materials/{material_code}/boms")
+async def get_material_boms(material_code: str):
+    """Get BOM ids for a material_code."""
+    try:
+        boms = get_boms_by_material_code(material_code)
+        return {"boms": boms}
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to fetch BOMs for material '{material_code}': {str(e)}",
+        )
+
+
+@app.get("/api/materials/{material_code}/boms/{bom_id}/accessories")
+async def get_material_bom_accessories(material_code: str, bom_id: str):
+    """Get accessory Chinese names for a material_code + bom_id."""
+    try:
+        accessories = get_accessories_zh_by_material_bom(material_code, bom_id)
+        return {"accessories": accessories}
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to fetch accessories for material '{material_code}' BOM '{bom_id}': {str(e)}",
+        )
+
+
 @app.get("/api/products/{product_name}/boms")
 async def get_product_boms(product_name: str):
     """
@@ -301,7 +369,7 @@ async def get_product_boms(product_name: str):
         JSON object with list of BOM versions
     """
     try:
-        boms = get_boms_by_product_name(product_name)
+        boms = get_boms_by_product_id(product_name)
         if not boms:
             raise HTTPException(
                 status_code=404,
@@ -321,7 +389,7 @@ async def get_product_boms(product_name: str):
 async def get_product_bom_accessories(product_name: str, bom_version: str):
     """Get accessories connected to a product and BOM."""
     try:
-        accessories = get_accessories_by_product_bom(product_name, bom_version)
+        accessories = get_accessories_by_product_bom_id(product_name, bom_version)
         return {"accessories": accessories}
     except Exception as e:
         raise HTTPException(
@@ -345,6 +413,30 @@ async def get_product_bom_documents(product_name: str, bom_version: str):
                 f"Failed to fetch documents for product '{product_name}' BOM '{bom_version}': {str(e)}"
             ),
         )
+
+
+@app.get("/api/products/{product_id}/kb_overview")
+async def get_product_kb_overview(product_id: str):
+    """Get KB overview for a product_id using Dataset/Folder/Document + HAS_DOC schema."""
+    try:
+        data = get_kb_overview_by_product_id(product_id)
+        return data
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to fetch KB overview for product '{product_id}': {str(e)}",
+        )
+
+
+@app.put("/api/products/{product_id}/config")
+async def update_product_config(product_id: str, payload: ProductConfigUpdateRequest):
+    """Update product config_text_zh and persist to Neo4j ProductConfig."""
+    try:
+        return update_product_config_text_zh(product_id, payload.config_text_zh)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to update product config for '{product_id}': {str(e)}")
 
 
 @app.get("/api/accessories/{accessory_name}/documents")
@@ -509,6 +601,9 @@ async def generate_poster_copy(
             requirements=(payload.requirements or None),
             target_language=(payload.target_language or None),
             model=(payload.model or None),
+            product_name=(payload.product_name or None),
+            bom_code=(payload.bom_code or None),
+            bom_type=(payload.bom_type or None),
             product_image_url=(payload.product_image_url or None),
             background_image_url=(payload.background_image_url or None),
         )
@@ -586,6 +681,22 @@ async def create_manual_session(
         raise HTTPException(status_code=500, detail=f"Failed to create manual session: {exc}") from exc
 
 
+@app.post("/api/manual-sessions/init")
+async def init_manual_session(payload: ManualSessionInitRequest):
+    try:
+        return init_manual_session_entry(
+            payload.product_name,
+            payload.bom_code,
+            payload.bom_type,
+            material_code=payload.material_code,
+            bom_id=payload.bom_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"Failed to init manual session: {exc}") from exc
+
+
 @app.post("/api/manual-sessions/{session_id}/ocr")
 async def trigger_manual_session_ocr(session_id: str):
     try:
@@ -594,6 +705,32 @@ async def trigger_manual_session_ocr(session_id: str):
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=f"Failed to run manual session OCR: {exc}") from exc
+
+
+@app.post("/api/manual-sessions/{session_id}/uploads")
+async def append_manual_session_files(
+    session_id: str,
+    product_files: List[UploadFile] = File(default_factory=list),
+    accessory_files: List[UploadFile] = File(default_factory=list),
+):
+    """Append uploaded files to an existing manual session without running OCR."""
+    try:
+        return await append_manual_session_uploads(session_id, product_files, accessory_files)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"Failed to append manual session uploads: {exc}") from exc
+
+
+@app.delete("/api/manual-sessions/{session_id}/uploads")
+async def delete_manual_session_file(session_id: str, path: str = Query(...)):
+    """Delete one original upload file from a manual session."""
+    try:
+        return delete_manual_session_upload(session_id, path)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"Failed to delete manual session upload: {exc}") from exc
 
 
 @app.post("/api/manual-sessions/{session_id}/prompt-reverse")
@@ -940,6 +1077,93 @@ async def generate_manual_book_from_ocr(payload: ManualBookFromOcrRequest):
     )
 
 
+@app.post(
+    "/api/manual/book/variant_plan",
+    response_model=ManualBookVariantPlanResponse,
+    response_model_exclude_none=True,
+)
+async def plan_manual_book_variants(payload: ManualBookVariantPlanRequest):
+    """Plan which A/B/C template variant to use for each section group, and generate pages only when uncertain."""
+    try:
+        variants, generated_pages, user_prompt = plan_manual_variants_from_context(payload)
+        try:
+            if payload.product_name and payload.bom_code:
+                product_dir = _resolve_manual_product_dir(payload.product_name, payload.bom_code)
+                question_path = product_dir / "question_manual.txt"
+                context_path = product_dir / "context_manual.txt"
+                question_text = (
+                    "# VARIANT_PLAN_SYSTEM_PROMPT\n"
+                    + (MANUAL_VARIANT_PLAN_SYSTEM_PROMPT or "")
+                    + "\n\n# MANUAL_BOOK_SYSTEM_PROMPT\n"
+                    + (MANUAL_BOOK_SYSTEM_PROMPT or "")
+                    + "\n"
+                )
+                question_path.write_text(question_text, encoding="utf-8")
+                context_path.write_text(user_prompt or "", encoding="utf-8")
+        except Exception as exc:  # noqa: BLE001
+            print(f"[ManualBook] Skipped writing manual prompt snapshots: {exc}")
+        return ManualBookVariantPlanResponse(
+            variants=variants,
+            generated_pages=generated_pages,
+            prompt_text=user_prompt,
+            system_prompt=MANUAL_VARIANT_PLAN_SYSTEM_PROMPT,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"生成说明书版本规划失败: {exc}") from exc
+
+
+@app.post(
+    "/api/manual/book/one_shot",
+    response_model=ManualBookOneShotResponse,
+    response_model_exclude_none=True,
+)
+async def generate_manual_book_one_shot(payload: ManualBookOneShotRequest):
+    """One-shot: single LLM call to decide variants (A/B/C) + generate fixed non-variant pages."""
+    try:
+        variants, fixed_pages, user_prompt = generate_manual_one_shot(payload)
+
+        try:
+            cover = fixed_pages.get("Cover") if isinstance(fixed_pages, dict) else None
+            if cover is not None:
+                blocks = getattr(cover, "blocks", None) or []
+                for blk in blocks:
+                    if isinstance(blk, dict):
+                        if blk.get("type") == "cover":
+                            blk.pop("model", None)
+                    else:
+                        if getattr(blk, "type", None) == "cover":
+                            try:
+                                if getattr(blk, "model", None) is not None:
+                                    delattr(blk, "model")
+                            except Exception:
+                                pass
+        except Exception:
+            pass
+        try:
+            if payload.product_name and payload.bom_code:
+                product_dir = _resolve_manual_product_dir(payload.product_name, payload.bom_code)
+                question_path = product_dir / "question_manual.txt"
+                context_path = product_dir / "context_manual.txt"
+                question_text = "# MANUAL_ONE_SHOT_SYSTEM_PROMPT\n" + (MANUAL_ONE_SHOT_SYSTEM_PROMPT or "") + "\n"
+                question_path.write_text(question_text, encoding="utf-8")
+                context_path.write_text(user_prompt or "", encoding="utf-8")
+        except Exception as exc:  # noqa: BLE001
+            print(f"[ManualBook] Skipped writing one-shot manual prompt snapshots: {exc}")
+
+        return ManualBookOneShotResponse(
+            variants=variants,
+            fixed_pages=fixed_pages,
+            prompt_text=user_prompt,
+            system_prompt=MANUAL_ONE_SHOT_SYSTEM_PROMPT,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"one-shot 生成说明书失败: {exc}") from exc
+
+
 def _sanitize_manual_folder_component(value: str | None) -> str:
     v = (value or "").strip()
     if not v:
@@ -962,13 +1186,27 @@ def _persist_generated_specsheet(specsheet_data: SpecsheetData, payload: Specshe
     if not product_dir.exists() or not product_dir.is_dir():
         raise FileNotFoundError(f"manual_ocr_results 产品目录不存在: {product_dir}")
 
-    generate_dir = product_dir / "generate"
-    generate_dir.mkdir(parents=True, exist_ok=True)
-    target_path = generate_dir / "specsheet.json"
+    truth_dir = product_dir / "truth"
+    truth_dir.mkdir(parents=True, exist_ok=True)
+    target_path = truth_dir / "specsheet.json"
     target_path.write_text(
         json.dumps(specsheet_data.dict(), ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
+    try:
+        rel = target_path.resolve().relative_to(BACKEND_ROOT.resolve()).as_posix()
+        product_id = f"{(payload.product_name or '').strip()}_{(payload.bom_code or '').strip()}".strip("_")
+        if product_id:
+            upsert_product_has_doc(
+                product_id=product_id,
+                role="specsheet",
+                doc_path=rel,
+                name=target_path.name,
+                mime_type="application/json",
+                doc_kind="specsheet",
+            )
+    except Exception as exc:  # noqa: BLE001
+        print(f"[Specsheet] Failed to bind HAS_DOC for specsheet: {exc}")
     print(f"[Specsheet] specsheet saved to: {target_path}")
     return target_path
 
@@ -982,7 +1220,7 @@ async def get_saved_manual_book(product_name: str, bom_code: str):
     target_dir = _resolve_manual_product_dir(product_name, bom_code)
     truth_path = target_dir / "truth" / "manual_book.json"
     generate_path = target_dir / "generate" / "manual_book.json"
-    target_path = truth_path if truth_path.exists() else generate_path
+    target_path = generate_path if generate_path.exists() else truth_path
     if not target_path.exists():
         raise HTTPException(status_code=404, detail="未找到已保存的说明书文件")
 
@@ -1023,6 +1261,7 @@ class ManualBookTruthSaveRequest(BaseModel):
     product_name: str
     bom_code: str
     manual_book: List[ManualBookData]
+    target_folder: Literal["truth", "generate"] = "truth"
 
 
 class ManualBookVariantsPayload(BaseModel):
@@ -1057,14 +1296,30 @@ def _resolve_manual_product_dir(product_name: str, bom_code: str) -> Path:
 async def save_manual_book_truth(payload: ManualBookTruthSaveRequest):
     try:
         product_dir = _resolve_manual_product_dir(payload.product_name, payload.bom_code)
-        truth_dir = product_dir / "truth"
-        truth_dir.mkdir(parents=True, exist_ok=True)
-        target_path = truth_dir / "manual_book.json"
+        folder = (payload.target_folder or "truth").strip() or "truth"
+        if folder not in {"truth", "generate"}:
+            raise ValueError("target_folder 仅支持 truth 或 generate")
+        target_dir = product_dir / folder
+        target_dir.mkdir(parents=True, exist_ok=True)
+        target_path = target_dir / "manual_book.json"
         target_path.write_text(
-            json.dumps([p.dict() for p in payload.manual_book], ensure_ascii=False, indent=2),
+            json.dumps([p.dict(exclude_none=True) for p in payload.manual_book], ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
-        print(f"[ManualBook] truth saved to: {target_path}")
+        if folder == "truth":
+            rel = target_path.resolve().relative_to(BACKEND_ROOT.resolve()).as_posix()
+            product_id = f"{payload.product_name.strip()}_{payload.bom_code.strip()}".strip("_")
+            upsert_product_has_doc(
+                product_id=product_id,
+                role="manual",
+                doc_path=rel,
+                name=target_path.name,
+                mime_type="application/json",
+                doc_kind="manual_book",
+            )
+            print(f"[ManualBook] truth saved to: {target_path}")
+        else:
+            print(f"[ManualBook] generate saved to: {target_path}")
         return ManualBookResponse(manual_book=payload.manual_book)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -1130,6 +1385,16 @@ async def save_manual_specsheet_truth(payload: ManualSpecsheetTruthSaveRequest):
         target_path.write_text(
             json.dumps(payload.specsheet.dict(), ensure_ascii=False, indent=2),
             encoding="utf-8",
+        )
+        rel = target_path.resolve().relative_to(BACKEND_ROOT.resolve()).as_posix()
+        product_id = f"{payload.product_name.strip()}_{payload.bom_code.strip()}".strip("_")
+        upsert_product_has_doc(
+            product_id=product_id,
+            role="specsheet",
+            doc_path=rel,
+            name=target_path.name,
+            mime_type="application/json",
+            doc_kind="specsheet",
         )
         print(f"[Specsheet] truth saved to: {target_path}")
         return SpecsheetResponse(specsheet=payload.specsheet)

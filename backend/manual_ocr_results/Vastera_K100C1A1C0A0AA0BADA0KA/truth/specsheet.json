@@ -1,0 +1,47 @@
+{
+  "productTitle": "Vastera",
+  "features": {
+    "capacity": "待填写",
+    "jets": "0",
+    "pumps": "1"
+  },
+  "measurements": "待填写",
+  "premiumFeatures": [
+    "Underwater Mood Lighting"
+  ],
+  "insulationFeatures": [
+    "Full foam insulation"
+  ],
+  "extraFeatures": [
+    "Grey Two-Step Stair",
+    "Grey ecological skirt panel",
+    "Grey corner"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "待填写"
+    },
+    {
+      "Water Capacity": "待填写"
+    },
+    {
+      "Pump": "1 x Circulation Pump, Sweep Jet"
+    },
+    {
+      "Controls": "Joyonway control system(P16B162 + PB557-02)"
+    }
+  ],
+  "smartWater": [
+    "Ozonator"
+  ],
+  "images": {
+    "product": "/back/product.png",
+    "background": "/back/back.png"
+  }
+}

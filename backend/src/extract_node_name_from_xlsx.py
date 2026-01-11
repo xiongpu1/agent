@@ -3,8 +3,25 @@ import sys
 import json
 import subprocess
 import tempfile
-import litellm
-from src.models_litellm import *
+import re
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+from difflib import SequenceMatcher
+
+import pandas as pd
+try:
+    import litellm  # type: ignore
+    from src.models_litellm import *  # type: ignore  # noqa: F403
+except Exception:  # noqa: BLE001
+    litellm = None
+
+# Ensure `backend/` is on sys.path so imports like `src.*` work when running
+# `python backend/src/extract_node_name_from_xlsx.py` from repo root.
+_BACKEND_DIR = Path(__file__).resolve().parent.parent
+if str(_BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(_BACKEND_DIR))
+
+from src.rag_bom import decode_bom_code
 
 # --- 系统提示模板 ---
 SYSTEM_PROMPT_TEMPLATE = """
@@ -42,7 +59,7 @@ SYSTEM_PROMPT_TEMPLATE = """
 """
 
 
-def extract_node_name_from_xlsx(file_path: str) -> list | dict:
+def extract_node_name_from_xlsx(file_path: str, output_file_path: Optional[str] = None) -> list | dict:
     """
     从 Excel 文件中提取产品及其配件列表，并生成 JSON 文件。
     
@@ -64,18 +81,381 @@ def extract_node_name_from_xlsx(file_path: str) -> list | dict:
 
     input_file_path = os.path.abspath(file_path)
     if not os.path.exists(input_file_path):
+        # Common pitfall: calling from repo root, but file lives under backend/.
+        # If a relative path was provided, try resolving it relative to backend/.
+        try:
+            if not os.path.isabs(file_path):
+                backend_dir = Path(__file__).resolve().parent.parent
+                alt = (backend_dir / file_path).resolve()
+                if alt.exists():
+                    input_file_path = str(alt)
+        except Exception:
+            pass
+    if not os.path.exists(input_file_path):
         print(f"错误：文件未找到 '{input_file_path}'。")
         sys.exit(1)
 
-    # 2) 计算输出文件路径（与输入文件同目录）
-    xlsx_filename = os.path.basename(input_file_path)
-    output_filename = os.path.splitext(xlsx_filename)[0] + "_accessories.json"
-    host_output_path = os.path.join(os.path.dirname(input_file_path), output_filename)
+    # 2) 计算输出文件路径
+    if output_file_path and str(output_file_path).strip():
+        host_output_path = os.path.abspath(str(output_file_path).strip())
+    else:
+        xlsx_filename = os.path.basename(input_file_path)
+        output_filename = os.path.splitext(xlsx_filename)[0] + "_accessories.json"
+        host_output_path = os.path.join(os.path.dirname(input_file_path), output_filename)
 
     print("--- 任务配置 ---")
     print(f"目标文件: {input_file_path}")
     print(f"主机上输出: {host_output_path}")
     print("------------------")
+
+    code_to_product_type_zh: Dict[str, str] = {
+        "31": "泳池",
+        "32": "户外缸",
+        "33": "按摩浴缸",
+        "34": "对接按摩缸",
+        "35": "按摩缸",
+        "37": "冰水缸",
+    }
+
+    translate_xlsx_path = (Path(__file__).resolve().parent.parent / "data_test" / "translate_accessories.xlsx").resolve()
+
+    def _extract_prefix_and_material_code(raw_value: Any) -> Tuple[Optional[str], str]:
+        s = str(raw_value or "").strip()
+        if not s:
+            return None, ""
+        m = re.match(r"^\s*(\d+)\s*[\.．]\s*(.+?)\s*$", s)
+        if m:
+            prefix = m.group(1)
+            tail = m.group(2)
+        else:
+            m2 = re.match(r"^\s*(\d+)\s*(.+?)\s*$", s)
+            if m2:
+                prefix = m2.group(1)
+                tail = m2.group(2)
+            else:
+                prefix = None
+                tail = s
+
+        tail = tail.strip()
+        tail = re.sub(r"[^A-Za-z0-9]+", "", tail)
+        return prefix, tail
+
+    def _normalize_code_tail(raw_value: Any) -> str:
+        _, tail = _extract_prefix_and_material_code(raw_value)
+        return tail
+
+    def _normalize_zh_text(raw_value: Any) -> str:
+        s = str(raw_value or "").strip()
+        if not s:
+            return ""
+        # keep Chinese + common symbols used in accessory names, remove whitespace
+        s = re.sub(r"\s+", "", s)
+        s = s.replace("（", "(").replace("）", ")")
+        return s
+
+    def _is_na_like(s: str) -> bool:
+        v = (s or "").strip()
+        if not v:
+            return True
+        return v.lower() in {"#n/a", "n/a", "na", "nan", "none"}
+
+    def _pick_english_name(name_en: Any, detail_en: Any) -> str:
+        a = str(name_en or "").strip()
+        b = str(detail_en or "").strip()
+        if not _is_na_like(a):
+            return a
+        if not _is_na_like(b):
+            return b
+        return ""
+
+    def _best_fuzzy_match(query: str, candidates: List[str], threshold: float) -> Optional[str]:
+        if not query or not candidates:
+            return None
+        best_key = None
+        best_score = 0.0
+        for cand in candidates:
+            score = SequenceMatcher(None, query, cand).ratio()
+            if score > best_score:
+                best_score = score
+                best_key = cand
+        if best_key is not None and best_score >= threshold:
+            return best_key
+        return None
+
+    def _load_translate_table(path: Path) -> Optional[pd.DataFrame]:
+        if not path.exists():
+            return None
+        try:
+            return pd.read_excel(str(path), engine="openpyxl")
+        except Exception:
+            return None
+
+    def _find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
+        for c in candidates:
+            if c in df.columns:
+                return c
+        # fallback: substring contains
+        for col in df.columns:
+            col_s = str(col)
+            for c in candidates:
+                if c in col_s:
+                    return col
+        return None
+
+    def _build_translation_index(df: pd.DataFrame) -> Tuple[Dict[Tuple[str, str], str], Dict[str, str]]:
+        # Try to be robust to column naming.
+        code_col = _find_col(df, ["编码", "物料编码", "产品编码", "型号", "Code"])
+        zh_col = _find_col(df, ["名称", "中文名称", "配件名称", "中文", "Name"])
+        en_col = _find_col(df, ["英文名称", "英文名", "EN", "English Name"])
+        en_detail_col = _find_col(df, ["英文详细说明", "英文说明", "英文描述", "English Description", "English Detail"])
+
+        if zh_col is None:
+            raise RuntimeError(f"翻译表缺少中文名称列。实际列: {list(df.columns)}")
+
+        by_code_and_zh: Dict[Tuple[str, str], str] = {}
+        by_zh: Dict[str, str] = {}
+
+        for _, r in df.iterrows():
+            code_tail = _normalize_code_tail(r.get(code_col)) if code_col else ""
+            zh = _normalize_zh_text(r.get(zh_col))
+            if not zh:
+                continue
+            en = _pick_english_name(r.get(en_col) if en_col else None, r.get(en_detail_col) if en_detail_col else None)
+            if not en:
+                continue
+
+            if code_tail:
+                k = (code_tail, zh)
+                if k not in by_code_and_zh:
+                    by_code_and_zh[k] = en
+            if zh not in by_zh:
+                by_zh[zh] = en
+
+        return by_code_and_zh, by_zh
+
+    def _extract_zh_only(raw_value: Any) -> str:
+        s = str(raw_value or "").strip()
+        if not s:
+            return ""
+        parts = re.findall(r"[\u4e00-\u9fff]+", s)
+        return "".join(parts).strip()
+
+    def _split_accessories(config_text: str) -> List[str]:
+        raw = (config_text or "").strip()
+        if not raw:
+            return []
+        if raw.lower() == "nan":
+            return []
+        pieces = re.split(r"[，,;；\n]+", raw)
+        out: List[str] = []
+        seen = set()
+        for p in pieces:
+            s = (p or "").strip()
+            if not s:
+                continue
+            if s.lower() == "nan":
+                continue
+            if s in seen:
+                continue
+            seen.add(s)
+            out.append(s)
+        return out
+
+    def _bom_type_from_product_type_zh(product_type_zh: str) -> Optional[str]:
+        s = (product_type_zh or "").strip()
+        if s == "泳池":
+            return "pool"
+        if s == "户外缸":
+            return "outdoor"
+        if s == "冰水缸":
+            return "iceTub"
+        return None
+
+    def _accessories_from_bom(bom_id: str, bom_type: str) -> List[str]:
+        decoded = decode_bom_code(bom_id, bom_type=bom_type)
+        if not decoded:
+            return []
+        segments = decoded.get("segments") or []
+        out: List[str] = []
+        seen = set()
+        for seg in segments:
+            meaning = seg.get("meaning") if isinstance(seg, dict) else None
+            if not meaning or not isinstance(meaning, str):
+                continue
+            s = meaning.strip()
+            if not s:
+                continue
+            # Filter out invalid placeholder meanings.
+            if "标注错误" in s:
+                continue
+            if s in seen:
+                continue
+            seen.add(s)
+            out.append(s)
+        return out
+
+    try:
+        # Explicitly check openpyxl to provide a clearer error message.
+        import openpyxl  # noqa: F401
+    except ModuleNotFoundError as e:
+        raise RuntimeError(
+            "读取 Excel 失败：缺少依赖 openpyxl。\n"
+            "请安装后再运行：\n"
+            "- conda install -n syp openpyxl\n"
+            "或\n"
+            "- pip install openpyxl\n"
+            "或使用 uv：\n"
+            "- uv run --no-project --with pandas --with openpyxl python backend/src/extract_node_name_from_xlsx.py"
+        ) from e
+
+    try:
+        df = pd.read_excel(input_file_path, engine="openpyxl")
+    except Exception as e:
+        raise RuntimeError(f"读取 Excel 失败: {e}") from e
+
+    required_cols = ["物料编码", "物料名称", "产品配置", "BOM版本"]
+    missing = [c for c in required_cols if c not in df.columns]
+    if missing:
+        raise RuntimeError(f"Excel 缺少列: {missing}. 实际列: {list(df.columns)}")
+
+    items: List[Dict[str, Any]] = []
+    dedupe = set()
+    for _, row in df.iterrows():
+        prefix, material_code = _extract_prefix_and_material_code(row.get("物料编码"))
+        if not material_code:
+            continue
+
+        bom_id = str(row.get("BOM版本") or "").strip()
+        if not bom_id:
+            continue
+
+        name_zh = _extract_zh_only(row.get("物料名称"))
+        config_raw = row.get("产品配置")
+        if pd.isna(config_raw):
+            continue
+        config_text_zh = str(config_raw).strip()
+        if not config_text_zh or config_text_zh.lower() == "nan":
+            continue
+
+        product_type_zh = code_to_product_type_zh.get(str(prefix or "").strip(), "未知")
+        bom_type = _bom_type_from_product_type_zh(product_type_zh)
+        if not bom_type:
+            continue
+
+        accessories = _accessories_from_bom(bom_id, bom_type=bom_type)
+        if not accessories:
+            continue
+
+        record = {
+            "material_code": material_code,
+            "bom_id": bom_id,
+            "name_zh": name_zh,
+            "name_en": material_code,
+            "product_type_zh": product_type_zh,
+            "config_text_zh": config_text_zh,
+            "accessories": accessories,
+        }
+
+        key = (record["material_code"], record["bom_id"], record["config_text_zh"])
+        if key in dedupe:
+            continue
+        dedupe.add(key)
+        items.append(record)
+
+    try:
+        # Enrich with English accessory names (optional; only if translation table exists).
+        translate_df = _load_translate_table(translate_xlsx_path)
+        if translate_df is not None and not translate_df.empty:
+            by_code_and_zh, by_zh = _build_translation_index(translate_df)
+
+            total = 0
+            hit_exact = 0
+            hit_fuzzy_code = 0
+            hit_exact_global = 0
+            miss = 0
+
+            zh_keys_by_code: Dict[str, List[str]] = {}
+            for (code_tail, zh_key) in by_code_and_zh.keys():
+                zh_keys_by_code.setdefault(code_tail, []).append(zh_key)
+
+            # NOTE: Global fuzzy matching over all keys is very expensive (N accessories * M keys).
+            # We only do global exact matching as a safe/fast fallback.
+
+            # Memoize per (code_tail, zh_norm) to avoid repeated matching.
+            cache: Dict[Tuple[str, str], str] = {}
+
+            for item in items:
+                code_tail = str(item.get("material_code") or "").strip()
+                accs = item.get("accessories") or []
+                accs_en: List[str] = []
+                for acc in accs:
+                    total += 1
+                    zh_norm = _normalize_zh_text(acc)
+                    if not zh_norm:
+                        accs_en.append("")
+                        miss += 1
+                        continue
+
+                    cached = cache.get((code_tail, zh_norm))
+                    if cached is not None:
+                        accs_en.append(cached)
+                        continue
+
+                    en = ""
+
+                    # 1) exact (code + zh)
+                    en = by_code_and_zh.get((code_tail, zh_norm), "")
+                    if en:
+                        hit_exact += 1
+                        accs_en.append(en)
+                        cache[(code_tail, zh_norm)] = en
+                        continue
+
+                    # 2) fuzzy (code + zh)
+                    cands = zh_keys_by_code.get(code_tail) or []
+                    best = _best_fuzzy_match(zh_norm, cands, threshold=0.85)
+                    if best:
+                        en = by_code_and_zh.get((code_tail, best), "")
+                        if en:
+                            hit_fuzzy_code += 1
+                            accs_en.append(en)
+                            cache[(code_tail, zh_norm)] = en
+                            continue
+
+                    # 3) exact global by zh
+                    en = by_zh.get(zh_norm, "")
+                    if en:
+                        hit_exact_global += 1
+                        accs_en.append(en)
+                        cache[(code_tail, zh_norm)] = en
+                        continue
+
+                    miss += 1
+                    accs_en.append("")
+                    cache[(code_tail, zh_norm)] = ""
+
+                    if total % 5000 == 0:
+                        print(f"翻译进度: 已处理配件 {total}")
+
+                item["accessories_en"] = accs_en
+
+            print("\n--- 翻译匹配统计（translate_accessories.xlsx）---")
+            print(f"翻译表路径: {translate_xlsx_path}")
+            print(f"总配件条目: {total}")
+            print(f"命中: 编码+名称精确 {hit_exact}")
+            print(f"命中: 编码+名称模糊 {hit_fuzzy_code}")
+            print(f"命中: 名称精确 {hit_exact_global}")
+            print(f"未命中: {miss}")
+            print("-------------------------------------------")
+
+        with open(host_output_path, "w", encoding="utf-8") as f:
+            json.dump(items, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        raise RuntimeError(f"写入 JSON 失败: {e}") from e
+
+    print(f"\n✅ JSON 文件已保存到: {os.path.abspath(host_output_path)}")
+    print("TASK_COMPLETE")
+    return items
 
     # 3) 组装系统提示
     system_prompt = SYSTEM_PROMPT_TEMPLATE
@@ -199,27 +579,11 @@ def extract_node_name_from_xlsx(file_path: str) -> list | dict:
 
 if __name__ == "__main__":
     """主函数，用于命令行直接运行"""
-    # 默认文件路径（用于向后兼容）
-    default_file_path = "data_test/ref_BOM.xlsx"
-    
-    # 指定保存 JSON 文件的位置
-    output_json_path = "data_test/ref_BOM_accessories.json"  # 可以修改为任意路径
-    
-    # 调用函数获取 JSON 内容
-    json_data = extract_node_name_from_xlsx(default_file_path)
-    
-    # 保存 JSON 文件到指定位置
-    try:
-        # 确保输出目录存在
-        output_dir = os.path.dirname(output_json_path)
-        if output_dir and not os.path.exists(output_dir):
-            os.makedirs(output_dir, exist_ok=True)
-        
-        # 保存 JSON 文件
-        with open(output_json_path, 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
-        
-        print(f"\n✅ JSON 文件已保存到: {os.path.abspath(output_json_path)}")
-    except Exception as e:
-        print(f"❌ 保存 JSON 文件时出错: {e}")
-        sys.exit(1)
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", default="backend/data_test/ref_BOM_products.xlsx")
+    parser.add_argument("--output", default="backend/data_test/ref_BOM_products.json")
+    args = parser.parse_args()
+
+    extract_node_name_from_xlsx(args.input, output_file_path=args.output)

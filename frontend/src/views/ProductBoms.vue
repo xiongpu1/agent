@@ -99,8 +99,9 @@ const route = useRoute()
 const router = useRouter()
 
 const id = computed(() => route.params.id)
-const productName = computed(() => route.query.productName || '')
-const name = computed(() => productName.value || `产品${id.value}`)
+const productId = computed(() => route.query.productId || '')
+const materialCode = computed(() => route.query.materialCode || '')
+const name = computed(() => route.query.label || productId.value || `产品${id.value}`)
 const image = computed(() => route.query.image || 'Alta.png')
 const imgUrl = computed(() => `/product/${image.value}`)
 
@@ -222,16 +223,21 @@ const filteredBoms = computed(() => {
 
 // Load BOMs from API
 const loadBoms = async () => {
-  if (!productName.value) {
-    bomsError.value = '缺少产品名称'
+  if (!productId.value && !materialCode.value) {
+    bomsError.value = '缺少产品标识'
     return
   }
-  
+
   loadingBoms.value = true
   bomsError.value = ''
   try {
-    const { getBomsByProduct } = await import('@/services/api')
-    bomList.value = await getBomsByProduct(productName.value)
+    if (materialCode.value) {
+      const { getBomsByMaterial } = await import('@/services/api')
+      bomList.value = await getBomsByMaterial(materialCode.value)
+    } else {
+      const { getBomsByProduct } = await import('@/services/api')
+      bomList.value = await getBomsByProduct(productId.value)
+    }
     if (bomList.value.length === 0) {
       bomsError.value = '该产品暂无 BOM 信息'
     }
@@ -244,24 +250,40 @@ const loadBoms = async () => {
 }
 
 onMounted(() => {
-  if (productName.value) {
+  if (productId.value || materialCode.value) {
     loadBoms()
   }
 })
 
 const goBack = () => router.back()
 
-const goProductDetail = (bom) => {
-  router.push({
-    name: 'ProductBomDetail',
-    params: { id: String(id.value), bom: encodeURIComponent(bom) },
-    query: {
-      productName: productName.value,
-      name: name.value,
-      image: image.value,
-      bom
+const goProductDetail = async (bom) => {
+  const bomCode = String(bom || '').trim().toUpperCase()
+  if (!bomCode) return
+
+  const initProductName = materialCode.value || productId.value || name.value
+  try {
+    const { initManualSession } = await import('@/services/api')
+    const session = await initManualSession({
+      productName: initProductName,
+      bomCode,
+      materialCode: materialCode.value || '',
+      bomId: String(bom || '').trim(),
+    })
+    const sessionId = session?.session_id || session?.id
+    if (!sessionId) {
+      throw new Error('创建 OCR 会话失败，请稍后重试')
     }
-  })
+
+    router.push({
+      name: 'ManualReview',
+      query: {
+        sessionId,
+      },
+    })
+  } catch (error) {
+    console.error('Failed to init manual session:', error)
+  }
 }
 </script>
 

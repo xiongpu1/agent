@@ -81,29 +81,29 @@
       <div v-else-if="active === 'kbSearch'" class="section">
         <div class="card-header">产品知识库</div>
         <div class="product-panel">
-          <div class="product-panel__header">所有产品</div>
+          <div class="product-panel__header">所有物料编码</div>
           <el-input
-            v-model="productPanelKeyword"
-            placeholder="搜索产品名称"
+            v-model="materialKeyword"
+            placeholder="搜索物料编码"
             clearable
             class="product-panel__input"
           />
-          <div v-if="loadingProducts" class="loading">产品列表加载中...</div>
-          <div v-else-if="productsError" class="error">{{ productsError }}</div>
-          <div v-else-if="filteredProductTags.length" class="product-tags">
+          <div v-if="loadingMaterials" class="loading">物料列表加载中...</div>
+          <div v-else-if="materialsError" class="error">{{ materialsError }}</div>
+          <div v-else-if="filteredMaterials.length" class="product-tags">
             <el-tag
-              v-for="productName in filteredProductTags"
-              :key="productName"
+              v-for="materialCode in filteredMaterials"
+              :key="materialCode"
               class="product-tag"
               round
               effect="plain"
-              @click="goToProductOverview(productName)"
+              @click="goToMaterialOverview(materialCode)"
             >
-              {{ productName }}
+              {{ materialCode }}
 
             </el-tag>
           </div>
-          <el-empty v-else :description="products.length ? '未找到匹配的产品' : '暂无产品数据'" />
+          <el-empty v-else :description="materials.length ? '未找到匹配的物料' : '暂无物料数据'" />
         </div>
         <div class="product-panel">
           <div class="product-panel__header">所有配件</div>
@@ -321,13 +321,13 @@
       <!-- 导出编辑器 -->
       <div v-else class="section">
         <div class="card-header">导出编辑器</div>
-        <div v-if="loadingProducts" class="loading">加载中...</div>
-        <div v-else-if="productsError" class="error">{{ productsError }}</div>
+        <div v-if="loadingMaterials" class="loading">加载中...</div>
+        <div v-else-if="materialsError" class="error">{{ materialsError }}</div>
         <div v-else>
           <div class="search-row product-search">
             <el-input
-              v-model="productKeyword"
-              placeholder="输入产品名称进行查询..."
+              v-model="exportMaterialKeyword"
+              placeholder="输入物料编码进行查询..."
               clearable
             >
               <template #prefix>
@@ -337,21 +337,21 @@
               </template>
             </el-input>
           </div>
-          <div v-if="filteredProducts.length" class="product-list">
+          <div v-if="filteredExportMaterials.length" class="product-list">
             <el-card
-              v-for="productName in filteredProducts"
-              :key="productName"
+              v-for="materialCode in filteredExportMaterials"
+              :key="materialCode"
               class="product-card"
               shadow="hover"
-              @click="goToBoms(productName)"
+              @click="goToExportMaterial(materialCode)"
             >
               <div class="product-row">
-                <div class="product-name">{{ productName }}</div>
+                <div class="product-name">{{ materialCode }}</div>
                 <div class="arrow">›</div>
               </div>
             </el-card>
           </div>
-          <div v-else class="loading">未找到匹配的产品</div>
+          <div v-else class="loading">未找到匹配的物料</div>
         </div>
       </div>
     </div>
@@ -493,6 +493,11 @@ watch(active, (v) => {
 })
 
 const router = useRouter()
+const materials = ref([])
+const loadingMaterials = ref(false)
+const materialsError = ref('')
+const materialsLoaded = ref(false)
+
 const products = ref([])
 const loadingProducts = ref(false)
 const productsError = ref('')
@@ -936,18 +941,25 @@ const productKeyword = ref('')
 const filteredProducts = computed(() => {
   if (!productKeyword.value.trim()) return products.value
   const kw = productKeyword.value.trim().toLowerCase()
-  return products.value.filter((name) =>
-    String(name).toLowerCase().includes(kw)
-  )
+  return products.value.filter((item) => {
+    const hay = `${item?.label || ''} ${item?.product_id || ''}`.toLowerCase()
+    return hay.includes(kw)
+  })
 })
 
-const productPanelKeyword = ref('')
-const filteredProductTags = computed(() => {
-  if (!productPanelKeyword.value.trim()) return products.value
-  const kw = productPanelKeyword.value.trim().toLowerCase()
-  return products.value.filter((name) =>
-    String(name).toLowerCase().includes(kw)
-  )
+const exportMaterialKeyword = ref('')
+const filteredExportMaterials = computed(() => {
+  const list = materials.value
+  const kw = exportMaterialKeyword.value.trim().toLowerCase()
+  if (!kw) return list
+  return list.filter((code) => String(code).toLowerCase().includes(kw))
+})
+
+const materialKeyword = ref('')
+const filteredMaterials = computed(() => {
+  if (!materialKeyword.value.trim()) return materials.value
+  const kw = materialKeyword.value.trim().toLowerCase()
+  return materials.value.filter((code) => String(code).toLowerCase().includes(kw))
 })
 
 const accessoryKeyword = ref('')
@@ -955,9 +967,7 @@ const showAllAccessories = ref(false)
 const filteredAccessories = computed(() => {
   if (!accessoryKeyword.value.trim()) return accessories.value
   const kw = accessoryKeyword.value.trim().toLowerCase()
-  return accessories.value.filter((name) =>
-    String(name).toLowerCase().includes(kw)
-  )
+  return accessories.value.filter((name) => String(name).toLowerCase().includes(kw))
 })
 
 const ACCESSORY_TAG_LIMIT = 80
@@ -1027,14 +1037,38 @@ const toggleBomExpanded = () => {
   bomExpanded.value = !bomExpanded.value
 }
 
-// Load products from API
+const loadMaterials = async (force = false) => {
+  if (materialsLoaded.value && !force) return
+  loadingMaterials.value = true
+  materialsError.value = ''
+  try {
+    const { getMaterials } = await import('@/services/api')
+    const list = await getMaterials()
+    materials.value = Array.isArray(list) ? list : []
+    materialsLoaded.value = true
+  } catch (error) {
+    materialsError.value = '加载物料列表失败，请稍后重试'
+    console.error('Failed to load materials:', error)
+  } finally {
+    loadingMaterials.value = false
+  }
+}
+
+// Load products from API (used by export tab)
 const loadProducts = async (force = false) => {
   if (productsLoaded.value && !force) return
   loadingProducts.value = true
   productsError.value = ''
   try {
     const { getProducts } = await import('@/services/api')
-    products.value = await getProducts()
+    const list = await getProducts()
+    products.value = (Array.isArray(list) ? list : []).map((item) => {
+      const display = item?.display_name_en || item?.display_name_zh || item?.material_code || item?.product_id || ''
+      return {
+        ...item,
+        label: display,
+      }
+    })
     productsLoaded.value = true
   } catch (error) {
     productsError.value = '加载产品列表失败，请稍后重试'
@@ -1050,7 +1084,10 @@ const loadAccessories = async (force = false) => {
   accessoriesError.value = ''
   try {
     const { getAccessories } = await import('@/services/api')
-    accessories.value = await getAccessories()
+    const list = await getAccessories()
+    accessories.value = (Array.isArray(list) ? list : [])
+      .map((item) => String(item?.name_zh || '').trim())
+      .filter(Boolean)
     showAllAccessories.value = false
     accessoriesLoaded.value = true
   } catch (error) {
@@ -1061,25 +1098,40 @@ const loadAccessories = async (force = false) => {
   }
 }
 
-const goToProductOverview = (productName) => {
+const goToMaterialOverview = (materialCode) => {
+  const code = String(materialCode || '').trim()
+  if (!code) return
   router.push({
     name: 'ProductBomOverview',
     params: { id: '0' },
-    query: { productName }
+    query: { materialCode: code }
   })
 }
 
-const goToBoms = (productName) => {
+const goToBoms = (product) => {
+  const pid = typeof product === 'string' ? product : (product?.product_id || '')
+  const label = typeof product === 'string' ? product : (product?.label || '')
   router.push({
     name: 'ProductBoms',
     params: { id: '0' },
-    query: { productName }
+    query: { productId: pid, label }
+  })
+}
+
+const goToExportMaterial = (materialCode) => {
+  const code = String(materialCode || '').trim()
+  if (!code) return
+  router.push({
+    name: 'ProductBoms',
+    params: { id: '0' },
+    query: { materialCode: code, label: code }
   })
 }
 
 onMounted(() => {
   if (active.value === 'upload') loadImages()
   loadProducts()
+  loadMaterials()
   loadAccessories()
   if (active.value === 'manual' && manualHistoryVisible.value) loadManualHistory()
 })

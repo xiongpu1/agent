@@ -12,6 +12,8 @@ from fastapi import HTTPException
 from litellm import completion
 
 from src.api_queries import BACKEND_ROOT
+from src.rag_bom import decode_bom_code
+from src.rag_specsheet import _get_product_config_and_accessory_glossary
 
 
 POSTER_ANALYSIS_DEFAULT_FONT_CANDIDATES: List[str] = [
@@ -41,9 +43,9 @@ POSTER_ANALYSIS_DEFAULT_PROMPT = (
 
 POSTER_COPY_DEFAULT_PROMPT = (
     "你是专业的电商营销海报文案与风格策划助手。"
-    "默认产品品类为：按摩浴缸/浴缸（Massage Bathtub / Hot Tub / Jacuzzi）。"
-    "你会基于已解析的海报结构（元素 id 与 bbox）产出适配的营销文案与风格建议，用于替换原海报文字。"
-    "目标语言请根据用户 requirements 自行判断并在输出 JSON 的 target_language 字段中给出（zh/en/ru/ja/ko/other）。"
+    "产品品类不固定，以产品配置（CONFIG_TEXT_ZH / BOM_SUMMARY）为准。"
+    "你会基于已解析的海报结构（元素 id 与 bbox）产出适配的营销文案，用于替换原海报文字。"
+    "默认输出中文；若用户 requirements 明确要求英文/日语/韩语/俄语等，则按要求输出。"
     "只输出一个严格合法的 JSON 对象（RFC8259），不要输出任何额外文本。"
 )
 
@@ -100,7 +102,9 @@ def build_step2_prompt(
     step1_result: Dict[str, Any],
     requirements: Optional[str],
     target_language: str,
-    forced_product_category: Optional[str] = None,
+    config_text_zh: Optional[str] = None,
+    bom_context_text: Optional[str] = None,
+    accessory_glossary_text: Optional[str] = None,
 ) -> str:
     req = (requirements or "").strip()
     lang = (target_language or "").strip().lower() or "zh"
@@ -125,56 +129,44 @@ def build_step2_prompt(
         else "- copy.sellpoints：数组，若 step1_result 中不存在 sellpoint_\"n\" 区域，可输出空数组。\n"
     )
 
-    forced_cat = (forced_product_category or "").strip()
-    forced_rule = (
-        "\n重要：用户已在 requirements 中明确指定产品品类，本次文案必须严格围绕该品类生成，并忽略 step1_result.evidence.main_product_guess：\n"
-        + f"- 强制产品品类 = {forced_cat}\n"
-        + "- title/subtitle/sellpoints 不允许出现与该品类明显不一致的词（例如把浴缸写成水壶/保温杯等）。\n"
-        if forced_cat
-        else ""
-    )
-
-    default_cat_rule = (
-        "\n默认产品品类：按摩浴缸/浴缸（Massage Bathtub / Hot Tub / Jacuzzi）。\n"
-        "- 如果 step1_result.evidence.main_product_guess 与该品类冲突（例如 Thermal Flask / Bottle），必须忽略 step1_result 的品类猜测，仍按浴缸产品生成文案。\n"
-        if not forced_cat
-        else ""
-    )
+    cfg_text = (config_text_zh or "").strip()
+    bom_text = (bom_context_text or "").strip()
+    glossary_text = (accessory_glossary_text or "").strip()
+    product_context = ""
+    if cfg_text:
+        product_context += "# Product Configuration (Chinese, authoritative)\n[CONFIG_TEXT_ZH]\n" + cfg_text + "\n[/CONFIG_TEXT_ZH]\n\n"
+    if bom_text:
+        product_context += "# Product Configuration Parsing (Chinese, authoritative)\n[BOM_SUMMARY]\n" + bom_text + "\n[/BOM_SUMMARY]\n\n"
+    if glossary_text:
+        product_context += "# Accessory Glossary (ZH -> EN, authoritative for meaning)\n[ACCESSORY_GLOSSARY]\n" + glossary_text + "\n[/ACCESSORY_GLOSSARY]\n\n"
 
     schema = "".join(
         [
-            "请根据输入的 step1_result（已解析的 bbox/元素信息）生成文案与风格建议。\n",
+            "请根据输入的 step1_result（已解析的 bbox/元素信息）生成海报营销文案。\n",
             "你的任务是用新的营销文案替换海报中的原始文字（OCR 可能为外语），并保持与原布局区域数量一致。\n",
-            "目标语言 target_language 可为 zh/en/ru/ja/ko/other，请根据 requirements 自行判断并在输出中填写。\n",
-            "若用户需求明确面向美国/经销商/Dealer/Distributor，请优先输出英文（en）。\n",
-            default_cat_rule,
-            forced_rule,
+            "语言规则：\n",
+            "- 默认输出中文。\n",
+            "- 若 requirements 明确要求英文/日语/韩语/俄语等，则按要求输出对应语言。\n",
+            "权威信息来源：\n",
+            "- 必须以产品配置（CONFIG_TEXT_ZH / BOM_SUMMARY）为主要依据；glossary 用于理解名词含义。\n",
+            "- 若 glossary 给出英文术语，请翻译成目标语言输出（默认中文），但品牌/专有名词（如 Balboa/Joyonway/Ozonator）可保留原文。\n",
             "强约束（很重要）：\n",
-            "- 不能编造具体参数/数值/认证/材质/保修/专利/医学疗效等信息，除非 requirements 明确给出。\n",
-            "- 可以使用不含具体数值的营销表述（如 energy-efficient / smart / spa-like relaxation 等）。\n",
-            "- 若面向渠道（经销商/分销商），语气偏 B2B：专业、可信、可合作。\n",
-            "返回 JSON schema：\n",
+            "- 不能编造具体参数/数值/认证/材质/保修/专利/医学疗效等信息，除非在 CONFIG_TEXT_ZH/BOM_SUMMARY/requirements 中明确出现。\n",
+            "- 文案中禁止出现内部编码/料号/BOM 字符串/型号串（例如 P16B162+PB557-02、K100...），除非它是品牌名且用于消费者可读表达。\n",
+            "返回 JSON schema（只生成文案，不要风格/字体/布局映射）：\n",
             "{\n",
-            "  target_language: \"zh\",\n",
-            "  copy: { title, subtitle, sellpoints, cta, footer },\n",
-            "  layout_map: { title, subtitle, sellpoints, cta, footer },\n",
-            "  style_guidance: { theme_colors, tone_keywords, notes },\n",
-            "  font_plan: { title_font, subtitle_font, sellpoint_font, cta_font }\n",
+            "  \"copy\": {\n",
+            "    \"title\": \"...\",\n",
+            "    \"subtitle\": \"...\",\n",
+            "    \"sellpoints\": [\"...\"]\n",
+            "  }\n",
             "}\n",
             "字段要求：\n",
-            "- copy.title/subtitle/cta/footer：字符串；允许为空字符串但不建议。\n",
+            "- copy.title/copy.subtitle：字符串；subtitle 可为空字符串。\n",
             sellpoint_rule,
-            "- layout_map：将文案映射到 step1 的元素 id。\n",
-            "  layout_map.title 必须为 \"title\"；layout_map.subtitle 为 \"subtitle\"（若 step1 不存在可为 null）。\n",
-            "  layout_map.sellpoints 为数组，对应映射到 \"sellpoint_1\"/\"sellpoint_2\"/\"sellpoint_3\"...（按 step1 中存在的顺序）。\n",
-            "  layout_map.cta 可映射到 \"cta\"（若 step1 存在该元素）否则为 null。\n",
-            "  layout_map.footer 可映射到 \"footer\"（若 step1 存在该元素）否则为 null。\n",
-            "- style_guidance.theme_colors：3-6 个 hex 颜色字符串。\n",
-            "- font_plan：必须使用 step1_result.font_guess 中的字体名称进行选择，不要发明新字体。\n",
             "规则：\n",
             "- 只能输出 JSON 对象本身，不要输出任何额外文字。\n",
             "- JSON 必须严格 RFC8259：双引号、不能有尾逗号、不能有注释。\n",
-            "- 不要编造产品参数（容量/材质/时长/认证等），除非 requirements 明确给出。\n",
         ]
     )
 
@@ -182,6 +174,7 @@ def build_step2_prompt(
     return (
         POSTER_COPY_DEFAULT_PROMPT
         + "\n"
+        + (product_context or "")
         + "step1_result:\n"
         + step1_json
         + "\n"
@@ -250,6 +243,17 @@ def extract_json(text: str) -> Dict[str, Any]:
     if not m:
         raise ValueError("无法从 LLM 输出中提取 JSON")
     return json.loads(_cleanup_jsonish(m.group(0)))
+
+
+def _sanitize_folder_component(value: Optional[str]) -> str:
+    v = (value or "").strip()
+    if not v:
+        return ""
+    v = v.replace("/", "_").replace("\\", "_")
+    v = re.sub(r"\s+", "_", v)
+    v = re.sub(r"[^A-Za-z0-9_.\-\u4e00-\u9fff]", "_", v)
+    v = re.sub(r"_+", "_", v).strip("_")
+    return v
 
 
 def _validate_bbox(bbox: Any) -> bool:
@@ -411,12 +415,6 @@ def _validate_step2(payload: Dict[str, Any], *, step1_result: Dict[str, Any]) ->
     if not isinstance(payload, dict):
         raise ValueError("Step2 输出必须为 JSON object")
 
-    lang = str(payload.get("target_language") or "").strip().lower()
-    if not lang:
-        payload["target_language"] = "zh"
-    elif lang != "zh":
-        payload["target_language"] = lang
-
     copy = payload.get("copy")
     if not isinstance(copy, dict):
         raise ValueError("copy 必须为 object")
@@ -448,43 +446,17 @@ def _validate_step2(payload: Dict[str, Any], *, step1_result: Dict[str, Any]) ->
 
     if len(cleaned_sp) > 5:
         raise ValueError("copy.sellpoints 长度最多为 5")
-    copy["sellpoints"] = cleaned_sp
+    title = str(copy.get("title") or "")
+    subtitle = str(copy.get("subtitle") or "")
 
-    for k in ("title", "subtitle", "cta", "footer"):
-        if k in copy and copy[k] is not None:
-            copy[k] = str(copy[k])
-
-    payload["copy"] = copy
-
-    style = payload.get("style_guidance")
-    if style is not None and not isinstance(style, dict):
-        raise ValueError("style_guidance 必须为 object")
-
-    font_guess = step1_result.get("font_guess") if isinstance(step1_result, dict) else None
-    fg_title = None
-    fg_sub = None
-    fg_sp = None
-    try:
-        if isinstance(font_guess, dict):
-            fg_title = (font_guess.get("title") or {}).get("name")
-            fg_sub = (font_guess.get("subtitle") or {}).get("name")
-            fg_sp = (font_guess.get("sellpoint_1") or {}).get("name") or (font_guess.get("sellpoint_2") or {}).get("name")
-    except Exception:
-        pass
-
-    enforced_font_plan = {
-        "title_font": fg_title or None,
-        "subtitle_font": fg_sub or None,
-        "sellpoint_font": fg_sp or None,
-        "cta_font": fg_title or fg_sub or fg_sp or None,
+    cleaned_copy = {
+        "title": title,
+        "subtitle": subtitle,
+        "sellpoints": cleaned_sp,
     }
-    payload["font_plan"] = enforced_font_plan
 
-    layout_map = payload.get("layout_map")
-    if layout_map is not None and not isinstance(layout_map, dict):
-        raise ValueError("layout_map 必须为 object")
-
-    return payload
+    # Only keep copy; strip any other keys from model output.
+    return {"copy": cleaned_copy}
 
 
 def _looks_like_no_image_reply(text: str) -> bool:
@@ -776,6 +748,9 @@ async def generate_copy(
     requirements: Optional[str],
     target_language: Optional[str],
     model: Optional[str],
+    product_name: Optional[str] = None,
+    bom_code: Optional[str] = None,
+    bom_type: Optional[str] = None,
     product_image_url: Optional[str],
     background_image_url: Optional[str],
 ) -> Dict[str, Any]:
@@ -788,25 +763,29 @@ async def generate_copy(
         copy_model = f"dashscope/{copy_model}"
 
     def _infer_lang(req_text: Optional[str]) -> str:
-        r = (req_text or "").strip().lower()
+        r = (req_text or "").strip()
         if not r:
             return "zh"
-        signals_en = (
-            "us",
-            "usa",
-            "united states",
-            "america",
-            "american",
-            "dealer",
-            "distributor",
-            "wholesale",
-            "b2b",
-            "经销商",
-            "美国",
-            "北美",
-        )
-        if any(s in r for s in signals_en):
+        r_lower = r.lower()
+
+        # Explicit language instructions.
+        if any(s in r_lower for s in ("英文", "english", "in english", "en ", " en")):
             return "en"
+        if any(s in r_lower for s in ("日语", "日文", "japanese", "日本語", "にほんご")):
+            return "ja"
+        if any(s in r_lower for s in ("韩语", "韩文", "korean", "한국")):
+            return "ko"
+        if any(s in r_lower for s in ("俄语", "俄文", "russian")):
+            return "ru"
+
+        # Heuristic: detect scripts.
+        if re.search(r"[\u3040-\u30ff]", r):
+            return "ja"
+        if re.search(r"[\uac00-\ud7af]", r):
+            return "ko"
+        if re.search(r"[\u0400-\u04ff]", r):
+            return "ru"
+
         return "zh"
 
     def _infer_forced_category(req_text: Optional[str], *, resolved_lang: str) -> Optional[str]:
@@ -896,22 +875,69 @@ async def generate_copy(
     if lang not in {"zh", "en", "ru", "ja", "ko", "other"}:
         lang = "zh"
 
-    forced_category = _infer_forced_category(requirements, resolved_lang=lang)
-
     debug: Dict[str, Any] = {
         "model": copy_model,
         "target_language": lang,
-        "forced_product_category": forced_category,
+        "product_name": (product_name or "").strip() or None,
+        "bom_code": (bom_code or "").strip() or None,
+        "bom_type": (bom_type or "").strip() or None,
         "has_product_image": bool((product_image_url or "").strip()),
         "has_background_image": bool((background_image_url or "").strip()),
     }
+
+    cfg_text = ""
+    glossary_text = ""
+    if (product_name or "").strip() and (bom_code or "").strip():
+        try:
+            cfg_text, glossary_text = _get_product_config_and_accessory_glossary(
+                (product_name or "").strip(),
+                (bom_code or "").strip(),
+            )
+        except Exception:
+            cfg_text = ""
+            glossary_text = ""
+
+    bom_context_text = ""
+    if (bom_code or "").strip():
+        try:
+            decoded = decode_bom_code((bom_code or "").strip(), bom_type=(bom_type or None))
+            bom_context_text = (decoded or {}).get("context_text") or ""
+        except Exception:
+            bom_context_text = ""
+
+    if cfg_text and len(cfg_text) > 12000:
+        cfg_text = cfg_text[:12000] + "..."
+    if bom_context_text and len(bom_context_text) > 4000:
+        bom_context_text = bom_context_text[:4000] + "..."
+    if glossary_text and len(glossary_text) > 2400:
+        glossary_text = glossary_text[:2400] + "..."
 
     prompt_text = build_step2_prompt(
         step1_result=step1_result or {},
         requirements=requirements,
         target_language=lang,
-        forced_product_category=forced_category,
+        config_text_zh=cfg_text or None,
+        bom_context_text=bom_context_text or None,
+        accessory_glossary_text=glossary_text or None,
     )
+
+    try:
+        folder_name = "_".join(
+            [
+                _sanitize_folder_component(product_name),
+                _sanitize_folder_component(bom_code),
+            ]
+        ).strip("_")
+        if folder_name:
+            product_dir = (Path(BACKEND_ROOT) / "manual_ocr_results" / folder_name).resolve()
+            product_dir.mkdir(parents=True, exist_ok=True)
+            question_path = product_dir / "question_poster.txt"
+            context_path = product_dir / "context_poster.txt"
+            question_text = "# POSTER_COPY_DEFAULT_PROMPT\n" + (POSTER_COPY_DEFAULT_PROMPT or "") + "\n"
+            question_path.write_text(question_text, encoding="utf-8")
+            context_path.write_text(prompt_text or "", encoding="utf-8")
+    except Exception:
+        pass
 
     kwargs: Dict[str, Any] = {
         "model": copy_model,

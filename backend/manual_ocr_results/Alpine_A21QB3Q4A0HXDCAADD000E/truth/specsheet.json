@@ -1,0 +1,53 @@
+{
+  "productTitle": "Alpine",
+  "features": {
+    "capacity": "6-7",
+    "jets": "32",
+    "pumps": "1"
+  },
+  "measurements": "98\" × 90\" × 35\"",
+  "premiumFeatures": [
+    "Underwater Mood Lighting",
+    "Valve Light",
+    "Edge Light",
+    "Corner Light"
+  ],
+  "insulationFeatures": [
+    "Enviro-seal Insulated Base",
+    "Frame insulation",
+    "Polyfoam Insulation"
+  ],
+  "extraFeatures": [
+    "Eyebrow Water Jets (Canada Alpine Simplified)",
+    "Bluetooth audio system",
+    "Grey skirt, Aluminum Skirt",
+    "Grey corner"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "977 lbs"
+    },
+    {
+      "Water Capacity": "296 gallons"
+    },
+    {
+      "Pump": "1* 2 spd 3HP"
+    },
+    {
+      "Controls": "Gecko control system(YJ-2 + K806 + 4KW)"
+    }
+  ],
+  "smartWater": [
+    "Ozonator"
+  ],
+  "images": {
+    "product": "/back/product.png",
+    "background": "/back/back.png"
+  }
+}

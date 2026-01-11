@@ -16,7 +16,12 @@
     <div class="content">
       <div class="product-header">
         <div class="meta">
-          <div class="name">产品：{{ productName || name }}</div>
+          <div class="name">
+            产品：{{ productName || name }}
+            <el-tag v-if="productTypeZh" size="small" type="info" effect="plain" class="product-type-tag">
+              {{ productTypeZh }}
+            </el-tag>
+          </div>
           <div class="sub" v-if="name && productName && name !== productName">展示名称：{{ name }}</div>
           <div class="bom-row">
             <div class="bom-value">
@@ -874,7 +879,6 @@
                       <div class="cover-title" contenteditable="true" @input="onEditManualWithCaret($event, makeManualPath(currentPageIndex, bIdx, 'title'))" v-text="blk.title"></div>
                       <img class="cover-product" :src="blk.productSrc || '/instruction_book/product.png'" alt="product" @click="pickManualImage(makeManualPath(currentPageIndex, bIdx, 'productSrc'))" />
                       <div class="cover-bl">
-                        <div class="cover-model" contenteditable="true" @input="onEditManualWithCaret($event, makeManualPath(currentPageIndex, bIdx, 'model'))">{{ blk.model || blk.title || 'Massern' }}</div>
                         <div class="cover-size" contenteditable="true" @input="onEditManualWithCaret($event, makeManualPath(currentPageIndex, bIdx, 'sizeText'))" v-text="blk.sizeText"></div>
                       </div>
                       <div class="cover-br">vers. 202409</div>
@@ -967,7 +971,7 @@
                       </div>
 
                       <div class="spec-center">
-                        <img :src="blk.imageSrc" alt="Product Specification" @click="pickManualImage(makeManualPath(currentPageIndex, bIdx, 'imageSrc'))" />
+                        <img :src="blk.imageSrc || '/instruction_book/Specification_1.png'" alt="Product Specification" @click="pickManualImage(makeManualPath(currentPageIndex, bIdx, 'imageSrc'))" />
                       </div>
 
                       <div class="spec-col right">
@@ -1123,6 +1127,7 @@ import { useManualStore } from '@/stores/manualStore'
 import { ElMessage } from 'element-plus'
 import {
   insertManualProduct,
+  getKbOverview,
   getSpecsheet,
   saveSpecsheet,
   getManualSpecsheet,
@@ -1136,16 +1141,16 @@ import {
   saveManualSpecsheetTruth,
   getManualBookVariants,
   saveManualBookVariants,
-  generateManualBookFromOcr
+  generateManualBookOneShot
 } from '@/services/api'
 import { BOM_CONFIG } from '@/constants/bomOptions'
 
 const route = useRoute()
 const router = useRouter()
 
-const id = computed(() => route.params.id)
 const manualStore = useManualStore()
 const productName = computed(() => manualStore.productName || getFirstQueryValue(route.query.productName) || '')
+const productTypeZh = ref('')
 const manualSessionId = computed(() => manualStore.sessionId || getFirstQueryValue(route.query.sessionId) || '')
 const manualBomType = computed(() => manualStore.bomType || getFirstQueryValue(route.query.bomType) || '')
 const name = computed(() => productName.value || route.query.name || 'OCR 规格页')
@@ -1171,6 +1176,27 @@ const savedManualBookLoadedKey = ref('')
 const savedManualSpecsheetLoading = ref(false)
 const savedManualSpecsheetLoadedKey = ref('')
 
+const kbProductId = computed(() => {
+  const pn = String(productName.value || '').trim()
+  const bc = String(bomCode.value || '').trim()
+  if (!pn || !bc) return ''
+  return `${pn}_${bc}`
+})
+
+const loadProductType = async () => {
+  const pid = String(kbProductId.value || '').trim()
+  if (!pid) {
+    productTypeZh.value = ''
+    return
+  }
+  try {
+    const overview = await getKbOverview(pid)
+    productTypeZh.value = overview?.product?.product_type_zh || ''
+  } catch (e) {
+    productTypeZh.value = ''
+  }
+}
+
 const redactChunkText = (chunk = {}) => {
   const sanitized = { ...chunk }
   if ('text' in sanitized) sanitized.text = '[REDACTED]'
@@ -1186,14 +1212,68 @@ const redactChunkText = (chunk = {}) => {
   return sanitized
 }
 
+const ensureContentsPage = (pages = [], pageIdBase = '') => {
+  if (!Array.isArray(pages) || !pages.length) return Array.isArray(pages) ? pages : []
+
+  const out = pages.map((p) => ({ ...p }))
+  const isContentsPage = (p) => {
+    if (!p) return false
+    if (String(p.header || '').trim() === 'Contents') return true
+    const blks = Array.isArray(p.blocks) ? p.blocks : []
+    return blks.some((b) => b && b.type === 'contents')
+  }
+
+  const existingIdx = out.findIndex(isContentsPage)
+  const buildContentsBlocks = () => [
+    { type: 'heading', text: 'Contents' },
+    { type: 'contents' },
+  ]
+
+  if (existingIdx < 0) {
+    let insertAfter = -1
+    out.forEach((p, idx) => {
+      if (p && String(p.header || '').trim() === 'Premium Materials') insertAfter = idx
+    })
+    if (insertAfter < 0) insertAfter = 0
+    const insertAt = Math.min(out.length, insertAfter + 1)
+    out.splice(insertAt, 0, {
+      pageId: pageIdBase ? `${pageIdBase}-contents` : `manual-contents-${Date.now()}`,
+      header: 'Contents',
+      blocks: buildContentsBlocks(),
+    })
+    return out
+  }
+
+  const existing = out[existingIdx] || {}
+  const rawBlocks = Array.isArray(existing.blocks) ? existing.blocks : []
+  const blocks = rawBlocks
+    .filter((b) => b && typeof b === 'object')
+    .map((b) => {
+      if (b.type === 'contents') {
+        const { items, ...rest } = b
+        return rest
+      }
+      return { ...b }
+    })
+
+  const hasHeading = blocks.some((b) => b.type === 'heading' && String(b.text || '').trim() === 'Contents')
+  const hasContents = blocks.some((b) => b.type === 'contents')
+  const normalizedBlocks = [...blocks]
+  if (!hasHeading) normalizedBlocks.unshift({ type: 'heading', text: 'Contents' })
+  if (!hasContents) normalizedBlocks.push({ type: 'contents' })
+
+  out.splice(existingIdx, 1, {
+    ...existing,
+    header: 'Contents',
+    blocks: normalizedBlocks,
+  })
+  return out
+}
+
 const handleGenerateManualBook = async () => {
   if (loadingManualBook.value) return
 
   const documents = getCurrentOcrDocuments()
-  if (!documents.length) {
-    manualBookError.value = '请先上传或传入 OCR 结果后再生成说明书'
-    return
-  }
   if (!bomCode.value) {
     manualBookError.value = '当前产品缺少 BOM 号，无法生成说明书'
     return
@@ -1201,7 +1281,7 @@ const handleGenerateManualBook = async () => {
 
   loadingManualBook.value = true
   manualBookProgress.value = 20
-  manualBookLoadingText.value = '正在汇总 OCR 文档…'
+  manualBookLoadingText.value = '正在准备配置与 BOM 信息…'
   manualBookError.value = ''
 
   try {
@@ -1211,9 +1291,64 @@ const handleGenerateManualBook = async () => {
       bom_code: bomCode.value,
       product_name: productName.value || name.value || '',
     }
-    const result = await generateManualBookFromOcr(payload)
+    const plan = await generateManualBookOneShot(payload)
     manualBookProgress.value = 80
-    manualBookLoadingText.value = '正在解析说明书...'
+    manualBookLoadingText.value = '正在应用版本选择与整本固定页生成...'
+
+    // Apply fixed_pages (non-variant pages) onto current template before applying variants.
+    try {
+      const fixed = plan?.fixed_pages && typeof plan.fixed_pages === 'object' ? plan.fixed_pages : {}
+      const pages = Array.isArray(manualPages.value) ? manualPages.value : []
+      const cloneDeep = (value) => {
+        try {
+          if (typeof structuredClone === 'function') return structuredClone(value)
+        } catch (e) {}
+        return JSON.parse(JSON.stringify(value))
+      }
+
+      ;['Cover', 'Installation & User Manual', 'Specification'].forEach((hdr) => {
+        const fp = fixed[hdr]
+        if (!fp || !fp.blocks || !Array.isArray(fp.blocks)) return
+        const idx = pages.findIndex((p) => p && String(p.header || '').trim() === hdr)
+        if (idx < 0) return
+        pages.splice(idx, 1, {
+          ...pages[idx],
+          header: hdr,
+          blocks: cloneDeep(fp.blocks),
+        })
+      })
+      manualPages.value = ensureContentsPage(pages, `manual-oneshot-${Date.now()}`)
+    } catch (e) {
+      console.warn('Failed to apply fixed_pages:', e)
+    }
+
+    // Autofill Cover title/size/model using plan prompt (config_text_zh) and current product meta.
+    try {
+      const promptText = String(plan?.prompt_text || '')
+      const m = promptText.match(/\[CONFIG_TEXT_ZH\]\s*([\s\S]*?)\s*\[\/CONFIG_TEXT_ZH\]/)
+      const cfgText = (m && m[1]) ? String(m[1]).trim() : ''
+      const dimMatch = cfgText.match(/(\d{3,5})\s*[xX×*]\s*(\d{3,5})\s*[xX×*]\s*(\d{3,5})\s*(mm|MM|厘米|cm|CM)?/)
+      const dims = dimMatch
+        ? `${dimMatch[1]}×${dimMatch[2]}×${dimMatch[3]}${dimMatch[4] ? String(dimMatch[4]).toLowerCase().replace('厘米', 'cm') : 'mm'}`
+        : ''
+      const titleParts = [String(productName.value || name.value || '').trim(), String(productTypeZh.value || '').trim()]
+        .filter(Boolean)
+      const title = titleParts.join(' ')
+
+      const pages = Array.isArray(manualPages.value) ? manualPages.value : []
+      const coverPage = pages.find((p) => p && p.header === 'Cover')
+      const coverBlock = coverPage?.blocks?.find?.((b) => b && b.type === 'cover')
+      if (coverBlock) {
+        if (!coverBlock.title || String(coverBlock.title).trim() === 'VINTERKÖLD') {
+          coverBlock.title = title || coverBlock.title
+        }
+        if (dims && (!coverBlock.sizeText || String(coverBlock.sizeText).trim() === '85” x 85” x 39”')) {
+          coverBlock.sizeText = dims
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to autofill cover block:', e)
+    }
 
     const dialogPayload = {
       request: {
@@ -1223,120 +1358,44 @@ const handleGenerateManualBook = async () => {
         product_name: payload.product_name
       },
       response: {
-        manual_book: result?.manual_book || null,
-        prompt_text: result?.prompt_text || '',
-        system_prompt: result?.system_prompt || ''
+        variants: plan?.variants || {},
+        fixed_pages: plan?.fixed_pages || {},
+        prompt_text: plan?.prompt_text || '',
+        system_prompt: plan?.system_prompt || ''
       },
     }
     manualBookResultPayload.value = JSON.stringify(dialogPayload, null, 2)
     manualBookResultDialogVisible.value = true
 
-    // 优先使用 pages 全量覆盖（假设后端已按固定顺序输出）；否则按 header 定点替换
-    let hydrated = false
-    const book = result?.manual_book
+    // One-shot no longer returns generated_pages; also clear any legacy G pages before applying variants.
+    try {
+      const pages = Array.isArray(manualPages.value) ? manualPages.value : []
+      manualPages.value = pages.filter((p) => !(p && p.variantId === 'G'))
+    } catch (e) {}
+    await applyVariantPlan(plan?.variants || {}, {})
 
-    // 新格式：直接返回数组；仅在数组有数据时全量覆盖
-    const pagesFromBackend = Array.isArray(book) ? book : []
-
-    if (pagesFromBackend.length) {
-      const allowedTypes = new Set([
-        'heading',
-        'paragraph',
-        'list',
-        'cover',
-        'image',
-        'imageFloat-bottom-left',
-        'imageFloat-bottom-right',
-        'imageFloat-top-left',
-        'imageFloat-top-right',
-        'steps',
-        'callout-warning',
-        'callout-error',
-        'spec-box',
-        'grid2',
-        'grid4',
-        'contents',
-        'divider',
-        'ts-section',
-        'troubleTable',
-        'table',
-      ])
-
-      const isSuspiciousText = (text = '') => {
-        const t = String(text || '').trim()
-        if (!t) return false
-        if (t.startsWith('[') || t.startsWith('{')) return true
-        if (t === ']' || t === '}' || t === '},' || t === '],') return true
-        if (t.includes('"header"') || t.includes('\"header\"')) return true
-        if (t.includes('"blocks"') || t.includes('\"blocks\"')) return true
-        if (t.includes('"type"') || t.includes('\"type\"')) return true
-        if (t.includes('"items"') || t.includes('\"items\"')) return true
-        if (/^"[A-Za-z_][A-Za-z0-9_]*"\s*:\s*/.test(t)) return true
-        return false
-      }
-
-      const cloneDeep = (value) => {
-        try {
-          if (typeof structuredClone === 'function') return structuredClone(value)
-        } catch (e) {}
-        return JSON.parse(JSON.stringify(value))
-      }
-
-      const pageIdBase = `manual-${Date.now()}-${Math.random().toString(16).slice(2)}`
-
-      const normalizedPages = pagesFromBackend
-        .filter((p) => p && p.header)
-        .map((p, idx) => {
-          const safeBlocks = Array.isArray(p.blocks)
-            ? p.blocks
-                .filter((blk) => blk && typeof blk === 'object' && allowedTypes.has(blk.type))
-                .filter((blk) => {
-                  if (blk.type === 'heading' || blk.type === 'paragraph') {
-                    return !isSuspiciousText(blk.text)
-                  }
-                  if (blk.type === 'list' && Array.isArray(blk.items)) {
-                    return !blk.items.some((item) => isSuspiciousText(item))
-                  }
-                  return true
-                })
-                .map((blk) => {
-                  if (blk.type === 'table') {
-                    const headers = Array.isArray(blk.headers) ? blk.headers : null
-                    const rows = Array.isArray(blk.rows) ? blk.rows : null
-                    if (headers && rows) return { ...blk }
-
-                    const data = Array.isArray(blk.data) ? blk.data : null
-                    if (data && data.length && Array.isArray(data[0])) {
-                      const hdr = data[0].map((x) => String(x ?? ''))
-                      const rs = data.slice(1).map((r) => (Array.isArray(r) ? r.map((x) => String(x ?? '')) : []))
-                      return { ...blk, headers: hdr, rows: rs }
-                    }
-                    return { ...blk, headers: [], rows: [] }
-                  }
-                  return { ...blk }
-                })
-            : []
-
-          const clonedBlocks = cloneDeep(safeBlocks)
-
-          return {
-            pageId: `${pageIdBase}-p${idx}`,
-            header: p.header,
-            blocks: clonedBlocks,
-          }
-        })
-      if (normalizedPages.length) {
-        manualPages.value = cloneDeep(normalizedPages)
-        manualMeta.value.toc = normalizedPages.map((p, idx) => ({ title: p.header, page: idx + 1 }))
-        currentPageIndex.value = 0
-        hydrated = true
-      }
+    // Auto-save generated result to backend generate/manual_book.json (full pages including A/B/C).
+    try {
+      const pagesToSave = Array.isArray(manualPages.value)
+        ? manualPages.value.map((p) => {
+            const blocks = Array.isArray(p?.blocks) ? p.blocks.map((b) => {
+              if (b && typeof b === 'object' && b.type === 'cover') {
+                const { model, ...rest } = b
+                return rest
+              }
+              return b
+            }) : []
+            const out = { header: p.header, blocks }
+            if (p.variantId) out.variantId = p.variantId
+            return out
+          })
+        : []
+      await saveManualBookTruth(productName.value, bomCode.value, pagesToSave, 'generate')
+    } catch (e) {
+      console.warn('Failed to auto-save generated manual_book.json:', e)
     }
-
     manualBookProgress.value = 100
-    manualBookLoadingText.value = hydrated
-      ? '加载完成！（已按返回顺序覆盖或按 header 替换）'
-      : '已返回 JSON，未找到匹配页面，保留原内容'
+    manualBookLoadingText.value = '加载完成！（one-shot 生成固定页；按版本规划更新模板（A/B/C）；已保存至 generate/manual_book.json）'
   } catch (error) {
     console.error('Failed to load manual book:', error)
     manualBookProgress.value = 100
@@ -1694,12 +1753,14 @@ const tryLoadSavedManualBook = async () => {
       .map((p, idx) => ({
         pageId: `${pageIdBase}-p${idx}`,
         header: p.header,
+        variantId: p.variantId ? String(p.variantId) : undefined,
         blocks: cloneDeep(Array.isArray(p.blocks) ? p.blocks : [])
       }))
 
     if (normalizedPages.length) {
-      manualPages.value = cloneDeep(normalizedPages)
-      manualMeta.value.toc = normalizedPages.map((p, idx) => ({ title: p.header, page: idx + 1 }))
+      const pagesWithContents = ensureContentsPage(normalizedPages, pageIdBase)
+      manualPages.value = cloneDeep(pagesWithContents)
+      manualMeta.value.toc = pagesWithContents.map((p, idx) => ({ title: p.header, page: idx + 1 }))
       currentPageIndex.value = 0
     }
 
@@ -1717,6 +1778,14 @@ watch(
   [productName, bomCode],
   () => {
     tryLoadSavedManualBook()
+  },
+  { immediate: true }
+)
+
+watch(
+  () => kbProductId.value,
+  async () => {
+    await loadProductType()
   },
   { immediate: true }
 )
@@ -2249,21 +2318,37 @@ const contentsIndex = computed(() => {
   const pages = manualPages.value || []
   return pages.findIndex(p => (p.blocks || []).some(b => b.type === 'contents'))
 })
-const isAfterContents = (pageIndex) => {
+
+const numberingStartIndex = computed(() => {
+  const pages = visibleManualPages.value || []
+  const idx = pages.findIndex((p) => {
+    if (!p) return false
+    if (p.header === 'Installation & User Manual') return true
+    const blks = p.blocks || []
+    return blks.some((b) => b.type === 'heading' && String(b.text || '').trim() === 'Installation & User Manual')
+  })
+  if (idx >= 0) return idx
   const ci = contentsIndex.value
-  return ci >= 0 && pageIndex > ci
+  if (ci >= 0) return ci + 1
+  return 0
+})
+
+const isAfterContents = (pageIndex) => {
+  const si = numberingStartIndex.value
+  return typeof si === 'number' && si >= 0 && pageIndex >= si
 }
 const displayPageNum = (pageIndex) => {
-  const ci = contentsIndex.value
-  if (ci < 0) return ''
-  return pageIndex - ci
+  const si = numberingStartIndex.value
+  if (typeof si !== 'number' || si < 0) return ''
+  if (pageIndex < si) return ''
+  return pageIndex - si + 1
 }
 const displayTocPage = (realPageNumber) => {
-  const ci = contentsIndex.value
-  if (ci < 0) return String(realPageNumber).padStart(2, '0')
+  const si = numberingStartIndex.value
+  if (typeof si !== 'number' || si < 0) return String(realPageNumber).padStart(2, '0')
   const idx = realPageNumber - 1
-  if (idx <= ci) return ''
-  return String(idx - ci).padStart(2, '0')
+  if (idx < si) return ''
+  return String(idx - si + 1).padStart(2, '0')
 }
 
 // 可替换的图片资源
@@ -3103,14 +3188,17 @@ const loadSpecsheetData = async () => {
   }
 
   const documents = getCurrentOcrDocuments()
-  if (!documents.length) {
-    specsheetError.value = '请先上传或传入 OCR 结果后再生成规格页'
-    return
-  }
-
   if (!bomCode.value) {
     specsheetError.value = '当前产品缺少 BOM 号，无法生成规格页'
     return
+  }
+
+  if (!documents.length) {
+    try {
+      ElMessage.warning('未检测到 OCR 文档，将仅使用 BOM/产品配置生成规格页（效果可能较弱）')
+    } catch (e) {
+      // ignore
+    }
   }
   
   loadingSpecsheet.value = true
@@ -3342,7 +3430,11 @@ const saveManualToDb = async () => {
       return
     }
     const pages = Array.isArray(manualPages.value)
-      ? manualPages.value.map((p) => ({ header: p.header, blocks: p.blocks }))
+      ? manualPages.value.map((p) => {
+          const out = { header: p.header, blocks: p.blocks }
+          if (p.variantId) out.variantId = p.variantId
+          return out
+        })
       : []
     await saveManualBookTruth(productName.value, bomCode.value, pages)
     savedManualBookLoadedKey.value = ''
@@ -3511,34 +3603,6 @@ const manualPages = ref([
       // - header: string 页面标题
       // - blocks:
       //   · { type: 'heading', text } 标题
-      //   · { type: 'contents', items } 目录（实际由 getContentsFor 自动生成）
-      //       items: 预置目录 [{ title: string, page: number }]（可作占位/示例）
-      header: 'Contents',
-      blocks: [
-        { type: 'heading', text: 'Contents' },
-        { type: 'contents', items: [
-          { title: 'Installation & User Manual', page: 1 },
-          { title: 'How to Set Up', page: 2 },
-          { title: 'Important Safety Instructions', page: 3 },
-          { title: 'Specification', page: 5 },
-          { title: 'Touchscreen Control Panel', page: 6 },
-          { title: 'Preparation for Your Masrren', page: 9 },
-          { title: 'Exhaust Air and Replace Filter', page: 9 },
-          { title: 'Drainage', page: 10 },
-          { title: 'Normal Drainage', page: 11 },
-          { title: 'Condensate Drainage', page: 12 },
-          { title: 'Thermo Protection Activation', page: 14 },
-          { title: 'Water on or Around the Control Screen', page: 15 },
-          { title: 'Preparing for Your Masrren', page: 16 },
-          { title: 'Remove and Install the Skirt', page: 16 },
-          { title: 'Troubleshooting', page: 17 }
-        ] }
-      ]
-    },
-    {
-      // - header: string 页面标题
-      // - blocks:
-      //   · { type: 'heading', text } 标题
       //   · { type: 'callout-warning' | 'callout-error', text, className? } 警示（text 支持 HTML）
       //   · { type: 'paragraph', text, className? } 说明
       //   · { type: 'list', items: string[], className? } 步骤/要点
@@ -3558,7 +3622,7 @@ const manualPages = ref([
           'Allow the equipment to operate for 20–30 seconds. Then, bleed the filter for 20–40 seconds by opening the bleeder valve on one side of the filter cover (refer to the figure). When water flows out from the filter vent, tighten the filter approximately 5–10 seconds after water appears.',
           'Completing these steps will ensure the circulation pump operates at its peak performance.',
           'If the control panel indicates that the circulation pump is functioning normally but there is no water circulation in the pipeline, please repeat steps 1 and 2. (This is a rare occurrence)'
-        ] }
+        ] },
       ]
     },
     {
@@ -4168,6 +4232,9 @@ const manualPages = ref([
       ]
     },
 ])
+
+manualPages.value = ensureContentsPage(manualPages.value, 'manual-default')
+manualMeta.value.toc = (manualPages.value || []).map((p, idx) => ({ title: (p && p.header) ? p.header : '', page: idx + 1 }))
 // 记录初始说明书快照用于重置
 const manualInitialMeta = JSON.parse(JSON.stringify(manualMeta.value))
 const manualInitialPages = JSON.parse(JSON.stringify(manualPages.value))
@@ -4176,7 +4243,7 @@ const currentPageRef = ref(null)
 const currentPageIndex = ref(0)
 
 const VARIANT_GROUP_BY_HEADER = {
-  'Embrace the Revitalizing Chill': { key: 'embrace', label: 'Embrace the Revitalizing Chill' },
+  'Embrace the Revitalizing Chill': { key: 'embrace_the_revitalizing_chill', label: 'Embrace the Revitalizing Chill' },
   'How To Set Up': { key: 'how_to_set_up', label: 'How To Set Up' },
   'Important Safety Instructions': { key: 'important_safety_instructions', label: 'Important Safety Instructions' },
   'Premium Materials': { key: 'premium_materials', label: 'Premium Materials' },
@@ -4184,10 +4251,124 @@ const VARIANT_GROUP_BY_HEADER = {
   'Troubleshooting': { key: 'troubleshooting', label: 'Troubleshooting' },
 }
 
+const VARIANT_LABELS_BY_GROUP = {
+  embrace_the_revitalizing_chill: {
+    A: '冰水缸通用',
+    B: '其他',
+  },
+  premium_materials: {
+    A: 'Tri-layered Side Cabinet 冰水缸',
+    B: 'ABS 冰水缸',
+  },
+  how_to_set_up: {
+    A: '单区冰水缸',
+    B: '双区冰水缸',
+    C: 'SPA',
+  },
+  important_safety_instructions: {
+    A: 'ABS 冰水缸',
+    B: 'Tri-layered Side Cabinet 冰水缸',
+    C: 'SPA',
+  },
+  touchscreen_control_panel: {
+    A: '单区冰水缸',
+    B: 'Tri-layered Side Cabinet 冰水缸',
+  },
+  troubleshooting: {
+    A: '冰水缸',
+    B: 'SPA',
+  },
+}
+
+const getVariantDisplayLabel = (groupKey, variantId) => {
+  const g = String(groupKey || '').trim()
+  const v = String(variantId || '').trim()
+  const mapping = g ? VARIANT_LABELS_BY_GROUP[g] : null
+  if (mapping && Object.prototype.hasOwnProperty.call(mapping, v)) return mapping[v]
+  return v
+}
+
 const selectedVariants = reactive({})
 const variantsLoading = ref(false)
 const variantsLoadedKey = ref('')
 let _variantsSaveTimer = null
+
+const applyVariantPlan = async (variants = {}, generatedPages = {}) => {
+  const allowedByGroup = {
+    embrace_the_revitalizing_chill: new Set(['A', 'B']),
+    premium_materials: new Set(['A', 'B']),
+    how_to_set_up: new Set(['A', 'B', 'C']),
+    important_safety_instructions: new Set(['A', 'B', 'C']),
+    touchscreen_control_panel: new Set(['A', 'B']),
+    troubleshooting: new Set(['A', 'B']),
+  }
+  const headerByGroup = {
+    embrace_the_revitalizing_chill: 'Embrace the Revitalizing Chill',
+    premium_materials: 'Premium Materials',
+    how_to_set_up: 'How To Set Up',
+    important_safety_instructions: 'Important Safety Instructions',
+    touchscreen_control_panel: 'Touchscreen Control Panel',
+    troubleshooting: 'Troubleshooting',
+  }
+
+  const v = variants && typeof variants === 'object' ? variants : {}
+  Object.keys(allowedByGroup).forEach((groupKey) => {
+    const choice = String(v[groupKey] || '').toUpperCase().trim()
+    if (choice && choice !== 'GENERATE' && allowedByGroup[groupKey].has(choice)) {
+      selectedVariants[groupKey] = choice
+    }
+  })
+
+  const g = generatedPages && typeof generatedPages === 'object' ? generatedPages : {}
+  const pages = Array.isArray(manualPages.value) ? manualPages.value : []
+  let mutated = false
+
+  Object.keys(headerByGroup).forEach((groupKey) => {
+    const choice = String(v[groupKey] || '').toUpperCase().trim()
+    if (choice !== 'GENERATE') return
+
+    const repl = Array.isArray(g[groupKey]) ? g[groupKey] : []
+    if (!repl.length) return
+
+    const header = headerByGroup[groupKey]
+    // Remove previous generated G pages for this header to avoid stacking on repeated runs.
+    const oldGIdxs = []
+    pages.forEach((p, idx) => {
+      if (p && p.header === header && String(p.variantId || '') === 'G') oldGIdxs.push(idx)
+    })
+    for (let i = oldGIdxs.length - 1; i >= 0; i--) pages.splice(oldGIdxs[i], 1)
+
+    const idxs = []
+    pages.forEach((p, idx) => {
+      if (p && p.header === header) idxs.push(idx)
+    })
+    if (!idxs.length) return
+
+    // Insert generated pages after the last existing page of this header.
+    const insertAt = Math.max(...idxs) + 1
+    const pageIdBase = `manual-generated-${groupKey}-${Date.now()}-${Math.random().toString(16).slice(2)}`
+    const normalized = repl
+      .filter((p) => p && p.header)
+      .map((p, i) => ({
+        pageId: `${pageIdBase}-p${i}`,
+        header: p.header,
+        // keep only one variant to simplify UI (radio will have single option)
+        variantId: 'G',
+        blocks: Array.isArray(p.blocks) ? p.blocks : []
+      }))
+    if (!normalized.length) return
+    pages.splice(insertAt, 0, ...normalized)
+    selectedVariants[groupKey] = 'G'
+    mutated = true
+  })
+
+  if (mutated) {
+    manualPages.value = ensureContentsPage(pages, `manual-generated-${Date.now()}`)
+    manualMeta.value.toc = (manualPages.value || []).map((p, idx) => ({ title: (p && p.header) ? p.header : '', page: idx + 1 }))
+    currentPageIndex.value = 0
+    await nextTick()
+  }
+}
 
 const manualPagesWithMeta = computed(() => {
   const pages = Array.isArray(manualPages.value) ? manualPages.value : []
@@ -4261,7 +4442,7 @@ const currentVariantSelectorGroup = computed(() => {
   })
   const order = { A: 0, B: 1, C: 2 }
   const options = Array.from(optionsSet)
-    .map((id) => ({ id, label: id }))
+    .map((id) => ({ id, label: getVariantDisplayLabel(group.key, id) }))
     .sort((a, b) => {
       const ao = order[String(a.id)]
       const bo = order[String(b.id)]
@@ -4296,7 +4477,7 @@ const variantSelectorGroups = computed(() => {
     }
     byKey[g].options[row.variantId] = byKey[g].options[row.variantId] || {
       id: row.variantId,
-      label: row.variantId,
+      label: getVariantDisplayLabel(g, row.variantId),
     }
   })
 
@@ -4582,7 +4763,7 @@ const tryLoadSavedManualVariants = async () => {
 }
 
 watch(
-  [productName, bomCode, tab],
+  () => [productName.value, bomCode.value],
   async () => {
     if (tab.value !== 'manual') return
     await nextTick()
@@ -4592,8 +4773,9 @@ watch(
 )
 
 const getContentsFor = (pageIndex) => {
-  const pages = manualPages.value || []
-  const start = pageIndex + 1
+  const pages = visibleManualPages.value || []
+  const start = numberingStartIndex.value
+  if (typeof start !== 'number' || start < 0 || start >= pages.length) return []
   const after = pages.slice(start).map((p, i) => ({ title: deriveTitle(p), page: start + i + 1 }))
   const result = []
   for (let i = 0; i < after.length; i++) {
@@ -4630,7 +4812,7 @@ const imageStyle = (blk) => {
 const coverStyle = (blk) => ({
   position: 'absolute',
   inset: '0 0 0 0',
-  background: `url(${blk.backSrc || '/instruction_book/back.jpg'}) center/cover no-repeat`,
+  background: `url(${(typeof blk?.backSrc === 'string' && blk.backSrc.trim() && blk.backSrc.trim().startsWith('/')) ? blk.backSrc.trim() : '/instruction_book/back.jpg'}) center/cover no-repeat`,
 })
 // 允许通过路由 query.manualPages / query.manualMeta 传入 URL 编码的 JSON 字符串覆盖页面内容或目录
 onMounted(() => {
@@ -4639,7 +4821,9 @@ onMounted(() => {
     try {
       const decoded = decodeURIComponent(rawPages)
       const incoming = JSON.parse(decoded)
-      if (Array.isArray(incoming)) manualPages.value = incoming
+      if (Array.isArray(incoming)) {
+        manualPages.value = ensureContentsPage(incoming, `manual-route-${Date.now()}`)
+      }
     } catch (e) {}
   }
   const rawMeta = route.query.manualMeta
@@ -5162,6 +5346,8 @@ onMounted(() => {
 .tocline .ct-page { width: 40px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-family: 'AgencyFB-Bold', 'Agency FB', Impact, 'Segoe UI', Arial, sans-serif; font-variant-numeric: tabular-nums; }
 .tocline.lvl-0 { font-weight: 700; }
 .tocline.lvl-1 { padding-left: 28px; font-weight: 600; opacity: 0.95; }
+
+.product-type-tag { margin-left: 10px; transform: translateY(-1px); }
 
 /* Callout (warning/error) */
 .callout { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; }

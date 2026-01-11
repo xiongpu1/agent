@@ -124,6 +124,38 @@ class SpecsheetFromOcrRequest(BaseModel):
     )
 
 
+class ManualBookFullGenerateRequest(BaseModel):
+    """Generate the full 13-page manual book using product context (config_text_zh + BOM + glossary)."""
+
+    product_name: str = Field(..., description="产品名称（用于定位 Neo4j 产品与标题）")
+    bom_code: str = Field(..., description="BOM 编码（用于定位 Neo4j 产品与解码摘要）")
+
+    llm_provider: Optional[str] = Field(
+        None,
+        description="可选：指定文本大模型提供方（如 'ollama' 或 'dashscope'），不传则使用后端默认配置",
+    )
+    llm_model: Optional[str] = Field(
+        None,
+        description="可选：指定文本大模型名称（建议传 LiteLLM model 格式，如 'ollama/qwen3-vl:xxx' 或 'dashscope/qwen3-max'）",
+    )
+
+
+class ManualBookVariantPlanRequest(BaseModel):
+    documents: List[SpecsheetOcrDocument] = Field(default_factory=list, description="OCR 文档列表")
+    product_name: Optional[str] = Field(None, description="产品名称提示")
+    session_id: Optional[str] = Field(None, description="会话 ID，可用于落盘")
+    bom_code: Optional[str] = Field(None, description="BOM 编码（可选）")
+
+    llm_provider: Optional[str] = Field(
+        None,
+        description="可选：指定文本大模型提供方（如 'ollama' 或 'dashscope'），不传则使用后端默认配置",
+    )
+    llm_model: Optional[str] = Field(
+        None,
+        description="可选：指定文本大模型名称（建议传 LiteLLM model 格式，如 'ollama/qwen3-vl:xxx' 或 'dashscope/qwen3-max'）",
+    )
+
+
 class ManualSpecsheetSaveRequest(BaseModel):
     """Payload for persisting a specsheet JSON inside manual session folder."""
     specsheet: SpecsheetData = Field(..., description="规格页 JSON 数据")
@@ -174,6 +206,44 @@ class ManualBookData(BaseModel):
 class ManualBookResponse(BaseModel):
     """API response for instruction book generation."""
     manual_book: List[ManualBookData] = Field(..., description="生成的说明书页数组（长度 13，对应前端 manualPages）")
+    prompt_text: Optional[str] = Field(None, description="用户提示词")
+    system_prompt: Optional[str] = Field(None, description="系统提示词")
+
+
+class ManualBookVariantPlanResponse(BaseModel):
+    variants: Dict[str, str] = Field(default_factory=dict, description="章节组 -> 版本选择（A/B/C/GENERATE）")
+    generated_pages: Dict[str, List[ManualBookData]] = Field(
+        default_factory=dict,
+        description="章节组 -> 生成的替代页面（仅当 variants[group]==GENERATE 时提供）",
+    )
+    prompt_text: Optional[str] = Field(None, description="用户提示词")
+    system_prompt: Optional[str] = Field(None, description="系统提示词")
+
+
+class ManualBookOneShotRequest(BaseModel):
+    """One-shot manual generation: choose variants (A/B/C) + generate fixed non-variant pages."""
+
+    product_name: str = Field(..., description="产品名称（用于定位 Neo4j 产品与标题）")
+    bom_code: str = Field(..., description="BOM 编码（用于定位 Neo4j 产品与解码摘要）")
+    documents: List[SpecsheetOcrDocument] = Field(default_factory=list, description="可选 OCR 文档列表（用于提供图片候选/额外上下文）")
+    session_id: Optional[str] = Field(None, description="会话 ID，可用于落盘")
+
+    llm_provider: Optional[str] = Field(
+        None,
+        description="可选：指定文本大模型提供方（如 'ollama' 或 'dashscope'），不传则使用后端默认配置",
+    )
+    llm_model: Optional[str] = Field(
+        None,
+        description="可选：指定文本大模型名称（建议传 LiteLLM model 格式，如 'ollama/qwen3-vl:xxx' 或 'dashscope/qwen3-max'）",
+    )
+
+
+class ManualBookOneShotResponse(BaseModel):
+    variants: Dict[str, str] = Field(default_factory=dict, description="章节组 -> 版本选择（A/B/C）")
+    fixed_pages: Dict[str, ManualBookData] = Field(
+        default_factory=dict,
+        description="非变体页生成结果：header -> page（例如 Cover / Installation & User Manual / Specification；Contents 将被前端忽略）",
+    )
     prompt_text: Optional[str] = Field(None, description="用户提示词")
     system_prompt: Optional[str] = Field(None, description="系统提示词")
 

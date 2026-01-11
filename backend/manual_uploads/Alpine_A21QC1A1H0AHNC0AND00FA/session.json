@@ -1,0 +1,79 @@
+{
+  "session_id": "Alpine_A21QC1A1H0AHNC0AND00FA",
+  "product_name": "Alpine",
+  "bom_code": "A21QC1A1H0AHNC0AND00FA",
+  "bom_type": null,
+  "created_at": "2026-01-10T12:08:34.094844",
+  "status": "success",
+  "product_files": [
+    {
+      "id": "20260104165858_1006_20-1768050493450434511",
+      "name": "20260104165858_1006_20.png",
+      "size": 1241705,
+      "type": "image/png",
+      "path": "manual_uploads/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20.png",
+      "url": "/api/files/manual_uploads/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20.png",
+      "lastModified": 1768050493450,
+      "previewUrl": ""
+    }
+  ],
+  "accessory_files": [],
+  "product_upload_count": 1,
+  "accessory_upload_count": 0,
+  "product_ocr_groups": [
+    {
+      "source_name": "20260104165858_1006_20.png",
+      "source_size": 1241705,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "20260104165858_1006_20",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 143207,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "20260104165858_1006_20.stdout.md",
+              "path": "manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.stdout.md",
+              "type": "text/markdown",
+              "size": 1088,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "20260104165858_1006_20"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 352,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "20260104165858_1006_20"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 146898,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "20260104165858_1006_20"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessory_ocr_groups": [],
+  "product_id": "Alpine_A21QC1A1H0AHNC0AND00FA",
+  "material_code": "Alpine",
+  "bom_id": "A21QC1A1H0AHNC0AND00FA",
+  "completed_at": "2026-01-10T13:15:24.251068"
+}

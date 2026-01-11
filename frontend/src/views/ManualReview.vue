@@ -73,7 +73,20 @@
               <div class="panel-sub">来自上传的产品资料</div>
               <div class="panel-path">存储路径：{{ storagePaths.productOriginal }}</div>
             </div>
-            <el-tag type="info" effect="plain">{{ productFiles.length }} 个文件</el-tag>
+            <div class="panel-actions">
+              <el-upload
+                :auto-upload="false"
+                multiple
+                :show-file-list="false"
+                :disabled="!manualData.sessionId || uploadProductLoading"
+                :on-change="handleUploadProductChange"
+              >
+                <el-button size="small" type="primary" plain :loading="uploadProductLoading" :disabled="!manualData.sessionId">
+                  上传文件
+                </el-button>
+              </el-upload>
+              <el-tag type="info" effect="plain">{{ productFiles.length }} 个文件</el-tag>
+            </div>
           </div>
           <div class="panel-body">
             <el-empty v-if="!productFiles.length" description="暂无关联文件" />
@@ -81,12 +94,21 @@
               <div v-for="file in productFiles" :key="file.id" class="simple-doc-item">
                 <div class="doc-name-row">
                   <span class="doc-name">{{ file.name }}</span>
-                  <el-button
-                    link
-                    type="primary"
-                    size="small"
-                    @click="handleOriginalFileClick(file)"
-                  >查看</el-button>
+                  <div class="doc-actions">
+                    <el-tooltip content="查看" placement="top">
+                      <el-button link type="primary" size="small" :icon="View" @click="handleOriginalFileClick(file)" />
+                    </el-tooltip>
+                    <el-tooltip content="删除" placement="top">
+                      <el-button
+                        link
+                        type="danger"
+                        size="small"
+                        :icon="Delete"
+                        :disabled="deleteUploadLoading"
+                        @click="confirmDeleteUpload(file)"
+                      />
+                    </el-tooltip>
+                  </div>
                 </div>
                 <div class="doc-subtle">
                   {{ formatSize(file.size) }} · {{ file.type || '未知类型' }}
@@ -130,7 +152,20 @@
               <div class="panel-sub">来自上传的配件资料</div>
               <div class="panel-path">存储路径：{{ storagePaths.accessoryOriginal }}</div>
             </div>
-            <el-tag type="info" effect="plain">{{ accessoryFiles.length }} 个文件</el-tag>
+            <div class="panel-actions">
+              <el-upload
+                :auto-upload="false"
+                multiple
+                :show-file-list="false"
+                :disabled="!manualData.sessionId || uploadAccessoryLoading"
+                :on-change="handleUploadAccessoryChange"
+              >
+                <el-button size="small" type="primary" plain :loading="uploadAccessoryLoading" :disabled="!manualData.sessionId">
+                  上传文件
+                </el-button>
+              </el-upload>
+              <el-tag type="info" effect="plain">{{ accessoryFiles.length }} 个文件</el-tag>
+            </div>
           </div>
           <div class="panel-body">
             <el-empty v-if="!accessoryFiles.length" description="暂无关联文件" />
@@ -138,12 +173,21 @@
               <div v-for="file in accessoryFiles" :key="file.id" class="simple-doc-item">
                 <div class="doc-name-row">
                   <span class="doc-name">{{ file.name }}</span>
-                  <el-button
-                    link
-                    type="primary"
-                    size="small"
-                    @click="handleOriginalFileClick(file)"
-                  >查看</el-button>
+                  <div class="doc-actions">
+                    <el-tooltip content="查看" placement="top">
+                      <el-button link type="primary" size="small" :icon="View" @click="handleOriginalFileClick(file)" />
+                    </el-tooltip>
+                    <el-tooltip content="删除" placement="top">
+                      <el-button
+                        link
+                        type="danger"
+                        size="small"
+                        :icon="Delete"
+                        :disabled="deleteUploadLoading"
+                        @click="confirmDeleteUpload(file)"
+                      />
+                    </el-tooltip>
+                  </div>
                 </div>
                 <div class="doc-subtle">
                   {{ formatSize(file.size) }} · {{ file.type || '未知类型' }}
@@ -316,6 +360,7 @@
 <script setup>
 import { computed, reactive, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { View, Delete } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   useManualStore,
@@ -325,7 +370,7 @@ import {
   setManualSession,
   setManualOcrProgress
 } from '@/stores/manualStore'
-import { runManualOcrSession, getManualOcrProgress, getManualSession, updateDocument, deleteDocument } from '@/services/api'
+import { runManualOcrSession, getManualOcrProgress, getManualSession, appendManualSessionUploads, deleteManualSessionUpload, updateDocument, deleteDocument } from '@/services/api'
 import { BOM_CONFIG } from '@/constants/bomOptions'
 
 const route = useRoute()
@@ -380,12 +425,22 @@ const deriveBomTypeFromCode = (code = '') => {
   }) || ''
 }
 
-const productFiles = computed(() => manualData.productFiles || [])
-const accessoryFiles = computed(() => manualData.accessoryFiles || [])
+const sortByName = (items = []) =>
+  (Array.isArray(items) ? items : [])
+    .slice()
+    .sort((a, b) => String(a?.name || '').localeCompare(String(b?.name || ''), 'zh-Hans-CN', { sensitivity: 'base' }))
+
+const productFiles = computed(() => sortByName(manualData.productFiles || []))
+const accessoryFiles = computed(() => sortByName(manualData.accessoryFiles || []))
 const productOcrFiles = computed(() => manualData.productOcrFiles || [])
 const accessoryOcrFiles = computed(() => manualData.accessoryOcrFiles || [])
-const productOcrGroups = computed(() => manualData.productOcrGroups || [])
-const accessoryOcrGroups = computed(() => manualData.accessoryOcrGroups || [])
+const sortGroupsBySourceName = (groups = []) =>
+  (Array.isArray(groups) ? groups : [])
+    .slice()
+    .sort((a, b) => String(a?.sourceName || '').localeCompare(String(b?.sourceName || ''), 'zh-Hans-CN', { sensitivity: 'base' }))
+
+const productOcrGroups = computed(() => sortGroupsBySourceName(manualData.productOcrGroups || []))
+const accessoryOcrGroups = computed(() => sortGroupsBySourceName(manualData.accessoryOcrGroups || []))
 const countArtifacts = (groups = []) => {
   if (!Array.isArray(groups)) return 0
   return groups.reduce((sum, group) => {
@@ -417,9 +472,12 @@ const hasData = computed(() => Boolean(manualData.sessionId || (manualData.produ
 const ocrLoading = ref(false)
 const ocrError = ref('')
 const promptReverseLoading = ref(false)
-const autoRunOcrAndPromptReverseOnEnter = ref(true)
+const autoRunOcrAndPromptReverseOnEnter = ref(false)
 const autoRunOcrAndPromptReverseKey = ref('')
 const autoRunOcrAndPromptReverseRunning = ref(false)
+const uploadProductLoading = ref(false)
+const uploadAccessoryLoading = ref(false)
+const deleteUploadLoading = ref(false)
 const progressTimer = ref(null)
 const progressHideTimer = ref(null)
 const sessionLoading = ref(false)
@@ -448,6 +506,63 @@ const ocrProgress = computed(() => {
 
 const goBack = () => {
   router.push({ name: 'Home', query: { tab: 'manual' } })
+}
+
+const handleUploadProductChange = async (file) => {
+  if (!manualData.sessionId) return
+  if (!file?.raw) return
+  uploadProductLoading.value = true
+  try {
+    await appendManualSessionUploads(manualData.sessionId, { productFiles: [file] })
+    await loadSession(manualData.sessionId, { silent: true })
+    ElMessage.success('产品文件已上传')
+  } catch (error) {
+    console.error(error)
+    ElMessage.error(error?.message || '上传失败')
+  } finally {
+    uploadProductLoading.value = false
+  }
+}
+
+const handleUploadAccessoryChange = async (file) => {
+  if (!manualData.sessionId) return
+  if (!file?.raw) return
+  uploadAccessoryLoading.value = true
+  try {
+    await appendManualSessionUploads(manualData.sessionId, { accessoryFiles: [file] })
+    await loadSession(manualData.sessionId, { silent: true })
+    ElMessage.success('配件文件已上传')
+  } catch (error) {
+    console.error(error)
+    ElMessage.error(error?.message || '上传失败')
+  } finally {
+    uploadAccessoryLoading.value = false
+  }
+}
+
+const confirmDeleteUpload = (file) => {
+  if (!manualData.sessionId) return
+  const path = file?.path || ''
+  if (!path) return
+  ElMessageBox.confirm(`确认删除文件「${file?.name || '未命名文件'}」？该操作不可撤销。`, '删除确认', {
+    type: 'warning',
+    confirmButtonText: '删除',
+    cancelButtonText: '取消',
+  })
+    .then(async () => {
+      deleteUploadLoading.value = true
+      try {
+        await deleteManualSessionUpload(manualData.sessionId, path)
+        await loadSession(manualData.sessionId, { silent: true })
+        ElMessage.success('文件已删除')
+      } catch (error) {
+        console.error(error)
+        ElMessage.error(error?.message || '删除失败')
+      } finally {
+        deleteUploadLoading.value = false
+      }
+    })
+    .catch(() => {})
 }
 
 const startOcr = () => {
@@ -1174,6 +1289,11 @@ router.afterEach((to, from) => {
   justify-content: space-between;
   gap: 12px;
 }
+.panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .panel-title {
   font-weight: 600;
 }
@@ -1215,6 +1335,17 @@ router.afterEach((to, from) => {
 }
 .doc-name {
   font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.doc-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
 .doc-subtle {
   font-size: 12px;

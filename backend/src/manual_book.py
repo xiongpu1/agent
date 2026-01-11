@@ -9,8 +9,12 @@ from src.rag_specsheet import (
     _build_context_from_ocr_documents,
     _run_completion_with_timeout,
     get_llm_config,
+    _get_product_config_and_accessory_glossary,
 )
-from src.specsheet_models import ManualBookData, ManualBookFromOcrRequest
+from src.specsheet_models import ManualBookData, ManualBookFromOcrRequest, ManualBookVariantPlanRequest, ManualBookOneShotRequest
+from src.api_queries import BACKEND_ROOT, upsert_product_has_doc, get_kb_overview_by_product_id
+from src.rag_bom import decode_bom_code
+from src.rag_specsheet import _summarize_bom
 
 # 固定页顺序（需与前端 manualPages 一致）
 TARGET_HEADERS = [
@@ -51,7 +55,7 @@ MANUAL_BOOK_SYSTEM_PROMPT = """你是一名产品说明书文案助手。严格�
 ]
 
 字段/块语义（需用内容字段，不要返回样式字段 fullWidth/rotate/marginTop）：
-- cover: { title 主标题, sizeText 尺寸文案, backSrc 封底图, productSrc 产品图, model 可选型号 }
+- cover: { title 主标题, sizeText 尺寸文案, backSrc 封底图, productSrc 产品图}
 - heading: { text 标题, level 可选 1/2/3, anchor 可选锚点 }
 - paragraph: { text 段落, className 可选样式类 }
 - list: { items: [字符串，可含基础 HTML], ordered 可选是否有序, className 可选 }
@@ -237,6 +241,539 @@ MANUAL_BOOK_SYSTEM_PROMPT = """你是一名产品说明书文案助手。严格�
 - 顺序和 header 必须与上面列表完全一致且一一对应，数组长度固定为 13，缺少任何一页都视为错误输出。
 - 每页 blocks 类型与字段必须符合示例结构；可替换文本/图片，但字段键保持一致。
 - 仅输出 JSON 数组，无任何额外文本或 Markdown。"""
+
+
+MANUAL_VARIANT_PLAN_SYSTEM_PROMPT = """你是一名“说明书多版本模板选择器”。
+
+你会得到：
+1) 产品品类（中文），例如：泳池/户外缸/按摩浴缸/对接按摩缸/按摩缸/冰水缸。
+2) 产品配置原文（中文，权威）：config_text_zh。
+3) BOM 解码摘要（中文，权威）：来自 BOM 段位的 meaning。
+
+你的任务：
+对每个章节组（group_key）选择合适版本：A/B/C，或者在无法判断/无合适模板时选择 GENERATE。
+
+规则：
+- 必须以 config_text_zh + BOM 摘要为主要依据；品类用于辅助判断，不可凭空臆测。
+- 若信息不足或无法判断 ABS vs Tri-layer / SPA vs 冰水缸等关键差异，则选择 GENERATE。
+- 只允许输出严格 JSON 对象（纯文本，不要 Markdown/代码块/解释文字）。
+
+输出 JSON 结构必须严格等于：
+{
+  "variants": {
+    "embrace_the_revitalizing_chill": "A|B|GENERATE",
+    "premium_materials": "A|B|GENERATE",
+    "how_to_set_up": "A|B|C|GENERATE",
+    "important_safety_instructions": "A|B|C|GENERATE",
+    "touchscreen_control_panel": "A|B|GENERATE",
+    "troubleshooting": "A|B|GENERATE"
+  },
+  "generated_pages": {
+    "<group_key>": [ {"header": "...", "blocks": [...]}, ... ]
+  }
+}
+
+generated_pages 仅在对应 variants[group_key] == "GENERATE" 时才允许出现。
+
+生成页面要求：
+- 数组元素为 ManualBook 页面结构：{"header": string, "blocks": array}。
+- blocks 中允许的 type 与字段含义请参考现有说明书 JSON（heading/paragraph/list/steps/image/grid4/grid2/spec-box/callout-* / ts-section / troubleTable 等）。
+- header 必须使用该章节组对应的页面 header（见用户提示中的映射），不要发明新 header。
+- premium_materials / embrace_the_revitalizing_chill / how_to_set_up / touchscreen_control_panel：生成 1 页。
+- important_safety_instructions：生成 2 页（同 header）。
+- troubleshooting：生成 3 页（同 header）。
+"""
+
+
+def _truncate_text(value: str, max_chars: int = 8000) -> str:
+    v = (value or "").strip()
+    if len(v) <= max_chars:
+        return v
+    return v[:max_chars] + "\n...(truncated)..."
+
+
+def _validate_generated_group_pages(group_key: str, pages: List[ManualBookData]) -> List[ManualBookData]:
+    header_by_group = {
+        "embrace_the_revitalizing_chill": "Embrace the Revitalizing Chill",
+        "premium_materials": "Premium Materials",
+        "how_to_set_up": "How To Set Up",
+        "important_safety_instructions": "Important Safety Instructions",
+        "touchscreen_control_panel": "Touchscreen Control Panel",
+        "troubleshooting": "Troubleshooting",
+    }
+    expected_counts = {
+        "embrace_the_revitalizing_chill": 1,
+        "premium_materials": 1,
+        "how_to_set_up": 1,
+        "important_safety_instructions": 2,
+        "touchscreen_control_panel": 1,
+        "troubleshooting": 3,
+    }
+    expected_header = header_by_group.get(group_key)
+    if not expected_header:
+        return []
+    exp_n = expected_counts.get(group_key, 0)
+    if exp_n <= 0:
+        return []
+    cleaned = [p for p in (pages or []) if p and getattr(p, "header", None)]
+    if len(cleaned) != exp_n:
+        return []
+    for p in cleaned:
+        if (p.header or "").strip() != expected_header:
+            return []
+        if not isinstance(getattr(p, "blocks", None), list):
+            return []
+    return cleaned
+
+
+def plan_manual_variants_from_context(
+    payload: ManualBookVariantPlanRequest,
+) -> Tuple[Dict[str, str], Dict[str, List[ManualBookData]], str]:
+    """LLM selects variant for each group key based on product category + BOM/config.
+
+    Returns:
+        variants: dict[group_key] -> A/B/C/GENERATE
+        generated_pages: dict[group_key] -> pages (when GENERATE)
+        user_prompt: str
+    """
+
+    product_id = ""
+    if payload.product_name and payload.bom_code:
+        product_id = f"{payload.product_name.strip()}_{payload.bom_code.strip()}".strip("_")
+
+    product_category = ""
+    config_text_zh = ""
+    if product_id:
+        try:
+            overview = get_kb_overview_by_product_id(product_id)
+            product_category = (overview.get("product") or {}).get("product_type_zh") or ""
+            config_text_zh = (overview.get("config") or {}).get("config_text_zh") or ""
+        except Exception:
+            product_category = ""
+            config_text_zh = ""
+
+    accessory_glossary_text = ""
+    if payload.product_name and payload.bom_code:
+        try:
+            cfg2, glossary2 = _get_product_config_and_accessory_glossary(payload.product_name, payload.bom_code)
+            if cfg2:
+                config_text_zh = cfg2
+            accessory_glossary_text = glossary2 or ""
+        except Exception:
+            accessory_glossary_text = ""
+
+    bom_summary = ""
+    try:
+        decoded = decode_bom_code(payload.bom_code or "") if payload.bom_code else None
+        bom_summary = _summarize_bom(decoded) or ""
+    except Exception:
+        bom_summary = ""
+
+    product_category = (product_category or "").strip()
+    config_text_zh = _truncate_text(config_text_zh, 12000)
+    bom_summary = _truncate_text(bom_summary, 4000)
+    accessory_glossary_text = _truncate_text(accessory_glossary_text, 2400)
+
+    variant_meanings = {
+        "embrace_the_revitalizing_chill": {"A": "冰水缸通用", "B": "其他"},
+        "premium_materials": {"A": "Tri-layered Side Cabinet 冰水缸", "B": "ABS 冰水缸"},
+        "how_to_set_up": {"A": "单区冰水缸", "B": "双区冰水缸", "C": "SPA"},
+        "important_safety_instructions": {"A": "ABS 冰水缸", "B": "Tri-layered Side Cabinet 冰水缸", "C": "SPA"},
+        "touchscreen_control_panel": {"A": "单区冰水缸", "B": "Tri-layered Side Cabinet 冰水缸"},
+        "troubleshooting": {"A": "冰水缸", "B": "SPA"},
+    }
+    header_by_group = {
+        "embrace_the_revitalizing_chill": "Embrace the Revitalizing Chill",
+        "premium_materials": "Premium Materials",
+        "how_to_set_up": "How To Set Up",
+        "important_safety_instructions": "Important Safety Instructions",
+        "touchscreen_control_panel": "Touchscreen Control Panel",
+        "troubleshooting": "Troubleshooting",
+    }
+
+    title_hint = payload.product_name or payload.bom_code or "Instruction Book"
+    user_prompt = f"""# 产品品类（辅助判断）\n{product_category or '（未知）'}\n\n"""
+    user_prompt += "# 产品配置原文（中文，权威）\n"
+    user_prompt += f"[CONFIG_TEXT_ZH]\n{config_text_zh or '（空）'}\n[/CONFIG_TEXT_ZH]\n\n"
+
+    if accessory_glossary_text:
+        user_prompt += "# Accessory Glossary (ZH -> EN, use EXACT English if provided)\n"
+        user_prompt += "[ACCESSORY_GLOSSARY]\n"
+        user_prompt += f"{accessory_glossary_text}\n"
+        user_prompt += "[/ACCESSORY_GLOSSARY]\n\n"
+
+    user_prompt += "# BOM 解码摘要（中文，权威）\n"
+    user_prompt += f"[BOM_SUMMARY]\n{bom_summary or '（空）'}\n[/BOM_SUMMARY]\n\n"
+    user_prompt += "# 章节组版本含义（帮助理解 A/B/C 差异）\n"
+    user_prompt += json.dumps(variant_meanings, ensure_ascii=False, indent=2)
+    user_prompt += "\n\n# 章节组 header 映射\n"
+    user_prompt += json.dumps(header_by_group, ensure_ascii=False, indent=2)
+    user_prompt += "\n\n"
+    user_prompt += f"title_hint: {title_hint}\n"
+    user_prompt += "请输出严格 JSON 对象。\n"
+
+    llm_config = get_llm_config(
+        llm_provider=getattr(payload, "llm_provider", None),
+        llm_model=getattr(payload, "llm_model", None),
+    )
+
+    def _call_llm(messages: list[dict]) -> str:
+        kwargs = {
+            "model": llm_config.model,
+            "messages": messages,
+            "temperature": 0.2,
+        }
+        if llm_config.api_key:
+            kwargs["api_key"] = llm_config.api_key
+        if llm_config.base_url:
+            kwargs["api_base"] = llm_config.base_url
+        response = _run_completion_with_timeout(kwargs, None)
+        return response.choices[0].message.content.strip()
+
+    allowed = {
+        "embrace_the_revitalizing_chill": {"A", "B", "GENERATE"},
+        "premium_materials": {"A", "B", "GENERATE"},
+        "how_to_set_up": {"A", "B", "C", "GENERATE"},
+        "important_safety_instructions": {"A", "B", "C", "GENERATE"},
+        "touchscreen_control_panel": {"A", "B", "GENERATE"},
+        "troubleshooting": {"A", "B", "GENERATE"},
+    }
+
+    variants: Dict[str, str] = {}
+    generated_pages: Dict[str, List[ManualBookData]] = {}
+    errors: list[str] = []
+
+    for attempt in range(2):
+        extra_note = None
+        if attempt == 1 and errors:
+            extra_note = (
+                "上次输出无法解析或结构不符合要求。请仅返回严格 JSON 对象，且必须含 variants 字段。"
+                f"错误：{errors[-1]}"
+            )
+        try:
+            messages = [
+                {"role": "system", "content": MANUAL_VARIANT_PLAN_SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt},
+            ]
+            if extra_note:
+                messages.append({"role": "user", "content": extra_note})
+            raw = _call_llm(messages)
+            text = _strip_code_fence(raw) or raw
+            parsed = json.loads(text)
+            if not isinstance(parsed, dict):
+                raise ValueError("输出不是 JSON 对象")
+
+            raw_variants = parsed.get("variants")
+            if not isinstance(raw_variants, dict):
+                raise ValueError("缺少 variants 或 variants 不是对象")
+
+            vmap: Dict[str, str] = {}
+            for k, v in raw_variants.items():
+                key = str(k).strip()
+                if key not in allowed:
+                    continue
+                val = str(v).strip().upper()
+                if val not in allowed[key]:
+                    val = "GENERATE"
+                vmap[key] = val
+
+            raw_generated = parsed.get("generated_pages")
+            gmap: Dict[str, List[ManualBookData]] = {}
+            if raw_generated is not None:
+                if not isinstance(raw_generated, dict):
+                    raise ValueError("generated_pages 必须是对象")
+                for gk, pages in raw_generated.items():
+                    key = str(gk).strip()
+                    if vmap.get(key) != "GENERATE":
+                        continue
+                    if not isinstance(pages, list):
+                        continue
+                    candidates = [ManualBookData(**p) for p in pages if isinstance(p, dict)]
+                    validated = _validate_generated_group_pages(key, candidates)
+                    if validated:
+                        gmap[key] = validated
+
+            variants = vmap
+            generated_pages = gmap
+            break
+        except Exception as exc:  # noqa: BLE001
+            errors.append(str(exc))
+            variants = {}
+            generated_pages = {}
+
+    # Ensure all keys exist
+    for key, choices in allowed.items():
+        if key not in variants:
+            variants[key] = "GENERATE"
+        else:
+            val = variants[key]
+            if val not in choices:
+                variants[key] = "GENERATE"
+
+    return variants, generated_pages, user_prompt
+
+
+MANUAL_ONE_SHOT_SYSTEM_PROMPT = """你是一名“说明书一体化生成器（One-shot）”。
+
+你会得到：
+1) 产品品类（中文），例如：泳池/户外缸/按摩浴缸/对接按摩缸/按摩缸/冰水缸。
+2) 产品配置原文（中文，权威）：config_text_zh。
+3) Accessory Glossary（中英对照，权威）：ZH -> EN。
+4) BOM 解码摘要（中文，权威）。
+
+你的任务：一次性输出严格 JSON 对象，包含两部分：
+1) variants：为每个章节组选 A/B/C（必须从该组可选集合里选一个，不允许 GENERATE）。
+2) fixed_pages：生成“非变体页”的最终内容（Cover / Installation & User Manual / Specification）。
+
+规则：
+- 必须以 config_text_zh + BOM 摘要为主要依据；品类用于辅助判断。
+- glossary 中给出的英文名称必须优先使用（EXACT English if provided）。
+- Contents 页由前端生成：fixed_pages 里允许不包含 Contents；即使包含也会被忽略。
+- fixed_pages 中的 header 必须严格为：Cover / Installation & User Manual / Specification。
+- Cover.blocks[0].type 必须是 cover，且 backSrc 使用默认背景图，productSrc 可用占位或候选图。
+
+字段/块语义（需用内容字段，不要返回样式字段 fullWidth/rotate/marginTop）：
+- cover: { title 主标题, sizeText 尺寸文案, backSrc 封底图, productSrc 产品图 }
+- heading: { text 标题, level 可选 1/2/3, anchor 可选锚点 }
+- paragraph: { text 段落, className 可选样式类 }
+- list: { items: [字符串，可含基础 HTML], ordered 可选是否有序, className 可选 }
+- imageFloat-<pos>: 浮动图 { src 图片URL, pos 位置 bottom-left|bottom-right|top-left|top-right }
+- image: { src 图片URL, alt 可选 }
+- contents: { items: [{ title, page }] }（目录）
+- callout-warning / callout-error / callout: { text 文案，可含 HTML, className 可选, iconSrc 可选, variant 可选 }
+- steps: { items: [步骤文本] }
+- grid4: { items: [{ index 可选手动序号, title, imgSrc }] }
+- grid2: { items: [{ type: 'image', src } | { type: 'list', ordered?, items }] }
+- spec-box: { imageSrc 主图, specs: { topLeft/topRight/leftTop/leftMiddle1/leftMiddle2/leftBottom/rightTop/rightMiddle/rightBottom: { title, items[string[]] } } }
+- ts-section: { index 序号, images: [3张], magnifier: { serial 可选序列号, qrSrc 可选二维码, qrVisible?, qrSize?, qrMargin?, bgSrc?, lines?: string[] } }
+- troubleTable: { headers: [两列标题], groups: [{ title, items: [{ symptom, description?, solutions: string|string[] }] }] }
+- 其余自定义字段可保留为内容（extra=allow），但不要引入样式键。
+
+
+输出 JSON 结构必须严格等于：
+{
+  "variants": { ... },
+  "fixed_pages": {
+    "Cover": {"header":"Cover","blocks":[...]},
+    "Installation & User Manual": {"header":"Installation & User Manual","blocks":[...]},
+    "Specification": {"header":"Specification","blocks":[...]}
+  }
+}
+
+fixed_pages 内容示例（仅供结构参考；你最终必须把内容放在 fixed_pages.Cover / fixed_pages["Installation & User Manual"] / fixed_pages.Specification 里）：
+{
+  "fixed_pages": {
+    "Cover": {"header": "Cover", "blocks": [
+      {"type": "cover", "title": "机型/主标题（如 Masrren 双区冰水缸）", "sizeText": "尺寸文案（如 2150×2150×1000mm）", "backSrc": "/instruction_book/back.jpg", "productSrc": "/instruction_book/product.png"}
+    ]},
+    "Installation & User Manual": {"header": "Installation & User Manual", "blocks": [
+      {"type": "heading", "text": "Installation & User Manual（安装/使用标题）"},
+      {"type": "callout-warning", "text": "Warning! 安装/用电/漏水等风险提示。"},
+      {"type": "callout-error", "text": "Install per manual; 不当安装可能失去保修。"},
+      {"type": "callout-warning", "text": "Ensure clearance / ambient temp / 搬运注意事项。"},
+      {"type": "paragraph", "text": "To ensure optimal performance after refilling（为补水后性能提供步骤引导）", "className": "callout-align"},
+      {"type": "list", "items": [
+        "Connect power and start control panel（接电上电）",
+        "Run 20–30s, bleed filter 20–40s until water flows, then tighten（排气示例）",
+        "If no circulation, repeat steps 1–2（无循环时复查）"
+      ], "className": "callout-align"}
+    ]},
+    "Specification": {"header": "Specification", "blocks": [
+      {"type": "heading", "text": "Specification"},
+      {"type": "spec-box", "imageSrc": "/instruction_book/Specification_1.png", "specs": {"topLeft": {"title": "", "items": []}, "topRight": {"title": "", "items": []}, "leftTop": {"title": "", "items": []}, "leftMiddle1": {"title": "", "items": []}, "leftMiddle2": {"title": "", "items": []}, "leftBottom": {"title": "", "items": []}, "rightTop": {"title": "", "items": []}, "rightMiddle": {"title": "", "items": []}, "rightBottom": {"title": "", "items": []}}},
+      {"type": "grid2", "items": [
+        {"type": "image", "src": "/instruction_book/Specification_2.png"},
+        {"type": "list", "ordered": true, "items": ["Insulation Sleeves", "Chiller", "Control box", "Circulation Pump", "Ozone Sterilizer"]}
+      ]}
+    ]}
+  }
+}
+
+只允许输出严格 JSON 对象（纯文本，不要 Markdown/代码块/解释文字）。
+"""
+
+
+def generate_manual_one_shot(
+    payload: "ManualBookOneShotRequest",
+) -> Tuple[Dict[str, str], Dict[str, ManualBookData], str]:
+    """One LLM call: returns variants (A/B/C only) + fixed_pages (non-variant)."""
+
+    if not getattr(payload, "product_name", None) or not getattr(payload, "bom_code", None):
+        raise ValueError("product_name 与 bom_code 不能为空")
+
+    product_id = f"{payload.product_name.strip()}_{payload.bom_code.strip()}".strip("_")
+
+    product_category = ""
+    config_text_zh = ""
+    try:
+        overview = get_kb_overview_by_product_id(product_id)
+        product_category = (overview.get("product") or {}).get("product_type_zh") or ""
+        config_text_zh = (overview.get("config") or {}).get("config_text_zh") or ""
+    except Exception:
+        product_category = ""
+        config_text_zh = ""
+
+    accessory_glossary_text = ""
+    try:
+        cfg2, glossary2 = _get_product_config_and_accessory_glossary(payload.product_name, payload.bom_code)
+        if cfg2:
+            config_text_zh = cfg2
+        accessory_glossary_text = glossary2 or ""
+    except Exception:
+        accessory_glossary_text = ""
+
+    bom_summary = ""
+    try:
+        decoded = decode_bom_code(payload.bom_code or "") if payload.bom_code else None
+        bom_summary = _summarize_bom(decoded) or ""
+    except Exception:
+        bom_summary = ""
+
+    product_category = (product_category or "").strip()
+    config_text_zh = _truncate_text(config_text_zh, 12000)
+    bom_summary = _truncate_text(bom_summary, 4000)
+    accessory_glossary_text = _truncate_text(accessory_glossary_text, 2400)
+
+    variant_meanings = {
+        "embrace_the_revitalizing_chill": {"A": "冰水缸通用", "B": "其他"},
+        "premium_materials": {"A": "Tri-layered Side Cabinet 冰水缸", "B": "ABS 冰水缸"},
+        "how_to_set_up": {"A": "单区冰水缸", "B": "双区冰水缸", "C": "SPA"},
+        "important_safety_instructions": {"A": "ABS 冰水缸", "B": "Tri-layered Side Cabinet 冰水缸", "C": "SPA"},
+        "touchscreen_control_panel": {"A": "单区冰水缸", "B": "Tri-layered Side Cabinet 冰水缸"},
+        "troubleshooting": {"A": "冰水缸", "B": "SPA"},
+    }
+    header_by_group = {
+        "embrace_the_revitalizing_chill": "Embrace the Revitalizing Chill",
+        "premium_materials": "Premium Materials",
+        "how_to_set_up": "How To Set Up",
+        "important_safety_instructions": "Important Safety Instructions",
+        "touchscreen_control_panel": "Touchscreen Control Panel",
+        "troubleshooting": "Troubleshooting",
+    }
+
+    fixed_headers = ["Cover", "Installation & User Manual", "Specification"]
+
+    user_prompt = f"""# 产品品类（辅助判断）\n{product_category or '（未知）'}\n\n"""
+    user_prompt += "# 产品配置原文（中文，权威）\n"
+    user_prompt += f"[CONFIG_TEXT_ZH]\n{config_text_zh or '（空）'}\n[/CONFIG_TEXT_ZH]\n\n"
+    if accessory_glossary_text:
+        user_prompt += "# Accessory Glossary (ZH -> EN, use EXACT English if provided)\n"
+        user_prompt += "[ACCESSORY_GLOSSARY]\n"
+        user_prompt += f"{accessory_glossary_text}\n"
+        user_prompt += "[/ACCESSORY_GLOSSARY]\n\n"
+    user_prompt += "# BOM 解码摘要（中文，权威）\n"
+    user_prompt += f"[BOM_SUMMARY]\n{bom_summary or '（空）'}\n[/BOM_SUMMARY]\n\n"
+    user_prompt += "# 章节组版本含义（帮助理解 A/B/C 差异）\n"
+    user_prompt += json.dumps(variant_meanings, ensure_ascii=False, indent=2)
+    user_prompt += "\n\n# 章节组 header 映射（GENERATE 时必须使用对应 header）\n"
+    user_prompt += json.dumps(header_by_group, ensure_ascii=False, indent=2)
+    user_prompt += "\n\n# fixed_pages 必须生成的 header 列表\n"
+    user_prompt += json.dumps(fixed_headers, ensure_ascii=False)
+    user_prompt += "\n\n"
+    user_prompt += f"title_hint: {payload.product_name.strip()}\n"
+    user_prompt += "请输出严格 JSON 对象。\n"
+
+    llm_config = get_llm_config(
+        llm_provider=getattr(payload, "llm_provider", None),
+        llm_model=getattr(payload, "llm_model", None),
+    )
+
+    def _call_llm(messages: list[dict]) -> str:
+        kwargs: Dict[str, Any] = {
+            "model": llm_config.model,
+            "messages": messages,
+            "temperature": 0.2,
+        }
+        if llm_config.api_key:
+            kwargs["api_key"] = llm_config.api_key
+        if llm_config.base_url:
+            kwargs["api_base"] = llm_config.base_url
+        response = _run_completion_with_timeout(kwargs, None)
+        return response.choices[0].message.content.strip()
+
+    allowed = {
+        "embrace_the_revitalizing_chill": {"A", "B"},
+        "premium_materials": {"A", "B"},
+        "how_to_set_up": {"A", "B", "C"},
+        "important_safety_instructions": {"A", "B", "C"},
+        "touchscreen_control_panel": {"A", "B"},
+        "troubleshooting": {"A", "B"},
+    }
+
+    variants: Dict[str, str] = {}
+    fixed_pages: Dict[str, ManualBookData] = {}
+    errors: list[str] = []
+
+    for attempt in range(2):
+        extra_note = None
+        if attempt == 1 and errors:
+            extra_note = (
+                "上次输出无法解析或结构不符合要求。请仅返回严格 JSON 对象，且必须含 variants/fixed_pages 字段。"
+                f"错误：{errors[-1]}"
+            )
+        try:
+            messages = [
+                {"role": "system", "content": MANUAL_ONE_SHOT_SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt},
+            ]
+            if extra_note:
+                messages.append({"role": "user", "content": extra_note})
+            raw = _call_llm(messages)
+            text = _strip_code_fence(raw) or raw
+            parsed = json.loads(text)
+            if not isinstance(parsed, dict):
+                raise ValueError("输出不是 JSON 对象")
+
+            raw_variants = parsed.get("variants")
+            if not isinstance(raw_variants, dict):
+                raise ValueError("缺少 variants 或 variants 不是对象")
+
+            vmap: Dict[str, str] = {}
+            for k, v in raw_variants.items():
+                key = str(k).strip()
+                if key not in allowed:
+                    continue
+                val = str(v).strip().upper()
+                if val not in allowed[key]:
+                    val = sorted(list(allowed[key]))[0]
+                vmap[key] = val
+
+            # fixed_pages
+            raw_fixed = parsed.get("fixed_pages")
+            if not isinstance(raw_fixed, dict):
+                raise ValueError("缺少 fixed_pages 或 fixed_pages 不是对象")
+            fmap: Dict[str, ManualBookData] = {}
+            for hdr in fixed_headers:
+                item = raw_fixed.get(hdr)
+                if not isinstance(item, dict):
+                    raise ValueError(f"fixed_pages 缺少 {hdr}")
+                page = ManualBookData(**item)
+                if (page.header or "").strip() != hdr:
+                    raise ValueError(f"fixed_pages[{hdr}] header 不匹配")
+                if not isinstance(getattr(page, "blocks", None), list):
+                    raise ValueError(f"fixed_pages[{hdr}] blocks 不是数组")
+                fmap[hdr] = page
+
+            variants = vmap
+            fixed_pages = fmap
+            break
+        except Exception as exc:  # noqa: BLE001
+            errors.append(str(exc))
+            variants = {}
+            fixed_pages = {}
+
+    for key, choices in allowed.items():
+        if key not in variants:
+            variants[key] = sorted(list(choices))[0]
+        else:
+            val = variants[key]
+            if val not in choices:
+                variants[key] = sorted(list(choices))[0]
+
+    if not fixed_pages:
+        raise ValueError(f"one-shot 输出缺少 fixed_pages：{errors[-1] if errors else 'unknown'}")
+
+    return variants, fixed_pages, user_prompt
 
 
 def _default_page_for_header(header: str) -> Dict[str, Any]:
@@ -500,11 +1037,17 @@ def _apply_manual_book_overrides(manual_book: List[ManualBookData]) -> List[Manu
             if isinstance(blk, dict):
                 if blk.get("type") == "cover":
                     blk["backSrc"] = DEFAULT_COVER_BACK_SRC
+                    blk.pop("model", None)
             else:
                 blk_type = getattr(blk, "type", None)
                 if blk_type == "cover":
                     try:
                         setattr(blk, "backSrc", DEFAULT_COVER_BACK_SRC)
+                    except Exception:
+                        pass
+                    try:
+                        if getattr(blk, "model", None) is not None:
+                            delattr(blk, "model")
                     except Exception:
                         pass
         break
@@ -626,13 +1169,14 @@ def _persist_manual_book(manual_book: List[ManualBookData], payload: ManualBookF
     generate_dir.mkdir(parents=True, exist_ok=True)
     target_path = generate_dir / "manual_book.json"
 
-    payload_json = [page.dict() for page in (manual_book or [])]
+    payload_json = [page.dict(exclude_none=True) for page in (manual_book or [])]
     content = json.dumps(payload_json, ensure_ascii=False, indent=2)
 
     tmp_path = target_path.with_suffix(f".tmp-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.json")
     tmp_path.write_text(content, encoding="utf-8")
     tmp_path.replace(target_path)
-    print(f"[ManualBook] manual_book saved to: {target_path}")
+
+    print(f"[ManualBook] manual_book (generate) saved to: {target_path}")
     return target_path
 
 

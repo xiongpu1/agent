@@ -162,11 +162,6 @@
                   :rows="4"
                   placeholder="例如：面向美国经销商销售按摩浴缸，主打节能、舒适、易安装"
                 />
-                <div class="gen-row" style="margin-top: 10px;">
-                  <div class="gen-label" style="font-weight: 500; opacity: 0.85;">上传素材图辅助生成</div>
-                  <el-switch v-model="posterStep2SendImages" />
-                  <div class="gen-label" style="margin-left: 10px; opacity: 0.6;">关闭可明显加速</div>
-                </div>
                 <div class="gen-actions" style="margin-top: 10px;">
                   <el-button type="primary" :loading="posterStep2Loading" @click="generatePosterCopyStep2">生成文案与风格</el-button>
                   <el-button text @click="clearStep2Assets">清空素材</el-button>
@@ -179,11 +174,6 @@
 
             <div class="gen-col">
               <div class="gen-col-title">海报框架</div>
-
-              <div class="gen-row">
-                <div class="gen-label">整体风格</div>
-              </div>
-              <el-input v-model="posterFramework.style.notes" type="textarea" :rows="4" placeholder="可手动补充风格描述，或用 Step2 生成结果覆盖" />
 
               <div class="gen-row" style="margin-top: 10px;">
                 <div class="gen-label">尺寸</div>
@@ -207,7 +197,7 @@
                   <div class="gen-actions gen-actions-compact">
                     <el-button size="small" @click="triggerStep2BackgroundUpload">本地上传</el-button>
                     <el-button size="small" @click="openStep2BackgroundKbPicker">知识库选择</el-button>
-                    <el-button size="small" @click="useActiveImageAsStep2Background">已选</el-button>
+                    <el-button size="small" @click="useActiveImageAsStep2Background">使用已选图片</el-button>
                   </div>
                   <div v-if="step2BackgroundPreviewUrl" class="gen-asset-preview gen-asset-preview--small">
                     <img :src="step2BackgroundPreviewUrl" alt="background" />
@@ -221,7 +211,7 @@
                   <div class="gen-actions gen-actions-compact">
                     <el-button size="small" @click="triggerStep2ProductUpload">本地上传</el-button>
                     <el-button size="small" @click="openStep2ProductKbPicker">知识库选择</el-button>
-                    <el-button size="small" @click="useActiveImageAsStep2Product">已选</el-button>
+                    <el-button size="small" @click="useActiveImageAsStep2Product">使用已选图片</el-button>
                   </div>
                   <div v-if="step2ProductPreviewUrl" class="gen-asset-preview gen-asset-preview--small">
                     <img :src="step2ProductPreviewUrl" alt="product" />
@@ -232,12 +222,52 @@
               <div class="gen-row" style="margin-top: 10px;">
                 <div class="gen-label">标题文字</div>
               </div>
-              <el-input v-model="posterFramework.text.title" placeholder="标题" />
+              <div class="gen-text-with-icons">
+                <el-input v-model="posterFramework.text.title" placeholder="标题" />
+                <div class="gen-icon-editor">
+                  <div class="gen-icon-actions">
+                    <el-button size="small" text @click="openIconPicker('title')">添加图标</el-button>
+                    <el-button size="small" text :disabled="!getIconItems('title').length" @click="clearIcons('title')">清空</el-button>
+                    <el-button size="small" text @click="useActiveImageAsIcon('title')">使用已选图片</el-button>
+                  </div>
+                  <div v-if="getIconItems('title').length" class="gen-icon-list">
+                    <div v-for="(ic, i) in getIconItems('title')" :key="'title-icon-' + i" class="gen-icon-item">
+                      <img :src="ic.src" alt="icon" />
+                      <div class="gen-icon-item-actions">
+                        <el-button size="small" text @click="replaceIcon('title', i)">替换</el-button>
+                        <el-button size="small" text @click="moveIcon('title', i, -1)">上移</el-button>
+                        <el-button size="small" text @click="moveIcon('title', i, 1)">下移</el-button>
+                        <el-button size="small" text @click="removeIcon('title', i)">删除</el-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="gen-row" style="margin-top: 10px;">
                 <div class="gen-label">标题下文字</div>
               </div>
-              <el-input v-model="posterFramework.text.subtitle" placeholder="副标题" />
+              <div class="gen-text-with-icons">
+                <el-input v-model="posterFramework.text.subtitle" placeholder="副标题" />
+                <div class="gen-icon-editor">
+                  <div class="gen-icon-actions">
+                    <el-button size="small" text @click="openIconPicker('subtitle')">添加图标</el-button>
+                    <el-button size="small" text :disabled="!getIconItems('subtitle').length" @click="clearIcons('subtitle')">清空</el-button>
+                    <el-button size="small" text @click="useActiveImageAsIcon('subtitle')">使用已选图片</el-button>
+                  </div>
+                  <div v-if="getIconItems('subtitle').length" class="gen-icon-list">
+                    <div v-for="(ic, i) in getIconItems('subtitle')" :key="'subtitle-icon-' + i" class="gen-icon-item">
+                      <img :src="ic.src" alt="icon" />
+                      <div class="gen-icon-item-actions">
+                        <el-button size="small" text @click="replaceIcon('subtitle', i)">替换</el-button>
+                        <el-button size="small" text @click="moveIcon('subtitle', i, -1)">上移</el-button>
+                        <el-button size="small" text @click="moveIcon('subtitle', i, 1)">下移</el-button>
+                        <el-button size="small" text @click="removeIcon('subtitle', i)">删除</el-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="gen-row" style="margin-top: 10px;">
                 <div class="gen-label">卖点</div>
@@ -247,7 +277,28 @@
               </div>
               <div class="gen-sellpoints">
                 <div v-for="(sp, idx) in posterFramework.text.sellpoints" :key="sp.id" class="gen-sellpoint-item">
-                  <el-input v-model="sp.text" :placeholder="`卖点${idx + 1}`" />
+                  <div class="gen-sellpoint-main">
+                    <el-input v-model="sp.text" :placeholder="`卖点${idx + 1}`" />
+                    <div class="gen-icon-editor" style="margin-top: 6px;">
+                      <div class="gen-icon-actions">
+                        <el-button size="small" text @click="openIconPicker(`sellpoint_${idx + 1}`)">添加图标</el-button>
+                        <el-button size="small" text :disabled="!getIconItems(`sellpoint_${idx + 1}`).length" @click="clearIcons(`sellpoint_${idx + 1}`)">清空</el-button>
+                        <el-button size="small" text @click="useActiveImageAsIcon(`sellpoint_${idx + 1}`)">使用已选图片</el-button>
+                        <el-button v-if="idx === 0" size="small" text :disabled="!getIconItems('sellpoint_1').length" @click="applySellpointIconsToAll">应用到所有卖点</el-button>
+                      </div>
+                      <div v-if="getIconItems(`sellpoint_${idx + 1}`).length" class="gen-icon-list" style="margin-top: 6px;">
+                        <div v-for="(ic, i) in getIconItems(`sellpoint_${idx + 1}`)" :key="`sellpoint-${idx + 1}-icon-${i}`" class="gen-icon-item">
+                          <img :src="ic.src" alt="icon" />
+                          <div class="gen-icon-item-actions">
+                            <el-button size="small" text @click="replaceIcon(`sellpoint_${idx + 1}`, i)">替换</el-button>
+                            <el-button size="small" text @click="moveIcon(`sellpoint_${idx + 1}`, i, -1)">上移</el-button>
+                            <el-button size="small" text @click="moveIcon(`sellpoint_${idx + 1}`, i, 1)">下移</el-button>
+                            <el-button size="small" text @click="removeIcon(`sellpoint_${idx + 1}`, i)">删除</el-button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <el-button size="small" text @click="removeFrameworkSellpoint(idx)">删除</el-button>
                 </div>
               </div>
@@ -272,7 +323,19 @@
                 <div v-for="b in previewTextBoxes" :key="b.key" class="gen-preview-box" :style="b.style"></div>
               </div>
               <div v-for="item in previewTextItems" :key="item.key" class="gen-preview-text" :style="item.style">
-                {{ item.text }}
+                <div class="gen-preview-text-inner" :style="item.innerStyle || null">
+                  <div v-if="item.icons && item.icons.length" class="gen-preview-icons" :style="item.iconsStyle || null">
+                    <img
+                      v-for="(src, i) in item.icons"
+                      :key="item.key + '-ic-' + i"
+                      class="gen-preview-icon"
+                      :src="src"
+                      alt="icon"
+                      :style="{ width: (item.iconSize || 18) + 'px', height: (item.iconSize || 18) + 'px' }"
+                    />
+                  </div>
+                  <div class="gen-preview-text-content">{{ item.text }}</div>
+                </div>
               </div>
             </div>
             <div v-else class="panel-empty">请先选择参考图并完成分析</div>
@@ -379,6 +442,10 @@ const router = useRouter()
 const route = useRoute()
 
 const manualStore = useManualStore()
+
+const productName = computed(() => String(route.query.productName || manualStore.productName || '').trim())
+const bomCode = computed(() => String(route.query.bomCode || manualStore.bomCode || '').trim())
+const bomType = computed(() => String(route.query.bomType || manualStore.bomType || '').trim())
 
 const POSTER_CANVAS_WIDTH = 1080
 const POSTER_CANVAS_HEIGHT = 1920
@@ -968,8 +1035,6 @@ const posterStep2BackgroundFile = ref(null)
 const posterStep2ProductUrl = ref('')
 const posterStep2BackgroundUrl = ref('')
 
-const posterStep2SendImages = ref(false)
-
 const autoSaveAfterExportToCanvas = ref(true)
 
 const posterFramework = reactive({
@@ -977,15 +1042,134 @@ const posterFramework = reactive({
     width: 0,
     height: 0,
   },
-  style: {
-    notes: '',
-  },
+  icons: {},
   text: {
     title: '',
     subtitle: '',
     sellpoints: [],
   },
 })
+
+const ensureIconBucket = (id) => {
+  const key = String(id || '').trim()
+  if (!key) return null
+  if (!posterFramework.icons || typeof posterFramework.icons !== 'object') posterFramework.icons = {}
+  const existing = posterFramework.icons[key]
+  if (existing && typeof existing === 'object' && Array.isArray(existing.items)) return existing
+  posterFramework.icons[key] = { items: [] }
+  return posterFramework.icons[key]
+}
+
+const getIconItems = (id) => {
+  const key = String(id || '').trim()
+  if (!key) return []
+  const b = posterFramework.icons && typeof posterFramework.icons === 'object' ? posterFramework.icons[key] : null
+  const items = b && typeof b === 'object' && Array.isArray(b.items) ? b.items : []
+  return items.filter((x) => x && typeof x === 'object' && typeof x.src === 'string' && x.src.trim())
+}
+
+const pushIcon = (id, src) => {
+  const key = String(id || '').trim()
+  const url = String(src || '').trim()
+  if (!key || !url) return
+  const b = ensureIconBucket(key)
+  if (!b) return
+  b.items.push({ src: url })
+}
+
+const setIconAt = (id, idx, src) => {
+  const key = String(id || '').trim()
+  const url = String(src || '').trim()
+  const i = Number(idx)
+  if (!key || !url || !Number.isFinite(i) || i < 0) return
+  const b = ensureIconBucket(key)
+  if (!b) return
+  if (i >= b.items.length) return
+  b.items.splice(i, 1, { src: url })
+}
+
+const removeIcon = (id, idx) => {
+  const key = String(id || '').trim()
+  const i = Number(idx)
+  if (!key || !Number.isFinite(i) || i < 0) return
+  const b = ensureIconBucket(key)
+  if (!b) return
+  if (i >= b.items.length) return
+  b.items.splice(i, 1)
+}
+
+const moveIcon = (id, idx, delta) => {
+  const key = String(id || '').trim()
+  const i = Number(idx)
+  const d = Number(delta)
+  if (!key || !Number.isFinite(i) || !Number.isFinite(d)) return
+  const b = ensureIconBucket(key)
+  if (!b) return
+  const next = i + d
+  if (i < 0 || i >= b.items.length) return
+  if (next < 0 || next >= b.items.length) return
+  const it = b.items[i]
+  b.items.splice(i, 1)
+  b.items.splice(next, 0, it)
+}
+
+const clearIcons = (id) => {
+  const key = String(id || '').trim()
+  if (!key) return
+  const b = ensureIconBucket(key)
+  if (!b) return
+  b.items.splice(0, b.items.length)
+}
+
+const applySellpointIconsToAll = () => {
+  const base = getIconItems('sellpoint_1')
+  if (!base.length) return
+  const sps = Array.isArray(posterFramework.text.sellpoints) ? posterFramework.text.sellpoints : []
+  for (let i = 0; i < sps.length; i++) {
+    const key = `sellpoint_${i + 1}`
+    const cur = getIconItems(key)
+    if (cur.length) continue
+    const b = ensureIconBucket(key)
+    if (!b) continue
+    base.forEach((it) => b.items.push({ src: it.src }))
+  }
+}
+
+const openIconPicker = (id) => {
+  const key = String(id || '').trim()
+  if (!key) return
+  imageDialogTab.value = 'kb'
+  refreshKbProductImages()
+  imageDialogPurpose.value = `icon_add:${key}`
+  imageDialogVisible.value = true
+}
+
+const replaceIcon = (id, idx) => {
+  const key = String(id || '').trim()
+  const i = Number(idx)
+  if (!key || !Number.isFinite(i) || i < 0) return
+  imageDialogTab.value = 'kb'
+  refreshKbProductImages()
+  imageDialogPurpose.value = `icon_replace:${key}:${i}`
+  imageDialogVisible.value = true
+}
+
+const useActiveImageAsIcon = (id) => {
+  const key = String(id || '').trim()
+  if (!key) return
+  const obj = activeObjectRef.value
+  if (!obj || obj.type !== 'image') {
+    ElMessage.warning('请先选中一张图片对象')
+    return
+  }
+  const el = obj.getElement?.() || obj._element || obj._originalElement || null
+  const src = el?.currentSrc || el?.src || obj?.src || ''
+  if (!src) {
+    ElMessage.warning('无法获取选中图片的源地址')
+    return
+  }
+  pushIcon(key, src)
+}
 
 const frameworkSizeTouched = ref(false)
 
@@ -1049,12 +1233,18 @@ const fillFrameworkFromStep1 = (result) => {
   if (Number.isFinite(w) && w > 0) posterFramework.size.width = Math.round(w)
   if (Number.isFinite(h) && h > 0) posterFramework.size.height = Math.round(h)
 
-  const styleNotes = result?.style?.notes
-  if (typeof styleNotes === 'string' && styleNotes.trim()) {
-    posterFramework.style.notes = styleNotes.trim()
-  }
-
   const els = Array.isArray(result.elements) ? result.elements : []
+  posterOverlayBoxes.value = els
+    .filter((e) => e && typeof e === 'object')
+    .map((e) => {
+      const id = String(e.id || '')
+      const x0 = Number(e.x0 || 0)
+      const y0 = Number(e.y0 || 0)
+      const x1 = Number(e.x1 || 0)
+      const y1 = Number(e.y1 || 0)
+      return { id, x0, y0, x1, y1 }
+    })
+
   const getTextById = (id) => {
     const el = els.find((e) => String(e?.id || '') === id)
     const t = el?.text
@@ -1082,6 +1272,23 @@ const fillFrameworkFromStep1 = (result) => {
   sellpointEls.forEach((sp) => {
     posterFramework.text.sellpoints.push(newFrameworkSellpoint(sp.text || ''))
   })
+
+  try {
+    const nextIcons = {}
+    const curIcons = posterFramework.icons && typeof posterFramework.icons === 'object' ? posterFramework.icons : {}
+    ;['title', 'subtitle'].forEach((k) => {
+      const prev = curIcons[k]
+      if (prev && typeof prev === 'object' && Array.isArray(prev.items)) nextIcons[k] = { items: prev.items.slice() }
+      else nextIcons[k] = { items: [] }
+    })
+    for (let i = 0; i < sellpointEls.length; i++) {
+      const k = `sellpoint_${i + 1}`
+      const prev = curIcons[k]
+      if (prev && typeof prev === 'object' && Array.isArray(prev.items)) nextIcons[k] = { items: prev.items.slice() }
+      else nextIcons[k] = { items: [] }
+    }
+    posterFramework.icons = nextIcons
+  } catch (e) {}
 }
 
 const step2ProductObjectUrl = ref('')
@@ -1228,10 +1435,27 @@ const bboxToPreviewStyle = (bb) => {
   const cw = Number(previewCanvasWidthPx.value || 0)
   const ch = Number(previewCanvasHeightPx.value || 0)
   if (!bb || cw <= 0 || ch <= 0) return null
-  const leftPx = (bb.x0 / 1000) * cw
-  const topPx = (bb.y0 / 1000) * ch
-  const widthPx = ((bb.x1 - bb.x0) / 1000) * cw
-  const heightPx = ((bb.y1 - bb.y0) / 1000) * ch
+
+  // When preview background uses object-fit: contain, compute the actual rendered image rect
+  // and place overlay boxes inside it so the whole image is visible without cropping.
+  const nw = Number(previewBgNatural.w || 0)
+  const nh = Number(previewBgNatural.h || 0)
+  let renderW = cw
+  let renderH = ch
+  let offsetX = 0
+  let offsetY = 0
+  if (Number.isFinite(nw) && nw > 0 && Number.isFinite(nh) && nh > 0) {
+    const s = Math.min(cw / nw, ch / nh)
+    renderW = nw * s
+    renderH = nh * s
+    offsetX = (cw - renderW) / 2
+    offsetY = (ch - renderH) / 2
+  }
+
+  const leftPx = offsetX + (bb.x0 / 1000) * renderW
+  const topPx = offsetY + (bb.y0 / 1000) * renderH
+  const widthPx = ((bb.x1 - bb.x0) / 1000) * renderW
+  const heightPx = ((bb.y1 - bb.y0) / 1000) * renderH
   return {
     left: `${(leftPx / cw) * 100}%`,
     top: `${(topPx / ch) * 100}%`,
@@ -1411,18 +1635,42 @@ const previewTextItems = computed(() => {
     const boxHpx = Number(st.heightPx || 0) || (((bb.y1 - bb.y0) / 1000) * Number(sz.h || 1))
     const baseFont = estimateFontSizeBasePx(text, boxWpx, boxHpx, { kind })
     const px = Math.max(10, Math.round(baseFont))
+
+    const iconItems = getIconItems(id)
+    const desiredIcon = Math.max(10, Math.min(44, Math.round(boxHpx * 0.62)))
+    const gap = 4
+    const minTextW = 40
+    let iconSize = desiredIcon
+    let visibleIcons = iconItems.map((x) => x.src)
+    if (visibleIcons.length) {
+      const maxSizeByWidth = Math.floor((Math.max(0, boxWpx - minTextW - gap * (visibleIcons.length - 1))) / visibleIcons.length)
+      if (Number.isFinite(maxSizeByWidth) && maxSizeByWidth > 0) iconSize = Math.min(iconSize, maxSizeByWidth)
+      iconSize = Math.max(10, iconSize)
+      const fullWidth = visibleIcons.length * iconSize + gap * (visibleIcons.length - 1)
+      const maxIcons = Math.max(0, Math.floor((Math.max(0, boxWpx - minTextW + gap)) / (iconSize + gap)))
+      if (fullWidth > Math.max(0, boxWpx - minTextW)) {
+        if (maxIcons <= 0) visibleIcons = []
+        else if (maxIcons < visibleIcons.length) visibleIcons = visibleIcons.slice(0, maxIcons)
+      }
+    }
+
+    const iconsWidth = visibleIcons.length ? (visibleIcons.length * iconSize + gap * (visibleIcons.length - 1)) : 0
+    const paddingLeft = iconsWidth ? (iconsWidth + 8) : 0
     items.push({
       key: String(id || idx),
       text,
+      icons: visibleIcons,
+      iconSize,
       style: {
         left: st.left,
         top: st.top,
         width: st.width,
-        height: st.height,
         fontSize: `${px}px`,
         fontFamily: fontForElement(el),
         fontWeight: weightForElement(el),
       },
+      innerStyle: paddingLeft ? { paddingLeft: `${paddingLeft}px` } : null,
+      iconsStyle: visibleIcons.length ? { left: '0px', top: '50%', transform: 'translateY(-50%)', gap: `${gap}px` } : null,
     })
   })
   return items
@@ -2726,17 +2974,59 @@ const exportPreviewToCanvas = async () => {
       return 'system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif'
     }
 
-    const addTextById = (id, kind) => {
+    const addTextById = async (id, kind) => {
       const bb = bboxById(id)
       const box = rectFromBbox(bb)
       if (!box) return
       const text = idToText[id] || ''
       if (!String(text || '').trim()) return
-      const fs = estimateFontSizeBasePx(String(text), Number(box.width || 1), Number(box.height || 1), { kind })
+      const iconItems = getIconItems(id)
+      const gap = 8
+      const minTextW = 80
+      const desiredIcon = Math.max(10, Math.min(64, Math.round(Number(box.height || 1) * 0.62)))
+      let iconSize = desiredIcon
+      let visible = iconItems.map((x) => x.src)
+      if (visible.length) {
+        const maxSizeByWidth = Math.floor((Math.max(0, Number(box.width || 1) - minTextW - gap * (visible.length - 1))) / visible.length)
+        if (Number.isFinite(maxSizeByWidth) && maxSizeByWidth > 0) iconSize = Math.min(iconSize, maxSizeByWidth)
+        iconSize = Math.max(10, iconSize)
+        const full = visible.length * iconSize + gap * (visible.length - 1)
+        const maxIcons = Math.max(0, Math.floor((Math.max(0, Number(box.width || 1) - minTextW + gap)) / (iconSize + gap)))
+        if (full > Math.max(0, Number(box.width || 1) - minTextW)) {
+          if (maxIcons <= 0) visible = []
+          else if (maxIcons < visible.length) visible = visible.slice(0, maxIcons)
+        }
+      }
+
+      let inset = 0
+      if (visible.length) {
+        inset = visible.length * iconSize + gap * (visible.length - 1) + 10
+        const iconTop = originTop + Number(box.top || 0) + (Number(box.height || 1) - iconSize) / 2
+        let x = originLeft + Number(box.left || 0)
+        for (let i = 0; i < visible.length; i++) {
+          const src = String(visible[i] || '').trim()
+          if (!src) continue
+          try {
+            const img = await FabricImage.fromURL(src, { crossOrigin: 'anonymous' })
+            const iw = Number(img.width || 0)
+            const ih = Number(img.height || 0)
+            if (iw > 0 && ih > 0) {
+              const s = iconSize / Math.max(iw, ih)
+              img.set({ left: x, top: iconTop, scaleX: s, scaleY: s })
+              img.data = { ...(img.data || {}), role: 'poster_icon', posterId: id, posterIconIndex: i }
+              applySelectionStyle(img)
+              canvas.add(img)
+            }
+          } catch (e) {}
+          x += iconSize + gap
+        }
+      }
+
+      const fs = estimateFontSizeBasePx(String(text), Math.max(1, Number(box.width || 1) - inset), Number(box.height || 1), { kind })
       const tb = new FabricTextbox(String(text), {
-        left: originLeft + Number(box.left || 0),
+        left: originLeft + Number(box.left || 0) + inset,
         top: originTop + Number(box.top || 0),
-        width: Math.max(1, Number(box.width || 1)),
+        width: Math.max(1, Number(box.width || 1) - inset),
         height: Math.max(1, Number(box.height || 1)),
         fontFamily: getFont(id),
         fontSize: Math.max(10, Math.round(fs)),
@@ -2751,10 +3041,10 @@ const exportPreviewToCanvas = async () => {
       canvas.add(tb)
     }
 
-    addTextById('title', 'title')
-    addTextById('subtitle', 'subtitle')
+    await addTextById('title', 'title')
+    await addTextById('subtitle', 'subtitle')
     for (let i = 1; i <= 5; i++) {
-      addTextById(`sellpoint_${i}`, 'sellpoint')
+      await addTextById(`sellpoint_${i}`, 'sellpoint')
     }
 
     canvas.requestRenderAll()
@@ -2931,9 +3221,27 @@ const onPickImage = (e) => {
   const f = e?.target?.files && e.target.files[0]
   if (!f) return
 
+  const purpose = String(imageDialogPurpose.value || 'insert')
+
   const reader = new FileReader()
   reader.onload = async () => {
     const url = reader.result
+    const p = String(purpose || 'insert')
+    if (p.startsWith('icon_add:')) {
+      const id = p.slice('icon_add:'.length)
+      pushIcon(id, url)
+      imageDialogVisible.value = false
+      return
+    }
+    if (p.startsWith('icon_replace:')) {
+      const rest = p.slice('icon_replace:'.length)
+      const parts = rest.split(':')
+      const id = parts[0]
+      const idx = Number(parts[1])
+      if (id && Number.isFinite(idx)) setIconAt(id, idx, url)
+      imageDialogVisible.value = false
+      return
+    }
     await insertImageFromUrl(url)
   }
   reader.readAsDataURL(f)
@@ -2963,6 +3271,19 @@ const selectKbProductImage = async (src) => {
   if (!src) return
   imageDialogVisible.value = false
   const purpose = String(imageDialogPurpose.value || 'insert')
+  if (purpose.startsWith('icon_add:')) {
+    const id = purpose.slice('icon_add:'.length)
+    pushIcon(id, src)
+    return
+  }
+  if (purpose.startsWith('icon_replace:')) {
+    const rest = purpose.slice('icon_replace:'.length)
+    const parts = rest.split(':')
+    const id = parts[0]
+    const idx = Number(parts[1])
+    if (id && Number.isFinite(idx)) setIconAt(id, idx, src)
+    return
+  }
   if (purpose === 'ref') {
     setReferenceImageFromUrl(src)
     return
@@ -3095,19 +3416,13 @@ const generatePosterCopyStep2 = async () => {
     const basePayload = {
       step1_result: posterAnalysisResult.value,
       requirements: String(posterStep2Requirements.value || '').trim() || undefined,
+      product_name: productName.value || undefined,
+      bom_code: bomCode.value || undefined,
+      bom_type: bomType.value || undefined,
     }
-    const imagePayload = posterStep2SendImages.value
-      ? {
-        product_file: posterStep2ProductFile.value || undefined,
-        product_image_url: !posterStep2ProductFile.value ? (posterStep2ProductUrl.value || undefined) : undefined,
-        background_file: posterStep2BackgroundFile.value || undefined,
-        background_image_url: !posterStep2BackgroundFile.value ? (posterStep2BackgroundUrl.value || undefined) : undefined,
-      }
-      : {}
 
     const resp = await generatePosterCopy({
       ...basePayload,
-      ...imagePayload,
     })
 
     if (resp?.ok === false) {
@@ -3135,11 +3450,6 @@ const generatePosterCopyStep2 = async () => {
           posterFramework.text.sellpoints.splice(0, posterFramework.text.sellpoints.length)
           finalSp.forEach((t) => posterFramework.text.sellpoints.push(newFrameworkSellpoint(t)))
         }
-      }
-      const style = result?.style_guidance
-      if (style && typeof style === 'object') {
-        const notes = style.notes
-        if (typeof notes === 'string' && notes.trim()) posterFramework.style.notes = notes.trim()
       }
     } catch (e) {}
   } catch (e) {
@@ -3271,14 +3581,15 @@ const resetZoom = () => {
 const serializeCanvas = () => {
   const canvas = canvasInstance.value
   if (!canvas) return null
-  return JSON.stringify(canvas.toJSON())
+  return canvas.toJSON()
 }
 
 const saveDraft = () => {
-  const json = serializeCanvas()
-  if (!json) return
+  const canvasJson = serializeCanvas()
+  if (!canvasJson) return
   try {
-    sessionStorage.setItem(DRAFT_KEY, json)
+    const frameworkSnapshot = JSON.parse(JSON.stringify(posterFramework))
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ canvas: canvasJson, framework: frameworkSnapshot }))
     ElMessage.success('已保存草稿')
   } catch (e) {
     ElMessage.error('保存草稿失败')
@@ -3298,9 +3609,33 @@ const loadDraft = async () => {
   if (!raw) return
 
   try {
-    const json = JSON.parse(raw)
-    await canvas.loadFromJSON(json)
+    const parsed = JSON.parse(raw)
+    const canvasJson = parsed && typeof parsed === 'object' && parsed.canvas ? parsed.canvas : parsed
+    await canvas.loadFromJSON(canvasJson)
     canvas.requestRenderAll()
+
+    try {
+      const fw = parsed && typeof parsed === 'object' && parsed.framework ? parsed.framework : null
+      if (fw && typeof fw === 'object') {
+        if (fw.size && typeof fw.size === 'object') {
+          const w = Number(fw.size.width || 0)
+          const h = Number(fw.size.height || 0)
+          if (Number.isFinite(w) && w > 0) posterFramework.size.width = w
+          if (Number.isFinite(h) && h > 0) posterFramework.size.height = h
+        }
+        if (fw.text && typeof fw.text === 'object') {
+          if (typeof fw.text.title === 'string') posterFramework.text.title = fw.text.title
+          if (typeof fw.text.subtitle === 'string') posterFramework.text.subtitle = fw.text.subtitle
+          if (Array.isArray(fw.text.sellpoints)) {
+            posterFramework.text.sellpoints.splice(0, posterFramework.text.sellpoints.length)
+            fw.text.sellpoints.forEach((sp) => posterFramework.text.sellpoints.push(newFrameworkSellpoint(String(sp?.text || ''))))
+          }
+        }
+        if (fw.icons && typeof fw.icons === 'object') {
+          posterFramework.icons = fw.icons
+        }
+      }
+    } catch (e) {}
   } catch (e) {
     // ignore
   }
@@ -3986,6 +4321,60 @@ const pasteActive = async () => {
   gap: 8px;
 }
 
+.gen-sellpoint-main {
+  display: grid;
+  gap: 6px;
+}
+
+.gen-text-with-icons {
+  display: grid;
+  gap: 6px;
+}
+
+.gen-icon-editor {
+  border: 1px dashed rgba(148, 163, 184, 0.65);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.gen-icon-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gen-icon-list {
+  display: grid;
+  gap: 8px;
+}
+
+.gen-icon-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.gen-icon-item img {
+  display: block;
+  width: 44px !important;
+  height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  border-radius: 10px;
+  object-fit: contain;
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+.gen-icon-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .gen-preview-canvas {
   position: relative;
   width: 100%;
@@ -4000,7 +4389,8 @@ const pasteActive = async () => {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: 50% 50%;
 }
 
 .gen-preview-box-layer {
@@ -4028,11 +4418,32 @@ const pasteActive = async () => {
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
   line-height: 1.12;
-  overflow: hidden;
+  overflow: visible;
   word-break: break-word;
   white-space: pre-wrap;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.gen-preview-text-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gen-preview-icons {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+}
+
+.gen-preview-icon {
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.gen-preview-text-content {
+  position: relative;
 }
 
 .gen-row {

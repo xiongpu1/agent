@@ -1,0 +1,51 @@
+{
+  "productTitle": "Alpine",
+  "features": {
+    "capacity": "6-7",
+    "jets": "32",
+    "pumps": "2"
+  },
+  "measurements": "98\" × 91\" × 35\"",
+  "premiumFeatures": [
+    "Underwater Mood Lighting",
+    "Edge Lighting",
+    "Valve Lighting"
+  ],
+  "insulationFeatures": [
+    "Enviro-seal Insulated Base",
+    "Polyfoam Insulation"
+  ],
+  "extraFeatures": [
+    "Bluetooth audio system (Bluetooth + subwoofer)",
+    "Grey skirt, Aluminum Skirt with Polyfoam Insulation",
+    "Grey corner",
+    "Heater/Chiller Ready"
+  ],
+  "Specifications": [
+    {
+      "Cabinet Color": "#ffffff"
+    },
+    {
+      "Shell Color": "#ffffff"
+    },
+    {
+      "Dry Weight": "977 lbs"
+    },
+    {
+      "Water Capacity": "296 gallons"
+    },
+    {
+      "Pump": "Circulation Pump + 1* 3HP, Sweep Jet"
+    },
+    {
+      "Controls": "Gecko control system(YJ-2 + K300 + 2KW)"
+    }
+  ],
+  "smartWater": [
+    "Ozonator"
+  ],
+  "images": {
+    "product": "/back/product.png",
+    "background": "/back/back.png"
+  }
+}
