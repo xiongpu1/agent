@@ -40,6 +40,15 @@
               "parent_dir": "images"
             },
             {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
+              "type": "text/plain",
+              "size": 209,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            },
+            {
               "name": "20260104165858_1006_20.stdout.md",
               "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.stdout.md",
               "type": "text/markdown",
@@ -61,19 +70,10 @@
               "name": "result_with_boxes.jpg",
               "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
               "type": "image/jpeg",
-              "size": 146186,
+              "size": 148729,
               "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
               "kind": "image",
               "parent_dir": "20260104165858_1006_20"
-            },
-            {
-              "name": "0.txt",
-              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
-              "type": "text/plain",
-              "size": 209,
-              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
-              "kind": "markdown",
-              "parent_dir": "images"
             }
           ]
         }
@@ -81,7 +81,7 @@
     }
   ],
   "accessory_ocr_groups": [],
-  "completed_at": "2026-01-11T01:16:48.513438",
+  "completed_at": "2026-01-12T08:32:08.737373",
   "product_id": "Alpine_A21QB3Q4A0HXDCAADD000E",
   "material_code": "Alpine",
   "bom_id": "A21QB3Q4A0HXDCAADD000E"

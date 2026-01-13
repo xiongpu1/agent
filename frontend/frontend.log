@@ -920,3 +920,12 @@ Error: connect ECONNREFUSED 127.0.0.1:8001
 1:17:43 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
 1:18:43 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
 1:27:08 AM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+9:42:02 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:59:38 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+10:00:19 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+10:28:02 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+10:31:25 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+10:42:21 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+11:03:07 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+11:03:17 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
+8:54:47 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue

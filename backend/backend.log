@@ -7007,235 +7007,232 @@ Traceback (most recent call last):
   File "/root/workspace/syp/agent/backend/src/api_queries.py", line 13, in <module>
     from neo4j import GraphDatabase
 ModuleNotFoundError: No module named 'neo4j'
-receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-113:
+WARNING:  WatchFiles detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+Process SpawnProcess-178:
 Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
     self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 108, in run
     self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
     target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
     return runner.run(main)
            ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+  File "/opt/conda/lib/python3.11/asyncio/runners.py", line 118, in run
     return self._loop.run_until_complete(task)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
     await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/api_queries.py'. Reloading...
-INFO:     Started server process [123628]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 22, in import_from_string
+    raise exc from None
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/workspace/syp/agent/backend/api_server.py", line 24, in <module>
+    from src.api_queries import (
+  File "/root/workspace/syp/agent/backend/src/api_queries.py", line 13, in <module>
+    from neo4j import GraphDatabase
+ModuleNotFoundError: No module named 'neo4j'
+WARNING:  WatchFiles detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+Process SpawnProcess-179:
 Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-114:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
     self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 108, in run
     self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
     target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
     return runner.run(main)
            ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+  File "/opt/conda/lib/python3.11/asyncio/runners.py", line 118, in run
     return self._loop.run_until_complete(task)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
     await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_ocr.py'. Reloading...
-INFO:     Started server process [132102]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 22, in import_from_string
+    raise exc from None
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/workspace/syp/agent/backend/api_server.py", line 24, in <module>
+    from src.api_queries import (
+  File "/root/workspace/syp/agent/backend/src/api_queries.py", line 13, in <module>
+    from neo4j import GraphDatabase
+ModuleNotFoundError: No module named 'neo4j'
+WARNING:  WatchFiles detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+Process SpawnProcess-180:
 Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-115:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
     self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 108, in run
     self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
     target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
     return runner.run(main)
            ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+  File "/opt/conda/lib/python3.11/asyncio/runners.py", line 118, in run
     return self._loop.run_until_complete(task)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
     await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/specsheet_models.py'. Reloading...
-INFO:     Started server process [12445]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 22, in import_from_string
+    raise exc from None
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/workspace/syp/agent/backend/api_server.py", line 24, in <module>
+    from src.api_queries import (
+  File "/root/workspace/syp/agent/backend/src/api_queries.py", line 13, in <module>
+    from neo4j import GraphDatabase
+ModuleNotFoundError: No module named 'neo4j'
+WARNING:  WatchFiles detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+Process SpawnProcess-181:
 Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-116:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
     self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 108, in run
     self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
     target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 22, in import_from_string
+    raise exc from None
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/workspace/syp/agent/backend/api_server.py", line 24, in <module>
+    from src.api_queries import (
+  File "/root/workspace/syp/agent/backend/src/api_queries.py", line 13, in <module>
+    from neo4j import GraphDatabase
+ModuleNotFoundError: No module named 'neo4j'
+WARNING:  WatchFiles detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+Process SpawnProcess-182:
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/conda/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 22, in import_from_string
+    raise exc from None
+  File "/opt/conda/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/workspace/syp/agent/backend/api_server.py", line 24, in <module>
+    from src.api_queries import (
+  File "/root/workspace/syp/agent/backend/src/api_queries.py", line 13, in <module>
+    from neo4j import GraphDatabase
+ModuleNotFoundError: No module named 'neo4j'
+py", line 67, in run
     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
@@ -10674,7 +10671,27 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-^^^^^^^^^^^^^^^^^
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [6391]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
     server._start_serving()
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
@@ -10725,8 +10742,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/api_queries.py'. Reloading...
-INFO:     Started server process [123586]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [13677]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -10796,8 +10813,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_ocr.py'. Reloading...
-INFO:     Started server process [131971]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [18076]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -10867,8 +10884,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/specsheet_models.py'. Reloading...
-INFO:     Started server process [12646]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [22289]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -10938,28 +10955,7 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_book.py'. Reloading...
-INFO:     Started server process [24111]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+ 1561, in create_server
     server._start_serving()
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
@@ -14353,53 +14349,291 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-ath,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `parent_raw_path` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=16, column=37, offset=897>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 897, 'line': 16, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `source_name` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=17, column=37, offset=974>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 974, 'line': 17, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
-INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QC1A1H0AHNC0AND00FA/kb_overview HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms/A21QB3Q4A0HXDCAADD000E/accessories HTTP/1.1" 200 OK
-WARNING:  StatReload detected changes in 'src/api_queries.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [180059]
-INFO:     Started server process [20978]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [6324]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-WARNING:  StatReload detected changes in 'src/manual_book.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [20978]
-INFO:     Started server process [21630]
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-221:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [13608]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-WARNING:  StatReload detected changes in 'api_server.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [21630]
-INFO:     Started server process [22266]
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-222:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [18077]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-Received notification from DBMS server: <GqlStatusObject gql_status='01N51', status_description='warn: relationship type does not exist. The relationship type `HAS_DOC` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=3, column=40, offset=100>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 100, 'line': 3, 'column': 40}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `role` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=6, column=36, offset=221>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 221, 'line': 6, 'column': 36}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `parent_raw_path` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=16, column=37, offset=897>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 897, 'line': 16, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `source_name` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=17, column=37, offset=974>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 974, 'line': 17, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
-INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms/A21QB3Q4A0HXDCAADD000E/accessories HTTP/1.1" 200 OK
-Received notification from DBMS server: <GqlStatusObject gql_status='01N51', status_description='warn: relationship type does not exist. The relationship type `HAS_DOC` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=3, column=40, offset=100>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 100, 'line': 3, 'column': 40}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `role` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=6, column=36, offset=221>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 221, 'line': 6, 'column': 36}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `parent_raw_path` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=16, column=37, offset=897>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 897, 'line': 16, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
-Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `source_name` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=17, column=37, offset=974>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 974, 'line': 17, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
-INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QC1A1H0AHNC0AND00FA/kb_overview HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms/A21QC1A1H0AHNC0AND00FA/accessories HTTP/1.1" 200 OK
-INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QC1A1H0AHNC0AND00FA/truth/specsheet.json HTTP/1.1" 200 OK
-Received notification from DBMS server: <GqlStatusObject gql_status='01N51', status_description='warn: relationship type does not exist. The relationship type `HAS_DOC` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=3, column=40, offset=100>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 100, 'line': 3, 'column': 40}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-223:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [22356]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-224:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+tionship type `HAS_DOC` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=3, column=40, offset=100>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 100, 'line': 3, 'column': 40}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
 Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `role` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=6, column=36, offset=221>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 221, 'line': 6, 'column': 36}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[hd:HAS_DOC]->(d:Document)\n                WITH hd, d\n                WHERE d IS NOT NULL\n                RETURN coalesce(hd.role, '') AS role,\n                       d.path AS path,\n                       coalesce(d.name, '') AS name,\n                       coalesce(d.mime_type, '') AS mime_type,\n                       coalesce(d.doc_kind, '') AS doc_kind,\n                       d.created_at AS created_at\n                "
 Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `parent_raw_path` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=16, column=37, offset=897>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 897, 'line': 16, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
 Received notification from DBMS server: <GqlStatusObject gql_status='01N52', status_description='warn: property key does not exist. The property `source_name` does not exist. Verify that the spelling is correct.', position=<SummaryInputPosition line=17, column=37, offset=974>, raw_classification='UNRECOGNIZED', classification=<NotificationClassification.UNRECOGNIZED: 'UNRECOGNIZED'>, raw_severity='WARNING', severity=<NotificationSeverity.WARNING: 'WARNING'>, diagnostic_record={'_classification': 'UNRECOGNIZED', '_severity': 'WARNING', '_position': {'offset': 974, 'line': 17, 'column': 37}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: "\n                MATCH (p:Product {product_id: $product_id})\n                OPTIONAL MATCH (p)-[:HAS_DATASET]->(ds:Dataset)\n                OPTIONAL MATCH (ds)-[:HAS_FOLDER]->(f:Folder)\n                OPTIONAL MATCH (f)-[:CONTAINS]->(doc:Document)\n                RETURN coalesce(ds.dataset_id, '') AS dataset_id,\n                       coalesce(ds.source, '') AS source,\n                       ds.created_at AS dataset_created_at,\n                       coalesce(f.path, '') AS folder_path,\n                       coalesce(f.kind, '') AS folder_kind,\n                       coalesce(doc.path, '') AS doc_path,\n                       coalesce(doc.name, '') AS doc_name,\n                       coalesce(doc.mime_type, '') AS doc_mime_type,\n                       coalesce(doc.doc_kind, '') AS doc_kind,\n                       doc.created_at AS doc_created_at,\n                       coalesce(doc.parent_raw_path, '') AS parent_raw_path,\n                       coalesce(doc.source_name, '') AS source_name,\n                       coalesce(doc.page_number, 0) AS page_number\n                "
@@ -17380,614 +17614,384 @@ INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0
 INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
 INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
 INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
-getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-271:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-INFO:     Started server process [11388]
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms/A21QB3Q4A0HXDCAADD000E/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms/A21QB3Q4A0HXDCAADD000E/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms/A21QB3Q4A0HXDCAADD000E/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/prompt-reverse HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+You are using a model of type deepseek_vl_v2 to instantiate a model of type DeepseekOCR. This is not supported for all configurations of models and can yield errors.
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/ArumD/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/ArumD/boms/B31HA1J2LIAICA0ANDA00A/accessories HTTP/1.1" 200 OK
+Some weights of DeepseekOCRForCausalLM were not initialized from the model checkpoint at /root/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-OCR/snapshots/9f30c71f441d010e5429c532364a86705536c53a and are newly initialized: ['model.vision_model.embeddings.position_ids']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/root/workspace/conda_envs/syp/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+The `seen_tokens` attribute is deprecated and will be removed in v4.41. Use the `cache_position` model input instead.
+`get_max_cache()` is deprecated for all Cache classes. Use `get_max_cache_shape()` instead. Calling `get_max_cache()` will raise error from v4.48
+The attention layers in this model are transitioning from computing the RoPE embeddings internally through `position_ids` (2D tensor with the indexes of the tokens), to using externally computed `position_embeddings` (Tuple of tensors, containing cos and sin). In v4.46 `position_ids` will be removed and `position_embeddings` will be mandatory.
+image:   0%|          | 0/1 [00:00<?, ?it/s]image: 100%|██████████| 1/1 [00:00<00:00, 25266.89it/s]
+other:   0%|          | 0/6 [00:00<?, ?it/s]other: 100%|██████████| 6/6 [00:00<00:00, 189216.72it/s]
+▶ Processing: /tmp/tmpl59kmb1n/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.png
+  ↳ saved stdout: /root/workspace/syp/agent/backend/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.stdout.md
+✓ Done: /tmp/tmpl59kmb1n/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20.png -> /root/workspace/syp/agent/backend/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20
+✅ OCR run finished.
+✅ OCR run finished.
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/ocr HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Victoria/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Victoria/boms/A21AA1I1I0DGCE0AJAA00A/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Victoria/boms/A41BA1L1PBA0CCAANM00AA/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Victoria_A41BA1L1PBA0CCAANM00AA/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [139551]
+INFO:     Started server process [6651]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-272:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_book.py'. Reloading...
-INFO:     Started server process [17144]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [6651]
+INFO:     Started server process [13367]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-273:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'api_server.py'. Reloading...
-INFO:     Started server process [17651]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [13367]
+INFO:     Started server process [18273]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-274:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_book.py'. Reloading...
-INFO:     Started server process [53173]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [18273]
+INFO:     Started server process [22491]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-275:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_book.py'. Reloading...
-INFO:     Started server process [53743]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-276:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'api_server.py'. Reloading...
-INFO:     Started server process [54485]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-277:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'api_server.py'. Reloading...
-INFO:     Started server process [55770]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-278:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/specsheet_models.py'. Reloading...
-INFO:     Started server process [63043]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
-    await receive()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
-    return await self.receive_queue.get()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
-    await getter
-asyncio.exceptions.CancelledError
-
-Process SpawnProcess-279:
-Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/manual_book.py'. Reloading...
-INFO:     Started server process [64578]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    Traceback (most recent call last):
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/accessories HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/materials/Alpine/boms HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/manual-sessions/init HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E/progress HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/book/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "GET /api/products/Alpine_A21QB3Q4A0HXDCAADD000E/kb_overview HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual/specsheet/saved?product_name=Alpine&bom_code=A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/manual-sessions/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/bom/session/Alpine_A21QB3Q4A0HXDCAADD000E HTTP/1.1" 404 Not Found
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/analyze_reference HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "GET /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg HTTP/1.1" 200 OK
+INFO:     100.64.10.208:0 - "POST /api/poster/generate_copy HTTP/1.1" 200 OK
+orkspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
     return runner.run(main)
            ^^^^^^^^^^^^^^^^
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
@@ -19047,34 +19051,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
-    target(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
-    await self._serve(sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
-    await self.startup(sockets=sockets)
-  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
-    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
-    server._start_serving()
-  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
-    sock.listen(self._backlog)
-OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/rag_specsheet.py'. Reloading...
-INFO:     Started server process [130203]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [6323]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -19144,8 +19122,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/rag_specsheet.py'. Reloading...
-INFO:     Started server process [137956]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [13352]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -19215,8 +19193,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/rag_specsheet.py'. Reloading...
-INFO:     Started server process [139490]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [18270]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -19286,8 +19264,8 @@ Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
     sock.listen(self._backlog)
 OSError: [Errno 98] Address already in use
-WARNING:  StatReload detected changes in 'src/rag_specsheet.py'. Reloading...
-INFO:     Started server process [165244]
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [22490]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ERROR:    Traceback (most recent call last):
@@ -19333,6 +19311,31 @@ Traceback (most recent call last):
     self._target(*self._args, **self._kwargs)
   File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
     target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+t(sockets=sockets)
   File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
     return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23593,6 +23596,290 @@ Traceback (most recent call last):
 asyncio.exceptions.CancelledError
 
 Process SpawnProcess-360:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [6325]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-361:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [13366]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-362:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [17999]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-363:
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+WARNING:  StatReload detected changes in 'src/neo4j_import_material_images_from_xlsx.py'. Reloading...
+INFO:     Started server process [22355]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 86, in _serve
+    await self.startup(sockets=sockets)
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/server.py", line 136, in startup
+    server = await loop.create_server(create_protocol, sock=sock, ssl=config.ssl, backlog=config.backlog)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 1561, in create_server
+    server._start_serving()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/base_events.py", line 316, in _start_serving
+    sock.listen(self._backlog)
+OSError: [Errno 98] Address already in use
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/starlette/routing.py", line 701, in lifespan
+    await receive()
+  File "/root/workspace/conda_envs/syp/lib/python3.11/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/workspace/conda_envs/syp/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Process SpawnProcess-364:
 Traceback (most recent call last):
   File "/root/workspace/conda_envs/syp/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
     self.run()

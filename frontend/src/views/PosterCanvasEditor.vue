@@ -155,7 +155,7 @@
               <div v-if="posterAnalyzeError" class="gen-error">{{ posterAnalyzeError }}</div>
 
               <div class="gen-col gen-col-full" style="margin-top: 10px;">
-                <div class="gen-col-title">生成文案与风格</div>
+                <div class="gen-col-title">生成文案</div>
                 <el-input
                   v-model="posterStep2Requirements"
                   type="textarea"
@@ -163,7 +163,7 @@
                   placeholder="例如：面向美国经销商销售按摩浴缸，主打节能、舒适、易安装"
                 />
                 <div class="gen-actions" style="margin-top: 10px;">
-                  <el-button type="primary" :loading="posterStep2Loading" @click="generatePosterCopyStep2">生成文案与风格</el-button>
+                  <el-button type="primary" :loading="posterStep2Loading" @click="generatePosterCopyStep2">生成文案</el-button>
                   <el-button text @click="clearStep2Assets">清空素材</el-button>
                   <el-button text @click="clearStep2All">清空</el-button>
                 </div>
@@ -312,8 +312,6 @@
             <div class="gen-row" style="margin-top: -2px;">
               <div class="gen-label" style="font-weight: 500; opacity: 0.85;">显示框</div>
               <el-switch v-model="previewShowBoxes" />
-              <div class="gen-label" style="margin-left: 12px; font-weight: 500; opacity: 0.85;">自动保存草稿</div>
-              <el-switch v-model="autoSaveAfterExportToCanvas" />
               <el-button size="small" style="margin-left: auto;" @click="exportPreviewToCanvas">导出到画布</el-button>
             </div>
             <div v-if="previewBaseUrl" ref="previewCanvasRef" class="gen-preview-canvas" :style="previewContainerStyle">
@@ -497,13 +495,17 @@ const resizeOverlay = reactive({
 
 const resizeState = reactive({
   active: false,
+  mode: 'uniform',
   corner: '',
   oppCorner: '',
   startDist: 1,
   startScaleX: 1,
   startScaleY: 1,
+  startPointer: { x: 0, y: 0 },
+  startRect: { left: 0, top: 0, width: 0, height: 0 },
   anchor: { x: 0, y: 0 },
   obj: null,
+  pointerId: null,
 })
 
 const isSpaceDown = ref(false)
@@ -1034,8 +1036,6 @@ const posterStep2ProductFile = ref(null)
 const posterStep2BackgroundFile = ref(null)
 const posterStep2ProductUrl = ref('')
 const posterStep2BackgroundUrl = ref('')
-
-const autoSaveAfterExportToCanvas = ref(true)
 
 const posterFramework = reactive({
   size: {
@@ -2093,22 +2093,52 @@ const onResizeHandleMove = (e) => {
   if (!canvas || !obj) return
 
   try {
-    const pointer = canvas.getPointer(e)
-    const ratio = _dist(pointer, resizeState.anchor) / (resizeState.startDist || 1)
-    const base = resizeState.startScaleX || 1
-    const s = clamp(base * ratio, 0.02, 50)
-    obj.set({ scaleX: s, scaleY: s })
-    if (typeof obj.setCoords === 'function') obj.setCoords()
-
-    // Keep opposite corner fixed in absolute coordinates
-    const coords = typeof obj.getCoords === 'function' ? obj.getCoords() : null
-    if (coords && coords.length >= 4) {
-      const idxOpp = _cornerIndex(resizeState.oppCorner)
-      const nowAnchor = coords[idxOpp]
-      const dx = (resizeState.anchor?.x || 0) - (nowAnchor?.x || 0)
-      const dy = (resizeState.anchor?.y || 0) - (nowAnchor?.y || 0)
-      obj.set({ left: (obj.left || 0) + dx, top: (obj.top || 0) + dy })
+    if (resizeState.mode === 'width') {
+      const pointer = canvas.getPointer(e)
+      const dx = (pointer?.x || 0) - (resizeState.startPointer?.x || 0)
+      const rect0 = resizeState.startRect || { left: 0, top: 0, width: 0, height: 0 }
+      const scaleX = Number(obj.scaleX ?? 1) || 1
+      const w0 = Math.max(1, Number(rect0.width || 1))
+      let w1 = w0
+      if (resizeState.corner === 'mr') {
+        w1 = w0 + dx
+      } else if (resizeState.corner === 'ml') {
+        w1 = w0 - dx
+      }
+      w1 = Math.max(10, w1)
+      const nextWidth = Math.max(1, w1 / Math.max(1e-6, Math.abs(scaleX)))
+      obj.set({ width: nextWidth })
+      try { if (typeof obj.setCoords === 'function') obj.setCoords() } catch (e2) {}
+      const rect1 = obj.getBoundingRect?.(true, true)
+      if (rect1) {
+        if (resizeState.corner === 'mr') {
+          const dxFix = (rect0.left || 0) - (rect1.left || 0)
+          obj.set({ left: (obj.left || 0) + dxFix })
+        } else if (resizeState.corner === 'ml') {
+          const r0 = (rect0.left || 0) + (rect0.width || 0)
+          const r1 = (rect1.left || 0) + (rect1.width || 0)
+          const dxFix = r0 - r1
+          obj.set({ left: (obj.left || 0) + dxFix })
+        }
+        try { if (typeof obj.setCoords === 'function') obj.setCoords() } catch (e3) {}
+      }
+    } else {
+      const pointer = canvas.getPointer(e)
+      const ratio = _dist(pointer, resizeState.anchor) / (resizeState.startDist || 1)
+      const base = resizeState.startScaleX || 1
+      const s = clamp(base * ratio, 0.02, 50)
+      obj.set({ scaleX: s, scaleY: s })
       if (typeof obj.setCoords === 'function') obj.setCoords()
+
+      const coords = typeof obj.getCoords === 'function' ? obj.getCoords() : null
+      if (coords && coords.length >= 4) {
+        const idxOpp = _cornerIndex(resizeState.oppCorner)
+        const nowAnchor = coords[idxOpp]
+        const dx2 = (resizeState.anchor?.x || 0) - (nowAnchor?.x || 0)
+        const dy2 = (resizeState.anchor?.y || 0) - (nowAnchor?.y || 0)
+        obj.set({ left: (obj.left || 0) + dx2, top: (obj.top || 0) + dy2 })
+        if (typeof obj.setCoords === 'function') obj.setCoords()
+      }
     }
   } catch (err) {
     // ignore
@@ -2123,7 +2153,9 @@ const onResizeHandleMove = (e) => {
 const onResizeHandleUp = (e) => {
   if (!resizeState.active) return
   if (resizeState.pointerId != null && e?.pointerId != null && e.pointerId !== resizeState.pointerId) return
+  const obj = resizeState.obj
   resizeState.active = false
+  resizeState.mode = 'uniform'
   resizeState.obj = null
   resizeState.pointerId = null
   try {
@@ -2131,13 +2163,36 @@ const onResizeHandleUp = (e) => {
     window.removeEventListener('pointerup', onResizeHandleUp, true)
     window.removeEventListener('pointercancel', onResizeHandleUp, true)
   } catch (err) {}
+  try {
+    if (resizeState.corner === 'ml' || resizeState.corner === 'mr') {
+      scheduleHistory()
+      return
+    }
+    if (obj && String(obj.type || '') === 'textbox') {
+      bakeTextboxScaling(obj)
+      return
+    }
+  } catch (err) {}
+  try {
+    scheduleHistory()
+  } catch (err) {}
 }
 
 const onResizeHandleDown = (cornerKey, e) => {
   const canvas = canvasInstance.value
   if (!canvas) return
   const obj = canvas.getActiveObject()
-  if (!obj || obj.type !== 'image') return
+  if (!obj) return
+  const t = String(obj.type || '')
+  const isSide = cornerKey === 'ml' || cornerKey === 'mr'
+  if (isSide) {
+    if (t !== 'textbox') return
+    const a0 = ((Number(obj.angle ?? 0) % 360) + 360) % 360
+    const a = Math.min(a0, 360 - a0)
+    if (a > 0.5) return
+  } else {
+    if (t !== 'image' && t !== 'textbox') return
+  }
   if (!e) return
 
   try {
@@ -2155,24 +2210,47 @@ const onResizeHandleDown = (cornerKey, e) => {
     if (typeof obj.setCoords === 'function') obj.setCoords()
   } catch (err) {}
 
-  const coords = typeof obj.getCoords === 'function' ? obj.getCoords() : null
-  if (!coords || coords.length < 4) return
-
-  const oppCorner = _oppCornerKey(cornerKey)
-  const idxOpp = _cornerIndex(oppCorner)
-  const anchor = coords[idxOpp]
   const pointer = canvas.getPointer(e)
-  const startDist = Math.max(1e-6, _dist(pointer, anchor))
+  resizeState.startPointer = { x: pointer?.x || 0, y: pointer?.y || 0 }
+  const br0 = obj.getBoundingRect?.(true, true)
+  resizeState.startRect = {
+    left: Number(br0?.left ?? 0),
+    top: Number(br0?.top ?? 0),
+    width: Number(br0?.width ?? 0),
+    height: Number(br0?.height ?? 0),
+  }
 
-  resizeState.active = true
-  resizeState.corner = cornerKey
-  resizeState.oppCorner = oppCorner
-  resizeState.startDist = startDist
-  resizeState.startScaleX = Number(obj.scaleX ?? 1) || 1
-  resizeState.startScaleY = Number(obj.scaleY ?? 1) || 1
-  resizeState.anchor = { x: anchor.x, y: anchor.y }
-  resizeState.obj = obj
-  resizeState.pointerId = e.pointerId
+  if (isSide) {
+    resizeState.active = true
+    resizeState.mode = 'width'
+    resizeState.corner = cornerKey
+    resizeState.oppCorner = ''
+    resizeState.startDist = 1
+    resizeState.startScaleX = Number(obj.scaleX ?? 1) || 1
+    resizeState.startScaleY = Number(obj.scaleY ?? 1) || 1
+    resizeState.anchor = { x: 0, y: 0 }
+    resizeState.obj = obj
+    resizeState.pointerId = e.pointerId
+  } else {
+    const coords = typeof obj.getCoords === 'function' ? obj.getCoords() : null
+    if (!coords || coords.length < 4) return
+
+    const oppCorner = _oppCornerKey(cornerKey)
+    const idxOpp = _cornerIndex(oppCorner)
+    const anchor = coords[idxOpp]
+    const startDist = Math.max(1e-6, _dist(pointer, anchor))
+
+    resizeState.active = true
+    resizeState.mode = 'uniform'
+    resizeState.corner = cornerKey
+    resizeState.oppCorner = oppCorner
+    resizeState.startDist = startDist
+    resizeState.startScaleX = Number(obj.scaleX ?? 1) || 1
+    resizeState.startScaleY = Number(obj.scaleY ?? 1) || 1
+    resizeState.anchor = { x: anchor.x, y: anchor.y }
+    resizeState.obj = obj
+    resizeState.pointerId = e.pointerId
+  }
 
   try {
     window.addEventListener('pointermove', onResizeHandleMove, true)
@@ -2400,6 +2478,18 @@ const updateObjOverlay = () => {
     { key: 'br', x: sr.right, y: sr.bottom },
     { key: 'bl', x: sr.left, y: sr.bottom },
   ]
+  try {
+    const tl2 = String(obj?.type || '').toLowerCase()
+    if (tl2 === 'textbox') {
+      const a0 = ((Number(obj.angle ?? 0) % 360) + 360) % 360
+      const a = Math.min(a0, 360 - a0)
+      if (a <= 0.5) {
+        const midY = (sr.top + sr.bottom) / 2
+        resizeOverlay.handles.push({ key: 'ml', x: sr.left, y: midY })
+        resizeOverlay.handles.push({ key: 'mr', x: sr.right, y: midY })
+      }
+    }
+  } catch (e) {}
 
   // Avoid overlap between toolbar and size tag
   try {
@@ -3050,13 +3140,6 @@ const exportPreviewToCanvas = async () => {
     canvas.requestRenderAll()
     fitToScreen()
     ElMessage.success('已导出到画布（可编辑）')
-    if (autoSaveAfterExportToCanvas.value) {
-      try {
-        await saveDraft()
-      } catch (e) {
-        // ignore
-      }
-    }
   } catch (e) {
     console.error('exportPreviewToCanvas failed:', e)
     ElMessage.error('导出到画布失败')
@@ -3369,6 +3452,52 @@ const clearStep2Assets = () => {
   posterStep2BackgroundUrl.value = ''
 }
 
+const resolveReferenceImagePayload = async () => {
+  if (refImageFile.value) {
+    return { file: refImageFile.value, image_url: undefined }
+  }
+
+  const raw = String(refImageUrl.value || refPreviewUrl.value || '').trim()
+  if (!raw) {
+    return { file: undefined, image_url: undefined }
+  }
+
+  if (raw.startsWith('data:')) {
+    return { file: undefined, image_url: raw }
+  }
+
+  const tryFetchAsFile = async (url) => {
+    const resp = await fetch(url)
+    if (!resp.ok) {
+      throw new Error(`fetch image failed: ${resp.status}`)
+    }
+    const blob = await resp.blob()
+    const mt = blob?.type || 'image/png'
+    const ext = mt.includes('jpeg') ? 'jpg' : (mt.includes('webp') ? 'webp' : 'png')
+    return new File([blob], `poster_reference.${ext}`, { type: mt })
+  }
+
+  if (raw.startsWith('blob:')) {
+    const file = await tryFetchAsFile(raw)
+    return { file, image_url: undefined }
+  }
+
+  if (/^https?:\/\//i.test(raw)) {
+    try {
+      const u = new URL(raw)
+      if (u.pathname.startsWith('/api/files/')) {
+        return { file: undefined, image_url: u.pathname }
+      }
+      const file = await tryFetchAsFile(raw)
+      return { file, image_url: undefined }
+    } catch (e) {
+      return { file: undefined, image_url: raw }
+    }
+  }
+
+  return { file: undefined, image_url: raw }
+}
+
 const triggerStep2ProductUpload = () => {
   try {
     step2ProductInputRef.value?.click?.()
@@ -3470,9 +3599,15 @@ const analyzeReferenceImage = async () => {
   try {
     posterAnalysisResult.value = null
     posterAnalysisDebug.value = ''
+    const resolved = await resolveReferenceImagePayload()
+    if (!resolved?.file && !resolved?.image_url) {
+      posterAnalyzeError.value = '请先选择参考图'
+      return
+    }
+
     const resp = await analyzePosterReference({
-      file: refImageFile.value || undefined,
-      image_url: refImageUrl.value || undefined,
+      file: resolved.file || undefined,
+      image_url: resolved.image_url || undefined,
     })
     if (resp?.ok === false) {
       posterAnalyzeError.value = resp?.error || 'JSON 解析失败，已展示原始返回'
@@ -3735,6 +3870,46 @@ const downloadActive = async () => {
   }
 }
 
+const cloneTextboxFallback = (obj) => {
+  if (!obj || String(obj.type || '') !== 'textbox') return null
+  const text = typeof obj.text === 'string' ? obj.text : ''
+  const cloned = new FabricTextbox(text, {
+    left: Number(obj.left ?? 0),
+    top: Number(obj.top ?? 0),
+    width: Number(obj.width ?? 1) || 1,
+    height: Number(obj.height ?? 1) || 1,
+    fontFamily: obj.fontFamily,
+    fontSize: obj.fontSize,
+    fontWeight: obj.fontWeight,
+    fontStyle: obj.fontStyle,
+    fill: obj.fill,
+    stroke: obj.stroke,
+    strokeWidth: obj.strokeWidth,
+    textAlign: obj.textAlign,
+    lineHeight: obj.lineHeight,
+    charSpacing: obj.charSpacing,
+    backgroundColor: obj.backgroundColor,
+    opacity: obj.opacity,
+    angle: obj.angle,
+    scaleX: obj.scaleX,
+    scaleY: obj.scaleY,
+    flipX: obj.flipX,
+    flipY: obj.flipY,
+    skewX: obj.skewX,
+    skewY: obj.skewY,
+    shadow: obj.shadow,
+  })
+  try {
+    cloned.data = obj.data ? JSON.parse(JSON.stringify(obj.data)) : undefined
+  } catch (e) {
+    cloned.data = obj.data
+  }
+  try {
+    if (typeof cloned.setCoords === 'function') cloned.setCoords()
+  } catch (e) {}
+  return cloned
+}
+
 const cloneObject = (obj) => {
   return new Promise((resolve, reject) => {
     try {
@@ -3792,6 +3967,8 @@ const duplicateActive = async () => {
             angle: obj.angle,
           })
         }
+      } else if (obj.type === 'textbox') {
+        cloned = cloneTextboxFallback(obj)
       }
       if (!cloned) throw e
     }
@@ -3805,7 +3982,7 @@ const duplicateActive = async () => {
     updateObjOverlay()
     try { ElMessage.success('已复制') } catch (e) {}
   } catch (e) {
-    ElMessage.error('复制失败')
+    ElMessage.error(`复制失败${e?.message ? `：${e.message}` : ''}`)
   }
 }
 
@@ -4010,6 +4187,8 @@ const copyActive = async () => {
             opacity: obj.opacity,
           })
         }
+      } else if (obj.type === 'textbox') {
+        cloned = cloneTextboxFallback(obj)
       }
       if (!cloned) throw e
     }
@@ -4038,7 +4217,7 @@ const copyActive = async () => {
     pasteCount.value = 0
     ElMessage.success('已复制')
   } catch (e) {
-    ElMessage.error('复制失败')
+    ElMessage.error(`复制失败${e?.message ? `：${e.message}` : ''}`)
   }
 }
 
@@ -4060,7 +4239,15 @@ const pasteActive = async () => {
         ...(stored.props || {}),
       })
     } else if (clipboard.value) {
-      next = await cloneObject(clipboard.value)
+      try {
+        next = await cloneObject(clipboard.value)
+      } catch (err) {
+        if (clipboard.value?.type === 'textbox') {
+          next = cloneTextboxFallback(clipboard.value)
+        } else {
+          throw err
+        }
+      }
     }
 
     if (!next) throw new Error('paste failed')
@@ -4080,7 +4267,7 @@ const pasteActive = async () => {
     canvas.requestRenderAll()
     updateObjOverlay()
   } catch (e) {
-    ElMessage.error('粘贴失败')
+    ElMessage.error(`粘贴失败${e?.message ? `：${e.message}` : ''}`)
   }
 }
 </script>
@@ -4134,6 +4321,11 @@ const pasteActive = async () => {
 .resize-handle[data-key='tr'],
 .resize-handle[data-key='bl'] {
   cursor: nesw-resize;
+}
+
+.resize-handle[data-key='ml'],
+.resize-handle[data-key='mr'] {
+  cursor: ew-resize;
 }
 
 .top-left {
