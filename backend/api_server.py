@@ -6,10 +6,12 @@ import os
 import sys
 import json
 import re
+import mimetypes
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Literal
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Query, Body
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
@@ -25,6 +27,8 @@ from src.api_queries import (
     get_all_product_names,
     get_all_accessory_names,
     get_all_material_codes,
+    get_material_image_by_material_code,
+    get_product_image_by_product_name,
     get_boms_by_material_code,
     get_accessories_zh_by_material_bom,
     get_boms_by_product_id,
@@ -199,6 +203,38 @@ app.add_middleware(
 )
 
 
+# Static files: material images extracted from Excel
+MATERIAL_IMAGES_DIR = Path(__file__).resolve().parent / "material_images"
+if MATERIAL_IMAGES_DIR.exists() and MATERIAL_IMAGES_DIR.is_dir():
+    app.mount(
+        "/static/material_images",
+        StaticFiles(directory=str(MATERIAL_IMAGES_DIR)),
+        name="material_images",
+    )
+
+
+@app.get("/api/material_images/{file_path:path}")
+async def get_material_image_file(file_path: str):
+    try:
+        rel = (file_path or "").lstrip("/")
+        if not rel:
+            raise HTTPException(status_code=404, detail="File not found")
+
+        base = MATERIAL_IMAGES_DIR.resolve()
+        target = (base / rel).resolve()
+        if target != base and base not in target.parents:
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        if not target.exists() or not target.is_file():
+            raise HTTPException(status_code=404, detail="File not found")
+
+        media_type, _ = mimetypes.guess_type(str(target))
+        return FileResponse(path=str(target), media_type=media_type or "application/octet-stream")
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch material image file: {str(e)}")
+
+
 class DocumentUpdateRequest(BaseModel):
     content: str
     new_name: str | None = None
@@ -341,6 +377,30 @@ async def get_material_boms(material_code: str):
         raise HTTPException(
             status_code=500,
             detail=f"Failed to fetch BOMs for material '{material_code}': {str(e)}",
+        )
+
+
+@app.get("/api/materials/{material_code}/image")
+async def get_material_image(material_code: str):
+    try:
+        data = get_material_image_by_material_code(material_code)
+        return data
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to fetch image for material '{material_code}': {str(e)}",
+        )
+
+
+@app.get("/api/products/{product_name}/image")
+async def get_product_image(product_name: str):
+    try:
+        data = get_product_image_by_product_name(product_name)
+        return data
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to fetch image for product '{product_name}': {str(e)}",
         )
 
 

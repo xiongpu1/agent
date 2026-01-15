@@ -10,7 +10,6 @@
         <img class="thumb" :src="imgUrl" :alt="name" @error="onImgError" />
         <div class="meta">
           <div class="name">{{ name }}</div>
-          <div class="sub">ID：{{ id }}</div>
         </div>
       </div>
 
@@ -90,7 +89,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Search } from '@element-plus/icons-vue'
 import { BOM_CONFIG, createDefaultBomSelections } from '@/constants/bomOptions'
@@ -102,10 +101,60 @@ const id = computed(() => route.params.id)
 const productId = computed(() => route.query.productId || '')
 const materialCode = computed(() => route.query.materialCode || '')
 const name = computed(() => route.query.label || productId.value || `产品${id.value}`)
-const image = computed(() => route.query.image || 'Alta.png')
-const imgUrl = computed(() => `/product/${image.value}`)
+const PLACEHOLDER_IMG = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" viewBox="0 0 88 88"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset="1" stop-color="#e6eaf0"/></linearGradient></defs><rect x="0" y="0" width="88" height="88" rx="12" fill="url(#g)"/><path d="M28 56h32a4 4 0 0 0 4-4V36a4 4 0 0 0-4-4H28a4 4 0 0 0-4 4v16a4 4 0 0 0 4 4zm0-2a2 2 0 0 1-2-2V36a2 2 0 0 1 2-2h32a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H28z" fill="#9aa4b2"/><path d="M31 50l9-10 7 8 5-6 9 12H31z" fill="#9aa4b2" opacity="0.9"/><circle cx="36" cy="39" r="3" fill="#9aa4b2"/></svg>`
+)}`
+const imgUrl = ref(PLACEHOLDER_IMG)
 
-const onImgError = (e) => { e.target.src = '/favicon.ico' }
+const onImgError = (e) => { e.target.src = PLACEHOLDER_IMG }
+
+const imageCache = new Map()
+const loadMaterialImage = async () => {
+  const code = String(materialCode.value || '').trim()
+  if (!code) {
+    imgUrl.value = PLACEHOLDER_IMG
+    return
+  }
+  if (imageCache.has(code)) {
+    imgUrl.value = imageCache.get(code) || PLACEHOLDER_IMG
+    return
+  }
+  try {
+    const { getMaterialImage } = await import('@/services/api')
+    const data = await getMaterialImage(code)
+    const url = data?.found ? (data?.image_url || '') : ''
+    const resolved = url || PLACEHOLDER_IMG
+    imageCache.set(code, resolved)
+    imgUrl.value = resolved
+  } catch (error) {
+    console.error('Failed to load material image:', error)
+    imgUrl.value = PLACEHOLDER_IMG
+  }
+}
+
+const loadProductImage = async () => {
+  const pn = String(productId.value || name.value || '').trim()
+  if (!pn) {
+    imgUrl.value = PLACEHOLDER_IMG
+    return
+  }
+  const cacheKey = `product:${pn}`
+  if (imageCache.has(cacheKey)) {
+    imgUrl.value = imageCache.get(cacheKey) || PLACEHOLDER_IMG
+    return
+  }
+  try {
+    const { getProductImage } = await import('@/services/api')
+    const data = await getProductImage(pn)
+    const url = data?.found ? (data?.image_url || '') : ''
+    const resolved = url || PLACEHOLDER_IMG
+    imageCache.set(cacheKey, resolved)
+    imgUrl.value = resolved
+  } catch (error) {
+    console.error('Failed to load product image:', error)
+    imgUrl.value = PLACEHOLDER_IMG
+  }
+}
 
 const bomList = ref([])
 const loadingBoms = ref(false)
@@ -253,7 +302,32 @@ onMounted(() => {
   if (productId.value || materialCode.value) {
     loadBoms()
   }
+  if (materialCode.value) {
+    loadMaterialImage()
+  } else {
+    loadProductImage()
+  }
 })
+
+watch(
+  () => materialCode.value,
+  () => {
+    if (materialCode.value) {
+      loadMaterialImage()
+    } else {
+      loadProductImage()
+    }
+  }
+)
+
+watch(
+  () => productId.value,
+  () => {
+    if (!materialCode.value) {
+      loadProductImage()
+    }
+  }
+)
 
 const goBack = () => router.back()
 

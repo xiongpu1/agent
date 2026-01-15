@@ -21,6 +21,11 @@ export default defineConfig({
         changeOrigin: true,
         ws: true,
       },
+      '/static/material_images': {
+        target: 'http://127.0.0.1:8001',
+        changeOrigin: true,
+        ws: false,
+      },
     },
   },
   resolve: {

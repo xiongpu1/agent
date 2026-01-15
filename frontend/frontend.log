@@ -929,3 +929,14 @@ Error: connect ECONNREFUSED 127.0.0.1:8001
 11:03:07 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
 11:03:17 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue?vue&type=style&index=0&scoped=80b51a98&lang.css
 8:54:47 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+6:16:51 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+6:17:49 PM [vite] (client) hmr update /src/views/ProductBoms.vue
+6:23:10 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+6:59:24 PM [vite] vite.config.js changed, restarting server...
+failed to load config from /root/workspace/syp/agent/frontend/vite.config.js
+6:59:24 PM [vite] Cannot find package 'vite' imported from /root/workspace/syp/agent/frontend/node_modules/.vite-temp/vite.config.js.timestamp-1768474764532-33a40b85ff77a.mjs
+6:59:24 PM [vite] server restart failed
+7:17:19 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+7:17:48 PM [vite] (client) hmr update /src/views/ProductBoms.vue
+7:30:06 PM [vite] (client) hmr update /src/views/ProductBoms.vue, /src/views/Home.vue, /src/views/ProductBomDetail.vue, /src/views/ProductBomOverview.vue, /src/views/ProductDetail.vue, /src/views/ManualReview.vue, /src/views/ProductManual.vue, /src/views/PromptPlaybook.vue, /src/views/PosterCanvasEditor.vue
+7:36:16 PM [vite] (client) hmr update /src/views/ProductBoms.vue

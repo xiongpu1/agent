@@ -5,6 +5,26 @@
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
 
+const rewriteMaterialImageUrl = (url) => {
+  const u = String(url || '')
+  if (!u) return ''
+  // When API_BASE_URL is empty, frontend relies on Vite proxy rules.
+  // Some environments don't proxy /static/material_images correctly, so we
+  // expose images under /api/material_images/* and rewrite accordingly.
+  if (!API_BASE_URL && u.startsWith('/static/material_images/')) {
+    return u.replace('/static/material_images/', '/api/material_images/')
+  }
+  return u
+}
+
+const resolveApiUrl = (path) => {
+  const p = String(path || '')
+  if (!p) return ''
+  if (p.startsWith('http://') || p.startsWith('https://')) return p
+  if (p.startsWith('/') && API_BASE_URL) return `${API_BASE_URL}${p}`
+  return p
+}
+
 const encodeDocumentPath = (docPath) =>
   (docPath || '')
     .split('/')
@@ -347,6 +367,30 @@ export async function getBomsByMaterial(materialCode) {
   if (response.status === 404) return []
   const data = await handleResponse(response, 'Failed to fetch BOMs for material')
   return data.boms || []
+}
+
+export async function getProductImage(productName) {
+  const name = String(productName || '').trim()
+  if (!name) return { product_name: '', found: false, image_url: '' }
+  const response = await fetch(`${API_BASE_URL}/api/products/${encodeURIComponent(name)}/image`)
+  if (response.status === 404) return { product_name: name, found: false, image_url: '' }
+  const data = await handleResponse(response, 'Failed to fetch image for product')
+  return {
+    ...data,
+    image_url: rewriteMaterialImageUrl(resolveApiUrl(data?.image_url))
+  }
+}
+
+export async function getMaterialImage(materialCode) {
+  const code = String(materialCode || '').trim()
+  if (!code) return { material_code: '', found: false, image_url: '' }
+  const response = await fetch(`${API_BASE_URL}/api/materials/${encodeURIComponent(code)}/image`)
+  if (response.status === 404) return { material_code: code, found: false, image_url: '' }
+  const data = await handleResponse(response, 'Failed to fetch image for material')
+  return {
+    ...data,
+    image_url: rewriteMaterialImageUrl(resolveApiUrl(data?.image_url))
+  }
 }
 
 export async function getAccessoriesZhByMaterialBom(materialCode, bomId) {

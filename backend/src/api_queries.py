@@ -8,6 +8,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 from typing import List, Dict, Optional, Any, Iterable
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
@@ -31,6 +32,139 @@ load_dotenv()
 
 # Backend root directory for resolving stored document paths
 BACKEND_ROOT = Path(__file__).resolve().parent.parent
+
+MATERIAL_IMAGES_DIR = BACKEND_ROOT / "material_images"
+
+
+def _encode_url_path(p: str) -> str:
+    segs = [quote(s) for s in str(p).split("/")]
+    return "/".join(segs)
+
+
+def _material_image_url_from_path(stored_path: str | None) -> str:
+    raw = (stored_path or "").strip()
+    if not raw:
+        return ""
+
+    if raw.startswith("/static/material_images/"):
+        return _encode_url_path(raw)
+
+    normalized = raw.replace("\\", "/")
+    marker = "/material_images/"
+    if marker in normalized:
+        idx = normalized.rfind(marker)
+        rel = normalized[idx + len(marker) :].lstrip("/")
+        if rel:
+            return _encode_url_path(f"/static/material_images/{rel}")
+
+    try:
+        p = Path(raw)
+        if p.is_absolute() and MATERIAL_IMAGES_DIR in p.parents:
+            rel = p.relative_to(MATERIAL_IMAGES_DIR)
+            return _encode_url_path(f"/static/material_images/{rel.as_posix()}")
+    except Exception:
+        pass
+
+    return ""
+
+
+def get_material_image_by_material_code(material_code: str) -> Dict[str, Any]:
+    mc = (material_code or "").strip()
+    if not mc:
+        return {"material_code": "", "found": False, "image_url": "", "score": None, "sheet": ""}
+
+    neo4j_config = get_neo4j_config()
+    driver = get_neo4j_driver(neo4j_config)
+    try:
+        with driver.session() as session:
+            res = session.run(
+                """
+                MATCH (m:Material {material_code: $material_code})
+                OPTIONAL MATCH (m)-[r:HAS_IMAGE]->(img:MaterialImage)
+                RETURN img.path AS rel_path, m.image AS legacy_path, r.score AS score, r.sheet AS sheet
+                ORDER BY coalesce(r.score, 0.0) DESC
+                LIMIT 1
+                """,
+                {"material_code": mc},
+            )
+            record = res.single()
+            if not record:
+                return {"material_code": mc, "found": False, "image_url": "", "score": None, "sheet": ""}
+
+            rel_path = record.get("rel_path")
+            legacy_path = record.get("legacy_path")
+            chosen_path = rel_path if rel_path else legacy_path
+            url = _material_image_url_from_path(str(chosen_path) if chosen_path else "")
+            if not url:
+                fallback_score = record.get("score")
+                if fallback_score is None and legacy_path:
+                    fallback_score = 1.0
+                return {
+                    "material_code": mc,
+                    "found": False,
+                    "image_url": "",
+                    "score": fallback_score,
+                    "sheet": str(record.get("sheet") or ""),
+                }
+
+            return {
+                "material_code": mc,
+                "found": True,
+                "image_url": url,
+                "score": record.get("score") if rel_path else (1.0 if legacy_path else None),
+                "sheet": str(record.get("sheet") or ""),
+            }
+    finally:
+        driver.close()
+
+
+def get_product_image_by_product_name(product_name: str) -> Dict[str, Any]:
+    pn = (product_name or "").strip()
+    if not pn:
+        return {"product_name": "", "found": False, "image_url": ""}
+
+    if not MATERIAL_IMAGES_DIR.exists() or not MATERIAL_IMAGES_DIR.is_dir():
+        return {"product_name": pn, "found": False, "image_url": ""}
+
+    allowed_exts = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"}
+    ext_priority = {
+        ".png": 0,
+        ".jpg": 1,
+        ".jpeg": 2,
+        ".webp": 3,
+        ".gif": 4,
+        ".bmp": 5,
+        ".svg": 6,
+    }
+
+    target = pn.casefold()
+    best_path: Path | None = None
+    best_rank = 10**9
+    for p in MATERIAL_IMAGES_DIR.rglob("*"):
+        if not p.is_file():
+            continue
+        ext = p.suffix.lower()
+        if ext not in allowed_exts:
+            continue
+        if p.stem.casefold() != target:
+            continue
+        rank = ext_priority.get(ext, 10**8)
+        if rank < best_rank:
+            best_rank = rank
+            best_path = p
+            if best_rank == 0:
+                break
+
+    if not best_path:
+        return {"product_name": pn, "found": False, "image_url": ""}
+
+    try:
+        rel = best_path.relative_to(MATERIAL_IMAGES_DIR).as_posix()
+    except Exception:
+        return {"product_name": pn, "found": False, "image_url": ""}
+
+    url = _encode_url_path(f"/static/material_images/{rel}")
+    return {"product_name": pn, "found": True, "image_url": url}
 
 
 def upsert_manual_dataset(
