@@ -1,0 +1,1952 @@
+[
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Speciﬁcations are subject to change.",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4965551197528839
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.4489971101284027
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4359707832336426
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.4251136779785156
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4169711768627167
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.41339749097824097
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4131116569042206
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.40722566843032837
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Vattern",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.44074711203575134
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.41670045256614685
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.41528528928756714
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.413284569978714
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4100850522518158
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.40608590841293335
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4048271179199219
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3999207317829132
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Feature",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.466172456741333
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4000755548477173
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3993440270423889
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3797197937965393
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.3574291467666626
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3448653519153595
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3378356695175171
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3341178894042969
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Pumps",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5459109544754028
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.5122480988502502
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.5117499828338623
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.5025703310966492
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.5010923147201538
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.4985397160053253
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.49774643778800964
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.49164557456970215
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Jets",
+    "top": [
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.34154409170150757
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3372846841812134
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.32724422216415405
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3249097764492035
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.32095134258270264
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3178326487541199
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3159603476524353
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3136477470397949
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Capacity",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.47191375494003296
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.45521825551986694
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.45239558815956116
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4521139860153198
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4371202886104584
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.43355342745780945
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4297741949558258
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.41624245047569275
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Measurements",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.39177435636520386
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.38182562589645386
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3809077739715576
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3704991936683655
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.35956597328186035
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.35906708240509033
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.3577382564544678
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3563622534275055
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Bellagio",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.41840702295303345
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.398754745721817
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3961506485939026
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.39578795433044434
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.3942413330078125
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3937755525112152
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3925279378890991
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3875006437301636
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Spas",
+    "top": [
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "B",
+        "name_zh": "SPA区单泡+冰水区满泡",
+        "score": 0.4966192841529846
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "C",
+        "name_zh": "SPA区满泡+冰水区满泡",
+        "score": 0.4906477928161621
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.48208147287368774
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.47382140159606934
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.47162091732025146
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4646685719490051
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4394914507865906
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.43886786699295044
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Premium",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.39825373888015747
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.37513092160224915
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.37412577867507935
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3687823712825775
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.36626631021499634
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "U",
+        "name_zh": "普兰豪配蓝牙+低音炮（美标）",
+        "score": 0.3619574308395386
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.35624822974205017
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.35617613792419434
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Lighting System",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.488800972700119
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "水底灯",
+        "score": 0.4521176517009735
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4121841490268707
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.40882980823516846
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.4063548147678375
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.4011586606502533
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.3790842294692993
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.375235378742218
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Underwater Mood Lighting",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.5278530716896057
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "水底灯",
+        "score": 0.4831760823726654
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.43199920654296875
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.42412933707237244
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.41711392998695374
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.411185622215271
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.4083207845687866
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4082680344581604
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Energy-Saving",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4199301302433014
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4080633819103241
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4018569588661194
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3813900351524353
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.36827123165130615
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.36734288930892944
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.3634142279624939
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3633021116256714
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Insulation System",
+    "top": [
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4821929633617401
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温板",
+        "score": 0.47169721126556396
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4611070454120636
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.4478152394294739
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4441521167755127
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.44404029846191406
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.44305694103240967
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.4373514652252197
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Full Polyfoam Insulation",
+    "top": [
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "A",
+        "name_zh": "户外缸单层发泡",
+        "score": 0.4443094730377197
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温板",
+        "score": 0.44335925579071045
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.43228092789649963
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4319417476654053
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.42648744583129883
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.42458564043045044
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4188401699066162
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4169154167175293
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Step",
+    "top": [
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "0",
+        "name_zh": "无台阶",
+        "score": 0.5446900129318237
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "L",
+        "name_zh": "实木台阶（普通）",
+        "score": 0.5303060412406921
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "A",
+        "name_zh": "PS/灰色一级台阶",
+        "score": 0.5183836817741394
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4832569360733032
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "B",
+        "name_zh": "实木台阶（刷木蜡油）",
+        "score": 0.4727281928062439
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.46756845712661743
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.45977354049682617
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.45040005445480347
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Extra Features",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.5234045386314392
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4983237683773041
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.49206864833831787
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4892241358757019
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.477480947971344
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4505719542503357
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4391463100910187
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.43731555342674255
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Speciﬁcations",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.5569965243339539
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5072948932647705
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.49615973234176636
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.48822879791259766
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.48507288098335266
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.47588998079299927
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4742984473705292
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.47335284948349
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Cabinet Color",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色 + 标准孔",
+        "score": 0.5273345112800598
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色 + 标准孔",
+        "score": 0.5212622284889221
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "实木裙边（刷木蜡油）",
+        "score": 0.512964129447937
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "A1",
+        "name_zh": "进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴",
+        "score": 0.5109670758247375
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "S",
+        "name_zh": "实木裙边（普通）",
+        "score": 0.5087845325469971
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "M2",
+        "name_zh": "国产全白 + 标准孔",
+        "score": 0.5016040802001953
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R1",
+        "name_zh": "内缸白色+外缸黑色 + 无喷嘴",
+        "score": 0.48375818133354187
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "F",
+        "name_zh": "棕色铝转角",
+        "score": 0.4781534671783447
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Shell Color",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色 + 标准孔",
+        "score": 0.41299593448638916
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色 + 标准孔",
+        "score": 0.4124983251094818
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "A1",
+        "name_zh": "进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴",
+        "score": 0.40550562739372253
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.39867469668388367
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3919924199581146
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R1",
+        "name_zh": "内缸白色+外缸黑色 + 无喷嘴",
+        "score": 0.3894817531108856
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.38761231303215027
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "M2",
+        "name_zh": "国产全白 + 标准孔",
+        "score": 0.3874201774597168
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Dry Weight",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.44916436076164246
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.44849079847335815
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.44004103541374207
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.43011796474456787
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4196479916572571
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4156948924064636
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4136880040168762
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4085959196090698
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Water Capacity",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5106808543205261
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.4622722566127777
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.46155834197998047
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.46042412519454956
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.45575031638145447
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.44962257146835327
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4492734372615814
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.44798946380615234
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "1 x Chiller",
+    "top": [
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.5000081062316895
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4877889156341553
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4833948016166687
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.47222381830215454
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.46116843819618225
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "I",
+        "name_zh": "单110V/60Hz美插带漏保",
+        "score": 0.4516252279281616
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4472249150276184
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4462412893772125
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Controls",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5621349215507507
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4983895719051361
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3E",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）(停用）",
+        "score": 0.46388164162635803
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3D",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.4580903649330139
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.45589694380760193
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3F",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.4547765254974365
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.45188212394714355
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5F",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.44595879316329956
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Joyonway Touch Screen",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5030316114425659
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3C",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标/面板带Joyonway商标）",
+        "score": 0.48008254170417786
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4676758050918579
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4632346034049988
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.46290916204452515
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4628342390060425
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.443209707736969
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4416486620903015
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Smart Water",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4765269160270691
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.468245267868042
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.45704469084739685
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.44652578234672546
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.4460718631744385
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.44498002529144287
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.44208669662475586
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.44135618209838867
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Puriﬁcation System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5591707229614258
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.5498042106628418
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.5178232192993164
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.5102834701538086
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.50263911485672
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.47080618143081665
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.45697906613349915
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.45186367630958557
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Circulation Pump",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.6319470405578613
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.6219291687011719
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.6218844056129456
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.6192302703857422
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.5962182879447937
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.5934582948684692
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.5818610191345215
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.5811029076576233
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Ozonator",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.6216906309127808
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5398248434066772
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.5373587608337402
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.527576208114624
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4881109595298767
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4879014492034912
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.4867866039276123
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.48641273379325867
+      }
+    ]
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+    "en_phrase": "Filtration System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.5135394930839539
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5073897838592529
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.4976191520690918
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.4647365212440491
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.4555443823337555
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.446940153837204
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4419674873352051
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.44064074754714966
+      }
+    ]
+  }
+]

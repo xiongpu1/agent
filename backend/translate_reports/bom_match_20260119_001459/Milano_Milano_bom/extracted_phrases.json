@@ -1,0 +1,160 @@
+{
+  "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+  "material_code": "Milano",
+  "material_code_inferred": true,
+  "product_type_zh": "户外缸",
+  "bom_type": "outdoor",
+  "translate_dir": "/root/workspace/syp/agent/backend/translate",
+  "backends": {
+    "mineru": false,
+    "pymupdf": true,
+    "pypdf": false,
+    "pypdf2": false
+  },
+  "phrases": [
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "MILANO"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "P U R E"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Dry Weight"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "capacity"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "jets"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Convertible"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Water Volume"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "with"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "lounge"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "AVAILABLE COLOR"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Acrylic"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Marble White"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Cabinet"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Grey"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Northern Lights Package"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Digital Topside Control"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Ozone Sanitation System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "FEATURE HIGHLIGHT"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "ELECTRICAL"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "110V GFCI Cord Included"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "110V/220V Convertible Control Pack"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Digital Control"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Bluetooth"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "PREMIUM LIGHTING SYSTEM"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "LED Backlit Jets"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Valve Lighting"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "LED Underwater Lighting"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "ENERGY-SAVING INSULATION SYSTEM"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Galvanized Steel Frame"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Sub Zero™ Insulation System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Everlast Cabinetry"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Forever Floor"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "SMART WATER PURIFICATION SYSTEM"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Hydro Kinetic™ Diverter Jetting System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "Ozonator with Mazzi"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "en_phrase": "50 sf Filtration"
+    }
+  ]
+}

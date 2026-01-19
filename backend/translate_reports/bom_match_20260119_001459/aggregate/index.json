@@ -1,0 +1,644 @@
+{
+  "items": [
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Superior.pdf",
+      "material_code": "Superior",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Superior_Superior_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Alpine.pdf",
+      "material_code": "Alpine",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Alpine_Alpine_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Alta US.pdf",
+      "material_code": "Alta",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Alta_US_Alta_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+      "material_code": "Vattern",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 30,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vattern_US_Vattern_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/SW Milano US.pdf",
+      "material_code": "Milano",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/SW_Milano_US_Milano_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+      "material_code": "Milano",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/New_Milano_US_Milano_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Vastera US.pdf",
+      "material_code": "Vastera",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vastera_US_Vastera_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Valencia.pdf",
+      "material_code": "Valencia",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Valencia_Valencia_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Denali.pdf",
+      "material_code": "Denali",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 33,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Denali_Denali_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Masrren.pdf",
+      "material_code": "Masrren",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Masrren_Masrren_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Diablo.pdf",
+      "material_code": "Diablo",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Diablo_Diablo_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Leon.pdf",
+      "material_code": "Leon",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 37,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Leon_Leon_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Milano.pdf",
+      "material_code": "Milano",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Milano_Milano_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Bimini.pdf",
+      "material_code": "Bimini",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Bimini_Bimini_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Santorini.pdf",
+      "material_code": "Santorini",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Santorini_Santorini_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Tahoe.pdf",
+      "material_code": "Tahoe",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Tahoe_Tahoe_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Capri.pdf",
+      "material_code": "Capri",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 33,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Capri_Capri_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Baikal.pdf",
+      "material_code": "Baikal",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Baikal_Baikal_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Vanduo US.pdf",
+      "material_code": "Vanduo",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vanduo_US_Vanduo_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Vasland US.pdf",
+      "material_code": "Vasland",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 32,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vasland_US_Vasland_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Caspian Sea.pdf",
+      "material_code": "CaspianSea",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Caspian_Sea_CaspianSea_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Malawi.pdf",
+      "material_code": "Malawi",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Malawi_Malawi_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Balta US.pdf",
+      "material_code": "Balta",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Balta_US_Balta_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Madrid.pdf",
+      "material_code": "Madrid",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Madrid_Madrid_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Vastervik US.pdf",
+      "material_code": "Vastervik",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vastervik_US_Vastervik_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Mellisani.pdf",
+      "material_code": "Mellisani",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Mellisani_Mellisani_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Seville.pdf",
+      "material_code": "Seville",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 37,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Seville_Seville_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vastera US.pdf",
+      "material_code": "Vastera",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vastera_US_Vastera_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Valencia.pdf",
+      "material_code": "Valencia",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Valencia_Valencia_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Alpine.pdf",
+      "material_code": "Alpine",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Alpine_Alpine_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vattern US.pdf",
+      "material_code": "Vattern",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 30,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vattern_US_Vattern_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Seville.pdf",
+      "material_code": "Seville",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 37,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Seville_Seville_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Diablo.pdf",
+      "material_code": "Diablo",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Diablo_Diablo_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Denali.pdf",
+      "material_code": "Denali",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 33,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Denali_Denali_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Superior.pdf",
+      "material_code": "Superior",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Superior_Superior_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "material_code": "Milano",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/SW_Milano_US_Milano_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Balta US.pdf",
+      "material_code": "Balta",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Balta_US_Balta_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+      "material_code": "Milano",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Milano_Milano_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Bimini.pdf",
+      "material_code": "Bimini",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Bimini_Bimini_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vasland US.pdf",
+      "material_code": "Vasland",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 32,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vasland_US_Vasland_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Capri.pdf",
+      "material_code": "Capri",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 33,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Capri_Capri_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Tahoe.pdf",
+      "material_code": "Tahoe",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Tahoe_Tahoe_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Mellisani.pdf",
+      "material_code": "Mellisani",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Mellisani_Mellisani_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/New Milano US.pdf",
+      "material_code": "Milano",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/New_Milano_US_Milano_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vastervik US.pdf",
+      "material_code": "Vastervik",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vastervik_US_Vastervik_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Baikal.pdf",
+      "material_code": "Baikal",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Baikal_Baikal_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Alta US.pdf",
+      "material_code": "Alta",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Alta_US_Alta_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Santorini.pdf",
+      "material_code": "Santorini",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Santorini_Santorini_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Caspian Sea.pdf",
+      "material_code": "CaspianSea",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Caspian_Sea_CaspianSea_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Malawi.pdf",
+      "material_code": "Malawi",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 38,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Malawi_Malawi_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Leon.pdf",
+      "material_code": "Leon",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 37,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Leon_Leon_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Vanduo US.pdf",
+      "material_code": "Vanduo",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 31,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Vanduo_US_Vanduo_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Madrid.pdf",
+      "material_code": "Madrid",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 0,
+      "unmatched": 36,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Madrid_Madrid_bom"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Masrren.pdf",
+      "material_code": "Masrren",
+      "product_type_zh": "冰水缸",
+      "bom_type": "iceTub",
+      "matched": 0,
+      "unmatched": 34,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_001459/Masrren_Masrren_bom"
+    }
+  ],
+  "errors": [
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/InSolaire 4 US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nInSolaire 4 US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Pérgola US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nPérgola US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Modena US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nModena US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Pérgolita.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nPérgolita.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/BO-01.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nBO-01.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Atlantic 15.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Atlantic 12.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/InSolaire 2 US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nInSolaire 2 US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Atlantic 20.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Atlantic 11.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/I-Lift 05L US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nI-Lift 05L US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Bellagio US Warehouse 规格页.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nBellagio US Warehouse 规格页.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/ProBase.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nProBase.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Solaire US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nSolaire US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/DuraFence.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nDuraFence.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/InSolaire 2 US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nInSolaire 2 US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/ProBase.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nProBase.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Pérgola US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nPérgola US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/I-Lift 05L US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nI-Lift 05L US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/8552B.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n8552B.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Bellagio US Warehouse 规格页.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nBellagio US Warehouse 规格页.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/BO-01.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nBO-01.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Modena US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nModena US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/InSolaire 4 US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nInSolaire 4 US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Atlantic 12.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/9162B.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n9162B.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Atlantic 15.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Atlantic 20.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Pérgolita.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nPérgolita.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Solaire US.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nSolaire US.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/DuraFence.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\nDuraFence.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Atlantic 11.pdf",
+      "error": "material_code 推断结果不唯一，请手动传 --material-code。\n候选(按得分降序):\n- Atlantic11 (62)\n- Atlantic12 (62)\n- Atlantic15 (62)\n- Atlantic18 (62)\n- Atlantic18A (62)\n- Atlantic20 (62)"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/9160L.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n9160L.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/9150L.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n9150L.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/8540B.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n8540B.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/8540L.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n8540L.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/9150B.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n9150B.pdf"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/8550L.pdf",
+      "error": "无法从 PDF 文件名推断 material_code；请手动传 --material-code。\n示例文件名:\n8550L.pdf"
+    }
+  ]
+}

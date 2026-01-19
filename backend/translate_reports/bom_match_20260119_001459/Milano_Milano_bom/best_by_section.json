@@ -1,0 +1,11 @@
+{
+  "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+  "material_code": "Milano",
+  "product_type_zh": "户外缸",
+  "bom_type": "outdoor",
+  "threshold": 0.8,
+  "top_k": 8,
+  "matched": 0,
+  "unmatched": 36,
+  "best_by_section": []
+}

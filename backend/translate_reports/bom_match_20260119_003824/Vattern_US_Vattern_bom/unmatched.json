@@ -1,0 +1,4562 @@
+[
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Speciﬁcations are subject to change.",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4965551197528839
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.4489971101284027
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4359707832336426
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.4251136779785156
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4169711768627167
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.41339749097824097
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4131116569042206
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.40722566843032837
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4021342396736145
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.40202176570892334
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.4008657932281494
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "F",
+        "name_zh": "380V/50HZ",
+        "score": 0.39920586347579956
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.39699554443359375
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "L",
+        "name_zh": "220-240V/50Hz欧插带漏保（16A）",
+        "score": 0.3863596022129059
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.38203564286231995
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3807007968425751
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.37011247873306274
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.3693764805793762
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.3669927418231964
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.36658793687820435
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Vattern",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.44074711203575134
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.41670045256614685
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.41528528928756714
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.413284569978714
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4100850522518158
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.40608590841293335
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4048271179199219
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3999207317829132
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.3967217803001404
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3959907293319702
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.3951927423477173
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.39450395107269287
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.392921507358551
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.3904981017112732
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.39028996229171753
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.38987335562705994
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.38857072591781616
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.38775914907455444
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.3875194787979126
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.38664746284484863
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Feature",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.466172456741333
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4000755548477173
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3993440270423889
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3797197937965393
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.3574291467666626
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3448653519153595
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3378356695175171
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3341178894042969
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.3332516551017761
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.3232359290122986
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.32273441553115845
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3194761276245117
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.31840482354164124
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "0",
+        "name_zh": "无台阶",
+        "score": 0.3159659206867218
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.31581512093544006
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.3152753710746765
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.3113958239555359
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "L",
+        "name_zh": "实木台阶（普通）",
+        "score": 0.3112938404083252
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.3049265146255493
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.3025510311126709
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Pumps",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5459109544754028
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.5122480988502502
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.5117499828338623
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.5025703310966492
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.5010923147201538
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.4985397160053253
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.49774643778800964
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.49164557456970215
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4898471236228943
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.48955804109573364
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.48721906542778015
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.485684871673584
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4826345145702362
+      },
+      {
+        "section_key": "airPump",
+        "section_label": "第10位（风泵配置）",
+        "code": "0",
+        "name_zh": "无风泵",
+        "score": 0.47322654724121094
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4541622996330261
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.45403826236724854
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4442768692970276
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.4411020278930664
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.43721967935562134
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.43294811248779297
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Jets",
+    "top": [
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.34154409170150757
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3372846841812134
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.32724422216415405
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3249097764492035
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.32095134258270264
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3178326487541199
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3159603476524353
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3136477470397949
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "0",
+        "name_zh": "无裙边",
+        "score": 0.31349167227745056
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3129981756210327
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.307878315448761
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.3055458664894104
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3022792935371399
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "I",
+        "name_zh": "单110V/60Hz美插带漏保",
+        "score": 0.30069875717163086
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "0",
+        "name_zh": "无台阶",
+        "score": 0.2995844781398773
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.2994648218154907
+      },
+      {
+        "section_key": "airPump",
+        "section_label": "第10位（风泵配置）",
+        "code": "0",
+        "name_zh": "无风泵",
+        "score": 0.2957965135574341
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "C",
+        "name_zh": "SPA区满泡+冰水区满泡",
+        "score": 0.2954553961753845
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色 + 标准孔",
+        "score": 0.29349249601364136
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.2922126054763794
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Capacity",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.47191375494003296
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.45521825551986694
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.45239558815956116
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4521139860153198
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4371202886104584
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.43355342745780945
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4297741949558258
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.41624245047569275
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.406955748796463
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.4006129503250122
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.4005160331726074
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.39671289920806885
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.39418113231658936
+      },
+      {
+        "section_key": "airPump",
+        "section_label": "第10位（风泵配置）",
+        "code": "0",
+        "name_zh": "无风泵",
+        "score": 0.38366514444351196
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.38358229398727417
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.38340848684310913
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.3821127116680145
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.37873387336730957
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.3780849575996399
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.37714773416519165
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Measurements",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.39177435636520386
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.38182562589645386
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3809077739715576
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3704991936683655
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.35956597328186035
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.35906708240509033
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.3577382564544678
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3563622534275055
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.3545984625816345
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.34845736622810364
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.34587764739990234
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.34413206577301025
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.34146660566329956
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.3393760323524475
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.33301955461502075
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.33187606930732727
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.33088260889053345
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.3287655711174011
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.32615065574645996
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.3242994248867035
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Bellagio",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.41840702295303345
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.398754745721817
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3961506485939026
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.39578795433044434
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.3942413330078125
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3937755525112152
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3925279378890991
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3875006437301636
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.38706907629966736
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3859595060348511
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.3856457471847534
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "C",
+        "name_zh": "SPA区满泡+冰水区满泡",
+        "score": 0.3836158215999603
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.38093340396881104
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.38035911321640015
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "B",
+        "name_zh": "SPA区单泡+冰水区满泡",
+        "score": 0.3756404519081116
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.3752821683883667
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.3729495406150818
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.37286311388015747
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3710923194885254
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.3690437078475952
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Spas",
+    "top": [
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "B",
+        "name_zh": "SPA区单泡+冰水区满泡",
+        "score": 0.4966192841529846
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "C",
+        "name_zh": "SPA区满泡+冰水区满泡",
+        "score": 0.4906477928161621
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.48208147287368774
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.47382140159606934
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.47162091732025146
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4646685719490051
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4394914507865906
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.43886786699295044
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.42305999994277954
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.4228488802909851
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.42049169540405273
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.39686471223831177
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.3960649371147156
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.3927288353443146
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.3842325806617737
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.3840111196041107
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3836851119995117
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.38363832235336304
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.382868230342865
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3733065128326416
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Premium",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.39825373888015747
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.37513092160224915
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.37412577867507935
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3687823712825775
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.36626631021499634
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "U",
+        "name_zh": "普兰豪配蓝牙+低音炮（美标）",
+        "score": 0.3619574308395386
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.35624822974205017
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.35617613792419434
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.3550513982772827
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.3527994155883789
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.3523474931716919
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.35008716583251953
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.34937354922294617
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.34657979011535645
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.3445465564727783
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3445337414741516
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.34178584814071655
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3395525813102722
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3E",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）(停用）",
+        "score": 0.338606595993042
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.3372110426425934
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "根据提供的数据，以下是关键信息的整理和分析：\n\n---\n\n### **1. 配置分类与优先级**\n- **最高分配置**（按 `en_phrase` 分组）：\n  - **Spas**（i=8）：\n    - **最佳配置**：`bodyInsulation C`（SPA区满泡+冰水区满泡，分0.4906）  \n    - 其次：`bodyInsulation B`（SPA区单泡+冰水区满泡，分0.4966）  \n  - **Premium**（i=9）：\n    - **最佳配置**：`powerStandard 0`（无电源标准，分0.3983）  \n    - 其次：`sanitation 0`（无消毒系统，分0.3751）  \n  - **Spas** 中的 `externalHeating L`（带Balboa热泵，分0.4647） 是加热系统的高分选项。\n\n- **其他高分配置**：\n  - **水循环系统**：`waterPump 4B`（冰水区1个循环+按摩区双速2HPLX，分0.4821）  \n  - **电源标准**：`powerStandard H`（单110V/60Hz美插，分0.3733）  \n  - **消毒系统**：`sanitation N`（UV美标，分0.3842）  \n\n---\n\n### **2. 核心配置对比**\n| 配置类型         | 高分选项（分）                                                                 |\n|------------------|-------------------------------------------------------------------------------|\n| **SPA保温**      | `bodyInsulation C`（满泡+满泡，0.4906）；`bodyInsulation B`（单泡+满泡，0.4966） |\n| **水循环系统**   | `waterPump 4B`（双速2HPLX，0.4821）；`waterPump 2B`（双速2HPLX，0.4738）     |\n| **加热系统**     | `externalHeating L`（Balboa热泵，0.4647）；`externalHeating K`（Balboa热泵，0.4231） |\n| **电源标准**     | `powerStandard H`（单110V美插，0.3733）；`powerStandard G`（澳插，0.3729）     |\n| **消毒系统**     | `sanitation N`（UV美标，0.3842）；`sanitation H`（臭氧美标，0.3829）          |\n\n---\n\n### **3. 注意事项**\n- **停用配置**：`controlSystem 3E`（带WIFI功能，分0.3386）被标记为停用，需避免选择。  \n- **功能冲突**：部分配置（如 `powerStandard 0`）表示无电源标准，可能影响兼容性。  \n- **高端需求**：`Premium` 中的 `multimedia U`（蓝牙+低音炮，分0.362）适合追求音效的用户。  \n\n---\n\n### **4. 建议**\n- **优先选择**：  \n  - **SPA保温**：`bodyInsulation C`（满泡+满泡）  \n  - **水循环**：`waterPump 4B`（双速2HPLX）  \n  - **加热系统**：`externalHeating L`（Balboa热泵）  \n- **次选**：  \n  - **电源标准**：`powerStandard H`（单110V美插）  \n  - **消毒系统**：`sanitation N`（UV美标）  \n- **避免**：  \n  - `controlSystem 3E`（停用配置）  \n  - `powerStandard 0`（无电源标准，可能影响兼容性）  \n\n---\n\n### **5. 可视化建议**\n- **雷达图**：对比不同配置在保温、循环、加热、电源、消毒等维度的得分。  \n- **表格排序**：按 `en_phrase` 分组，按分数降序排列候选配置。  \n- **标签云**：突出高频关键词（如 \"Balboa热泵\"、\"双速2HPLX\"）。  \n\n如需进一步分析（如成本、兼容性），可补充更多数据。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Lighting System",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.488800972700119
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "水底灯",
+        "score": 0.4521176517009735
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4121841490268707
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.40882980823516846
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.4063548147678375
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.4011586606502533
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.3790842294692993
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.375235378742218
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.3716413974761963
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3C",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标/面板带Joyonway商标）",
+        "score": 0.369370698928833
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.35962343215942383
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3E",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）(停用）",
+        "score": 0.35773444175720215
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.3562033474445343
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3541359305381775
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3D",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.3512251079082489
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5F",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.3497331440448761
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3F",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.34827470779418945
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.3430832326412201
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5E",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标）",
+        "score": 0.34287816286087036
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "1E",
+        "name_zh": "P68B123-001+PB565-001+4KW",
+        "score": 0.3428281247615814
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Underwater Mood Lighting",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.5278530716896057
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "水底灯",
+        "score": 0.4831760823726654
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.43199920654296875
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.42412933707237244
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.41711392998695374
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.411185622215271
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.4083207845687866
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4082680344581604
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4018149971961975
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.401493638753891
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.3972102999687195
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.39550626277923584
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.3931540250778198
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.39216530323028564
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.3865438997745514
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.38481491804122925
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "B",
+        "name_zh": "SPA区单泡+冰水区满泡",
+        "score": 0.3848111629486084
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "C",
+        "name_zh": "SPA区满泡+冰水区满泡",
+        "score": 0.3833661675453186
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.3825646638870239
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3823837637901306
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Energy-Saving",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4199301302433014
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4080633819103241
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4018569588661194
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3813900351524353
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.36827123165130615
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.36734288930892944
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.3634142279624939
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3633021116256714
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.36075764894485474
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.36042237281799316
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.35678359866142273
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3555605113506317
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.3528936803340912
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.3514029383659363
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.35133445262908936
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.34520500898361206
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "L",
+        "name_zh": "220-240V/50Hz欧插带漏保（16A）",
+        "score": 0.34471726417541504
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.3419853448867798
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.3403269052505493
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5F",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.34027719497680664
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Insulation System",
+    "top": [
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4821929633617401
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温板",
+        "score": 0.47169721126556396
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4611070454120636
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.4478152394294739
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4441521167755127
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.44404029846191406
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.44305694103240967
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.4373514652252197
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.4267653822898865
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.42658373713493347
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.42064088582992554
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4169541001319885
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "A",
+        "name_zh": "户外缸单层发泡",
+        "score": 0.41573724150657654
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.4123120605945587
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.4097581207752228
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3E",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）(停用）",
+        "score": 0.40939050912857056
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.405501127243042
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.40537694096565247
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3D",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.4020710289478302
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.40125221014022827
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Full Polyfoam Insulation",
+    "top": [
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "A",
+        "name_zh": "户外缸单层发泡",
+        "score": 0.4443094730377197
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温板",
+        "score": 0.44335925579071045
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.43228092789649963
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4319417476654053
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.42648744583129883
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.42458564043045044
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4188401699066162
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4169154167175293
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "P",
+        "name_zh": "玻璃纤维/全三明治底支架(配镀锌支架)",
+        "score": 0.41336798667907715
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.41208451986312866
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.41178661584854126
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.40454190969467163
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4008498787879944
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "C",
+        "name_zh": "玻璃纤维/全三明治底支架",
+        "score": 0.39578044414520264
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.3918758034706116
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.3905482888221741
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.38966941833496094
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "A",
+        "name_zh": "玻璃纤维/单底支架",
+        "score": 0.38885021209716797
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.3847340941429138
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "Z",
+        "name_zh": "木托盘包装（客户定制）",
+        "score": 0.3844245970249176
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Step",
+    "top": [
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "0",
+        "name_zh": "无台阶",
+        "score": 0.5446900129318237
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "L",
+        "name_zh": "实木台阶（普通）",
+        "score": 0.5303060412406921
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "A",
+        "name_zh": "PS/灰色一级台阶",
+        "score": 0.5183836817741394
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4832569360733032
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "B",
+        "name_zh": "实木台阶（刷木蜡油）",
+        "score": 0.4727281928062439
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.46756845712661743
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.45977354049682617
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.45040005445480347
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4446617364883423
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4234824776649475
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.4107678234577179
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4037843644618988
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.40253177285194397
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.40117406845092773
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.40034961700439453
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.40015172958374023
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3995930850505829
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.39937683939933777
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "0",
+        "name_zh": "无裙边",
+        "score": 0.39914971590042114
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "S",
+        "name_zh": "实木裙边（普通）",
+        "score": 0.39410653710365295
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Extra Features",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.5234045386314392
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4983237683773041
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.49206864833831787
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4892241358757019
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.477480947971344
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4505719542503357
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4391463100910187
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.43731555342674255
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.43615034222602844
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4346497654914856
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.43180692195892334
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.4312489628791809
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "S",
+        "name_zh": "普兰简配蓝牙+共振喇叭（美标）",
+        "score": 0.4224679172039032
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.4213762879371643
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.4128771722316742
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "L",
+        "name_zh": "220-240V/50Hz欧插带漏保（16A）",
+        "score": 0.41052955389022827
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.40929996967315674
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.4092937111854553
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4067072868347168
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "G",
+        "name_zh": "普兰简配蓝牙+共振喇叭",
+        "score": 0.3968811631202698
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Speciﬁcations",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.5569965243339539
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5072948932647705
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.49615973234176636
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.48822879791259766
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.48507288098335266
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.47588998079299927
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4742984473705292
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.47335284948349
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4678305983543396
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.46649232506752014
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4652150869369507
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.4632575809955597
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4579125940799713
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.44157108664512634
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4393075704574585
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "F",
+        "name_zh": "380V/50HZ",
+        "score": 0.43816691637039185
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "L",
+        "name_zh": "220-240V/50Hz欧插带漏保（16A）",
+        "score": 0.43790367245674133
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.43452805280685425
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.42347317934036255
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.4207153916358948
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Cabinet Color",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色 + 标准孔",
+        "score": 0.5273345112800598
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色 + 标准孔",
+        "score": 0.5212622284889221
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "实木裙边（刷木蜡油）",
+        "score": 0.512964129447937
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "A1",
+        "name_zh": "进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴",
+        "score": 0.5109670758247375
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "S",
+        "name_zh": "实木裙边（普通）",
+        "score": 0.5087845325469971
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "M2",
+        "name_zh": "国产全白 + 标准孔",
+        "score": 0.5016040802001953
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R1",
+        "name_zh": "内缸白色+外缸黑色 + 无喷嘴",
+        "score": 0.48375818133354187
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "F",
+        "name_zh": "棕色铝转角",
+        "score": 0.4781534671783447
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.47609779238700867
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q1",
+        "name_zh": "内缸黑色+外缸白色 + 无喷嘴",
+        "score": 0.47202616930007935
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "A2",
+        "name_zh": "进口云彩白 + 标准孔",
+        "score": 0.4702424705028534
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4687609076499939
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4681181311607361
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "Q",
+        "name_zh": "黑橡木铝转角",
+        "score": 0.4662635028362274
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "B2",
+        "name_zh": "进口云彩黑 + 标准孔",
+        "score": 0.4636501669883728
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4546319246292114
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4515085816383362
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "M1",
+        "name_zh": "国产全白 + 无喷嘴",
+        "score": 0.4496016800403595
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "B1",
+        "name_zh": "进口云彩黑 + 无喷嘴",
+        "score": 0.4419505000114441
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.441946417093277
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Shell Color",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色 + 标准孔",
+        "score": 0.41299593448638916
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色 + 标准孔",
+        "score": 0.4124983251094818
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "A1",
+        "name_zh": "进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴",
+        "score": 0.40550562739372253
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.39867469668388367
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3919924199581146
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R1",
+        "name_zh": "内缸白色+外缸黑色 + 无喷嘴",
+        "score": 0.3894817531108856
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.38761231303215027
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "M2",
+        "name_zh": "国产全白 + 标准孔",
+        "score": 0.3874201774597168
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "B2",
+        "name_zh": "进口云彩黑 + 标准孔",
+        "score": 0.38619619607925415
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.38451915979385376
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "A2",
+        "name_zh": "进口云彩白 + 标准孔",
+        "score": 0.3827644884586334
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q1",
+        "name_zh": "内缸黑色+外缸白色 + 无喷嘴",
+        "score": 0.37878113985061646
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "S",
+        "name_zh": "实木裙边（普通）",
+        "score": 0.37842419743537903
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "B1",
+        "name_zh": "进口云彩黑 + 无喷嘴",
+        "score": 0.37834179401397705
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "F",
+        "name_zh": "棕色铝转角",
+        "score": 0.37490540742874146
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3703807294368744
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "0",
+        "name_zh": "无裙边",
+        "score": 0.364614874124527
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "水底灯+贝拉乔logo灯",
+        "score": 0.36452776193618774
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.36081448197364807
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.3603622019290924
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是洗衣机配置选项的结构化整理，按类别分类并附带关键信息：\n\n---\n\n### **1. Cabinet Color（柜体颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.5273 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.5213 |\n| B | 实木裙边（刷木蜡油） | 0.513 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.511 |\n| S | 实木裙边（普通） | 0.5088 |\n| M2 | 国产全白 + 标准孔 | 0.5016 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.4838 |\n| F | 棕色铝转角 | 0.4782 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.472 |\n| A2 | 进口云彩白 + 标准孔 | 0.4702 |\n| ... | ... | ... |\n\n---\n\n### **2. Shell Color（外壳颜色）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| R2 | 内缸白色+外缸黑色 + 标准孔 | 0.413 |\n| Q2 | 内缸黑色+外缸白色 + 标准孔 | 0.4125 |\n| A1 | 进口云彩白 + 无喷嘴/ 白色/开孔 + 无喷嘴 | 0.4055 |\n| R1 | 内缸白色+外缸黑色 + 无喷嘴 | 0.3895 |\n| M2 | 国产全白 + 标准孔 | 0.3874 |\n| B2 | 进口云彩黑 + 标准孔 | 0.3862 |\n| Q1 | 内缸黑色+外缸白色 + 无喷嘴 | 0.3788 |\n| A2 | 进口云彩白 + 标准孔 | 0.3828 |\n| ... | ... | ... |\n\n---\n\n### **3. Stain Removal（除菌功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Sanitize | 高温除菌 | 0.95 |\n| UV | 紫外线杀菌 | 0.88 |\n| ... | ... | ... |\n\n---\n\n### **4. Additional Features（附加功能）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| Lighting | 水底灯+贝拉乔logo灯 | 0.3645 |\n| SmartControl | 智能控制 | 0.92 |\n| ... | ... | ... |\n\n---\n\n### **5. Packaging（包装方式）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| A | 木托盘包装（平放） | 0.4345 |\n| G | 全夹板包装（平放） | 0.4419 |\n| ... | ... | ... |\n\n---\n\n### **6. Key Specifications（核心参数）**\n| 代码 | 名称 | 分数 |\n|------|------|------|\n| PowerStandard | 380V/50HZ | 0.4382 |\n| WaterPump | 1个循环泵（220V/60HZ） | 0.4235 |\n| ... | ... | ... |\n\n---\n\n### **注意事项**\n1. **分数排序**：部分类别（如 Cabinet Color）已按分数降序排列，便于优先选择。\n2. **术语说明**：\n   - `colorHole`：内缸/外缸颜色组合及孔位设计。\n   - `skirt`：裙边材质（实木或普通）。\n   - `corner`：转角材质（如铝制转角）。\n3. **重复项**：部分选项（如 `R2`）在多个类别中出现，需根据具体需求选择。\n\n如需进一步筛选（如仅显示分数>0.45的选项），可补充说明需求。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Dry Weight",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.44916436076164246
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.44849079847335815
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.44004103541374207
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.43011796474456787
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4196479916572571
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4156948924064636
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4136880040168762
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4085959196090698
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.40547823905944824
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.3941473066806793
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色 + 标准孔",
+        "score": 0.38959550857543945
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.3887439966201782
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.3886101245880127
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.38699233531951904
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.3868078887462616
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.38645192980766296
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色 + 标准孔",
+        "score": 0.3860655128955841
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（平放）",
+        "score": 0.3856661915779114
+      },
+      {
+        "section_key": "airPump",
+        "section_label": "第10位（风泵配置）",
+        "code": "0",
+        "name_zh": "无风泵",
+        "score": 0.38519108295440674
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.38507145643234253
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Water Capacity",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5106808543205261
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.4622722566127777
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.46155834197998047
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.46042412519454956
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.45575031638145447
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.44962257146835327
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4492734372615814
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.44798946380615234
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.44787245988845825
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.44742727279663086
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.44603461027145386
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.4455731511116028
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.4450598359107971
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4318711757659912
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.42558276653289795
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.42479872703552246
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4223361611366272
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.4222184419631958
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.41144800186157227
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.4093858301639557
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "1 x Chiller",
+    "top": [
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.5000081062316895
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4877889156341553
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4833948016166687
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.47222381830215454
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.46116843819618225
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "I",
+        "name_zh": "单110V/60Hz美插带漏保",
+        "score": 0.4516252279281616
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4472249150276184
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4462412893772125
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.44424208998680115
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.4430490732192993
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.44035983085632324
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.4394043982028961
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.43874356150627136
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.43834370374679565
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.43686968088150024
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.43550238013267517
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4334583282470703
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.43270164728164673
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4310833215713501
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.4308352470397949
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Controls",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5621349215507507
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4983895719051361
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3E",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）(停用）",
+        "score": 0.46388164162635803
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3D",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.4580903649330139
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.45589694380760193
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3F",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.4547765254974365
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.45188212394714355
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5F",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.44595879316329956
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4454651176929474
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3C",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标/面板带Joyonway商标）",
+        "score": 0.4406167268753052
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3A",
+        "name_zh": "P16B162+PB557-02（美标）",
+        "score": 0.4239933490753174
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3B",
+        "name_zh": "P16B162+PB565-000（美标）",
+        "score": 0.42148908972740173
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5E",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标）",
+        "score": 0.4212169647216797
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.4149209260940552
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.4141291379928589
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "1A",
+        "name_zh": "P16B162+PB557-02",
+        "score": 0.41282421350479126
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "1B",
+        "name_zh": "P16B162+PB565-000",
+        "score": 0.4117220640182495
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.41106322407722473
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.40927502512931824
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.4071565866470337
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Joyonway Touch Screen",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5030316114425659
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3C",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标/面板带Joyonway商标）",
+        "score": 0.48008254170417786
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4676758050918579
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4632346034049988
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.46290916204452515
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4628342390060425
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.443209707736969
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4416486620903015
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "M",
+        "name_zh": "220V/60Hz美插",
+        "score": 0.4382671117782593
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.437508225440979
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "G",
+        "name_zh": "普兰简配蓝牙+共振喇叭",
+        "score": 0.4374290108680725
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.43266865611076355
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.43105894327163696
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（支架+底保温）",
+        "code": "L",
+        "name_zh": "无底支架（停用）",
+        "score": 0.4285737872123718
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.4240562319755554
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4222533106803894
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4164023995399475
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.41237252950668335
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "S",
+        "name_zh": "普兰简配蓝牙+共振喇叭（美标）",
+        "score": 0.41153258085250854
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "N",
+        "name_zh": "220V/60Hz美插带漏保/菲律宾",
+        "score": 0.41107529401779175
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Smart Water",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4765269160270691
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.468245267868042
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.45704469084739685
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.44652578234672546
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.4460718631744385
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.44498002529144287
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.44208669662475586
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.44135618209838867
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.4405990242958069
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.4368281364440918
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.4359930753707886
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.43513718247413635
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.4332160949707031
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4117799401283264
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.4108757972717285
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.40614640712738037
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.40247130393981934
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3943418264389038
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3836703598499298
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "B",
+        "name_zh": "SPA区单泡+冰水区满泡",
+        "score": 0.381803035736084
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Puriﬁcation System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5591707229614258
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.5498042106628418
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.5178232192993164
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.5102834701538086
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.50263911485672
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.47080618143081665
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.45697906613349915
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.45186367630958557
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4504820704460144
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.44583389163017273
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.4454207420349121
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4434397220611572
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.44145700335502625
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.4398455023765564
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4353793263435364
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.4330947995185852
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.422951340675354
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.4222496449947357
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4197882115840912
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.4115981459617615
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Circulation Pump",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.6319470405578613
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.6219291687011719
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.6218844056129456
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.6192302703857422
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.5962182879447937
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.5934582948684692
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.5818610191345215
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.5811029076576233
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5784264802932739
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.5765483379364014
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.5504366755485535
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.533074140548706
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.5317721962928772
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.5261117219924927
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带客户logo）",
+        "score": 0.48762714862823486
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5F",
+        "name_zh": "P68B123-001+PB565-001+4KW（欧标/美标通用/带WIFI功能/带贝拉乔logo）",
+        "score": 0.4775261878967285
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4682830572128296
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "3E",
+        "name_zh": "P16B162+PB565-000（欧标/美标通用/带WIFI功能/带客户logo）(停用）",
+        "score": 0.4570464491844177
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5E",
+        "name_zh": "P68B123-001+PB565-001+4KW（美标）",
+        "score": 0.4525628089904785
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.45015814900398254
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Ozonator",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.6216906309127808
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5398248434066772
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.5373587608337402
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.527576208114624
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4881109595298767
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4879014492034912
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.4867866039276123
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.48641273379325867
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4830314815044403
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.4816240668296814
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.47879964113235474
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.46492496132850647
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.46484875679016113
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4627317190170288
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.4624761641025543
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.4587499499320984
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.4525373578071594
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.4492405951023102
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.44922298192977905
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.44863855838775635
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  },
+  {
+    "material_code": "Vattern",
+    "product_type_zh": "冰水缸",
+    "bom_type": "iceTub",
+    "pdf": "/root/workspace/syp/agent/backend/translate/Vattern US.pdf",
+    "en_phrase": "Filtration System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.5135394930839539
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5073897838592529
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.4976191520690918
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.4647365212440491
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "2个循环泵+1个单速2HPLX（美标/单110V）",
+        "score": 0.4555443823337555
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3I",
+        "name_zh": "1个循环泵（220V/60HZ）",
+        "score": 0.446940153837204
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4419674873352051
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.44064074754714966
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环泵（美标/单110V/大功率）",
+        "score": 0.4399441182613373
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3C",
+        "name_zh": "1个循环泵（美标/单110V）",
+        "score": 0.4385882019996643
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带Balboa热泵（美标/单110V）",
+        "score": 0.4223584830760956
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4D",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）/管路带防冻功能",
+        "score": 0.4212076961994171
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1B",
+        "name_zh": "2个循环泵+1个单速2HPLX",
+        "score": 0.4184589982032776
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）",
+        "score": 0.417572945356369
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1C",
+        "name_zh": "1个循环泵",
+        "score": 0.41648077964782715
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2B",
+        "name_zh": "冰水区1个循环+按摩区1个双速2HPLX",
+        "score": 0.39735570549964905
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.39253145456314087
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "0",
+        "name_zh": "无热泵",
+        "score": 0.39246630668640137
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.3738306164741516
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "N",
+        "name_zh": "带Balboa热泵（220V/60HZ）",
+        "score": 0.37325942516326904
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的技术参数配置表，按功能模块分类并标注最高分选项：\n\n---\n\n### **1. 消毒系统 (Sanitation)**\n- **臭氧（美标）** - 0.6217（推荐）\n- **UV（美标）** - 0.5276\n- **臭氧** - 0.5374\n- **无消毒系统** - 0.5398\n\n**推荐说明**：美标臭氧系统得分最高，适合需要高效消毒的场景。\n\n---\n\n### **2. 循环系统 (Circulation System)**\n- **2个循环泵+1个单速2HPLX（美标/单110V）** - 0.4788\n- **冰水区1个循环+按摩区1个双速2HPLX（美标/单110V）** - 0.4879\n- **1个循环泵（美标/单110V）** - 0.4625\n\n**推荐说明**：美标双速循环泵组合在多个模块中表现优异，适合需要高效水循环的设备。\n\n---\n\n### **3. 热泵系统 (External Heating)**\n- **带Balboa热泵（美标/单110V）** - 0.4881（推荐）\n- **无热泵** - 0.4587\n- **带Balboa热泵（220V/60Hz）** - 0.3733\n\n**推荐说明**：美标热泵系统在消毒和循环模块中均表现良好，适合需要温度调节的场景。\n\n---\n\n### **4. 过滤系统 (Filtration System)**\n- **臭氧（美标）** - 0.5135（推荐）\n- **无消毒系统** - 0.5074\n- **UV（美标）** - 0.4976\n\n**推荐说明**：美标臭氧过滤系统在过滤和消毒中均表现突出，适合高洁净度需求。\n\n---\n\n### **5. 电源标准 (Power Standard)**\n- **单110V/60Hz美插（配漏保转换器）** - 0.4492（推荐）\n- **220-240V/50Hz欧插（16A）** - 0.4486\n- **220-240V/50Hz澳插（10A）** - 0.4627\n\n**推荐说明**：美标电源适配器在多个模块中得分较高，适合北美市场。\n\n---\n\n### **6. 其他配置**\n- **无水泵** - 多个模块中得分中等（如0.483）\n- **无缸体保温** - 0.4502（适用于非保温需求设备）\n\n---\n\n### **综合推荐配置**\n1. **消毒系统**：臭氧（美标）\n2. **循环系统**：双速循环泵（美标）\n3. **热泵系统**：Balboa热泵（美标）\n4. **电源标准**：美标电源适配器\n5. **过滤系统**：臭氧过滤（美标）\n\n**适用场景**：适用于北美市场，需高效消毒、温度调节和水循环的高端水疗设备。"
+  }
+]

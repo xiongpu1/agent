@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/Superior.pdf",
+      "material_code": "Superior",
+      "product_type_zh": "户外缸",
+      "bom_type": "outdoor",
+      "matched": 5,
+      "unmatched": 33,
+      "report_dir": "/root/workspace/syp/agent/backend/translate_reports/bom_match_20260119_081212/Superior_Superior_bom"
+    }
+  ],
+  "errors": []
+}

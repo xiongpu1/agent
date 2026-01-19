@@ -28,7 +28,11 @@ from src.api_queries import (
 )
 from src.run_deepseekocr import IMG_EXTS, run_ocr
 from src.manual_progress import progress_manager
-from src.prompt_reverse import run_prompt_reverse_for_entries, DEFAULT_USER_PROMPT
+from src.prompt_reverse import (
+    DEFAULT_USER_PROMPT,
+    run_prompt_reverse_for_entries,
+    generate_prompt_for_image,
+)
 from src.rag_bom import decode_bom_code
 
 MANUAL_UPLOAD_ROOT = BACKEND_ROOT / "manual_uploads"
@@ -749,6 +753,69 @@ def _append_prompt_artifact(record: dict, label: str, image_stem: str, prompt_pa
     )
 
 
+def _run_prompt_reverse_for_original_uploads(session_id: str) -> Tuple[List[str], List[dict]]:
+    """Best-effort reverse prompt generation for original uploaded product images.
+
+    Stores results under manual_uploads/<session_id>/reverse_prompts/products/<stem>.txt.
+    This is used by specsheet generation to prefer original uploads over OCR artifacts.
+    """
+
+    warnings: List[str] = []
+    logs: List[dict] = []
+    try:
+        base_dir = session_dir(session_id)
+        product_dir = base_dir / "products"
+        out_dir = base_dir / "reverse_prompts" / "products"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        if not product_dir.exists():
+            return warnings, logs
+
+        items = list(product_dir.glob("**/*"))
+        images = [p for p in items if p.is_file() and p.suffix.lower() in IMG_EXTS]
+        for img_path in sorted(images):
+            try:
+                txt_path = out_dir / f"{img_path.stem}.txt"
+                try:
+                    if txt_path.exists() and txt_path.is_file() and txt_path.read_text(encoding="utf-8").strip():
+                        logs.append(
+                            {
+                                "image": str(img_path),
+                                "prompt_path": str(txt_path),
+                                "status": "cached",
+                                "message": "",
+                            }
+                        )
+                        continue
+                except Exception:
+                    # If cached read fails, regenerate.
+                    pass
+
+                text, _raw = generate_prompt_for_image(img_path)
+                txt_path.write_text(text or "", encoding="utf-8")
+                logs.append(
+                    {
+                        "image": str(img_path),
+                        "prompt_path": str(txt_path),
+                        "status": "success",
+                        "message": (text or "")[:200],
+                    }
+                )
+            except Exception as exc:  # noqa: BLE001
+                warnings.append(f"{img_path.name}: {exc}")
+                logs.append(
+                    {
+                        "image": str(img_path),
+                        "prompt_path": "",
+                        "status": "error",
+                        "message": str(exc)[:200],
+                    }
+                )
+    except Exception as exc:  # noqa: BLE001
+        return [str(exc)], logs
+
+    return warnings, logs
+
+
 # ---------------------------------------------------------------------------
 # OCR execution
 # ---------------------------------------------------------------------------
@@ -1064,6 +1131,15 @@ def _run_manual_session_sync(session_id: str) -> dict:
             except Exception as exc:  # noqa: BLE001
                 errors.append(f"[提示词反推] 执行失败：{exc}")
 
+            try:
+                ow, ol = _run_prompt_reverse_for_original_uploads(session_id)
+                if ow:
+                    errors.extend([f"[原图提示词反推]{w}" for w in ow])
+                if ol:
+                    record["prompt_reverse_original_logs"] = ol
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"[原图提示词反推] 执行失败：{exc}")
+
     product_groups = assemble_ocr_groups(output_dir, [entry for entry in prepared_entries if entry["label"] == "products"])
     accessory_groups = assemble_ocr_groups(output_dir, [entry for entry in prepared_entries if entry["label"] == "accessories"])
 
@@ -1114,6 +1190,17 @@ def _run_prompt_reverse_only(session_id: str, user_prompt: str | None = None) ->
         label = log_item.get("label") or "products"
         image_stem = log_item.get("image_stem") or Path(prompt_path).stem
         _append_prompt_artifact(record, label, image_stem, Path(prompt_path))
+
+    try:
+        ow, ol = _run_prompt_reverse_for_original_uploads(session_id)
+        if ow:
+            record.setdefault("warnings", [])
+            record["warnings"].extend([f"[原图提示词反推]{w}" for w in ow])
+        if ol:
+            record["prompt_reverse_original_logs"] = ol
+    except Exception as exc:  # noqa: BLE001
+        record.setdefault("warnings", [])
+        record["warnings"].append(f"[原图提示词反推] 执行失败：{exc}")
 
     save_session_record(record)
     return record

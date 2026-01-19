@@ -225,9 +225,9 @@
                 <div class="promo-top-bg-layer" @click="onClickBackground"></div>
               </el-tooltip>
               <el-tooltip :content="LOGO_UPLOAD_TIPS" placement="bottom">
-                <div class="logo-card" @click.stop="onClickLogo">
+                <div class="logo-card" :style="logoCardStyle" @click.stop="onClickLogo">
                   <div class="logo-mark">
-                    <img :src="logoSrc" alt="" width="45" height="45" />
+                    <img :src="logoSrc" :style="logoImgStyle" alt="" />
                   </div>
                 </div>
               </el-tooltip>
@@ -302,7 +302,7 @@
                   <div class="icons">
                     <div class="icon">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
-                        <img :src="featureIcons.capacity" alt="Capacity" width="35" height="35" @click="openFeatureIconDialog('capacity')" />
+                        <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.capacity})` }" role="img" aria-label="Capacity" @click="openFeatureIconDialog('capacity')" />
                       </el-tooltip>
                       <div class="icon-text">
                         <div class="icon-t">Capacity</div>
@@ -313,7 +313,7 @@
 
                     <div class="icon">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
-                        <img :src="featureIcons.jets" alt="Jets" width="35" height="35" @click="openFeatureIconDialog('jets')" />
+                        <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.jets})` }" role="img" aria-label="Jets" @click="openFeatureIconDialog('jets')" />
                       </el-tooltip>
                       <div class="icon-text">
                         <div class="icon-t">Jets</div>
@@ -323,7 +323,7 @@
 
                     <div class="icon">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
-                        <img :src="featureIcons.pumps" alt="Pumps" width="35" height="35" @click="openFeatureIconDialog('pumps')" />
+                        <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.pumps})` }" role="img" aria-label="Pumps" @click="openFeatureIconDialog('pumps')" />
                       </el-tooltip>
                       <div class="icon-text">
                         <div class="icon-t">Pumps</div>
@@ -335,7 +335,7 @@
                   <div class="measurements-row">
                     <div class="m-icon">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
-                        <img :src="featureIcons.measurements" alt="Measurements" width="32" height="32" @click="openFeatureIconDialog('measurements')" />
+                        <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.measurements})` }" role="img" aria-label="Measurements" @click="openFeatureIconDialog('measurements')" />
                       </el-tooltip>
                     </div>
                     <div class="m-text">
@@ -433,7 +433,7 @@
                     @blur="onEditSectionTitle($event, 'smartWater')"
                     v-html="promoSectionTitles.smartWater"
                   ></div>
-                  <ul class="bullets bullets-gray">
+                  <ul class="bullets">
                     <li v-for="(it, idx) in promoData.smartWater" :key="'sw-'+idx">
                       <span contenteditable="true" @input="onEditTextWithCaret($event, `smartWater.${idx}`)" @keydown="onListItemKeydown($event, 'smartWater', idx)" v-text="it"></span>
                     </li>
@@ -1967,6 +1967,44 @@ const initialPosterData = {
 // 顶部商标 Logo 图片
 const logoSrc = ref('/product_standard/logo.png')
 const logoInputRef = ref(null)
+
+const LOGO_PRESETS = {
+  horizontal: { w: 140, h: 90, imgMaxW: 116, imgMaxH: 66 },
+  square: { w: 110, h: 130, imgMaxW: 86, imgMaxH: 106 },
+  vertical: { w: 90, h: 150, imgMaxW: 66, imgMaxH: 126 },
+}
+const logoPreset = ref('square')
+const logoCardStyle = computed(() => {
+  const p = LOGO_PRESETS[logoPreset.value] || LOGO_PRESETS.square
+  return { width: `${p.w}px`, height: `${p.h}px` }
+})
+const logoImgStyle = computed(() => {
+  const p = LOGO_PRESETS[logoPreset.value] || LOGO_PRESETS.square
+  return { maxWidth: `${p.imgMaxW}px`, maxHeight: `${p.imgMaxH}px` }
+})
+
+const applyLogoPresetFromRatio = (ratio = 1) => {
+  const r = Number(ratio) || 1
+  if (r > 1.6) logoPreset.value = 'horizontal'
+  else if (r < 0.8) logoPreset.value = 'vertical'
+  else logoPreset.value = 'square'
+}
+
+const applyLogoPresetFromSrc = (src = '') => {
+  const s = String(src || '').trim()
+  if (!s) return
+  try {
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      const w = img.naturalWidth || 0
+      const h = img.naturalHeight || 0
+      if (w > 0 && h > 0) applyLogoPresetFromRatio(w / h)
+    }
+    img.onerror = () => {}
+    img.src = s
+  } catch (e) {}
+}
 // 手册图片选择与写入
 const manualImageInputRef = ref(null)
 let _manualPickPath = ''
@@ -2121,12 +2159,121 @@ const exportPromo = async () => {
   a.click()
 }
 
+const inferImageMimeFromSrc = (src = '') => {
+  const s = String(src || '').trim().toLowerCase()
+  if (s.startsWith('data:image/png')) return 'image/png'
+  if (s.startsWith('data:image/jpeg') || s.startsWith('data:image/jpg')) return 'image/jpeg'
+  if (s.startsWith('data:image/webp')) return 'image/webp'
+  if (s.endsWith('.png')) return 'image/png'
+  if (s.endsWith('.jpg') || s.endsWith('.jpeg')) return 'image/jpeg'
+  if (s.endsWith('.webp')) return 'image/webp'
+  return ''
+}
+
+const resolveImageToDataUrl = async (src = '') => {
+  const s = String(src || '').trim()
+  if (!s) return ''
+  if (s.startsWith('data:')) return s
+  const resp = await fetch(s)
+  const blob = await resp.blob()
+  return await new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  })
+}
+
+const downscaleImageDataUrl = async (
+  src,
+  { maxW = 1600, maxH = 1600, quality = 0.82, forceMime = '' } = {},
+) => {
+  const dataUrl = await resolveImageToDataUrl(src)
+  if (!dataUrl) return ''
+
+  const inferred = inferImageMimeFromSrc(dataUrl) || 'image/png'
+  const mime = (forceMime || '').trim() || inferred
+
+  const img = await new Promise((resolve, reject) => {
+    const el = new Image()
+    el.crossOrigin = 'anonymous'
+    el.onload = () => resolve(el)
+    el.onerror = reject
+    el.src = dataUrl
+  })
+
+  const iw = img.naturalWidth || img.width || 0
+  const ih = img.naturalHeight || img.height || 0
+  if (!iw || !ih) return dataUrl
+
+  const ratio = Math.min(1, maxW / iw, maxH / ih)
+  const tw = Math.max(1, Math.round(iw * ratio))
+  const th = Math.max(1, Math.round(ih * ratio))
+  if (tw === iw && th === ih) return dataUrl
+
+  const canvas = document.createElement('canvas')
+  canvas.width = tw
+  canvas.height = th
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return dataUrl
+
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'high'
+  ctx.clearRect(0, 0, tw, th)
+
+  // JPEG does not support transparency; fill white background to avoid black edges.
+  if (mime === 'image/jpeg') {
+    ctx.save()
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 0, tw, th)
+    ctx.restore()
+  }
+  ctx.drawImage(img, 0, 0, tw, th)
+
+  if (mime === 'image/jpeg') {
+    return canvas.toDataURL('image/jpeg', quality)
+  }
+  if (mime === 'image/webp') {
+    return canvas.toDataURL('image/webp', quality)
+  }
+  return canvas.toDataURL('image/png')
+}
+
 const exportPromoPdfEditable = async () => {
   const el = await resolvePromoCanvasEl()
   if (!el) {
     ElMessage.error('导出失败：未找到规格页画布')
     return
   }
+
+  const elClone = el.cloneNode(true)
+  try {
+    const productImg = elClone.querySelector('img.product-photo')
+    const src = productImg?.getAttribute('src') || ''
+    if (productImg && src) {
+      const compressed = await downscaleImageDataUrl(src, { maxW: 1200, maxH: 1200 })
+      if (compressed) productImg.setAttribute('src', compressed)
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  try {
+    const top = elClone.querySelector('.promo-top')
+    const bg = backgroundSrc.value || ''
+    if (top && bg) {
+      const compressedBg = await downscaleImageDataUrl(bg, {
+        maxW: 1800,
+        maxH: 1800,
+        quality: 0.78,
+        forceMime: 'image/jpeg',
+      })
+      if (compressedBg) top.style.backgroundImage = `url(${compressedBg})`
+    }
+  } catch (e) {
+    // ignore
+  }
+
   const iframe = document.createElement('iframe')
   iframe.style.position = 'fixed'
   iframe.style.right = '0'
@@ -2155,7 +2302,7 @@ const exportPromoPdfEditable = async () => {
       ${styles}
     </head>
     <body>
-      <div class="print-page">${el.outerHTML}</div>
+      <div class="print-page">${elClone.outerHTML}</div>
       <script>
         window.addEventListener('load', () => { setTimeout(() => { window.focus(); window.print(); }, 50); });
         window.onafterprint = () => { setTimeout(() => { parent.document.body.removeChild(frameElement); }, 0); };
@@ -2307,7 +2454,7 @@ const exportManualPdfEditable = async () => {
 const _editableInitHTML = new WeakMap()
 // 固定常量（不可编辑）
 const BRAND_NAME = 'Bellagio\nSpas'
-const PRODUCT_ANCHOR = { x: '75%', y: '32%' }
+const PRODUCT_ANCHOR = { x: '70%', y: '32%' }
 // 不同图片的上传提示（精简版）
 const BACKGROUND_UPLOAD_TIPS = '背景图：≥2480×1400，≤5MB，横向大图即可。'
 const PRODUCT_UPLOAD_TIPS = '产品图：≥1600×1200，≤5MB，建议 PNG/JPG。'
@@ -2501,6 +2648,18 @@ const onClickBackground = () => {
   if (backgroundInputRef.value) backgroundInputRef.value.click()
 }
 
+const onClickLogo = () => {
+  if (logoInputRef.value) {
+    logoInputRef.value.click()
+    return
+  }
+  try {
+    ElMessage?.warning?.('Logo 上传控件未就绪，请稍后重试')
+  } catch (e) {
+    // ignore
+  }
+}
+
 const onPickBackground = (e) => {
   const f = e?.target?.files && e.target.files[0]
   if (!f) return
@@ -2629,10 +2788,29 @@ const promoSectionTitles = ref({
 const onEditSectionTitle = (evt, key) => {
   const el = evt?.target
   if (!el) return
-  const html = (el.innerHTML || '').trim()
+  const escapeHtml = (s) => String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+  const text = String(el.innerText || '')
+    .replace(/\r/g, '')
+    .trim()
+
+  const lines = text
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+
+  const normalizedHtml = lines.length ? lines.map(escapeHtml).join('<br>') : ''
+
+  // Normalize DOM immediately to prevent styled HTML from lingering.
+  el.innerHTML = normalizedHtml
   promoSectionTitles.value = {
     ...promoSectionTitles.value,
-    [key]: html,
+    [key]: normalizedHtml,
   }
 }
 
@@ -2957,6 +3135,14 @@ const isProductCandidateImage = (src = '') => {
 const refreshKbProductImages = () => {
   const images = []
   const seen = new Set()
+  ;(manualStore.productFiles || []).forEach((file) => {
+    if (!file) return
+    if (!isImageLike(file)) return
+    const src = file.url || toPublicFileUrl(file.path)
+    if (!src || seen.has(src)) return
+    images.push({ src, label: file.name ? `原始上传：${file.name}` : (file.path || src) })
+    seen.add(src)
+  })
   ;(DEFAULT_KB_PRODUCT_IMAGES || []).forEach((img) => {
     if (!img?.src || seen.has(img.src)) return
     images.push({ src: img.src, label: img.label || img.src })
@@ -3075,6 +3261,10 @@ const loadManualOcrData = async () => {
   try {
     const { getManualSession } = await import('@/services/api')
     const session = await getManualSession(manualSessionId.value)
+    try {
+      const files = session?.product_files || session?.productFiles || []
+      if (Array.isArray(files)) manualStore.productFiles = files
+    } catch (e) {}
     manualOcrProductGroups.value = normalizeOcrGroups(session?.product_ocr_groups)
     manualOcrAccessoryGroups.value = normalizeOcrGroups(session?.accessory_ocr_groups)
     manualOcrLoaded.value = true
@@ -3137,6 +3327,15 @@ const hydratePromoFromSpecsheet = (specsheetData, { fromSaved = false, chunks = 
     if (specsheetData.images.background) {
       backgroundSrc.value = specsheetData.images.background
     }
+    if (specsheetData.images.logo) {
+      logoSrc.value = specsheetData.images.logo
+      applyLogoPresetFromSrc(specsheetData.images.logo)
+    }
+  }
+
+  if (!specsheetData?.images?.logo) {
+    logoSrc.value = promoData.value?.images?.logo || '/product_standard/logo.png'
+    applyLogoPresetFromSrc(logoSrc.value)
   }
 
   ragChunks.value = fromSaved ? [] : chunks
@@ -3447,9 +3646,33 @@ const saveManualToDb = async () => {
 
 // 初始化图片与 promoData 同步（暂不自动触发规格页加载）
 onMounted(() => {
-  productPhotoSrc.value = promoData.value.images?.product || productPhotoSrc.value
-  backgroundSrc.value = promoData.value.images?.background || backgroundSrc.value
+  const imgBase = promoData.value.images || initialPromoData.images
+  productPhotoSrc.value = imgBase.product
+  backgroundSrc.value = imgBase.background
+
+  const incomingLogo = promoData.value?.images?.logo
+  if (incomingLogo) {
+    logoSrc.value = incomingLogo
+    applyLogoPresetFromSrc(incomingLogo)
+  } else {
+    logoSrc.value = '/product_standard/logo.png'
+    logoPreset.value = 'square'
+  }
 })
+
+const onPickLogo = (e) => {
+  const f = e.target.files && e.target.files[0]
+  if (!f) return
+  const reader = new FileReader()
+  reader.onload = () => {
+    logoSrc.value = reader.result
+    if (!promoData.value.images) promoData.value.images = {}
+    promoData.value.images.logo = reader.result
+    applyLogoPresetFromSrc(reader.result)
+  }
+  reader.readAsDataURL(f)
+  e.target.value = ''
+}
 
 // 后续如需在切换产品时联动加载规格页，可在此重新启用 watch
 // watch([productName, bom], ([newProductName, newBom], [oldProductName, oldBom]) => {
@@ -4967,7 +5190,7 @@ onMounted(() => {
 .promo-top-bg-layer { position: absolute; inset: 0; z-index: 1; cursor: pointer; }
 .logo-card { position: absolute; left: 20px; width: 100px; height: 130px; padding: 12px; background: #eaeff5; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #eee; display: flex; align-items: center; justify-content: center; box-sizing: border-box; z-index: 6; cursor: pointer; }
 .logo-mark { color: #c99a2e; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-.logo-mark img { width: 100px; height: 100px; object-fit: contain; display: block; }
+.logo-mark img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
 
 /* 产品名 */
 .product-title { font-size: 42px; font-weight: 800; color: var(--promo-main-color); letter-spacing: 0.5px; margin-bottom: 6px; line-height: 1.1; }
@@ -4978,11 +5201,13 @@ onMounted(() => {
 .h2 { color: var(--promo-main-color); font-weight: 700; font-size: 19px; white-space: pre-line; line-height: 1.3; }
 
 .icons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
-.icon { display: grid; grid-template-columns: 35px 1fr; align-items: center; column-gap: 10px; color: var(--promo-text-color); }
-.icon img { width: 35px; height: 35px; aspect-ratio: 1 / 1; object-fit: contain; display: block; }
-.icon-text { display: grid; justify-items: start; row-gap: 2px;margin-left: 10px; }
-.icon-num { color: var(--promo-text-color); font-size: 18px; font-weight: 600; }
-.icon-t { font-size: 12px; color: #6b7280; font-weight: 400; }
+.icon { display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 14px; color: var(--promo-text-color); }
+.icon img { width: 32px; height: 32px; aspect-ratio: 1 / 1; object-fit: contain; display: block; }
+.mask-icon { width: 32px; height: 32px; display: block; background: var(--promo-main-color); cursor: pointer; }
+.mask-icon { -webkit-mask-image: var(--mask-url); -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; -webkit-mask-size: contain; mask-image: var(--mask-url); mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
+.icon-text { display: grid; }
+.icon-t { color: #6b7280; font-size: 12px; line-height: 1; font-weight: 400; }
+.icon-num { color: var(--promo-text-color); font-size: 17px; line-height: 1.2; font-weight: 500; }
 
 .measurements-row { display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 14px; margin-top: 6px; }
 .m-icon img { width: 32px; height: 32px; aspect-ratio: 1 / 1; object-fit: contain; display: block; }
@@ -4993,14 +5218,13 @@ onMounted(() => {
 .bullets { list-style: none !important; padding-left: 0; margin: 0; display: grid; gap: 3px; color: var(--promo-text-color); font-size: 14px; }
 .bullets li { list-style: none !important; position: relative; padding-left: 16px; line-height: 1.3; font-weight: 400; }
 .bullets li::marker { content: ''; }
-.bullets li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; background: var(--promo-main-color); border-radius: 50%; transform: translateY(-50%); }
+.bullets li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; background: currentColor; border-radius: 50%; transform: translateY(-50%); }
 .specs { display: grid; gap: 8px; color: var(--promo-text-color); }
 
 /* Right column: Specifications list */
 .specs-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
 .specs-item { display: grid; grid-template-columns: 120px 1fr; align-items: baseline; column-gap: 12px; }
-.specs-label { color: #6b7280; text-align: right; justify-self: end; font-size: 14px; font-weight: 400; }
-.specs-value { color: var(--promo-text-color); text-align: left; justify-self: start; font-size: 14px; font-weight: 400; }
+.specs-value { color: var(--promo-text-color); text-align: left; justify-self: start; font-size: 14px; font-weight: 400; white-space: pre-line; word-break: break-word; }
 .specs-value.bold { color: var(--promo-text-color); font-weight: 500; }
 .specs-dot { display: inline-block; width: 8px; height: 8px; background: #c4c4c4; border-radius: 50%; vertical-align: middle; }
 .specs-dot + .specs-dot { margin-left: 10px; }
@@ -5020,7 +5244,9 @@ onMounted(() => {
 .bullets-gray li::marker { content: ''; }
 .bullets-gray li::before { background: #6b7280; }
 
-.promo-footer { position: absolute; bottom: 0; left: 0; right: 0; height: 26px; background: var(--promo-main-color); display: flex; align-items: center; }
+.promo-footer { position: absolute; bottom: 0; left: 0; right: 0; height: 26px; background: transparent; display: flex; align-items: center; }
+.promo-footer::before { content: ''; position: absolute; inset: 0; background: var(--promo-main-color); opacity: 0.6; }
+.promo-footer > * { position: relative; z-index: 1; }
 .footnote { font-size: 10px; color: #6b7280; padding-left: 24px; margin-bottom: 60px;}
 
 .rag-layout {
@@ -5188,7 +5414,7 @@ onMounted(() => {
 .poster-specs .s-value { color: #ffffff; font-weight: 800; font-size: 10px; line-height: 1.05; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; width: fit-content; max-width: 100%; padding-bottom: 1px; border-bottom: 1px solid rgba(255,255,255,0.9); }
 .poster-specs .spec:last-child .s-value { font-size: 8px; }
 /* 产品图片叠加样式 */
-.product-photo-wrap { position: absolute; left: var(--product-x, 78%); top: var(--product-y, 22%); transform: translate(-50%, -50%); z-index: 5; pointer-events: auto; }
+.product-photo-wrap { position: absolute; left: var(--product-x, 72%); top: var(--product-y, 22%); transform: translate(-50%, -50%); z-index: 5; pointer-events: auto; }
 .product-photo { width: auto; height: auto; max-width: 380px; max-height: 420px; object-fit: contain; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5)); cursor: pointer; transform-origin: center center; transition: transform 0.12s ease-out; display: block; }
 .product-photo-tools { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; padding: 6px 8px; background: rgba(17, 24, 39, 0.65); border-radius: 10px; opacity: 0; pointer-events: none; transition: opacity 0.12s ease-out; }
 .product-photo-wrap:hover .product-photo-tools { opacity: 1; pointer-events: auto; }

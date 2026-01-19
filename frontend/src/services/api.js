@@ -295,6 +295,73 @@ export async function generatePosterCopy({
   return handleResponse(response, 'Failed to generate poster copy')
 }
 
+export async function generatePosterImageEdit({
+  step1_result,
+  product_name,
+  bom_code,
+  reference_file,
+  reference_image_url,
+  product_file,
+  product_image_url,
+  background_file,
+  background_image_url,
+  title,
+  subtitle,
+  sellpoints,
+  output_width,
+  output_height,
+  watermark,
+  negative_prompt,
+} = {}) {
+  const toDataUrl = (f) =>
+    new Promise((resolve, reject) => {
+      try {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = () => reject(new Error('Failed to read image file'))
+        reader.readAsDataURL(f)
+      } catch (e) {
+        reject(e)
+      }
+    })
+
+  let resolvedRefUrl = reference_image_url
+  if (reference_file) {
+    resolvedRefUrl = await toDataUrl(reference_file)
+  }
+
+  let resolvedProductUrl = product_image_url
+  if (product_file) {
+    resolvedProductUrl = await toDataUrl(product_file)
+  }
+
+  let resolvedBackgroundUrl = background_image_url
+  if (background_file) {
+    resolvedBackgroundUrl = await toDataUrl(background_file)
+  }
+
+  const response = await fetch(`${API_BASE_URL}/api/poster/generate_image_edit`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      reference_image_url: resolvedRefUrl || null,
+      product_image_url: resolvedProductUrl || null,
+      background_image_url: resolvedBackgroundUrl || null,
+      step1_result: step1_result && typeof step1_result === 'object' ? step1_result : null,
+      product_name: product_name || null,
+      bom_code: bom_code || null,
+      title: title || null,
+      subtitle: subtitle || null,
+      sellpoints: Array.isArray(sellpoints) ? sellpoints : null,
+      output_width: Number.isFinite(Number(output_width)) ? Number(output_width) : null,
+      output_height: Number.isFinite(Number(output_height)) ? Number(output_height) : null,
+      watermark: typeof watermark === 'boolean' ? watermark : null,
+      negative_prompt: negative_prompt || null,
+    }),
+  })
+  return handleResponse(response, 'Failed to generate poster image')
+}
+
 /**
  * Legacy helper: generate specsheet using docs grouped by product/accessory.
  * (Kept for backward compatibility on other pages.)

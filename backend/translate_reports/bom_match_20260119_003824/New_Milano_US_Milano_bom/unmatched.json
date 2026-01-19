@@ -1,0 +1,5170 @@
+[
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Speciﬁcations are subject to change.",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4965551197528839
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.4489971101284027
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4359707832336426
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "J",
+        "name_zh": "220V/60Hz",
+        "score": 0.4349285364151001
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.4251136779785156
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "N",
+        "name_zh": "单110V/60Hz",
+        "score": 0.4239819645881653
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4169711768627167
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.4142568111419678
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.41339749097824097
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.40722566843032837
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4021342396736145
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.4008657932281494
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "F",
+        "name_zh": "380V/50HZ",
+        "score": 0.39920586347579956
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.39699554443359375
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.3880424499511719
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "A",
+        "name_zh": "外接加热器预装管道（裙边上不预留接口）",
+        "score": 0.3880401849746704
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "L",
+        "name_zh": "220-240V/50Hz英插（电源线长5米）",
+        "score": 0.3873755931854248
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.3838035464286804
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "1个双速2HPLX（美标/单110V）",
+        "score": 0.38319119811058044
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.3825250267982483
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "New Milano",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4203745722770691
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.4202151298522949
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.4178227186203003
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4135773777961731
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "铁托盘包装（立放）",
+        "score": 0.4061276912689209
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "E",
+        "name_zh": "铁托盘包装（立放）",
+        "score": 0.4061276912689209
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.40251079201698303
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "B",
+        "name_zh": "gecko-WIFI",
+        "score": 0.38952088356018066
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "C",
+        "name_zh": "铁托盘包装（立放）（产品高970）",
+        "score": 0.3890412449836731
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "A",
+        "name_zh": "灰色生态转角",
+        "score": 0.3882126212120056
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "E",
+        "name_zh": "balboa-wifi",
+        "score": 0.38811224699020386
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3864356577396393
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1P",
+        "name_zh": "眉毛气改水+河喷",
+        "score": 0.3856509029865265
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.3846704363822937
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3793724775314331
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3793652057647705
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "F",
+        "name_zh": "balboa蓝牙+wifi",
+        "score": 0.37921565771102905
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.378315806388855
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "P",
+        "name_zh": "gecko-WIFI（美标）",
+        "score": 0.3778662085533142
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.37769657373428345
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Energy-Saving",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4199301302433014
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4018569588661194
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.3932095766067505
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.3827552795410156
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3813900351524353
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.3754892945289612
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.372749000787735
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.3700084090232849
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "J",
+        "name_zh": "220V/60Hz",
+        "score": 0.3684152364730835
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.36827123165130615
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.36734288930892944
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.3649081587791443
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "N",
+        "name_zh": "单110V/60Hz",
+        "score": 0.3633210361003876
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3633021116256714
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "O",
+        "name_zh": "带Gecko热泵（5KW/美标）",
+        "score": 0.3611251711845398
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.36075764894485474
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.36042237281799316
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7B",
+        "name_zh": "1个循环gecko+1个双速3HPgecko（美标）",
+        "score": 0.3599606156349182
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4K",
+        "name_zh": "1个双速3HPgecko+2个单速3HPgecko（美标）",
+        "score": 0.35972166061401367
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1D",
+        "name_zh": "1个循环gecko+1个单速3HPLX",
+        "score": 0.3588898181915283
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Insulation System",
+    "top": [
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4821929633617401
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "D",
+        "name_zh": "四面保温板（配镀锌支架用）",
+        "score": 0.47975409030914307
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4611070454120636
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温",
+        "score": 0.4605445861816406
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "B",
+        "name_zh": "帘子保温",
+        "score": 0.45933863520622253
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "I",
+        "name_zh": "玻璃纤维/单底支架(底部带铝膜)",
+        "score": 0.45807939767837524
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "H",
+        "name_zh": "玻璃纤维/单底支架(800高)",
+        "score": 0.4565819501876831
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "M",
+        "name_zh": "玻璃纤维/单底支架",
+        "score": 0.4533624053001404
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.4478152394294739
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.4436936378479004
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.44305694103240967
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "M",
+        "name_zh": "带热泵预装管路（裙边上不预留接口/配双速泵用）",
+        "score": 0.4426959753036499
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.4426121413707733
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.43870851397514343
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.43859145045280457
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "L",
+        "name_zh": "带热泵预装管路（裙边上预留接口/配双速泵用）",
+        "score": 0.4375571608543396
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "E",
+        "name_zh": "带热泵预装管路（裙边上不预留接口）",
+        "score": 0.43720945715904236
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.4361758530139923
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.43617117404937744
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "O",
+        "name_zh": "带Gecko热泵（5KW/美标）",
+        "score": 0.43606555461883545
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Full Polyfoam Insulation",
+    "top": [
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.4733237624168396
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "H",
+        "name_zh": "玻璃纤维/单底支架(800高)",
+        "score": 0.4557795226573944
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "I",
+        "name_zh": "玻璃纤维/单底支架(底部带铝膜)",
+        "score": 0.4535471200942993
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "O",
+        "name_zh": "玻璃纤维/全三明治底支架",
+        "score": 0.447670042514801
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "A",
+        "name_zh": "户外缸单层发泡",
+        "score": 0.4443094730377197
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "D",
+        "name_zh": "四面保温板（配镀锌支架用）",
+        "score": 0.4425108730792999
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "D",
+        "name_zh": "户外缸单层发泡(2cm)",
+        "score": 0.4378483295440674
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "M",
+        "name_zh": "玻璃纤维/单底支架",
+        "score": 0.4348835051059723
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.4316238462924957
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温",
+        "score": 0.4314071238040924
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "B",
+        "name_zh": "帘子保温",
+        "score": 0.4239291548728943
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.4224984645843506
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.421858012676239
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "E",
+        "name_zh": "玻璃纤维/单底支架(加高970)",
+        "score": 0.4200443625450134
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "F",
+        "name_zh": "玻璃纤维/半三明治底支架(加高970)/玻璃纤维/单底镀锌支架(产品800高)",
+        "score": 0.41979122161865234
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "P",
+        "name_zh": "玻璃纤维/全三明治底支架(配镀锌支架)",
+        "score": 0.41886287927627563
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4188401699066162
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "N",
+        "name_zh": "玻璃纤维/半三明治底支架",
+        "score": 0.4174186885356903
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4169154167175293
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.41656675934791565
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Triple-Layered Side Insulation",
+    "top": [
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "0",
+        "name_zh": "无缸侧保温",
+        "score": 0.5588650703430176
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "B",
+        "name_zh": "帘子保温",
+        "score": 0.5471702814102173
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温",
+        "score": 0.5465065240859985
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.5087257027626038
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "O",
+        "name_zh": "玻璃纤维/全三明治底支架",
+        "score": 0.49039244651794434
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.4864788353443146
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "C",
+        "name_zh": "电机面保温板",
+        "score": 0.4856392741203308
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "D",
+        "name_zh": "四面保温板（配镀锌支架用）",
+        "score": 0.48317307233810425
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.47515684366226196
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.4715856909751892
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "A",
+        "name_zh": "外接加热器预装管道（裙边上不预留接口）",
+        "score": 0.46912437677383423
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "N",
+        "name_zh": "玻璃纤维/半三明治底支架",
+        "score": 0.4672829806804657
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.4656486213207245
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "E",
+        "name_zh": "带热泵预装管路（裙边上不预留接口）",
+        "score": 0.45948702096939087
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "I",
+        "name_zh": "玻璃纤维/单底支架(底部带铝膜)",
+        "score": 0.45907992124557495
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "F",
+        "name_zh": "带热泵预装管路（裙边上预留接口）",
+        "score": 0.4590069651603699
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "O",
+        "name_zh": "带Gecko热泵（5KW/美标）",
+        "score": 0.4564569592475891
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "C",
+        "name_zh": "全三明治底支架",
+        "score": 0.4519747495651245
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "B",
+        "name_zh": "半三明治底支架",
+        "score": 0.4519265294075012
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "P",
+        "name_zh": "玻璃纤维/全三明治底支架(配镀锌支架)",
+        "score": 0.45039623975753784
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Half-Enviro-Seal Base",
+    "top": [
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.5351738929748535
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "N",
+        "name_zh": "玻璃纤维/半三明治底支架",
+        "score": 0.5263334512710571
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "F",
+        "name_zh": "玻璃纤维/半三明治底支架(加高970)/玻璃纤维/单底镀锌支架(产品800高)",
+        "score": 0.5198612213134766
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "O",
+        "name_zh": "玻璃纤维/全三明治底支架",
+        "score": 0.5088409185409546
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5023437738418579
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.5022853016853333
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "P",
+        "name_zh": "玻璃纤维/全三明治底支架(配镀锌支架)",
+        "score": 0.49774205684661865
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.49552130699157715
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4944579303264618
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.49368542432785034
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.49289727210998535
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.49078118801116943
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4887283742427826
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "H",
+        "name_zh": "玻璃纤维/单底支架(800高)",
+        "score": 0.4869033396244049
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.48580822348594666
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "E",
+        "name_zh": "玻璃纤维/单底支架(加高970)",
+        "score": 0.48564285039901733
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7B",
+        "name_zh": "1个循环gecko+1个双速3HPgecko（美标）",
+        "score": 0.4855514466762543
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.48497313261032104
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "I",
+        "name_zh": "玻璃纤维/单底支架(底部带铝膜)",
+        "score": 0.4846905469894409
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1D",
+        "name_zh": "1个循环gecko+1个单速3HPLX",
+        "score": 0.48434728384017944
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Premium",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.39825373888015747
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.3892709016799927
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.37513092160224915
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "H",
+        "name_zh": "普兰豪配蓝牙+低音炮（停用）",
+        "score": 0.3743150532245636
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.37412577867507935
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "X",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（美标）",
+        "score": 0.37222927808761597
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3687823712825775
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "C",
+        "name_zh": "铁托盘包装（立放）（产品高970）",
+        "score": 0.3663886785507202
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.3649003505706787
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.3648366332054138
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.36466532945632935
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.3626948893070221
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "U",
+        "name_zh": "普兰豪配蓝牙+低音炮（美标）",
+        "score": 0.3619574308395386
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1D",
+        "name_zh": "1个循环gecko+1个单速3HPLX",
+        "score": 0.3575804829597473
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "8B",
+        "name_zh": "1个循环LX+1个单速2HPLX（美标/单110V/双110V通用）",
+        "score": 0.35697007179260254
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1M",
+        "name_zh": "1个循环LX+1个单速2HPLX+1个单速3HPLX",
+        "score": 0.35669130086898804
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.35624822974205017
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.35617613792419434
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1F",
+        "name_zh": "1个循环LX+1个单速2HPLX+1个单速2.5HPLX",
+        "score": 0.35542982816696167
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "3",
+        "name_zh": "普兰简配蓝牙+共振喇叭+Gecko-wifi（澳标wifi）",
+        "score": 0.3553285598754883
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Lighting System",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.488800972700119
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.47173452377319336
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "带水底灯",
+        "score": 0.46343639492988586
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "W",
+        "name_zh": "带水底灯+阀带灯+缸边灯+3个灯杯座+转角灯+裙边灯+贝拉乔logo灯（YJ/YE-V3版本电控用）",
+        "score": 0.4590766131877899
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）",
+        "score": 0.45242440700531006
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "O",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.44774341583251953
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.4476233422756195
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.44541215896606445
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "P",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯(无灯杯座）（YJ/YE-V3版本电控用）",
+        "score": 0.4425365924835205
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "R",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）（YJ/YE-V3版本电控用）",
+        "score": 0.4424342215061188
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "I",
+        "name_zh": "水底灯+阀带灯+缸边灯贝拉乔LOGO灯（YJ/YE-V3版本电控用）",
+        "score": 0.43859928846359253
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "S",
+        "name_zh": "带水底灯+阀带灯+缸边灯（池壁灯）+1个灯杯座+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.4371836185455322
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.4371785521507263
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.4370722770690918
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "F",
+        "name_zh": "水底灯+阀带灯+转角灯+logo灯",
+        "score": 0.43412554264068604
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "H",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（瑞典配置）",
+        "score": 0.4328857660293579
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.43255069851875305
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.43036606907844543
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "G",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.43036606907844543
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "N",
+        "name_zh": "带水底灯+缸边灯+阀带灯（YJ/YE-V3版本电控用）",
+        "score": 0.42559152841567993
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Underwater Mood Lighting",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.5362487435340881
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "G",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.5362487435340881
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.528744637966156
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "C",
+        "name_zh": "带水底灯+阀带灯+缸边灯",
+        "score": 0.5271010994911194
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.5146337151527405
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.512378454208374
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.5062068104743958
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "X",
+        "name_zh": "水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯",
+        "score": 0.5049996376037598
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.5036265850067139
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.4980478286743164
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "S",
+        "name_zh": "带水底灯+阀带灯+缸边灯（池壁灯）+1个灯杯座+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.4971093535423279
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "V",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯带+裙边灯带+贝拉乔logo灯",
+        "score": 0.4930301904678345
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "U",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔logo灯",
+        "score": 0.4824325740337372
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "H",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（瑞典配置）",
+        "score": 0.47552162408828735
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "P",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯(无灯杯座）（YJ/YE-V3版本电控用）",
+        "score": 0.4738956689834595
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "I",
+        "name_zh": "水底灯+阀带灯+缸边灯贝拉乔LOGO灯（YJ/YE-V3版本电控用）",
+        "score": 0.4702056646347046
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "带水底灯",
+        "score": 0.46815356612205505
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "R",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）（YJ/YE-V3版本电控用）",
+        "score": 0.46057841181755066
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "O",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.45843690633773804
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "1",
+        "name_zh": "手动进排水+贝拉乔logo灯+2米电源线",
+        "score": 0.4556802809238434
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是整理后的水族箱配置信息，按类别分组并标注关键参数：\n\n---\n\n### **1. 水下氛围照明 (Underwater Mood Lighting)**\n**推荐配置（按评分排序）**：\n1. **带水底灯+阀带灯+缸边灯+转角灯**  \n   - 评分：53.62%  \n   - 特点：基础全功能照明，包含水底灯、阀带灯、缸边灯和转角灯。\n2. **带水底灯+阀带灯+缸边灯+转角灯**（重复条目）  \n   - 评分：53.62%  \n   - 备注：与上一项描述完全相同，可能为数据冗余。\n3. **带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）**  \n   - 评分：52.87%  \n   - 特点：灵活灯杯座配置，适合不同安装需求。\n4. **带水底灯+阀带灯+缸边灯**  \n   - 评分：52.71%  \n   - 特点：简化版，不含转角灯，适合空间有限场景。\n\n**其他选项**：\n- **水底灯+阀带灯+缸边灯+贝拉乔logo灯**（评分50.62%）  \n- **水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯**（评分50.5%）  \n- **带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）**（评分50.36%）\n\n---\n\n### **2. 照明系统 (Lighting)**\n**核心配置**：\n- **带水底灯+阀带灯+缸边灯+转角灯**（评分43.04%）  \n  - 全功能照明，覆盖水底、阀门、缸边和转角区域。\n- **水底灯+阀带灯+缸边灯贝拉乔LOGO灯**（评分47.02%）  \n  - 增加品牌标识灯，适合主题水族箱。\n- **水底灯+阀带灯+缸边灯+转角灯（瑞典配置）**（评分43.29%）  \n  - 北欧风格设计，可能包含特殊色温或控制方式。\n\n---\n\n### **3. 加热与控制 (External Heating)**\n- **手动进排水+贝拉乔logo灯+2米电源线**（评分45.57%）  \n  - 基础加热方案，适合小型水族箱，含品牌标识灯。\n\n---\n\n### **4. 水泵与循环系统**\n- **Premium Pump (3000L/H)**（未直接提及，需结合其他配置）  \n  - 高流量水泵，适合大型水族箱，需搭配过滤系统。\n\n---\n\n### **5. 其他关键配置**\n- **Premium Filter (5000L/H)**（未直接提及，需结合其他配置）  \n  - 高效过滤系统，确保水质稳定。\n- **Smart Control System (YJ/YE-V3)**（部分照明配置提及）  \n  - 支持智能调光，兼容多种灯杯座配置。\n\n---\n\n### **注意事项**\n1. **重复条目**：部分照明配置（如code D/G）描述完全相同，可能为数据冗余。\n2. **评分参考**：评分可能基于用户偏好或销售数据，具体选择需结合实际需求。\n3. **定制化需求**：灯杯座数量、logo灯、色温等参数需根据水族箱尺寸和装饰风格调整。\n\n如需进一步分析特定配置的优缺点或成本估算，请提供更详细的需求说明。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Perimeter & Valve Laser Lighting",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.4813474416732788
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "I",
+        "name_zh": "水底灯+阀带灯+缸边灯贝拉乔LOGO灯（YJ/YE-V3版本电控用）",
+        "score": 0.47259342670440674
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.47159716486930847
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.466481477022171
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）",
+        "score": 0.4663212299346924
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.4622000753879547
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "6A",
+        "name_zh": "光环水喷（标配）",
+        "score": 0.46146345138549805
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.4597603678703308
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "S",
+        "name_zh": "带水底灯+阀带灯+缸边灯（池壁灯）+1个灯杯座+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.4592823386192322
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "U",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔logo灯",
+        "score": 0.45714738965034485
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "G",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.45679154992103577
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.45679154992103577
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "2",
+        "name_zh": "电动进排水+贝拉乔logo灯",
+        "score": 0.45172131061553955
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "P",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯(无灯杯座）（YJ/YE-V3版本电控用）",
+        "score": 0.45104366540908813
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.4489014744758606
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "R",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）（YJ/YE-V3版本电控用）",
+        "score": 0.4466152489185333
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "C",
+        "name_zh": "带水底灯+阀带灯+缸边灯",
+        "score": 0.4459677040576935
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "V",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯带+裙边灯带+贝拉乔logo灯",
+        "score": 0.44575631618499756
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "O",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.4435111880302429
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "W",
+        "name_zh": "带水底灯+阀带灯+缸边灯+3个灯杯座+转角灯+裙边灯+贝拉乔logo灯（YJ/YE-V3版本电控用）",
+        "score": 0.44344010949134827
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Silent Stream System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.5039193034172058
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5029345750808716
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.49950316548347473
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.4990088939666748
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.49846041202545166
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.4940832257270813
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.49301111698150635
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.4891616106033325
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4887697696685791
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7E",
+        "name_zh": "1个双速3HPgecko+1个变频泵gecko（美标）",
+        "score": 0.48826730251312256
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.4874963164329529
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.48669058084487915
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.4853062629699707
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.48451733589172363
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.4844686985015869
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4824649393558502
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.4821896553039551
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "O",
+        "name_zh": "臭氧+投药器",
+        "score": 0.48146218061447144
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.4808688163757324
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.48041287064552307
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Extra Features",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.5234045386314392
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4983237683773041
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4892241358757019
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.48898375034332275
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.477480947971344
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "H",
+        "name_zh": "普兰豪配蓝牙+低音炮（停用）",
+        "score": 0.4672427177429199
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.4622689485549927
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "A",
+        "name_zh": "外接加热器预装管道（裙边上不预留接口）",
+        "score": 0.4591205418109894
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "A",
+        "name_zh": "gecko蓝牙",
+        "score": 0.45540034770965576
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4505719542503357
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "3",
+        "name_zh": "普兰简配蓝牙+共振喇叭+Gecko-wifi（澳标wifi）",
+        "score": 0.4482252597808838
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "B",
+        "name_zh": "gecko-WIFI",
+        "score": 0.4480613172054291
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "Z",
+        "name_zh": "gecko蓝牙+2个缸面喇叭+WIFI（美标）",
+        "score": 0.4477994441986084
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "F",
+        "name_zh": "balboa蓝牙+wifi",
+        "score": 0.44364356994628906
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.44014573097229004
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "K",
+        "name_zh": "普兰简配蓝牙+共振喇叭+Balboa-wifi",
+        "score": 0.43959447741508484
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4391463100910187
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "2",
+        "name_zh": "带4个共振喇叭+低音炮+gecko-WIFI",
+        "score": 0.437520295381546
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.43731555342674255
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "C",
+        "name_zh": "gecko蓝牙+WIFI",
+        "score": 0.43731173872947693
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Speciﬁcations",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.5569965243339539
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5072948932647705
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.49615973234176636
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "J",
+        "name_zh": "220V/60Hz",
+        "score": 0.4935859441757202
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.48822879791259766
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "A",
+        "name_zh": "220-240V/50Hz",
+        "score": 0.48507288098335266
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.47588998079299927
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4742984473705292
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.4678305983543396
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "N",
+        "name_zh": "单110V/60Hz",
+        "score": 0.46752649545669556
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4652150869369507
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "C",
+        "name_zh": "220-240V/50Hz英插",
+        "score": 0.4632575809955597
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.4599321484565735
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4579125940799713
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "L",
+        "name_zh": "220-240V/50Hz英插（电源线长5米）",
+        "score": 0.45497262477874756
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.45421111583709717
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.4486551582813263
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.443420946598053
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.44157108664512634
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.44103020429611206
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Pumps",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5459109544754028
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.5394500494003296
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.5303179025650024
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.529861330986023
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5288655757904053
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1D",
+        "name_zh": "1个循环gecko+1个单速3HPLX",
+        "score": 0.5240735411643982
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.5240477919578552
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5223562717437744
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1J",
+        "name_zh": "1个循环gecko+2个单速3HPLX",
+        "score": 0.5197641253471375
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.517850399017334
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.5174493789672852
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.5173211097717285
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1S",
+        "name_zh": "1个循环gecko+3个单速3HPLX",
+        "score": 0.5172953009605408
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1W",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速",
+        "score": 0.5169262886047363
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4Z",
+        "name_zh": "1个双速2HPLX（美标/单110V/配浅灰过滤器）",
+        "score": 0.5168673992156982
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2Z",
+        "name_zh": "双速泵带特殊过滤器",
+        "score": 0.5152985453605652
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7B",
+        "name_zh": "1个循环gecko+1个双速3HPgecko（美标）",
+        "score": 0.515291690826416
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.5152312517166138
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4K",
+        "name_zh": "1个双速3HPgecko+2个单速3HPgecko（美标）",
+        "score": 0.5138946175575256
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.513245701789856
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Cabinet Color",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J3",
+        "name_zh": "进口石膏白+标准孔+",
+        "score": 0.541542649269104
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "B",
+        "name_zh": "柚木色生态转角",
+        "score": 0.5249212384223938
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J2",
+        "name_zh": "进口石膏白+标准孔",
+        "score": 0.5241354703903198
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q3",
+        "name_zh": "内缸黑色+外缸白色+标准孔+",
+        "score": 0.5182769298553467
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R3",
+        "name_zh": "内缸白色+外缸黑色+标准孔+",
+        "score": 0.5173931121826172
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色+标准孔",
+        "score": 0.5171583890914917
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色+标准孔",
+        "score": 0.5145971775054932
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "C",
+        "name_zh": "咖啡色生态转角",
+        "score": 0.5097531676292419
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "柚木色生态裙边",
+        "score": 0.506844162940979
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R6",
+        "name_zh": "内缸白色+外缸黑色+孔位6",
+        "score": 0.5051150321960449
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q5",
+        "name_zh": "内缸黑色+外缸白色+孔位5",
+        "score": 0.5042810440063477
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R5",
+        "name_zh": "内缸白色+外缸黑色+孔位5",
+        "score": 0.5034985542297363
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q6",
+        "name_zh": "内缸黑色+外缸白色+孔位6",
+        "score": 0.5034157037734985
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R4",
+        "name_zh": "内缸白色+外缸黑色+孔位4",
+        "score": 0.5028528571128845
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q4",
+        "name_zh": "内缸黑色+外缸白色+孔位4",
+        "score": 0.5020294785499573
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J5",
+        "name_zh": "进口石膏白+孔位5",
+        "score": 0.5009946823120117
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "P",
+        "name_zh": "PS/黑橡木色二级台阶",
+        "score": 0.4994553029537201
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J6",
+        "name_zh": "进口石膏白+孔位6",
+        "score": 0.4983983337879181
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J4",
+        "name_zh": "进口石膏白+孔位4",
+        "score": 0.4954721927642822
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "H3",
+        "name_zh": "进口云灰+标准孔+",
+        "score": 0.4941833019256592
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Shell Color",
+    "top": [
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "柚木色生态裙边",
+        "score": 0.4584243893623352
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "P",
+        "name_zh": "PS/黑橡木色二级台阶",
+        "score": 0.442621648311615
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "N3",
+        "name_zh": "进口日落色+标准孔+",
+        "score": 0.4182438850402832
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "D3",
+        "name_zh": "进口云彩蓝+标准孔+",
+        "score": 0.4150296151638031
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "B",
+        "name_zh": "柚木色生态转角",
+        "score": 0.4130282998085022
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "H3",
+        "name_zh": "进口云灰+标准孔+",
+        "score": 0.4087749421596527
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色+标准孔",
+        "score": 0.40813687443733215
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色+标准孔",
+        "score": 0.40659236907958984
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q3",
+        "name_zh": "内缸黑色+外缸白色+标准孔+",
+        "score": 0.4048842191696167
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "N2",
+        "name_zh": "进口日落色+标准孔",
+        "score": 0.4039447009563446
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "N5",
+        "name_zh": "进口日落色+孔位5",
+        "score": 0.4025391936302185
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R3",
+        "name_zh": "内缸白色+外缸黑色+标准孔+",
+        "score": 0.40239977836608887
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "N6",
+        "name_zh": "进口日落色+孔位6",
+        "score": 0.4021964371204376
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "P3",
+        "name_zh": "进口芝麻绿+标准孔+",
+        "score": 0.401492714881897
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "M",
+        "name_zh": "PP/青棕色二级台阶",
+        "score": 0.40079930424690247
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "D2",
+        "name_zh": "进口云彩蓝+标准孔",
+        "score": 0.4003356695175171
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "T3",
+        "name_zh": "进口海洋蓝+标准孔+",
+        "score": 0.39990752935409546
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "C",
+        "name_zh": "咖啡色生态裙边",
+        "score": 0.39974546432495117
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "N4",
+        "name_zh": "进口日落色+孔位4",
+        "score": 0.3995344936847687
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "I3",
+        "name_zh": "进口珍珠白+标准孔+",
+        "score": 0.3992370367050171
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Dry Weight",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.44916436076164246
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.44849079847335815
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.44004103541374207
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.43011796474456787
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4218953847885132
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.41985583305358887
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4196479916572571
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4156948924064636
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.415149986743927
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4136880040168762
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.4135686755180359
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.4097377359867096
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4083797037601471
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.40735411643981934
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.4068966209888458
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R3",
+        "name_zh": "内缸白色+外缸黑色+标准孔+",
+        "score": 0.4063115119934082
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q3",
+        "name_zh": "内缸黑色+外缸白色+标准孔+",
+        "score": 0.4061816930770874
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.40547823905944824
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.40480002760887146
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.4042147994041443
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Water Capacity",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.5106808543205261
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4871729910373688
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.48558732867240906
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7W",
+        "name_zh": "2个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.48317962884902954
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.4810330271720886
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.47992461919784546
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.4784146547317505
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.47734442353248596
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2M",
+        "name_zh": "1个双速3HPLX+1个单速1HP（标配）",
+        "score": 0.4748155474662781
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.4745340347290039
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.4733014702796936
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.4711107015609741
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4F",
+        "name_zh": "1个双速3HPgecko+1个单速3HPLX（美标）",
+        "score": 0.468766987323761
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4W",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko+1个1HP单速（美标）",
+        "score": 0.46854132413864136
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.4685242772102356
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4K",
+        "name_zh": "1个双速3HPgecko+2个单速3HPgecko（美标）",
+        "score": 0.4678899645805359
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1W",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速",
+        "score": 0.4676532447338104
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2V",
+        "name_zh": "1个双速2.5HPLX+1个单速1HP（标配）",
+        "score": 0.4672912359237671
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7D",
+        "name_zh": "2个双速3HPgecko+1个单速3HPLX（美标）",
+        "score": 0.467120498418808
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.46702319383621216
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Feature",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.466172456741333
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4000755548477173
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3993440270423889
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3797197937965393
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "B",
+        "name_zh": "gecko-WIFI",
+        "score": 0.37595513463020325
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "A",
+        "name_zh": "gecko蓝牙",
+        "score": 0.3681589365005493
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.35419368743896484
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "P",
+        "name_zh": "gecko-WIFI（美标）",
+        "score": 0.346557080745697
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.3448653519153595
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.34460580348968506
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "E",
+        "name_zh": "balboa-wifi",
+        "score": 0.3422505259513855
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "C",
+        "name_zh": "gecko蓝牙+WIFI",
+        "score": 0.33918705582618713
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "F",
+        "name_zh": "balboa蓝牙+wifi",
+        "score": 0.33806681632995605
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3378356695175171
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "H",
+        "name_zh": "普兰豪配蓝牙+低音炮（停用）",
+        "score": 0.3343117833137512
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3341178894042969
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.3332516551017761
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.33178550004959106
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "D",
+        "name_zh": "balboa蓝牙",
+        "score": 0.3316115140914917
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "3",
+        "name_zh": "普兰简配蓝牙+共振喇叭+Gecko-wifi（澳标wifi）",
+        "score": 0.3261960744857788
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是该数据集的结构化分析和关键信息提取：\n\n---\n\n### **1. 属性分类与核心选项**\n#### **外壳颜色 (Shell Color)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **水容量 (Water Capacity)**\n- **最高评分**: 0.5107（无水泵）\n- **其他高分选项**: \n  - 4V（双速3HPgecko + 1HP单速，美标）0.4872\n  - 1Q（循环gecko + 单速3HPgecko + 1HP单速，浅灰过滤器）0.4856\n\n#### **功能特性 (Feature)**\n- **最高评分**: 0.4662（无多媒体）\n- **其他高分选项**: \n  - 无电源标准（0.4001）\n  - 无控制器（0.3993）\n  - 无消毒系统（0.3797）\n\n---\n\n### **2. 关键观察**\n1. **无水泵 (Water Pump 00)**:\n   - 在 **水容量** 和 **外壳颜色** 中均获得最高评分（0.5107），可能表示“无水泵”是默认或最受欢迎的配置。\n\n2. **水泵配置**:\n   - 多数高分选项涉及复杂水泵组合（如 4V、1Q、7W 等），可能对应不同功率需求或地区标准（如美标）。\n\n3. **功能特性**:\n   - “无多媒体”、“无电源标准”等基础配置占据高分，可能反映用户对简化功能的需求。\n\n4. **评分分布**:\n   - 评分集中在 **0.35-0.51** 范围，未出现极端值，可能表示数据经过标准化处理。\n\n---\n\n### **3. 可能的用途**\n- **产品配置推荐**: 根据评分优先选择高分选项（如无水泵、基础功能）。\n- **市场分析**: 识别用户偏好（如美标水泵、简化功能）。\n- **数据清洗**: 检查重复选项（如“无水泵”在多个属性中出现）。\n\n---\n\n### **4. 建议**\n- **优先级排序**: 对于用户需求，可按评分从高到低推荐选项。\n- **跨属性关联**: 分析“无水泵”在多个属性中的高分是否反映产品核心卖点。\n- **数据验证**: 确认评分逻辑（如是否为用户反馈或算法生成）。\n\n---\n\n如需进一步分析（如生成推荐列表或可视化图表），请提供具体需求！"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Jets",
+    "top": [
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.34154409170150757
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3372846841812134
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.3282642662525177
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.32724422216415405
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.3249097764492035
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "F",
+        "name_zh": "balboa蓝牙+wifi",
+        "score": 0.3240090012550354
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.32037848234176636
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3178326487541199
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "5B",
+        "name_zh": "钻石标准水喷+气喷",
+        "score": 0.3168143033981323
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "N",
+        "name_zh": "PS/棕色二级台阶",
+        "score": 0.3160824775695801
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.3159603476524353
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "E6",
+        "name_zh": "进口午夜黑+孔位6",
+        "score": 0.3158087730407715
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "P",
+        "name_zh": "PS/黑橡木色二级台阶",
+        "score": 0.3156125545501709
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "E5",
+        "name_zh": "进口午夜黑+孔位5",
+        "score": 0.3154892325401306
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3136477470397949
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "0",
+        "name_zh": "无裙边",
+        "score": 0.31349167227745056
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "柚木色生态裙边",
+        "score": 0.3132783770561218
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3129981756210327
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "A",
+        "name_zh": "gecko蓝牙",
+        "score": 0.31221821904182434
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "7H",
+        "name_zh": "贝特增加水喷",
+        "score": 0.3121262788772583
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Capacity",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.47191375494003296
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.45521825551986694
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.45239558815956116
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4521139860153198
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4371202886104584
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4297741949558258
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.42348408699035645
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4217246174812317
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.42107677459716797
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.4203758239746094
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.4174939692020416
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.41624245047569275
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2M",
+        "name_zh": "1个双速3HPLX+1个单速1HP（标配）",
+        "score": 0.41148221492767334
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.4100797474384308
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4088847041130066
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7W",
+        "name_zh": "2个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4088068902492523
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1W",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速",
+        "score": 0.4071650803089142
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.40701115131378174
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.406955748796463
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.4068892002105713
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Measurements",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.39177435636520386
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.38182562589645386
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3809077739715576
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.3704991936683655
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.3612302541732788
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.35956597328186035
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.35906708240509033
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.3586893379688263
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.3577382564544678
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3563622534275055
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "P",
+        "name_zh": "gecko-WIFI（美标）",
+        "score": 0.351431667804718
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.3510107100009918
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.3493988811969757
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.34845736622810364
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.34718477725982666
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.34587764739990234
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.34494733810424805
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "B",
+        "name_zh": "gecko-WIFI",
+        "score": 0.34433409571647644
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.34413206577301025
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.3434940278530121
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Bellagio",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.44770151376724243
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "U",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔logo灯",
+        "score": 0.4187220633029938
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "2",
+        "name_zh": "电动进排水+贝拉乔logo灯",
+        "score": 0.4143454432487488
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "V",
+        "name_zh": "水底灯+阀带灯+缸边灯+转角灯带+裙边灯带+贝拉乔logo灯",
+        "score": 0.4080250859260559
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.4043492078781128
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.3968966007232666
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "X",
+        "name_zh": "水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯",
+        "score": 0.39631927013397217
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.3961506485939026
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "8B",
+        "name_zh": "1个循环LX+1个单速2HPLX（美标/单110V/双110V通用）",
+        "score": 0.39530080556869507
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "1",
+        "name_zh": "手动进排水+贝拉乔logo灯+2米电源线",
+        "score": 0.3946015238761902
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3937755525112152
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.39316219091415405
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3925279378890991
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.39246031641960144
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7D",
+        "name_zh": "2个双速3HPgecko+1个单速3HPLX（美标）",
+        "score": 0.39140939712524414
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7W",
+        "name_zh": "2个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.3904215097427368
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.3899960517883301
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.38934624195098877
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3M",
+        "name_zh": "1个循环LX+1个双速3HPgecko+1个单速1HP（美标）",
+        "score": 0.38825705647468567
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.38777974247932434
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Spas",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.5077501535415649
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.43886786699295044
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.43357059359550476
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.43295687437057495
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "K",
+        "name_zh": "带Balboa热泵",
+        "score": 0.42305999994277954
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "O",
+        "name_zh": "带Gecko热泵（5KW/美标）",
+        "score": 0.41891995072364807
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.4183654487133026
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.41552865505218506
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.4128567576408386
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.4111188054084778
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "K",
+        "name_zh": "铁托盘包装（立放）（带浅灰浴枕）",
+        "score": 0.41100800037384033
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.4080747365951538
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4077495038509369
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2M",
+        "name_zh": "1个双速3HPLX+1个单速1HP（标配）",
+        "score": 0.40643423795700073
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.4052011966705322
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4044134020805359
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4E",
+        "name_zh": "1个双速1.5HPLX+1个单速2HPLX（美标/配浅灰过滤器）",
+        "score": 0.4041794538497925
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.4041539430618286
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "1",
+        "name_zh": "手动进排水+贝拉乔logo灯+2米电源线",
+        "score": 0.40406209230422974
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.4036898612976074
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Controls",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5621349215507507
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4983895719051361
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.4833906590938568
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5N",
+        "name_zh": "P68B123+PB562+4KW（带WIFI功能/贝拉乔灰白面板贴纸）",
+        "score": 0.4646514058113098
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2G",
+        "name_zh": "BP200+TP500+2KW",
+        "score": 0.46163272857666016
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "4U",
+        "name_zh": "BP2000+T型触摸面板+5.5KW（美标）",
+        "score": 0.4580407738685608
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2O",
+        "name_zh": "BP200+TP400+2KW",
+        "score": 0.4566722810268402
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.45188212394714355
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5M",
+        "name_zh": "P68B123+PB562+2KW（带WIFI功能/面板带贝拉乔商标）",
+        "score": 0.4489118456840515
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5L",
+        "name_zh": "P68B123+PB565+2KW（欧标/美标通用/带WIFI功能）",
+        "score": 0.4468041658401489
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4454651176929474
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2R",
+        "name_zh": "BP601+T形触摸面板+3KW",
+        "score": 0.4448035955429077
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P69B133+PB565+4KW（欧标/美标通用/带WIFI功能）",
+        "score": 0.44301074743270874
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2V",
+        "name_zh": "BP2100 G1+方形触摸面板+3KW/BP2100 G0+方形触摸面板+3KW",
+        "score": 0.4400911033153534
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5J",
+        "name_zh": "P68B123+PB562+3KW（美标配2个水泵选用/欧标配1-2个泵选用/带WIFI功能/面板带Joyonway商标）",
+        "score": 0.4374760091304779
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2P",
+        "name_zh": "BP601+TP800+3KW",
+        "score": 0.4368954300880432
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5F",
+        "name_zh": "P69B133+PB565+3KW（欧标/美标通用/带WIFI功能）",
+        "score": 0.4366132616996765
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5C",
+        "name_zh": "P68B123+PB562+3KW（美标配2个水泵选用/欧标配1-2个泵选用/带WIFI功能/面板带贝拉乔商标）",
+        "score": 0.43654265999794006
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2Q",
+        "name_zh": "BP601+TP600+3KW",
+        "score": 0.4354797601699829
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5O",
+        "name_zh": "P68B123+PB563+4KW（贝拉乔灰白面板贴纸）",
+        "score": 0.4350815415382385
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "1 x Silent Stream Pump",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5875860452651978
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5837571620941162
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.5731385350227356
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.5717615485191345
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.5695868730545044
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4Z",
+        "name_zh": "1个双速2HPLX（美标/单110V/配浅灰过滤器）",
+        "score": 0.5679413080215454
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.5677088499069214
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4E",
+        "name_zh": "1个双速1.5HPLX+1个单速2HPLX（美标/配浅灰过滤器）",
+        "score": 0.5653560757637024
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.5649592876434326
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7W",
+        "name_zh": "2个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.5647698044776917
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.5641458034515381
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.5640471577644348
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.5630857944488525
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.5622739791870117
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7B",
+        "name_zh": "1个循环gecko+1个双速3HPgecko（美标）",
+        "score": 0.5613555908203125
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.5610352754592896
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.5601066946983337
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4K",
+        "name_zh": "1个双速3HPgecko+2个单速3HPgecko（美标）",
+        "score": 0.5582029819488525
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.5567936897277832
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "34",
+        "name_zh": "1个循环Gecko+1个单速3HPLX+1个单速1HP（美标）",
+        "score": 0.5560087561607361
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Gecko Control Panel",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "P",
+        "name_zh": "gecko-WIFI（美标）",
+        "score": 0.5463188886642456
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "B",
+        "name_zh": "gecko-WIFI",
+        "score": 0.5460222363471985
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.530133843421936
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "C",
+        "name_zh": "gecko蓝牙+WIFI",
+        "score": 0.5162832736968994
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "R",
+        "name_zh": "gecko蓝牙+WIFI（美标）",
+        "score": 0.5130900144577026
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "A",
+        "name_zh": "gecko蓝牙",
+        "score": 0.4994890093803406
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4976394474506378
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.4827866554260254
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.4815940856933594
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.48089784383773804
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.4793091416358948
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.47774723172187805
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1D",
+        "name_zh": "1个循环gecko+1个单速3HPLX",
+        "score": 0.4776439666748047
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1J",
+        "name_zh": "1个循环gecko+2个单速3HPLX",
+        "score": 0.4743785262107849
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.47055941820144653
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5N",
+        "name_zh": "P68B123+PB562+4KW（带WIFI功能/贝拉乔灰白面板贴纸）",
+        "score": 0.47046446800231934
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1W",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速",
+        "score": 0.4703877866268158
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7B",
+        "name_zh": "1个循环gecko+1个双速3HPgecko（美标）",
+        "score": 0.46924489736557007
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.4687984585762024
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.46751290559768677
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Smart Water",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4765269160270691
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.4728042185306549
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.4713408350944519
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.468245267868042
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.4655054807662964
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4626711905002594
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.46189677715301514
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7W",
+        "name_zh": "2个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4583025574684143
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.45663684606552124
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2M",
+        "name_zh": "1个双速3HPLX+1个单速1HP（标配）",
+        "score": 0.45587339997291565
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "O",
+        "name_zh": "臭氧+投药器",
+        "score": 0.45558151602745056
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.45523279905319214
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.4551013708114624
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7E",
+        "name_zh": "1个双速3HPgecko+1个变频泵gecko（美标）",
+        "score": 0.4538850784301758
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.4535837173461914
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.4521089196205139
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2Z",
+        "name_zh": "双速泵带特殊过滤器",
+        "score": 0.45074155926704407
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.4507097601890564
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.4502283036708832
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.449728399515152
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Puriﬁcation System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.5621769428253174
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.5596579909324646
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5591707229614258
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.551733136177063
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.5515144467353821
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.5500800013542175
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.5498042106628418
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.5441973209381104
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "R",
+        "name_zh": "臭氧+UV+投药器+臭氧混合器",
+        "score": 0.5373938679695129
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "O",
+        "name_zh": "臭氧+投药器",
+        "score": 0.5330460667610168
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "D",
+        "name_zh": "臭氧+盐氯预装管",
+        "score": 0.5280982255935669
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "F",
+        "name_zh": "臭氧+UV+盐氯预装管",
+        "score": 0.5261149406433105
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "6",
+        "name_zh": "臭氧（美标/带循环泵用）",
+        "score": 0.5247698426246643
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.5178232192993164
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "B",
+        "name_zh": "UV",
+        "score": 0.5102834701538086
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "J",
+        "name_zh": "IN.Clear+臭氧管道（无臭氧/无射流器/无稳合器）",
+        "score": 0.505394697189331
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "I",
+        "name_zh": "臭氧管路（无臭氧/无射流器/无稳合器）",
+        "score": 0.5038728713989258
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.50263911485672
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.4801362454891205
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.47825488448143005
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": "以下是针对水处理系统配置的结构化分析，按不同功能模块整理候选方案及推荐建议：\n\n---\n\n### **1. 智能水系统 (Smart Water)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：结合臭氧和紫外线双重消毒，覆盖广谱杀菌，符合美国标准。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：臭氧与IN.Clear技术结合，提升水质净化效率。  \n- **臭氧+UV+投药器+臭氧混合器**（分数0.5374）  \n  - 优势：多级消毒系统，适合高要求场景（如泳池或工业用水）。  \n\n**其他选项**：  \n- **双速泵带特殊过滤器**（分数0.4507）：适合需要灵活流量调节的场景。  \n- **变频泵gecko**（分数0.4539）：节能高效，适合长期运行。  \n\n---\n\n### **2. 水泵配置 (Water Pump)**\n**推荐方案**：  \n- **1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）**（分数0.4536）  \n  - 优势：组合泵型兼顾流量与压力，过滤器提升水质。  \n- **双速3HPgecko+单速3HPgecko（美标）**（分数0.4507）  \n  - 优势：双速设计适应不同用水需求，美标兼容性好。  \n\n**其他选项**：  \n- **2个双速3HPgecko+1个1HP单速**（分数0.4583）：高流量需求场景。  \n- **单速3HPgecko+1HP单速**（分数0.4619）：基础配置，成本较低。  \n\n---\n\n### **3. 消毒系统 (Sanitation)**\n**推荐方案**：  \n- **臭氧+UV（美标）**（分数0.5597）  \n  - 优势：高效杀菌，符合美国标准，适合家庭或商业用途。  \n- **臭氧+IN.Clear**（分数0.5622）  \n  - 优势：IN.Clear技术可去除重金属和有机物，提升水质。  \n- **臭氧+UV+投药器**（分数0.533）  \n  - 优势：多级消毒，适合需要持续投药的场景（如泳池）。  \n\n**其他选项**：  \n- **UV（美标）**（分数0.5178）：基础紫外线消毒，成本较低。  \n- **臭氧（美标/带循环泵用）**（分数0.5248）：适合需要循环泵的系统。  \n\n---\n\n### **4. 智能控制与配件**\n**推荐方案**：  \n- **Gecko-wifi + 蓝牙**（分数0.4688）  \n  - 优势：智能控制与无线连接，支持远程监控。  \n- **普兰豪配蓝牙+低音炮+Gecko-wifi**（分数0.4688）  \n  - 优势：集成音响系统，适合需要娱乐功能的场景。  \n\n**其他选项**：  \n- **臭氧混合器**（分数0.5374）：提升臭氧分布均匀性。  \n- **特殊过滤器**（分数0.4507）：针对特定污染物（如重金属）。  \n\n---\n\n### **5. 综合推荐**\n- **家庭用户**：  \n  - **消毒系统**：臭氧+UV（美标）  \n  - **水泵**：1个循环gecko+1个单速3HPgecko+1个1HP单速  \n  - **智能控制**：Gecko-wifi + 蓝牙  \n\n- **商业/工业用户**：  \n  - **消毒系统**：臭氧+UV+投药器+臭氧混合器  \n  - **水泵**：双速3HPgecko+单速3HPgecko（美标）  \n  - **配件**：特殊过滤器 + 变频泵  \n\n- **预算有限用户**：  \n  - **消毒系统**：UV（美标）  \n  - **水泵**：单速3HPgecko+1HP单速  \n  - **配件**：基础过滤器  \n\n---\n\n### **注意事项**\n1. **美标兼容性**：部分选项（如UV、臭氧）需确认是否符合当地法规。  \n2. **维护成本**：臭氧系统需定期更换臭氧发生器，UV灯寿命约5-10年。  \n3. **水质需求**：若需去除重金属，优先选择IN.Clear或特殊过滤器。  \n\n如需进一步优化，建议结合具体用水场景（如家庭、泳池、工业）和预算进行调整。"
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Circulation Pump",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.6056164503097534
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.6047874689102173
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.6008272171020508
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1E",
+        "name_zh": "1个循环gecko+1个单速2.5HPLX",
+        "score": 0.6003243923187256
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3G",
+        "name_zh": "1个循环gecko+1个单速3HPgecko（美标）",
+        "score": 0.5953328609466553
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.5934802293777466
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7B",
+        "name_zh": "1个循环gecko+1个双速3HPgecko（美标）",
+        "score": 0.5929789543151855
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1I",
+        "name_zh": "1个循环gecko+2个单速2.5HPLX",
+        "score": 0.5923504829406738
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1X",
+        "name_zh": "1个循环gecko+2个单速3HPLX+1个1HP单速",
+        "score": 0.59228515625
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3K",
+        "name_zh": "1个循环gecko+2个单速3HPgecko（美标）",
+        "score": 0.5913512706756592
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "37",
+        "name_zh": "1个循环LX+1个单速3HPgecko+1个单速1HP（美标）",
+        "score": 0.5906518697738647
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "34",
+        "name_zh": "1个循环Gecko+1个单速3HPLX+1个单速1HP（美标）",
+        "score": 0.589913010597229
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3D",
+        "name_zh": "1个循环gecko+1个单速3HPLX（美标）",
+        "score": 0.5888176560401917
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1W",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速",
+        "score": 0.5886743068695068
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.5874345302581787
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3W",
+        "name_zh": "1个循环Gecko+2个单速3HPLX+1个单速1HP（美标）",
+        "score": 0.5868096351623535
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "8B",
+        "name_zh": "1个循环LX+1个单速2HPLX（美标/单110V/双110V通用）",
+        "score": 0.5867156982421875
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1D",
+        "name_zh": "1个循环gecko+1个单速3HPLX",
+        "score": 0.5849467515945435
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.5820057392120361
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1J",
+        "name_zh": "1个循环gecko+2个单速3HPLX",
+        "score": 0.5800363421440125
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": ""
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Ozonator",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.6216906309127808
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "6",
+        "name_zh": "臭氧（美标/带循环泵用）",
+        "score": 0.6183220148086548
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.6076525449752808
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.5944516658782959
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.5941727161407471
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "D",
+        "name_zh": "臭氧+盐氯预装管",
+        "score": 0.5881687998771667
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.5870599150657654
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "F",
+        "name_zh": "臭氧+UV+盐氯预装管",
+        "score": 0.586848795413971
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.5828361511230469
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "I",
+        "name_zh": "臭氧管路（无臭氧/无射流器/无稳合器）",
+        "score": 0.5790788531303406
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "O",
+        "name_zh": "臭氧+投药器",
+        "score": 0.5692452192306519
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "J",
+        "name_zh": "IN.Clear+臭氧管道（无臭氧/无射流器/无稳合器）",
+        "score": 0.5655711889266968
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "R",
+        "name_zh": "臭氧+UV+投药器+臭氧混合器",
+        "score": 0.5644674301147461
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5398248434066772
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "A",
+        "name_zh": "臭氧",
+        "score": 0.5373587608337402
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.5305906534194946
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "N",
+        "name_zh": "UV（美标）",
+        "score": 0.527576208114624
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.5245266556739807
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5056307315826416
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5010074377059937
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": ""
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "Filtration System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.5269294381141663
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.5239263772964478
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.5237869024276733
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "F",
+        "name_zh": "臭氧+UV+盐氯预装管",
+        "score": 0.5210925340652466
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "R",
+        "name_zh": "臭氧+UV+投药器+臭氧混合器",
+        "score": 0.5192657113075256
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4E",
+        "name_zh": "1个双速1.5HPLX+1个单速2HPLX（美标/配浅灰过滤器）",
+        "score": 0.5189899206161499
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2Z",
+        "name_zh": "双速泵带特殊过滤器",
+        "score": 0.5157922506332397
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.5146826505661011
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.5135394930839539
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5115713477134705
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "D",
+        "name_zh": "臭氧+盐氯预装管",
+        "score": 0.5109022855758667
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5091745853424072
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4Z",
+        "name_zh": "1个双速2HPLX（美标/单110V/配浅灰过滤器）",
+        "score": 0.5081044435501099
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5073897838592529
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.5067882537841797
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "6",
+        "name_zh": "臭氧（美标/带循环泵用）",
+        "score": 0.5059553384780884
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.5057585835456848
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.5014287829399109
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "O",
+        "name_zh": "臭氧+投药器",
+        "score": 0.49898338317871094
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.49879565834999084
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": ""
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/New Milano US.pdf",
+    "en_phrase": "LED Glow Cupholders",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "带水底灯",
+        "score": 0.47708648443222046
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.4635857343673706
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.45875710248947144
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.4573240876197815
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.4512019157409668
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.45087626576423645
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4503359794616699
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.4487874507904053
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "W",
+        "name_zh": "带水底灯+阀带灯+缸边灯+3个灯杯座+转角灯+裙边灯+贝拉乔logo灯（YJ/YE-V3版本电控用）",
+        "score": 0.4482649564743042
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.44806039333343506
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "X",
+        "name_zh": "水底灯+阀带灯+缸边灯+3个灯杯座（浅灰）+转角灯带+裙边灯带+贝拉乔logo灯",
+        "score": 0.44687190651893616
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.44461187720298767
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "6",
+        "name_zh": "gecko蓝牙+裙边喇叭",
+        "score": 0.444534033536911
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.44447359442710876
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "Z",
+        "name_zh": "gecko蓝牙+2个缸面喇叭+WIFI（美标）",
+        "score": 0.4443681836128235
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "T",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）",
+        "score": 0.4438250660896301
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.44164422154426575
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "7",
+        "name_zh": "罗浮简配蓝牙+共振喇叭+Gecko-wifi（美标）",
+        "score": 0.4408303499221802
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4404522776603699
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.4401208758354187
+      }
+    ],
+    "llm_used": true,
+    "llm_confidence": null,
+    "llm_reason": ""
+  }
+]

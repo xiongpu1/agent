@@ -1,0 +1,6 @@
+material_code,bom_type,section_key,section_label,code,name_zh,en_phrase,score,source_pdf,llm_used,llm_confidence,llm_reason
+Superior,outdoor,lighting,第13位（灯光配置）,T,带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）,Lighting System,0.452424,/root/workspace/syp/agent/backend/translate/Superior.pdf,True,0.6700,该选项的得分最高，且名称包含LED相关描述
+Superior,outdoor,lighting,第13位（灯光配置）,T,带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）,Corner Laser Lighting,0.468322,/root/workspace/syp/agent/backend/translate/Superior.pdf,True,0.6600,该选项的得分最高，且名称包含LED相关描述
+Superior,outdoor,lighting,第13位（灯光配置）,T,带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）,LED Jet Illumination,0.465637,/root/workspace/syp/agent/backend/translate/Superior.pdf,True,0.6500,该选项的得分最高，且名称包含LED相关描述
+Superior,outdoor,waterPump,第8+9位（水泵配置）,1L,1个循环gecko+1个单速3HPgecko,Gecko Touch Screen,0.478359,/root/workspace/syp/agent/backend/translate/Superior.pdf,True,0.8300,该选项得分最高，且直接关联水泵系统
+Superior,outdoor,sanitation,第11位（消毒系统）,K,臭氧+ClearBlue（美标）,Filtration System,0.526929,/root/workspace/syp/agent/backend/translate/Superior.pdf,True,0.8300,该选项得分最高，且直接关联过滤系统

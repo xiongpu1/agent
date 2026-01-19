@@ -1,0 +1,11 @@
+{
+  "pdf": "/root/workspace/syp/agent/backend/translate/Alta US.pdf",
+  "material_code": "Alta",
+  "product_type_zh": "冰水缸",
+  "bom_type": "iceTub",
+  "threshold": 0.8,
+  "top_k": 8,
+  "matched": 0,
+  "unmatched": 31,
+  "best_by_section": []
+}

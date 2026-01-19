@@ -1,0 +1,48 @@
+{
+  "pdf": "/root/workspace/syp/agent/backend/translate/Superior.pdf",
+  "material_code": "Superior",
+  "product_type_zh": "户外缸",
+  "bom_type": "outdoor",
+  "threshold": 0.8,
+  "top_k": 8,
+  "matched": 5,
+  "unmatched": 33,
+  "best_by_section": [
+    {
+      "section_key": "lighting",
+      "section_label": "第13位（灯光配置）",
+      "code": "T",
+      "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+贝拉乔LOGO灯/（YJ/YE-V3版本电控用）",
+      "score": 0.4683223068714142,
+      "source_pdf": "/root/workspace/syp/agent/backend/translate/Superior.pdf",
+      "en_phrase": "Corner Laser Lighting",
+      "llm_used": true,
+      "llm_confidence": 0.66,
+      "llm_reason": "该选项的得分最高，且名称包含LED相关描述"
+    },
+    {
+      "section_key": "waterPump",
+      "section_label": "第8+9位（水泵配置）",
+      "code": "1L",
+      "name_zh": "1个循环gecko+1个单速3HPgecko",
+      "score": 0.47835931181907654,
+      "source_pdf": "/root/workspace/syp/agent/backend/translate/Superior.pdf",
+      "en_phrase": "Gecko Touch Screen",
+      "llm_used": true,
+      "llm_confidence": 0.83,
+      "llm_reason": "该选项得分最高，且直接关联水泵系统"
+    },
+    {
+      "section_key": "sanitation",
+      "section_label": "第11位（消毒系统）",
+      "code": "K",
+      "name_zh": "臭氧+ClearBlue（美标）",
+      "score": 0.5269294381141663,
+      "source_pdf": "/root/workspace/syp/agent/backend/translate/Superior.pdf",
+      "en_phrase": "Filtration System",
+      "llm_used": true,
+      "llm_confidence": 0.83,
+      "llm_reason": "该选项得分最高，且直接关联过滤系统"
+    }
+  ]
+}

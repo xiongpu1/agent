@@ -1,0 +1,152 @@
+{
+  "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+  "material_code": "Milano",
+  "material_code_inferred": true,
+  "product_type_zh": "户外缸",
+  "bom_type": "outdoor",
+  "translate_dir": "/root/workspace/syp/agent/backend/translate",
+  "backends": {
+    "mineru": false,
+    "pymupdf": true,
+    "pypdf": false,
+    "pypdf2": false
+  },
+  "phrases": [
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Speciﬁcations are subject to change."
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "SW Milano"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Energy-Saving"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Insulation System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Full Polyfoam Insulation"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Triple-Layered Side Insulation"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Half-Enviro-Seal Base"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Premium"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Lighting System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "LED Glow Cupholders"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Underwater Mood Lighting"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Perimeter & Valve Laser Lighting"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Silent Stream System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Extra Features"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Speciﬁcations"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Pumps"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Cabinet Color"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Shell Color"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Dry Weight"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Water Capacity"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Smart Water"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Puriﬁcation System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Circulation Pump"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Ozonator"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Filtration System"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Controls"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "1 x Silent Stream Pump"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Gecko Control Panel"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Feature"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Jets"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Capacity"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Measurements"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Bellagio"
+    },
+    {
+      "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/SW Milano US.pdf",
+      "en_phrase": "Spas"
+    }
+  ]
+}

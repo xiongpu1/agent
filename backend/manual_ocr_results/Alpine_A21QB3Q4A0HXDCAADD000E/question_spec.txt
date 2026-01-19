@@ -46,11 +46,3 @@
 2. 除 JSON key 以外，所有可读文本字段的值必须为英文（包括 productTitle、premiumFeatures/insulationFeatures/extraFeatures/smartWater 列表项、Specifications 中的 Dry Weight/Water Capacity/Pump/Controls 等字段值）。
 3. 若上下文/BOM/OCR 为中文，请先理解其含义并翻译为自然英文后填入 JSON。
 4. 品牌/型号/技术名词/缩写等专有名词尽量保留原文（例如 Joyonway、Bluetooth、Ozonator 等），仅翻译其周边描述。
-
-
-【ACE Playbook Rules（必须遵守）】
-- [ctx-00026] Always extract productTitle as the human-readable marketing name; strip internal SKUs or model numbers unless explicitly required.
-- [ctx-00027] Use only exact, verbatim phrases from the authoritative ACE terminology glossary—never simplify, abbreviate, or paraphrase feature names (e.g., 'Underwater Mood Lighting' must be used if that is the official term, not 'Underwater Light').
-- [ctx-00028] Avoid semantic equivalence assumptions: even minor lexical deviations from Ground Truth (e.g., 'Wall Insulation' vs 'Insulation') are errors under strict ACE rules.
-- [ctx-00029] Cross-check all extracted feature terms against an official ACE terminology reference before finalizing output; treat any unmatched phrasing as suspect.
-

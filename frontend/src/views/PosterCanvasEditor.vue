@@ -312,8 +312,10 @@
             <div class="gen-row" style="margin-top: -2px;">
               <div class="gen-label" style="font-weight: 500; opacity: 0.85;">显示框</div>
               <el-switch v-model="previewShowBoxes" />
+              <el-button size="small" :loading="posterImageEditLoading" style="margin-left: 10px;" @click="generatePosterImageEditNow">生成海报</el-button>
               <el-button size="small" style="margin-left: auto;" @click="exportPreviewToCanvas">导出到画布</el-button>
             </div>
+            <div v-if="posterImageEditError" class="gen-error" style="margin-top: 8px;">{{ posterImageEditError }}</div>
             <div v-if="previewBaseUrl" ref="previewCanvasRef" class="gen-preview-canvas" :style="previewContainerStyle">
               <img ref="previewBgRef" class="gen-preview-bg" :src="previewBaseUrl" alt="preview" @load="onPreviewBgLoad" />
               <img v-if="previewProductUrl" class="gen-preview-product" :src="previewProductUrl" alt="product" :style="previewProductStyle" />
@@ -376,7 +378,7 @@
           <span class="tool tool-sep"></span>
         </template>
         <template v-if="activeIsSelection">
-          <button class="tool" type="button" @click="groupActiveSelection">成组</button>
+          <button class="tool" type="button" @click="groupActiveSelection">创建分组</button>
           <span class="tool tool-sep"></span>
           <button class="tool" type="button" @click="alignActiveSelection('left')">左对齐</button>
           <button class="tool" type="button" @click="alignActiveSelection('hcenter')">水平居中</button>
@@ -434,7 +436,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { Operation } from '@element-plus/icons-vue'
 import { Canvas as FabricCanvas, Textbox as FabricTextbox, Image as FabricImage, Point as FabricPoint, Rect as FabricRect, Shadow as FabricShadow, Pattern as FabricPattern, Group as FabricGroup, ActiveSelection as FabricActiveSelection } from 'fabric'
 import { useManualStore } from '@/stores/manualStore'
-import { analyzePosterReference, generatePosterCopy } from '@/services/api'
+import { analyzePosterReference, generatePosterCopy, generatePosterImageEdit } from '../services/api'
 
 const router = useRouter()
 const route = useRoute()
@@ -636,6 +638,28 @@ const sanitizeActiveSelection = () => {
   } catch (e) {}
 }
 
+const refreshFabricCoords = (o) => {
+  if (!o) return
+  try {
+    // Group/ActiveSelection needs internal bounds recalculation beyond setCoords.
+    const tl = String(o.type || '').toLowerCase()
+    if (tl === 'group' || tl === 'activeselection') {
+      try {
+        if (typeof o._calcBounds === 'function') o._calcBounds()
+      } catch (e) {}
+      try {
+        if (typeof o._updateObjectsCoords === 'function') o._updateObjectsCoords()
+      } catch (e) {}
+      try {
+        if (typeof o._setObjectCoords === 'function') o._setObjectCoords()
+      } catch (e) {}
+    }
+    try {
+      if (typeof o.setCoords === 'function') o.setCoords()
+    } catch (e) {}
+  } catch (e) {}
+}
+
 const reorderObject = (obj, dir) => {
   const canvas = canvasInstance.value
   if (!canvas || !obj) return
@@ -684,6 +708,7 @@ const groupActiveSelection = () => {
   const obj = canvas.getActiveObject()
   if (!obj || String(obj.type || '').toLowerCase() !== 'activeselection') return
 
+  let prevVpt = null
   try {
     const objects = (typeof obj.getObjects === 'function' ? obj.getObjects() : []).filter((o) => o && !isLockedBottomLayer(o))
     if (objects.length < 2) {
@@ -691,103 +716,133 @@ const groupActiveSelection = () => {
       return
     }
 
-    const absTopLeftOf = (o) => {
-      try {
-        const r = typeof o.getBoundingRect === 'function' ? o.getBoundingRect(true, true) : null
-        if (r && Number.isFinite(Number(r.left)) && Number.isFinite(Number(r.top))) {
-          return { x: Number(r.left), y: Number(r.top) }
-        }
-      } catch (e) {}
-      return { x: Number(o.left || 0), y: Number(o.top || 0) }
-    }
+    try {
+      objects.forEach((o) => refreshFabricCoords(o))
+      refreshFabricCoords(obj)
+    } catch (e) {}
 
-    // Prefer native ActiveSelection.toGroup() when available.
+    prevVpt = Array.isArray(canvas.viewportTransform) ? canvas.viewportTransform.slice() : null
+
+    try {
+      canvas.setViewportTransform([1, 0, 0, 1, 0, 0])
+      canvas.calcOffset()
+    } catch (e) {}
+
     if (typeof obj.toGroup === 'function') {
       try {
         try { console.debug('[group] using native toGroup()') } catch (e) {}
         const group = obj.toGroup()
         if (!group) return
+        refreshFabricCoords(group)
+
         canvas.setActiveObject(group)
+        try {
+          recalcAllObjectCoords()
+          canvas.calcOffset()
+        } catch (e) {}
         canvas.requestRenderAll()
         updateObjOverlay()
         scheduleHistory()
         return
       } catch (err) {
         ElMessage.error(`成组失败: ${err?.message || String(err)}`)
+        return
       }
     }
 
-    // Fallback: manually create a Group for Fabric versions without toGroup().
-    try { console.debug('[group] using fallback manual group()') } catch (e) {}
+    let minL = Infinity
+    let minT = Infinity
+    let maxR = -Infinity
+    let maxB = -Infinity
+    objects.forEach((o) => {
+      try {
+        const r = typeof o.getBoundingRect === 'function' ? o.getBoundingRect(true, true) : null
+        if (!r) return
+        const l = Number(r.left)
+        const t = Number(r.top)
+        const w = Number(r.width)
+        const h = Number(r.height)
+        if (!Number.isFinite(l) || !Number.isFinite(t) || !Number.isFinite(w) || !Number.isFinite(h)) return
+        minL = Math.min(minL, l)
+        minT = Math.min(minT, t)
+        maxR = Math.max(maxR, l + w)
+        maxB = Math.max(maxB, t + h)
+      } catch (e) {}
+    })
+    if (!Number.isFinite(minL) || !Number.isFinite(minT) || !Number.isFinite(maxR) || !Number.isFinite(maxB)) {
+      ElMessage.error('成组失败：无法计算选区范围')
+      return
+    }
+    const center = { x: (minL + maxR) / 2, y: (minT + maxB) / 2 }
+
     const allObjs = canvas.getObjects ? canvas.getObjects() : []
     const indices = objects.map((o) => allObjs.indexOf(o)).filter((n) => n >= 0)
     const firstIdx = getFirstMovableCanvasIndex()
     const targetIndex = Math.max(firstIdx, indices.length ? Math.min(...indices) : firstIdx)
 
-    // Use absolute coords (not relative coords in ActiveSelection) to preserve positions.
-    const absRects = objects
-      .map((o) => {
-        try {
-          const r = typeof o.getBoundingRect === 'function' ? o.getBoundingRect(true, true) : null
-          return { o, r }
-        } catch (e) {
-          return { o, r: null }
+    objects.forEach((o) => {
+      try {
+        const ox = String(o.originX || 'left')
+        const oy = String(o.originY || 'top')
+        const pt = typeof o.getPointByOrigin === 'function' ? o.getPointByOrigin(ox, oy) : null
+        const px = Number(pt?.x)
+        const py = Number(pt?.y)
+        if (Number.isFinite(px) && Number.isFinite(py)) {
+          o.set({ left: px - center.x, top: py - center.y })
         }
-      })
-      .filter((x) => x.o)
-
-    const originLeft = Math.min(...absRects.map((x) => Number(x.r?.left ?? 0)))
-    const originTop = Math.min(...absRects.map((x) => Number(x.r?.top ?? 0)))
-
-    try { console.debug('[group] origin', { originLeft, originTop, absRects }) } catch (e) {}
-
-    const absCenters = objects.map((o) => {
-      try {
-        const c = typeof o.getCenterPoint === 'function' ? o.getCenterPoint() : null
-        if (c && Number.isFinite(Number(c.x)) && Number.isFinite(Number(c.y))) return { o, c: { x: Number(c.x), y: Number(c.y) } }
-      } catch (e) {}
-      // Fallback center from bounding rect
-      const r = absRects.find((x) => x.o === o)?.r
-      const x = Number(r?.left ?? 0) + Number(r?.width ?? 0) / 2
-      const y = Number(r?.top ?? 0) + Number(r?.height ?? 0) / 2
-      return { o, c: { x, y } }
-    })
-
-    // Convert absolute centers into group-local coords.
-    absCenters.forEach(({ o, c }) => {
-      try {
-        o.set({ originX: 'center', originY: 'center', left: c.x - originLeft, top: c.y - originTop })
         if (typeof o.setCoords === 'function') o.setCoords()
       } catch (e) {}
     })
 
-    // Remove objects first.
     objects.forEach((o) => {
-      try {
-        if (o && typeof o.setCoords === 'function') o.setCoords()
-      } catch (e) {}
-      try {
-        canvas.remove(o)
-      } catch (e) {}
+      try { canvas.remove(o) } catch (e) {}
     })
 
     let group = null
     try {
-      group = new FabricGroup(objects, { left: originLeft, top: originTop, originX: 'left', originY: 'top' })
+      group = new FabricGroup(objects, { left: center.x, top: center.y, originX: 'center', originY: 'center' })
     } catch (e) {
       group = null
     }
-    if (!group) return
+    if (!group) {
+      ElMessage.error('成组失败：无法创建 Group')
+      return
+    }
+
+    try {
+      if (typeof group.setPositionByOrigin === 'function') {
+        group.setPositionByOrigin(new FabricPoint(center.x, center.y), 'center', 'center')
+      }
+    } catch (e) {}
+
+    refreshFabricCoords(group)
 
     canvas.add(group)
     try {
       canvas.moveObjectTo(group, Math.min(targetIndex, (canvas.getObjects?.() || []).length - 1))
     } catch (e) {}
     canvas.setActiveObject(group)
+    try {
+      recalcAllObjectCoords()
+      canvas.calcOffset()
+    } catch (e) {}
     canvas.requestRenderAll()
     updateObjOverlay()
     scheduleHistory()
   } catch (e) {}
+  finally {
+    try {
+      if (prevVpt) {
+        canvas.setViewportTransform(prevVpt)
+        canvas.calcOffset()
+        try {
+          recalcAllObjectCoords()
+        } catch (e) {}
+        canvas.requestRenderAll()
+        updateObjOverlay()
+      }
+    } catch (e) {}
+  }
 }
 
 const ungroupActiveGroup = () => {
@@ -798,26 +853,118 @@ const ungroupActiveGroup = () => {
   if (isLockedBottomLayer(obj)) return
 
   try {
-    if (typeof obj.toActiveSelection === 'function') {
-      const sel = obj.toActiveSelection()
-      if (sel) {
-        canvas.setActiveObject(sel)
-        sanitizeActiveSelection()
-      }
-      canvas.requestRenderAll()
-      updateObjOverlay()
-      scheduleHistory()
-      return
+    let groupRect = null
+    try {
+      groupRect = obj.getBoundingRect?.(true, true) || null
+    } catch (e) {
+      groupRect = null
     }
 
-    // Fallback: manually restore objects from group.
-    const items = typeof obj.getObjects === 'function' ? (obj.getObjects() || []) : []
+    const alignItemsToGroupRect = (items) => {
+      if (!groupRect) return
+      try {
+        let minL = Infinity
+        let minT = Infinity
+        let maxR = -Infinity
+        let maxB = -Infinity
+        ;(items || []).forEach((o) => {
+          try {
+            const r = o?.getBoundingRect?.(true, true)
+            if (!r) return
+            const l = Number(r.left)
+            const t = Number(r.top)
+            const w = Number(r.width)
+            const h = Number(r.height)
+            if (!Number.isFinite(l) || !Number.isFinite(t) || !Number.isFinite(w) || !Number.isFinite(h)) return
+            minL = Math.min(minL, l)
+            minT = Math.min(minT, t)
+            maxR = Math.max(maxR, l + w)
+            maxB = Math.max(maxB, t + h)
+          } catch (e) {}
+        })
+        if (!Number.isFinite(minL) || !Number.isFinite(minT) || !Number.isFinite(maxR) || !Number.isFinite(maxB)) return
+        const dx = Number(groupRect.left) - minL
+        const dy = Number(groupRect.top) - minT
+        if (!Number.isFinite(dx) || !Number.isFinite(dy)) return
+
+        try {
+          if (window.__posterDebug) {
+            // eslint-disable-next-line no-console
+            console.log('[PosterDebug] ungroup:align', {
+              groupRect,
+              itemsRectBefore: { left: minL, top: minT, width: maxR - minL, height: maxB - minT },
+              dx,
+              dy,
+            })
+          }
+        } catch (e) {}
+
+        ;(items || []).forEach((o) => {
+          try {
+            if (!o) return
+            o.set({ left: Number(o.left || 0) + dx, top: Number(o.top || 0) + dy })
+            if (typeof o.setCoords === 'function') o.setCoords()
+          } catch (e) {}
+        })
+
+        try {
+          if (window.__posterDebug) {
+            let minL2 = Infinity
+            let minT2 = Infinity
+            let maxR2 = -Infinity
+            let maxB2 = -Infinity
+            ;(items || []).forEach((o) => {
+              try {
+                const r = o?.getBoundingRect?.(true, true)
+                if (!r) return
+                const l = Number(r.left)
+                const t = Number(r.top)
+                const w = Number(r.width)
+                const h = Number(r.height)
+                if (!Number.isFinite(l) || !Number.isFinite(t) || !Number.isFinite(w) || !Number.isFinite(h)) return
+                minL2 = Math.min(minL2, l)
+                minT2 = Math.min(minT2, t)
+                maxR2 = Math.max(maxR2, l + w)
+                maxB2 = Math.max(maxB2, t + h)
+              } catch (e) {}
+            })
+            // eslint-disable-next-line no-console
+            console.log('[PosterDebug] ungroup:align:after', {
+              itemsRectAfter: { left: minL2, top: minT2, width: maxR2 - minL2, height: maxB2 - minT2 },
+            })
+          }
+        } catch (e) {}
+      } catch (e) {}
+    }
+
+    try {
+      if (window.__posterDebug) {
+        const r0 = obj.getBoundingRect?.(true, true)
+        // eslint-disable-next-line no-console
+        console.log('[PosterDebug] ungroup:before', {
+          vpt: (canvas.viewportTransform || []).slice?.() || canvas.viewportTransform,
+          zoom: zoom.value,
+          group: {
+            left: obj.left,
+            top: obj.top,
+            scaleX: obj.scaleX,
+            scaleY: obj.scaleY,
+            angle: obj.angle,
+            originX: obj.originX,
+            originY: obj.originY,
+            rect: r0,
+          },
+        })
+      }
+    } catch (e) {}
+
+    const items = typeof obj.getObjects === 'function' ? ((obj.getObjects() || []).slice()) : []
     if (!items.length) return
     const groupIndex = (canvas.getObjects?.() || []).indexOf(obj)
 
-    const groupMatrix = typeof obj.calcTransformMatrix === 'function' ? obj.calcTransformMatrix() : null
-
+    // Let fabric restore absolute coords. Do NOT apply extra manual transforms (causes drift).
     try {
+      refreshFabricCoords(obj)
       if (typeof obj._restoreObjectsState === 'function') obj._restoreObjectsState()
     } catch (e) {}
     try {
@@ -825,28 +972,30 @@ const ungroupActiveGroup = () => {
     } catch (e) {}
     items.forEach((o) => {
       try {
-        // Restore absolute coords from group-local coords (supports scaled/rotated group).
-        const l = Number(o.left || 0)
-        const t = Number(o.top || 0)
-        let p = { x: l, y: t }
         try {
-          if (groupMatrix) {
-            const pt = new FabricPoint(l, t)
-            const abs = pt.transform(groupMatrix)
-            p = { x: abs.x, y: abs.y }
-          }
+          if (typeof o?._set === 'function') o._set('group', null)
         } catch (e) {}
-        o.set({ originX: 'center', originY: 'center', left: p.x, top: p.y })
-        if (typeof o.setCoords === 'function') o.setCoords()
+        try { o.group = null } catch (e) {}
+        try { o.parent = null } catch (e) {}
+        try { o._group = null } catch (e) {}
+        try { o.__owningGroup = null } catch (e) {}
+        try { o.canvas = canvas } catch (e) {}
+        refreshFabricCoords(o)
         canvas.add(o)
       } catch (e) {}
     })
+    try { alignItemsToGroupRect(items) } catch (e) {}
     try {
       if (typeof FabricActiveSelection === 'function') {
         const sel = new FabricActiveSelection(items, { canvas })
         canvas.setActiveObject(sel)
         sanitizeActiveSelection()
       }
+    } catch (e) {}
+
+    try {
+      recalcAllObjectCoords()
+      canvas.calcOffset()
     } catch (e) {}
     try {
       if (typeof groupIndex === 'number' && groupIndex >= 0) {
@@ -866,6 +1015,71 @@ const ungroupActiveGroup = () => {
     updateObjOverlay()
     scheduleHistory()
   } catch (e) {}
+  finally {
+    try { canvas.calcOffset() } catch (e) {}
+    try {
+      const ao = canvas.getActiveObject?.()
+      const tl = String(ao?.type || '').toLowerCase()
+      if (ao && (tl === 'activeselection' || tl === 'group')) {
+        try { refreshFabricCoords(ao) } catch (e) {}
+        try {
+          const its = typeof ao.getObjects === 'function' ? (ao.getObjects() || []) : []
+          its.forEach((o) => {
+            try { refreshFabricCoords(o) } catch (e) {}
+          })
+        } catch (e) {}
+      }
+    } catch (e) {}
+    try {
+      const ao = canvas.getActiveObject?.()
+      try {
+        if (ao) ao.dirty = true
+      } catch (e) {}
+      try {
+        const its = ao && typeof ao.getObjects === 'function' ? (ao.getObjects() || []) : []
+        its.forEach((o) => {
+          try { if (o) o.dirty = true } catch (e) {}
+        })
+      } catch (e) {}
+      try {
+        ;(canvas.getObjects?.() || []).forEach((o) => {
+          try { if (o) o.dirty = true } catch (e) {}
+        })
+      } catch (e) {}
+    } catch (e) {}
+    try {
+      recalcAllObjectCoords()
+    } catch (e) {}
+    try {
+      canvas.requestRenderAll()
+      updateObjOverlay()
+    } catch (e) {}
+    try {
+      if (typeof canvas.renderAll === 'function') canvas.renderAll()
+    } catch (e) {}
+
+    try {
+      if (window.__posterDebug) {
+        const ao = canvas.getActiveObject?.()
+        const objs = canvas.getObjects?.() || []
+        // eslint-disable-next-line no-console
+        console.log('[PosterDebug] ungroup:final', {
+          vpt: (canvas.viewportTransform || []).slice?.() || canvas.viewportTransform,
+          activeType: ao?.type,
+          activeRect: ao?.getBoundingRect?.(true, true),
+          objects: objs.map((o) => ({
+            type: o?.type,
+            left: o?.left,
+            top: o?.top,
+            groupType: o?.group?.type,
+            groupLeft: o?.group?.left,
+            groupTop: o?.group?.top,
+            rect: o?.getBoundingRect?.(true, true),
+          })),
+        })
+      }
+    } catch (e) {}
+  }
 }
 
 const alignActiveSelection = (mode) => {
@@ -1037,6 +1251,10 @@ const posterStep2BackgroundFile = ref(null)
 const posterStep2ProductUrl = ref('')
 const posterStep2BackgroundUrl = ref('')
 
+const posterImageEditLoading = ref(false)
+const posterImageEditError = ref('')
+const posterImageEditResultUrl = ref('')
+
 const posterFramework = reactive({
   size: {
     width: 0,
@@ -1177,22 +1395,10 @@ const onFrameworkSizeChange = () => {
   frameworkSizeTouched.value = true
 }
 
-const updateFrameworkSizeFromRef = async () => {
-  if (frameworkSizeTouched.value) return
-
+const _updateFrameworkSizeFromUrl = async (url) => {
+  const u = String(url || '').trim()
+  if (!u) return false
   try {
-    if (refImageFile.value) {
-      const bitmap = await createImageBitmap(refImageFile.value)
-      const w = Number(bitmap?.width || 0)
-      const h = Number(bitmap?.height || 0)
-      if (Number.isFinite(w) && w > 0) posterFramework.size.width = Math.round(w)
-      if (Number.isFinite(h) && h > 0) posterFramework.size.height = Math.round(h)
-      try { bitmap.close && bitmap.close() } catch (e) {}
-      return
-    }
-
-    const url = String(refPreviewUrl.value || refImageUrl.value || '').trim()
-    if (!url) return
     await new Promise((resolve) => {
       const img = new Image()
       img.onload = () => {
@@ -1203,11 +1409,61 @@ const updateFrameworkSizeFromRef = async () => {
         resolve(true)
       }
       img.onerror = () => resolve(false)
-      img.src = url
+      img.src = u
     })
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const _updateFrameworkSizeFromFile = async (file) => {
+  const f = file
+  if (!f) return false
+  try {
+    const bitmap = await createImageBitmap(f)
+    const w = Number(bitmap?.width || 0)
+    const h = Number(bitmap?.height || 0)
+    if (Number.isFinite(w) && w > 0) posterFramework.size.width = Math.round(w)
+    if (Number.isFinite(h) && h > 0) posterFramework.size.height = Math.round(h)
+    try { bitmap.close && bitmap.close() } catch (e) {}
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const updateFrameworkSizeAuto = async () => {
+  if (frameworkSizeTouched.value) return
+  // Prefer background size if user provided background, otherwise fallback to reference.
+  try {
+    if (posterStep2BackgroundFile.value) {
+      const ok = await _updateFrameworkSizeFromFile(posterStep2BackgroundFile.value)
+      if (ok) return
+    }
+    const bgUrl = String(step2BackgroundPreviewUrl.value || posterStep2BackgroundUrl.value || '').trim()
+    if (bgUrl) {
+      const ok = await _updateFrameworkSizeFromUrl(bgUrl)
+      if (ok) return
+    }
+  } catch (e) {}
+
+  try {
+    if (refImageFile.value) {
+      await _updateFrameworkSizeFromFile(refImageFile.value)
+      return
+    }
+    const url = String(refPreviewUrl.value || refImageUrl.value || '').trim()
+    if (!url) return
+    await _updateFrameworkSizeFromUrl(url)
   } catch (e) {
     // ignore
   }
+}
+
+const updateFrameworkSizeFromRef = async () => {
+  if (frameworkSizeTouched.value) return
+  await updateFrameworkSizeAuto()
 }
 
 const newFrameworkSellpoint = (text = '') => {
@@ -1252,8 +1508,10 @@ const fillFrameworkFromStep1 = (result) => {
     return ''
   }
 
-  posterFramework.text.title = getTextById('title')
-  posterFramework.text.subtitle = getTextById('subtitle')
+  const curTitle = String(posterFramework.text.title || '').trim()
+  const curSubtitle = String(posterFramework.text.subtitle || '').trim()
+  if (!curTitle) posterFramework.text.title = getTextById('title')
+  if (!curSubtitle) posterFramework.text.subtitle = getTextById('subtitle')
 
   const sellpointEls = els
     .map((e) => {
@@ -1268,10 +1526,14 @@ const fillFrameworkFromStep1 = (result) => {
     .filter(Boolean)
     .sort((a, b) => a.n - b.n)
 
-  posterFramework.text.sellpoints.splice(0, posterFramework.text.sellpoints.length)
-  sellpointEls.forEach((sp) => {
-    posterFramework.text.sellpoints.push(newFrameworkSellpoint(sp.text || ''))
-  })
+  const curSellpoints = Array.isArray(posterFramework.text.sellpoints) ? posterFramework.text.sellpoints : []
+  const curHasAnySellpointText = curSellpoints.some((sp) => String(sp?.text || '').trim())
+  if (!curHasAnySellpointText) {
+    posterFramework.text.sellpoints.splice(0, posterFramework.text.sellpoints.length)
+    sellpointEls.forEach((sp) => {
+      posterFramework.text.sellpoints.push(newFrameworkSellpoint(sp.text || ''))
+    })
+  }
 
   try {
     const nextIcons = {}
@@ -1338,10 +1600,11 @@ const step2BackgroundPreviewUrl = computed(() => {
 })
 
 const previewBaseUrl = computed(() => {
-  return step2BackgroundPreviewUrl.value || refPreviewUrl.value || ''
+  return posterImageEditResultUrl.value || step2BackgroundPreviewUrl.value || refPreviewUrl.value || ''
 })
 
 const previewProductUrl = computed(() => {
+  if (posterImageEditResultUrl.value) return ''
   return step2ProductPreviewUrl.value || ''
 })
 
@@ -1603,6 +1866,7 @@ const previewTextBoxes = computed(() => {
 })
 
 const previewTextItems = computed(() => {
+  if (posterImageEditResultUrl.value) return []
   const result = posterAnalysisResult.value
   const els = Array.isArray(result?.elements) ? result.elements : []
   const sz = previewBaseSize.value
@@ -2264,7 +2528,15 @@ const recalcAllObjectCoords = () => {
   if (!canvas) return
   try {
     canvas.getObjects().forEach((o) => {
-      try { if (o && typeof o.setCoords === 'function') o.setCoords() } catch (e) {}
+      try {
+        if (!o) return
+        const tl = String(o.type || '').toLowerCase()
+        if (tl === 'group' || tl === 'activeselection') {
+          refreshFabricCoords(o)
+          return
+        }
+        if (typeof o.setCoords === 'function') o.setCoords()
+      } catch (e) {}
     })
   } catch (e) {}
 }
@@ -2355,7 +2627,12 @@ const getScreenRectForObject = (obj) => {
 
   // Use world-space bounding rect, then transform into viewport using viewportTransform.
   try {
-    if (typeof obj.setCoords === 'function') obj.setCoords()
+    const tl = String(obj?.type || '').toLowerCase()
+    if (tl === 'group' || tl === 'activeselection') {
+      refreshFabricCoords(obj)
+    } else if (typeof obj.setCoords === 'function') {
+      obj.setCoords()
+    }
   } catch (e) {}
 
   let r = null
@@ -2717,16 +2994,14 @@ const initCanvas = async () => {
       z = clamp(z, 0.1, 3)
       zoom.value = z
 
-      const point = new FabricPoint(e.offsetX, e.offsetY)
       try {
-        canvas.zoomToPoint(point, z)
-        recalcAllObjectCoords()
-        canvas.calcOffset()
-        canvas.requestRenderAll()
-      } catch (err) {
-        // ignore
-      }
-      updateObjOverlay()
+        if (window.__posterDebug) {
+          // eslint-disable-next-line no-console
+          console.log('[PosterDebug] wheel', { z })
+        }
+      } catch (e1) {}
+
+      applyZoom()
     })
 
     // Panning: Space + drag OR middle mouse drag
@@ -2923,6 +3198,42 @@ const exportPreviewToCanvas = async () => {
   const canvas = canvasInstance.value
   if (!canvas) {
     ElMessage.error('画布未初始化成功')
+    return
+  }
+  // If image-edit result exists, export it as a single editable image.
+  if (posterImageEditResultUrl.value) {
+    const url = String(posterImageEditResultUrl.value || '').trim()
+    if (!url) {
+      ElMessage.error('生成海报图片不存在')
+      return
+    }
+    const c = getViewportCenterInWorld()
+    try {
+      const img = await FabricImage.fromURL(url, { crossOrigin: 'anonymous' })
+      const maxW = POSTER_CANVAS_WIDTH * 0.8
+      const maxH = POSTER_CANVAS_HEIGHT * 0.8
+      const rawW = img?.width || 1
+      const rawH = img?.height || 1
+      const scale = Math.min(maxW / rawW, maxH / rawH, 1)
+      img.set({
+        left: c.x - (rawW * scale) / 2,
+        top: c.y - (rawH * scale) / 2,
+        scaleX: scale,
+        scaleY: scale,
+      })
+      img.data = { ...(img.data || {}), role: 'poster_image_edit' }
+      applySelectionStyle(img)
+      try { if (typeof img.setCoords === 'function') img.setCoords() } catch (e) {}
+      canvas.add(img)
+      canvas.setActiveObject(img)
+      canvas.requestRenderAll()
+      updateObjOverlay()
+      fitToScreen()
+      ElMessage.success('已导出生成海报到画布')
+    } catch (e) {
+      console.error('export image-edit failed:', e)
+      ElMessage.error('导出到画布失败')
+    }
     return
   }
   if (!posterAnalysisResult.value) {
@@ -3190,7 +3501,7 @@ const setReferenceImageFromUrl = (url) => {
   refImageFile.value = null
   refImageUrl.value = url
   refPreviewUrl.value = url
-  updateFrameworkSizeFromRef()
+  updateFrameworkSizeAuto()
 }
 
 const setReferenceImageFromFile = (file) => {
@@ -3202,7 +3513,7 @@ const setReferenceImageFromFile = (file) => {
   } catch (e) {
     refPreviewUrl.value = ''
   }
-  updateFrameworkSizeFromRef()
+  updateFrameworkSizeAuto()
 }
 
 const compressImageFile = async (file, { maxSide = 1100, targetBytes = 550 * 1024 } = {}) => {
@@ -3430,12 +3741,15 @@ const useActiveImageAsStep2Background = () => {
   }
   posterStep2BackgroundFile.value = null
   posterStep2BackgroundUrl.value = src
+  updateFrameworkSizeAuto()
 }
 
 const clearPosterAnalysis = () => {
   posterAnalyzeError.value = ''
   posterAnalysisResult.value = null
   posterAnalysisDebug.value = ''
+  posterImageEditError.value = ''
+  posterImageEditResultUrl.value = ''
   clearPosterStep2()
 }
 
@@ -3445,11 +3759,72 @@ const clearPosterStep2 = () => {
   posterStep2Debug.value = ''
 }
 
+const generatePosterImageEditNow = async () => {
+  if (posterImageEditLoading.value) return
+  posterImageEditError.value = ''
+  if (!posterAnalysisResult.value) {
+    posterImageEditError.value = '请先完成参考图分析'
+    return
+  }
+  const refOk = Boolean(refImageFile.value || refImageUrl.value || refPreviewUrl.value)
+  if (!refOk) {
+    posterImageEditError.value = '请先选择参考图'
+    return
+  }
+  const productOk = Boolean(posterStep2ProductFile.value || posterStep2ProductUrl.value || step2ProductObjectUrl.value)
+  if (!productOk) {
+    posterImageEditError.value = '请先选择产品图'
+    return
+  }
+
+  posterImageEditLoading.value = true
+  try {
+    const sellpoints = Array.isArray(posterFramework.text.sellpoints)
+      ? posterFramework.text.sellpoints.map((x) => String(x?.text || '').trim()).filter(Boolean)
+      : []
+
+    const resp = await generatePosterImageEdit({
+      step1_result: posterAnalysisResult.value,
+      product_name: productName.value || undefined,
+      bom_code: bomCode.value || undefined,
+      reference_file: refImageFile.value || undefined,
+      reference_image_url: refImageUrl.value || refPreviewUrl.value || undefined,
+      product_file: posterStep2ProductFile.value || undefined,
+      product_image_url: posterStep2ProductUrl.value || undefined,
+      background_file: posterStep2BackgroundFile.value || undefined,
+      background_image_url: posterStep2BackgroundUrl.value || undefined,
+      title: String(posterFramework.text.title || '').trim() || undefined,
+      subtitle: String(posterFramework.text.subtitle || '').trim() || undefined,
+      sellpoints,
+      output_width: Number(posterFramework.size.width || posterAnalysisResult.value?.width || 0) || undefined,
+      output_height: Number(posterFramework.size.height || posterAnalysisResult.value?.height || 0) || undefined,
+      watermark: true,
+    })
+
+    if (resp?.ok === false) {
+      posterImageEditError.value = resp?.error || '海报生成失败'
+      return
+    }
+    const url = resp?.result?.image_url
+    if (!url) {
+      posterImageEditError.value = '后端未返回 image_url'
+      return
+    }
+    posterImageEditResultUrl.value = String(url)
+    ElMessage.success('海报已生成，可预览并导出到画布')
+  } catch (e) {
+    posterImageEditError.value = e?.message || String(e)
+  } finally {
+    posterImageEditLoading.value = false
+  }
+}
+
 const clearStep2Assets = () => {
   posterStep2ProductFile.value = null
   posterStep2BackgroundFile.value = null
   posterStep2ProductUrl.value = ''
   posterStep2BackgroundUrl.value = ''
+  updateFrameworkSizeAuto()
 }
 
 const resolveReferenceImagePayload = async () => {
@@ -3483,16 +3858,15 @@ const resolveReferenceImagePayload = async () => {
   }
 
   if (/^https?:\/\//i.test(raw)) {
+    // Do NOT fetch() external urls here: it will fail on CORS and surface as "Failed to fetch".
+    // The backend can consume urls directly.
     try {
       const u = new URL(raw)
       if (u.pathname.startsWith('/api/files/')) {
         return { file: undefined, image_url: u.pathname }
       }
-      const file = await tryFetchAsFile(raw)
-      return { file, image_url: undefined }
-    } catch (e) {
-      return { file: undefined, image_url: raw }
-    }
+    } catch (e) {}
+    return { file: undefined, image_url: raw }
   }
 
   return { file: undefined, image_url: raw }
@@ -3525,6 +3899,7 @@ const onPickStep2Background = (e) => {
   if (!f) return
   posterStep2BackgroundFile.value = f
   posterStep2BackgroundUrl.value = ''
+  updateFrameworkSizeAuto()
   try {
     e.target.value = ''
   } catch (err) {}

@@ -34,34 +34,72 @@ You are extracting product specification information and MUST return STRICT JSON
 
 Extract product specification information from the following context. If某些字段缺失或无法确定，请使用"待填写"作为占位。严格返回 JSON。
 产品配置指令：第1+2位（缸体颜色+开孔配置）：进口云彩白+标准孔；第3+4位（喷嘴配置）：眉毛水喷（加拿大简配Alpine)；第5位（电源标准）：双110V/60Hz；第6+7位（控制系统）：YJ-2+K806+4KW(美标/配1个泵选用)；第8+9位（水泵配置）：1个双速3HPgecko（美标）；第10位（风泵配置）：无风泵；第11位（消毒系统）：臭氧（美标）；第12位（多媒体）：普兰豪配蓝牙+低音炮+Gecko-wifi（美标）；第13位（灯光配置）：带水底灯+阀带灯+缸边灯+转角灯；第14位（底保温）：全三明治底支架；第15位（侧保温配置）：四面保温；第16位（缸体保温）：户外缸单层发泡；第17位（裙边）：灰色覆膜铝蜂窝裙边；第18位（转角）：灰色铝转角；第19位（台阶）：无台阶；第20位（缸盖/缸罩）：无缸盖；第21位（外加热/吊杆/划桨/其他配置）：无外接加热管路；第22位（包装）：铁托盘包装（立放）
-产品文件概览（上下文/OCR）：未提供 OCR 文档，仅使用 BOM 配置生成
+产品文件概览（上下文/OCR）：共 20 个文件，全文已在上下文展开
 
 上下文：
-第1+2位（缸体颜色+开孔配置）: A2（进口云彩白+标准孔）
-第3+4位（喷嘴配置）: 1Q（眉毛水喷（加拿大简配Alpine)）
-第5位（电源标准）: B（双110V/60Hz）
-第6+7位（控制系统）: 3Q（YJ-2+K806+4KW(美标/配1个泵选用)）
-第8+9位（水泵配置）: 4A（1个双速3HPgecko（美标））
-第10位（风泵配置）: 0（无风泵）
-第11位（消毒系统）: H（臭氧（美标））
-第12位（多媒体）: X（普兰豪配蓝牙+低音炮+Gecko-wifi（美标））
-第13位（灯光配置）: D（带水底灯+阀带灯+缸边灯+转角灯）
-第14位（底保温）: C（全三明治底支架）
-第15位（侧保温配置）: A（四面保温）
-第16位（缸体保温）: A（户外缸单层发泡）
-第17位（裙边）: D（灰色覆膜铝蜂窝裙边）
-第18位（转角）: D（灰色铝转角）
-第19位（台阶）: 0（无台阶）
-第20位（缸盖/缸罩）: 0（无缸盖）
-第21位（外加热/吊杆/划桨/其他配置）: 0（无外接加热管路）
-第22位（包装）: E（铁托盘包装（立放））
+[diagram] result.mmd
+# Бутъина
 
+ДЛЯ ХОЛОДНЫХ
+И ГОРЯЧИХ НАПИТКОВ
+
+Сохранёт температура
+
+до 48ч
+
+Улучшенная
+вакуумная изоляция
+(для надежной защиты)
+
+Удобная ручка
+для переноски
+(с компактом и связкой)
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/result.mmd
+
+[diagram] result.mmd
+# Бутъина
+
+ДЛЯ ХОЛОДНЫХ
+И ГОРЯЧИХ НАПИТКОВ
+
+Сохранёт температура
+
+до 48ч
+
+Улучшенная
+вакуумная изоляция
+(для надежной защиты)
+
+Удобная ручка
+для переноски
+(с компактом и связкой)
+
+[diagram] result.mmd
+[application/vnd.chipnuts.karaoke-mmd] manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/result.mmd
+
+
+候选产品图片（请从中选出最适合作为 images.product 的一张）：
+1. path: /api/files/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20.png (image/png) [ORIGINAL_UPLOAD]
+   reverse_prompt: 黑色Topre保温壶（750ml）置于木板上，配编织提手与挂扣，背景为帐篷、登山包、雪山及无人机，标有“Бутылка”“до 48 ч”“Улучшенная вакуумна…
+2. path: /api/files/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png (image/png) [ORIGINAL_UPLOAD]
+   reverse_prompt: 白色六边形布局的按摩浴缸俯视图，含六个带喷嘴的座位区、中央控制面板及右侧格栅状出水口。
+3. path: /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg (image/jpeg) [OCR_ARTIFACT]
+   reverse_prompt: 黑色Topre保温壶（750ml）置于木板上，配编织提手与挂扣，背景为帐篷、雪山与无人机，标有“Бутылка”“сохраняет температуру до 48 ч”等俄…
+4. path: /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/images/0.jpg (image/jpeg) [OCR_ARTIFACT]
+   reverse_prompt: 白色六人位按摩浴缸俯视图，中央控制面板带数字显示屏，四周分布多组喷嘴及扶手凹槽。
+5. path: /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg (image/jpeg) [OCR_ARTIFACT]
+   reverse_prompt: 黑色Topre保温壶（750ml）置于木板上，配编织提手与挂扣，背景为帐篷、雪山与无人机，标有“Бутылка”“сохраняет температуру до 48 ч”等俄…
+6. path: /api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/images/0.jpg (image/jpeg) [OCR_ARTIFACT]
+   reverse_prompt: 白色六人位按摩浴缸俯视图，中央控制面板带数字显示屏，四周分布多组喷嘴及扶手凹槽。
 
 要求：
 - All human-readable string values in the JSON must be in English. If the source context is Chinese, translate to natural English before filling the JSON.
 - Preserve brand/model/proper nouns and technical terms as-is whenever possible (e.g., Joyonway, Bluetooth, Ozonator). Only translate surrounding descriptions.
 - 在 Specifications/字段提取的基础上，若提供了候选产品图片，请选择最能代表产品的图片，将其路径填入 images.product；若无合适图片，保持默认 "/back/product.png"。
 - - 若提供了候选产品图片列表，必须从列表中选择一条路径填入 images.product（不得保留默认或填写列表外路径）。
+- 若候选列表中包含 [ORIGINAL_UPLOAD]，优先从这些原始上传图片中选择（避免 OCR 产物带黑边/裁切/压缩）。
 - 若列表为空或无候选图片，则使用默认 "/back/product.png"。
 - 对于表示“缺失/不包含/没有”的配置项（例如：无台阶、无缸盖、无外接加热管路、无风泵、Without steps/No cover/Without XXX 等），不要把它们写入规格页的功能列表字段（premiumFeatures/insulationFeatures/extraFeatures/smartWater 等）；这些字段只写“实际包含/具备”的卖点与配置。
 - 若字段无法从上下文确定，请统一填写 "待填写"（不得返回 "未知"/"Unknown"/"N/A" 等）。

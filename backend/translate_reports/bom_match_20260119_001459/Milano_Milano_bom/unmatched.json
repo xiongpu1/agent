@@ -1,0 +1,2342 @@
+[
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "MILANO",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.3965853452682495
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.3879862129688263
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.38718900084495544
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.3715313971042633
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "E",
+        "name_zh": "铁托盘包装（立放）",
+        "score": 0.37126415967941284
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "A",
+        "name_zh": "铁托盘包装（立放）",
+        "score": 0.37126415967941284
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3594115972518921
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.35722965002059937
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "P U R E",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.43758851289749146
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.43293482065200806
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.41660448908805847
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.41047602891921997
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.4090937077999115
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.40215420722961426
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3984270691871643
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "H",
+        "name_zh": "普兰豪配蓝牙+低音炮（停用）",
+        "score": 0.39633631706237793
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Dry Weight",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.44916436076164246
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.44849079847335815
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.44004103541374207
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.43011796474456787
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1L",
+        "name_zh": "1个循环gecko+1个单速3HPgecko",
+        "score": 0.4218953847885132
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1V",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速",
+        "score": 0.41985583305358887
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4196479916572571
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4156948924064636
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "capacity",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4769986867904663
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.47312062978744507
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4651263356208801
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4595458507537842
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4425574839115143
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4357478618621826
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.4312642812728882
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.42752450704574585
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "jets",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4666348099708557
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.43896016478538513
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.4283697009086609
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4282984137535095
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.42552584409713745
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4226251244544983
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.41738972067832947
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "5B",
+        "name_zh": "钻石标准水喷+气喷",
+        "score": 0.40475359559059143
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Convertible",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4433923661708832
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.42801353335380554
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.4194753170013428
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.41459181904792786
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "A",
+        "name_zh": "外接加热器预装管道（裙边上不预留接口）",
+        "score": 0.411418616771698
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.4058091640472412
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.39967942237854004
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.3987007439136505
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Water Volume",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "00",
+        "name_zh": "无水泵",
+        "score": 0.483711838722229
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4V",
+        "name_zh": "1个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.45541059970855713
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7W",
+        "name_zh": "2个双速3HPgecko+1个1HP单速（美标）",
+        "score": 0.4526923894882202
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "2M",
+        "name_zh": "1个双速3HPLX+1个单速1HP（标配）",
+        "score": 0.44777411222457886
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.44776976108551025
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.44688332080841064
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4L",
+        "name_zh": "1个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.44473838806152344
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.44408097863197327
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "with",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4899384677410126
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4782804846763611
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.46837759017944336
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.45495080947875977
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.4327201843261719
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4243476092815399
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.41083720326423645
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.4094042181968689
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "lounge",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4480392634868622
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4329318404197693
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "C",
+        "name_zh": "咖啡色生态转角",
+        "score": 0.4279802143573761
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "B",
+        "name_zh": "柚木色生态转角",
+        "score": 0.4185895323753357
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.4031235873699188
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "E",
+        "name_zh": "balboa-wifi",
+        "score": 0.4024026393890381
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.40237176418304443
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "0",
+        "name_zh": "无转角",
+        "score": 0.3978666067123413
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "AVAILABLE COLOR",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R2",
+        "name_zh": "内缸白色+外缸黑色+标准孔",
+        "score": 0.49611106514930725
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q3",
+        "name_zh": "内缸黑色+外缸白色+标准孔+",
+        "score": 0.49574726819992065
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "Q2",
+        "name_zh": "内缸黑色+外缸白色+标准孔",
+        "score": 0.49554240703582764
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "R3",
+        "name_zh": "内缸白色+外缸黑色+标准孔+",
+        "score": 0.4955379366874695
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "柚木色生态裙边",
+        "score": 0.48691076040267944
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "D3",
+        "name_zh": "进口云彩蓝+标准孔+",
+        "score": 0.48462188243865967
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "H3",
+        "name_zh": "进口云灰+标准孔+",
+        "score": 0.4836386442184448
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "N3",
+        "name_zh": "进口日落色+标准孔+",
+        "score": 0.48084625601768494
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Acrylic",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4440576136112213
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.41348445415496826
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.410058856010437
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "G",
+        "name_zh": "全夹板包装（立放）",
+        "score": 0.401425302028656
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.3992860019207001
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "J",
+        "name_zh": "塑料转角",
+        "score": 0.3991478681564331
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.3948249816894531
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "H",
+        "name_zh": "全夹板包装/夹板带客户Logo（平放）",
+        "score": 0.3906610608100891
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Marble White",
+    "top": [
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J3",
+        "name_zh": "进口石膏白+标准孔+",
+        "score": 0.4461216926574707
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J2",
+        "name_zh": "进口石膏白+标准孔",
+        "score": 0.4377661645412445
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "P",
+        "name_zh": "PS/黑橡木色二级台阶",
+        "score": 0.4360669255256653
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "H",
+        "name_zh": "白色铝转角",
+        "score": 0.4304176867008209
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "A",
+        "name_zh": "灰色生态转角",
+        "score": 0.4290793538093567
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "B",
+        "name_zh": "柚木色生态转角",
+        "score": 0.4284954369068146
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4226168394088745
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "B",
+        "name_zh": "柚木色生态裙边",
+        "score": 0.42110514640808105
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Cabinet",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4575134813785553
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.45230036973953247
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.43652066588401794
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.43589386343955994
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.43082475662231445
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.4242796301841736
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "B",
+        "name_zh": "柚木色生态转角",
+        "score": 0.42381373047828674
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.42351946234703064
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Grey",
+    "top": [
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "L",
+        "name_zh": "PP/灰色二级台阶",
+        "score": 0.45300644636154175
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "P",
+        "name_zh": "PS/黑橡木色二级台阶",
+        "score": 0.4480929970741272
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "O",
+        "name_zh": "PS/灰色二级台阶",
+        "score": 0.4411567449569702
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "M",
+        "name_zh": "灰色PS转角",
+        "score": 0.44063800573349
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "A",
+        "name_zh": "灰色生态转角",
+        "score": 0.4371621310710907
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "A",
+        "name_zh": "灰色二级台阶",
+        "score": 0.43523770570755005
+      },
+      {
+        "section_key": "skirt",
+        "section_label": "第17位（裙边）",
+        "code": "A",
+        "name_zh": "灰色生态裙边",
+        "score": 0.41412532329559326
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "N",
+        "name_zh": "PS/棕色二级台阶",
+        "score": 0.405117392539978
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Northern Lights Package",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "H",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（瑞典配置）",
+        "score": 0.4297325909137726
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.42676088213920593
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.4097635746002197
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.395285427570343
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.39285212755203247
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "A",
+        "name_zh": "带水底灯",
+        "score": 0.39276397228240967
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.38864919543266296
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.3885914385318756
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Digital Topside Control",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.565977931022644
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2G",
+        "name_zh": "BP200+TP500+2KW",
+        "score": 0.5143532752990723
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "4U",
+        "name_zh": "BP2000+T型触摸面板+5.5KW（美标）",
+        "score": 0.5085265636444092
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2O",
+        "name_zh": "BP200+TP400+2KW",
+        "score": 0.5050157308578491
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.4994824528694153
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2R",
+        "name_zh": "BP601+T形触摸面板+3KW",
+        "score": 0.49595361948013306
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2X",
+        "name_zh": "BP2100 G1+T型触摸面板+3KW",
+        "score": 0.48410266637802124
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "4S",
+        "name_zh": "BP2000+TP600+5.5KW（美标）",
+        "score": 0.48200154304504395
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Ozone Sanitation System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.6846448183059692
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.6768143177032471
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "6",
+        "name_zh": "臭氧（美标/带循环泵用）",
+        "score": 0.6615402698516846
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.6519200801849365
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.65061354637146
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.6501741409301758
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.6353515982627869
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "D",
+        "name_zh": "臭氧+盐氯预装管",
+        "score": 0.6241793036460876
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "FEATURE HIGHLIGHT",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.4693000018596649
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.44318169355392456
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.4409348964691162
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.4357993006706238
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.4192580282688141
+      },
+      {
+        "section_key": "bodyInsulation",
+        "section_label": "第16位（缸体保温）",
+        "code": "0",
+        "name_zh": "无缸体保温",
+        "score": 0.40651044249534607
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "A",
+        "name_zh": "gecko蓝牙",
+        "score": 0.40545934438705444
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "B",
+        "name_zh": "gecko-WIFI",
+        "score": 0.40480679273605347
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "ELECTRICAL",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "0",
+        "name_zh": "无电源标准",
+        "score": 0.48133009672164917
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.46294352412223816
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "N",
+        "name_zh": "单110V/60Hz",
+        "score": 0.4494418501853943
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.4473804533481598
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.4440873861312866
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "J",
+        "name_zh": "220V/60Hz",
+        "score": 0.44344112277030945
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "F",
+        "name_zh": "380V/50HZ",
+        "score": 0.44202089309692383
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.44079524278640747
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "110V GFCI Cord Included",
+    "top": [
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "I",
+        "name_zh": "单110V/60Hz美插带漏保",
+        "score": 0.6283161640167236
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.6220811605453491
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "B",
+        "name_zh": "双110V/60Hz",
+        "score": 0.5896913409233093
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "G",
+        "name_zh": "220-240V/50Hz澳插（10A）",
+        "score": 0.5638139247894287
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "N",
+        "name_zh": "单110V/60Hz",
+        "score": 0.5585242509841919
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "E",
+        "name_zh": "220-240V/50Hz欧插（16A）",
+        "score": 0.5556507110595703
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "K",
+        "name_zh": "220/50Hz国插带漏保（16A）",
+        "score": 0.5494216680526733
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "D",
+        "name_zh": "220-240V/50Hz澳插",
+        "score": 0.5357375741004944
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "110V/220V Convertible Control Pack",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "4S",
+        "name_zh": "BP2000+TP600+5.5KW（美标）",
+        "score": 0.5976029634475708
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "4U",
+        "name_zh": "BP2000+T型触摸面板+5.5KW（美标）",
+        "score": 0.5954447984695435
+      },
+      {
+        "section_key": "powerStandard",
+        "section_label": "第5位（电源标准）",
+        "code": "H",
+        "name_zh": "单110V/60Hz美插（配漏保转换器）",
+        "score": 0.5942912697792053
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4B",
+        "name_zh": "1个双速2HPLX（美标/单110V）",
+        "score": 0.5930179953575134
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5L",
+        "name_zh": "P68B123+PB565+2KW（欧标/美标通用/带WIFI功能）",
+        "score": 0.5925918817520142
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "8B",
+        "name_zh": "1个循环LX+1个单速2HPLX（美标/单110V/双110V通用）",
+        "score": 0.5909302234649658
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5D",
+        "name_zh": "P69B133+PB565+4KW（欧标/美标通用/带WIFI功能）",
+        "score": 0.584771990776062
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.5826680660247803
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Digital Control",
+    "top": [
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.5536569356918335
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2G",
+        "name_zh": "BP200+TP500+2KW",
+        "score": 0.4818175137042999
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2O",
+        "name_zh": "BP200+TP400+2KW",
+        "score": 0.4731878638267517
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "6Z",
+        "name_zh": "控制盒带欧插+触摸开关（冰岛）",
+        "score": 0.47073283791542053
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.46591639518737793
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "4U",
+        "name_zh": "BP2000+T型触摸面板+5.5KW（美标）",
+        "score": 0.4657280147075653
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "5L",
+        "name_zh": "P68B123+PB565+2KW（欧标/美标通用/带WIFI功能）",
+        "score": 0.460313081741333
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "2V",
+        "name_zh": "BP2100 G1+方形触摸面板+3KW/BP2100 G0+方形触摸面板+3KW",
+        "score": 0.45823630690574646
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Bluetooth",
+    "top": [
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "F",
+        "name_zh": "balboa蓝牙+wifi",
+        "score": 0.5473382472991943
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "A",
+        "name_zh": "gecko蓝牙",
+        "score": 0.505821704864502
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "W",
+        "name_zh": "方形蓝牙带内置低音炮+Gecko-wifi",
+        "score": 0.5049376487731934
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "M",
+        "name_zh": "普兰豪配蓝牙+低音炮+Gecko-wifi（停用）",
+        "score": 0.4938984513282776
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "V",
+        "name_zh": "方形蓝牙带内置低音炮+共振喇叭/方形蓝牙带内置低音炮+共振喇叭（蓝牙带欧标漏保插头）",
+        "score": 0.4929524064064026
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "C",
+        "name_zh": "gecko蓝牙+WIFI",
+        "score": 0.4854506850242615
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "L",
+        "name_zh": "罗浮豪配蓝牙+低音炮（蓝牙带欧标漏保插头）/罗浮豪配蓝牙+低音炮+Gecko-wifi",
+        "score": 0.482825368642807
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "D",
+        "name_zh": "balboa蓝牙",
+        "score": 0.4812805652618408
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "PREMIUM LIGHTING SYSTEM",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.4913363456726074
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.4789977967739105
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.4786718785762787
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.47798657417297363
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.47663962841033936
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.47569993138313293
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.47529420256614685
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.47314906120300293
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "LED Backlit Jets",
+    "top": [
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "00",
+        "name_zh": "无喷嘴",
+        "score": 0.4727851152420044
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "E",
+        "name_zh": "水底灯+阀带灯+缸边灯+贝拉乔logo灯",
+        "score": 0.4666518568992615
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.4659712016582489
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "6A",
+        "name_zh": "光环水喷（标配）",
+        "score": 0.4598763585090637
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.45737889409065247
+      },
+      {
+        "section_key": "nozzle",
+        "section_label": "第3+4位（喷嘴配置）",
+        "code": "1J",
+        "name_zh": "特殊配置",
+        "score": 0.45729488134384155
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.45712193846702576
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "0",
+        "name_zh": "无灯光系统",
+        "score": 0.4554063677787781
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Valve Lighting",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "B",
+        "name_zh": "水底灯+阀带灯",
+        "score": 0.5193620920181274
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.5036641359329224
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.5031866431236267
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "G",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.4971228837966919
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.4971228837966919
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.489291787147522
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "I",
+        "name_zh": "水底灯+阀带灯+缸边灯贝拉乔LOGO灯（YJ/YE-V3版本电控用）",
+        "score": 0.48794108629226685
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.4857169985771179
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "LED Underwater Lighting",
+    "top": [
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "D",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.544317364692688
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "G",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯",
+        "score": 0.544317364692688
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "J",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（无灯杯座/增加灯杯座）",
+        "score": 0.5429482460021973
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "C",
+        "name_zh": "带水底灯+阀带灯+缸边灯",
+        "score": 0.5300300121307373
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "K",
+        "name_zh": "带水底灯+阀带灯+缸边灯(减少灯杯座/增加灯杯座）",
+        "score": 0.5253298282623291
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "L",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯+裙边灯（无灯杯座）",
+        "score": 0.5241563320159912
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "M",
+        "name_zh": "带水底灯+阀带灯+缸边灯+转角灯（减少灯杯座）",
+        "score": 0.5227515697479248
+      },
+      {
+        "section_key": "lighting",
+        "section_label": "第13位（灯光配置）",
+        "code": "S",
+        "name_zh": "带水底灯+阀带灯+缸边灯（池壁灯）+1个灯杯座+转角灯（YJ/YE-V3版本电控用）",
+        "score": 0.5203456282615662
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "ENERGY-SAVING INSULATION SYSTEM",
+    "top": [
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.45834028720855713
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.456111878156662
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.45383280515670776
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "D",
+        "name_zh": "四面保温板（配镀锌支架用）",
+        "score": 0.4466027319431305
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "O",
+        "name_zh": "带Gecko热泵（5KW/美标）",
+        "score": 0.442789763212204
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "A",
+        "name_zh": "四面保温",
+        "score": 0.4415271282196045
+      },
+      {
+        "section_key": "sideInsulation",
+        "section_label": "第15位（侧保温配置）",
+        "code": "B",
+        "name_zh": "帘子保温",
+        "score": 0.4405078589916229
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "M",
+        "name_zh": "带热泵预装管路（裙边上不预留接口/配双速泵用）",
+        "score": 0.43246525526046753
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Galvanized Steel Frame",
+    "top": [
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.5318698287010193
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "F",
+        "name_zh": "玻璃纤维/半三明治底支架(加高970)/玻璃纤维/单底镀锌支架(产品800高)",
+        "score": 0.5293669700622559
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "P",
+        "name_zh": "玻璃纤维/全三明治底支架(配镀锌支架)",
+        "score": 0.5222870111465454
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "Q",
+        "name_zh": "玻璃纤维/单底镀锌支架",
+        "score": 0.5188738703727722
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "H",
+        "name_zh": "玻璃纤维/单底支架(800高)",
+        "score": 0.501362144947052
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "L",
+        "name_zh": "玻璃纤维/316不锈钢支架无底板/单底镀锌支架+铝膜",
+        "score": 0.49323129653930664
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "O",
+        "name_zh": "玻璃纤维/全三明治底支架",
+        "score": 0.4823930561542511
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.4817188084125519
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Sub Zero™ Insulation System",
+    "top": [
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "Q",
+        "name_zh": "带Gecko热泵（Mini热泵）",
+        "score": 0.547627329826355
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "P",
+        "name_zh": "带Gecko热泵（5KW）",
+        "score": 0.5272383689880371
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.5251821279525757
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.5217300653457642
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "O",
+        "name_zh": "带Gecko热泵（5KW/美标）",
+        "score": 0.5213743448257446
+      },
+      {
+        "section_key": "externalHeating",
+        "section_label": "第21位（外加热/吊杆/划桨/其他配置）",
+        "code": "E",
+        "name_zh": "带热泵预装管路（裙边上不预留接口）",
+        "score": 0.513969898223877
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "H",
+        "name_zh": "玻璃纤维/单底支架(800高)",
+        "score": 0.5095751285552979
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "0",
+        "name_zh": "无支架",
+        "score": 0.5090656280517578
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Everlast Cabinetry",
+    "top": [
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "B",
+        "name_zh": "柚木色生态转角",
+        "score": 0.4944007396697998
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "J",
+        "name_zh": "木托盘包装（立放）（产品高970）",
+        "score": 0.4832051396369934
+      },
+      {
+        "section_key": "bottomInsulation",
+        "section_label": "第14位（底保温）",
+        "code": "G",
+        "name_zh": "玻璃纤维/全三明治底支架(800高)",
+        "score": 0.479179322719574
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "C",
+        "name_zh": "咖啡色生态转角",
+        "score": 0.4767530858516693
+      },
+      {
+        "section_key": "corner",
+        "section_label": "第18位（转角）",
+        "code": "Q",
+        "name_zh": "黑橡木铝转角",
+        "score": 0.473825603723526
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J3",
+        "name_zh": "进口石膏白+标准孔+",
+        "score": 0.4629674255847931
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "I",
+        "name_zh": "木托盘包装（立放）",
+        "score": 0.458488792181015
+      },
+      {
+        "section_key": "colorHole",
+        "section_label": "第1+2位（缸体颜色+开孔配置）",
+        "code": "J2",
+        "name_zh": "进口石膏白+标准孔",
+        "score": 0.45673003792762756
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Forever Floor",
+    "top": [
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "P",
+        "name_zh": "PS/黑橡木色二级台阶",
+        "score": 0.44175225496292114
+      },
+      {
+        "section_key": "multimedia",
+        "section_label": "第12位（多媒体）",
+        "code": "0",
+        "name_zh": "无多媒体",
+        "score": 0.43508994579315186
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "0",
+        "name_zh": "无消毒系统",
+        "score": 0.4310694634914398
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "0",
+        "name_zh": "无台阶",
+        "score": 0.42973417043685913
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "F",
+        "name_zh": "铁托盘包装（平放）",
+        "score": 0.4267493486404419
+      },
+      {
+        "section_key": "controlSystem",
+        "section_label": "第6+7位（控制系统）",
+        "code": "00",
+        "name_zh": "无控制器",
+        "score": 0.42430204153060913
+      },
+      {
+        "section_key": "stairs",
+        "section_label": "第19位（台阶）",
+        "code": "K",
+        "name_zh": "PP/黑色二级台阶",
+        "score": 0.41857224702835083
+      },
+      {
+        "section_key": "packaging",
+        "section_label": "第22位（包装）",
+        "code": "D",
+        "name_zh": "木托盘包装（平放）",
+        "score": 0.418168306350708
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "SMART WATER PURIFICATION SYSTEM",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.5132055878639221
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "P",
+        "name_zh": "UV+IN.Clear",
+        "score": 0.5097668170928955
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.5076150298118591
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "R",
+        "name_zh": "臭氧+UV+投药器+臭氧混合器",
+        "score": 0.5049200057983398
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.5044134259223938
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.4983314275741577
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "O",
+        "name_zh": "臭氧+投药器",
+        "score": 0.4963441789150238
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "F",
+        "name_zh": "臭氧+UV+盐氯预装管",
+        "score": 0.48861533403396606
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Hydro Kinetic™ Diverter Jetting System",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.5217529535293579
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.5197616815567017
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.5189107060432434
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4E",
+        "name_zh": "1个双速1.5HPLX+1个单速2HPLX（美标/配浅灰过滤器）",
+        "score": 0.5188075304031372
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "7L",
+        "name_zh": "2个双速3HPgecko+1个单速3HPgecko（美标）",
+        "score": 0.5147577524185181
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.5144249796867371
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5130937099456787
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.5124489665031433
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "Ozonator with Mazzi",
+    "top": [
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "H",
+        "name_zh": "臭氧（美标）",
+        "score": 0.598773717880249
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "M",
+        "name_zh": "臭氧+UV（美标）",
+        "score": 0.5877617597579956
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "K",
+        "name_zh": "臭氧+ClearBlue（美标）",
+        "score": 0.5842341780662537
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "6",
+        "name_zh": "臭氧（美标/带循环泵用）",
+        "score": 0.5814753770828247
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "G",
+        "name_zh": "臭氧+IN.Clear",
+        "score": 0.580292284488678
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "Q",
+        "name_zh": "臭氧管路（无臭氧）+UV（美标）",
+        "score": 0.5716350674629211
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "C",
+        "name_zh": "臭氧+UV",
+        "score": 0.5689560770988464
+      },
+      {
+        "section_key": "sanitation",
+        "section_label": "第11位（消毒系统）",
+        "code": "D",
+        "name_zh": "臭氧+盐氯预装管",
+        "score": 0.5638042688369751
+      }
+    ]
+  },
+  {
+    "material_code": "Milano",
+    "product_type_zh": "户外缸",
+    "bom_type": "outdoor",
+    "pdf": "/root/workspace/syp/agent/backend/translate/2026_01_11_New Milano US/Milano.pdf",
+    "en_phrase": "50 sf Filtration",
+    "top": [
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4E",
+        "name_zh": "1个双速1.5HPLX+1个单速2HPLX（美标/配浅灰过滤器）",
+        "score": 0.5403507947921753
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3Z",
+        "name_zh": "1个循环LX+2个单速3HPLX+1个1.5HP单速（美标/配浅灰过滤器）",
+        "score": 0.5390310287475586
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4C",
+        "name_zh": "1个双速1.5HPLX+1个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.5388646721839905
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Q",
+        "name_zh": "1个循环gecko+1个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5273494720458984
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Y",
+        "name_zh": "1个循环gecko+2个单速3HPgecko+1个1HP单速（配浅灰过滤器）",
+        "score": 0.5251104831695557
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "4Z",
+        "name_zh": "1个双速2HPLX（美标/单110V/配浅灰过滤器）",
+        "score": 0.5225332379341125
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "1Z",
+        "name_zh": "1个循环LX+1个单速3HPLX(过滤器带SPAtec商标)",
+        "score": 0.5156787633895874
+      },
+      {
+        "section_key": "waterPump",
+        "section_label": "第8+9位（水泵配置）",
+        "code": "3F",
+        "name_zh": "1个循环LX+1个单速2HPLX（美标）/1个循环LX+2个单速3HPLX（美标/配浅灰过滤器）",
+        "score": 0.5102763175964355
+      }
+    ]
+  }
+]

@@ -605,10 +605,16 @@ def _build_llm_prompt_text(
         path = seg.get("image_path") or seg.get("image") or f"image_{idx}"
         desc = seg.get("description") or ""
         mime = seg.get("mime_type") or "image/*"
+        source = (seg.get("source") or "").strip().lower()
+        source_tag = ""
+        if source == "original_upload":
+            source_tag = " [ORIGINAL_UPLOAD]"
+        elif source == "ocr_artifact":
+            source_tag = " [OCR_ARTIFACT]"
         # 截断描述避免过长
         if len(desc) > 500:
             desc = desc[:500] + "..."
-        image_candidates.append(f"{idx + 1}. path: {path} ({mime})\n   reverse_prompt: {desc}".strip())
+        image_candidates.append(f"{idx + 1}. path: {path} ({mime}){source_tag}\n   reverse_prompt: {desc}".strip())
 
     multimodal_brief = ""
     if image_candidates:
@@ -646,6 +652,7 @@ def _build_llm_prompt_text(
 
     image_choice_rule = (
         "- 若提供了候选产品图片列表，必须从列表中选择一条路径填入 images.product（不得保留默认或填写列表外路径）。\n"
+        "- 若候选列表中包含 [ORIGINAL_UPLOAD]，优先从这些原始上传图片中选择（避免 OCR 产物带黑边/裁切/压缩）。\n"
         "- 若列表为空或无候选图片，则使用默认 \"/back/product.png\"。\n"
     )
 
@@ -1258,6 +1265,56 @@ def generate_specsheet_from_ocr_request(
     request: SpecsheetFromOcrRequest,
 ) -> Tuple[SpecsheetData, List[Dict[str, Any]], str, str, str]:
     context_text, pseudo_chunks, multimodal_segments = _build_context_from_ocr_documents(request.documents)
+
+    # Prepend original uploaded product images as better candidates than OCR artifacts.
+    if getattr(request, "session_id", None):
+        try:
+            from src.manual_ocr import load_session_record, session_dir  # local import to avoid heavy deps at import-time
+
+            record = load_session_record(request.session_id)
+            if record:
+                base_dir = session_dir(request.session_id)
+                out_dir = base_dir / "reverse_prompts" / "products"
+                orig_segments: List[Dict[str, str]] = []
+                seen = set()
+                for f in (record.get("product_files") or []):
+                    try:
+                        rel = (f.get("path") or "").strip()
+                        if not rel:
+                            continue
+                        suffix = Path(rel).suffix.lower()
+                        if suffix not in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif"}:
+                            continue
+                        public_path = rel if rel.startswith("/api/files/") else f"/api/files/{rel}"
+                        if public_path in seen:
+                            continue
+                        seen.add(public_path)
+                        desc = ""
+                        try:
+                            txt_path = out_dir / f"{Path(rel).stem}.txt"
+                            if txt_path.exists() and txt_path.is_file():
+                                desc = (txt_path.read_text(encoding="utf-8") or "").strip()
+                        except Exception:
+                            desc = ""
+                        mime = (f.get("type") or "").strip() or mimetypes.guess_type(rel)[0] or "image/*"
+                        orig_segments.append(
+                            {
+                                "description": desc,
+                                "image_path": public_path,
+                                "mime_type": mime,
+                                "source": "original_upload",
+                            }
+                        )
+                    except Exception:
+                        continue
+                if orig_segments:
+                    multimodal_segments = orig_segments + [
+                        {**seg, "source": seg.get("source") or "ocr_artifact"}
+                        for seg in (multimodal_segments or [])
+                    ]
+        except Exception:
+            # Best-effort only; keep existing OCR-derived candidates.
+            pass
 
     # 将 BOM 解析信息也加入上下文，帮助 LLM 获得配件配置
     bom_context = None

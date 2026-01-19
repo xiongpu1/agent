@@ -87,6 +87,7 @@ from src.specsheet_storage import (
     load_specsheet_for_session,
 )
 from src.ace_integration import get_ace_manager, save_pending_sample, load_pending_sample, store_ace_sample, clear_pending_sample
+from src.poster_image_edit import PosterImageEditInputs, generate_poster_image_edit as run_poster_image_edit
 from src.bom_models import (
     BomGenerationRequest,
     BomGenerationResponse,
@@ -316,6 +317,22 @@ class PosterGenerateCopyRequest(BaseModel):
     bom_type: str | None = None
     product_image_url: str | None = None
     background_image_url: str | None = None
+
+
+class PosterGenerateImageEditRequest(BaseModel):
+    reference_image_url: str
+    product_image_url: str
+    background_image_url: str | None = None
+    step1_result: Dict[str, Any]
+    product_name: str | None = None
+    bom_code: str | None = None
+    title: str | None = None
+    subtitle: str | None = None
+    sellpoints: List[str] | None = None
+    output_width: int | None = None
+    output_height: int | None = None
+    watermark: bool | None = None
+    negative_prompt: str | None = None
 
 
 class ManualSessionInitRequest(BaseModel):
@@ -671,6 +688,66 @@ async def generate_poster_copy(
         raise
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"海报文案生成失败: {exc}") from exc
+
+
+@app.post("/api/poster/generate_image_edit")
+async def generate_poster_image_edit_endpoint(
+    payload: PosterGenerateImageEditRequest = Body(...),
+):
+    ref_url = (payload.reference_image_url or "").strip()
+    prod_url = (payload.product_image_url or "").strip()
+    if not ref_url:
+        raise HTTPException(status_code=400, detail="请提供 reference_image_url")
+    if not prod_url:
+        raise HTTPException(status_code=400, detail="请提供 product_image_url")
+    if not isinstance(payload.step1_result, dict) or not payload.step1_result:
+        raise HTTPException(status_code=400, detail="请提供 step1_result")
+
+    try:
+        W = int(payload.output_width or 0)
+    except Exception:
+        W = 0
+    try:
+        H = int(payload.output_height or 0)
+    except Exception:
+        H = 0
+
+    if W <= 0:
+        try:
+            W = int(payload.step1_result.get("width") or 0)
+        except Exception:
+            W = 0
+    if H <= 0:
+        try:
+            H = int(payload.step1_result.get("height") or 0)
+        except Exception:
+            H = 0
+    if W <= 0:
+        W = 1000
+    if H <= 0:
+        H = 1500
+
+    try:
+        inputs = PosterImageEditInputs(
+            reference_image_url=ref_url,
+            product_image_url=prod_url,
+            background_image_url=(payload.background_image_url or None),
+            step1_result=payload.step1_result,
+            product_name=(payload.product_name or None),
+            bom_code=(payload.bom_code or None),
+            title=str(payload.title or ""),
+            subtitle=str(payload.subtitle or ""),
+            sellpoints=[str(s or "") for s in (payload.sellpoints or [])],
+            output_width=W,
+            output_height=H,
+            watermark=bool(payload.watermark) if payload.watermark is not None else True,
+            negative_prompt=str(payload.negative_prompt or ""),
+        )
+        return run_poster_image_edit(payload=inputs)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"海报生成失败: {exc}") from exc
 
 
 @app.post("/api/manual/insert-neo4j")

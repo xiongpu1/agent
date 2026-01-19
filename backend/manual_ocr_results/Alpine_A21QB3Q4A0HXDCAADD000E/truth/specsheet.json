@@ -7,7 +7,7 @@
   },
   "measurements": "98\" × 90\" × 35\"",
   "premiumFeatures": [
-    "Underwater Mood Lighting",
+    "Underwater LED Light",
     "Valve Light",
     "Edge Light",
     "Corner Light"
@@ -18,7 +18,6 @@
     "Polyfoam Insulation"
   ],
   "extraFeatures": [
-    "Eyebrow Water Jets (Canada Alpine Simplified)",
     "Bluetooth audio system",
     "Grey skirt, Aluminum Skirt",
     "Grey corner"
@@ -31,7 +30,7 @@
       "Shell Color": "#ffffff"
     },
     {
-      "Dry Weight": "977 lbs"
+      "Dry Weight": "975 lbs"
     },
     {
       "Water Capacity": "296 gallons"
@@ -47,7 +46,7 @@
     "Ozonator"
   ],
   "images": {
-    "product": "/back/product.png",
+    "product": "/api/files/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png",
     "background": "/back/back.png"
   }
 }

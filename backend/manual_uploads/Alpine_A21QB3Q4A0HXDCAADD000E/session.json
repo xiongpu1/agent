@@ -15,10 +15,20 @@
       "url": "/api/files/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20.png",
       "lastModified": 1768065835185,
       "previewUrl": ""
+    },
+    {
+      "id": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1-1768525054605013191",
+      "name": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png",
+      "size": 411316,
+      "type": "image/png",
+      "path": "manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png",
+      "url": "/api/files/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png",
+      "lastModified": 1768525054605,
+      "previewUrl": ""
     }
   ],
   "accessory_files": [],
-  "product_upload_count": 1,
+  "product_upload_count": 2,
   "accessory_upload_count": 0,
   "product_ocr_groups": [
     {
@@ -37,15 +47,6 @@
               "size": 143207,
               "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.jpg",
               "kind": "image",
-              "parent_dir": "images"
-            },
-            {
-              "name": "0.txt",
-              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
-              "type": "text/plain",
-              "size": 209,
-              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
-              "kind": "markdown",
               "parent_dir": "images"
             },
             {
@@ -70,10 +71,77 @@
               "name": "result_with_boxes.jpg",
               "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
               "type": "image/jpeg",
-              "size": 148729,
+              "size": 147431,
               "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/result_with_boxes.jpg",
               "kind": "image",
               "parent_dir": "20260104165858_1006_20"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
+              "type": "text/plain",
+              "size": 208,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20/20260104165858_1006_20/20260104165858_1006_20/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_name": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png",
+      "source_size": 411316,
+      "source_mime": "image/png",
+      "pages": [
+        {
+          "page_number": 1,
+          "image_stem": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1",
+          "artifacts": [
+            {
+              "name": "0.jpg",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/images/0.jpg",
+              "type": "image/jpeg",
+              "size": 30490,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/images/0.jpg",
+              "kind": "image",
+              "parent_dir": "images"
+            },
+            {
+              "name": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.stdout.md",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.stdout.md",
+              "type": "text/markdown",
+              "size": 396,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.stdout.md",
+              "kind": "markdown",
+              "parent_dir": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1"
+            },
+            {
+              "name": "result.mmd",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/result.mmd",
+              "type": "application/vnd.chipnuts.karaoke-mmd",
+              "size": 18,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/result.mmd",
+              "kind": "diagram",
+              "parent_dir": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1"
+            },
+            {
+              "name": "result_with_boxes.jpg",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/result_with_boxes.jpg",
+              "type": "image/jpeg",
+              "size": 30309,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/result_with_boxes.jpg",
+              "kind": "image",
+              "parent_dir": "85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1"
+            },
+            {
+              "name": "0.txt",
+              "path": "manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/images/0.txt",
+              "type": "text/plain",
+              "size": 120,
+              "url": "/api/files/manual_ocr_results/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1/images/0.txt",
+              "kind": "markdown",
+              "parent_dir": "images"
             }
           ]
         }
@@ -81,8 +149,22 @@
     }
   ],
   "accessory_ocr_groups": [],
-  "completed_at": "2026-01-12T08:32:08.737373",
+  "completed_at": "2026-01-16T01:13:29.222657",
   "product_id": "Alpine_A21QB3Q4A0HXDCAADD000E",
   "material_code": "Alpine",
-  "bom_id": "A21QB3Q4A0HXDCAADD000E"
+  "bom_id": "A21QB3Q4A0HXDCAADD000E",
+  "prompt_reverse_original_logs": [
+    {
+      "image": "/root/workspace/syp/agent/backend/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/20260104165858_1006_20.png",
+      "prompt_path": "/root/workspace/syp/agent/backend/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/reverse_prompts/products/20260104165858_1006_20.txt",
+      "status": "success",
+      "message": "黑色Topre保温壶（750ml）置于木板上，配编织提手与挂扣，背景为帐篷、登山包、雪山及无人机，标有“Бутылка”“до 48 ч”“Улучшенная вакуумна…"
+    },
+    {
+      "image": "/root/workspace/syp/agent/backend/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.png",
+      "prompt_path": "/root/workspace/syp/agent/backend/manual_uploads/Alpine_A21QB3Q4A0HXDCAADD000E/reverse_prompts/products/85aecd60-1f6d-41fb-b7ad-dfefd4a9f9b1.txt",
+      "status": "success",
+      "message": "白色六边形布局的按摩浴缸俯视图，含六个带喷嘴的座位区、中央控制面板及右侧格栅状出水口。"
+    }
+  ]
 }
