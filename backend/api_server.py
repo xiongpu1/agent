@@ -7,6 +7,7 @@ import sys
 import json
 import re
 import mimetypes
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Literal
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Query, Body
@@ -1392,6 +1393,63 @@ async def get_saved_manual_specsheet(product_name: str, bom_code: str):
         raise HTTPException(status_code=500, detail=f"读取规格页文件失败: {exc}") from exc
 
     return SpecsheetResponse(specsheet=specsheet)
+
+
+class ManualSpecsheetLayoutResponse(BaseModel):
+    layout: Dict[str, Any]
+
+
+class ManualSpecsheetLayoutSaveRequest(BaseModel):
+    product_name: str
+    bom_code: str
+    layout: Dict[str, Any] = Field(default_factory=dict)
+    updated_by: Optional[str] = None
+
+
+@app.get("/api/manual/specsheet/layout", response_model=ManualSpecsheetLayoutResponse)
+async def get_manual_specsheet_layout(product_name: str, bom_code: str):
+    base_product_dir = _resolve_manual_product_dir(product_name, bom_code)
+    truth_path = base_product_dir / "truth" / "specsheet.layout.json"
+    if not truth_path.exists():
+        raise HTTPException(status_code=404, detail="未找到已保存的规格页布局文件")
+
+    try:
+        raw = json.loads(truth_path.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"读取规格页布局文件失败: {exc}") from exc
+
+    if not isinstance(raw, dict):
+        raise HTTPException(status_code=500, detail="规格页布局文件格式错误：不是对象")
+
+    return ManualSpecsheetLayoutResponse(layout=raw)
+
+
+@app.post("/api/manual/specsheet/layout", response_model=ManualSpecsheetLayoutResponse)
+async def save_manual_specsheet_layout(payload: ManualSpecsheetLayoutSaveRequest):
+    try:
+        product_dir = _resolve_manual_product_dir(payload.product_name, payload.bom_code)
+        truth_dir = product_dir / "truth"
+        truth_dir.mkdir(parents=True, exist_ok=True)
+
+        target_path = truth_dir / "specsheet.layout.json"
+        layout_obj: Dict[str, Any] = payload.layout if isinstance(payload.layout, dict) else {}
+        layout_obj = dict(layout_obj)
+        layout_obj["updated_at"] = int(time.time())
+        if payload.updated_by is not None:
+            layout_obj["updated_by"] = str(payload.updated_by)
+
+        target_path.write_text(
+            json.dumps(layout_obj, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        print(f"[SpecsheetLayout] truth saved to: {target_path}")
+        return ManualSpecsheetLayoutResponse(layout=layout_obj)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"保存规格页布局 truth 失败: {exc}") from exc
 
 
 class ManualBookTruthSaveRequest(BaseModel):

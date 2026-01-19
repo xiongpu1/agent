@@ -142,6 +142,16 @@ export async function getSavedManualSpecsheet(productName, bomCode) {
   return data.specsheet || null
 }
 
+export async function getSavedManualSpecsheetLayout(productName, bomCode) {
+  if (!productName) throw new Error('Missing productName')
+  if (!bomCode) throw new Error('Missing bomCode')
+  const query = `?product_name=${encodeURIComponent(productName)}&bom_code=${encodeURIComponent(bomCode)}`
+  const response = await fetch(`${API_BASE_URL}/api/manual/specsheet/layout${query}`)
+  if (response.status === 404) return null
+  const data = await handleResponse(response, 'Failed to fetch saved manual specsheet layout')
+  return data.layout || null
+}
+
 export async function saveManualBookTruth(productName, bomCode, manualBookPages, targetFolder = 'truth') {
   if (!productName) throw new Error('Missing productName')
   if (!bomCode) throw new Error('Missing bomCode')
@@ -177,6 +187,23 @@ export async function saveManualSpecsheetTruth(productName, bomCode, specsheet) 
   })
   const data = await handleResponse(response, 'Failed to save manual specsheet truth')
   return data.specsheet || null
+}
+
+export async function saveManualSpecsheetLayout(productName, bomCode, layout, updatedBy) {
+  if (!productName) throw new Error('Missing productName')
+  if (!bomCode) throw new Error('Missing bomCode')
+  const response = await fetch(`${API_BASE_URL}/api/manual/specsheet/layout`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      product_name: productName,
+      bom_code: bomCode,
+      layout: layout && typeof layout === 'object' ? layout : {},
+      updated_by: updatedBy || null
+    })
+  })
+  const data = await handleResponse(response, 'Failed to save manual specsheet layout')
+  return data.layout || null
 }
 
 export async function getManualBookVariants(productName, bomCode) {

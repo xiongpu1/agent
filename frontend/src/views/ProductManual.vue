@@ -176,6 +176,10 @@
             <el-button size="small" @click="resetPromo">重置内容</el-button>
             <el-button size="small" type="primary" @click="exportPromo">导出为图片</el-button>
             <el-button size="small" type="warning" @click="exportPromoPdfEditable">导出为PDF</el-button>
+            <el-button size="small" :type="promoEditMode ? 'danger' : 'primary'" plain @click="togglePromoEditMode">
+              {{ promoEditMode ? '退出编辑模式' : '进入编辑模式' }}
+            </el-button>
+            <el-button size="small" type="primary" :disabled="!promoEditMode" @click="savePromoLayoutToBackend">保存布局/样式</el-button>
             <el-button size="small" type="info" @click="saveSpecsheetToDb">保存修改至数据库</el-button>
             <el-button size="small" type="info" plain @click="openRagChunksDialog">查看 RAG 来源</el-button>
             <!-- <el-button
@@ -219,13 +223,26 @@
             }"
           >
             <!-- 顶部灰色横幅与左上角 Logo 卡片 -->
-            <div class="promo-top" :style="{ backgroundImage: `url(${backgroundSrc})` }">
+            <div
+              class="promo-top promo-block"
+              data-layout-id="promoTop"
+              :class="promoBlockClass('promoTop')"
+              :style="mergePromoBlockStyle('promoTop', { backgroundImage: `url(${backgroundSrc})` })"
+              @pointerdown="onPromoBlockPointerDown($event, 'promoTop')"
+            >
               <!-- 仅负责背景图片更换的悬浮提示与点击层，不包含 Logo 区域 -->
               <el-tooltip :content="BACKGROUND_UPLOAD_TIPS" placement="top">
                 <div class="promo-top-bg-layer" @click="onClickBackground"></div>
               </el-tooltip>
               <el-tooltip :content="LOGO_UPLOAD_TIPS" placement="bottom">
-                <div class="logo-card" :style="logoCardStyle" @click.stop="onClickLogo">
+                <div
+                  class="logo-card promo-block"
+                  data-layout-id="logoCard"
+                  :class="promoBlockClass('logoCard')"
+                  :style="mergePromoBlockStyle('logoCard', logoCardStyle)"
+                  @pointerdown="onPromoBlockPointerDown($event, 'logoCard')"
+                  @click.stop="onClickLogo"
+                >
                   <div class="logo-mark">
                     <img :src="logoSrc" :style="logoImgStyle" alt="" />
                   </div>
@@ -236,9 +253,12 @@
             <!-- 产品图片（叠加在顶部与正文之间） -->
             <el-tooltip :content="PRODUCT_UPLOAD_TIPS" placement="top">
               <div
-                class="product-photo-wrap"
-                :style="{ '--product-x': productAnchor.x, '--product-y': productAnchor.y }"
+                class="product-photo-wrap promo-block"
+                data-layout-id="productPhoto"
+                :class="promoBlockClass('productPhoto')"
+                :style="mergePromoBlockStyle('productPhoto', { '--product-x': productAnchor.x, '--product-y': productAnchor.y })"
                 @mousedown="onProductPhotoMouseDown"
+                @pointerdown="onPromoBlockPointerDown($event, 'productPhoto')"
               >
                 <img
                   class="product-photo"
@@ -296,11 +316,21 @@
             <div class="promo-body">
               <!-- 左列 -->
               <div class="col">
-                <div class="product-title" contenteditable="true" data-placeholder="Vastera" @input="onEditTextWithCaret($event, 'productTitle')" v-text="promoData.productTitle"></div>
+                <div
+                  class="product-title promo-block"
+                  data-layout-id="productTitle"
+                  :class="promoBlockClass('productTitle')"
+                  :style="mergePromoBlockStyle('productTitle')"
+                  @pointerdown="onPromoBlockPointerDown($event, 'productTitle')"
+                  contenteditable="true"
+                  data-placeholder="Vastera"
+                  @input="onEditTextWithCaret($event, 'productTitle')"
+                  v-text="promoData.productTitle"
+                ></div>
                 <div class="section">
                   <div class="h2" data-placeholder="Feature">Feature</div>
                   <div class="icons">
-                    <div class="icon">
+                    <div class="icon promo-block" data-layout-id="featureCapacity" :class="promoBlockClass('featureCapacity')" :style="mergePromoBlockStyle('featureCapacity')" @pointerdown="onPromoBlockPointerDown($event, 'featureCapacity')">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
                         <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.capacity})` }" role="img" aria-label="Capacity" @click="openFeatureIconDialog('capacity')" />
                       </el-tooltip>
@@ -311,7 +341,7 @@
                     </div>
 
 
-                    <div class="icon">
+                    <div class="icon promo-block" data-layout-id="featureJets" :class="promoBlockClass('featureJets')" :style="mergePromoBlockStyle('featureJets')" @pointerdown="onPromoBlockPointerDown($event, 'featureJets')">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
                         <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.jets})` }" role="img" aria-label="Jets" @click="openFeatureIconDialog('jets')" />
                       </el-tooltip>
@@ -321,7 +351,7 @@
                       </div>
                     </div>
 
-                    <div class="icon">
+                    <div class="icon promo-block" data-layout-id="featurePumps" :class="promoBlockClass('featurePumps')" :style="mergePromoBlockStyle('featurePumps')" @pointerdown="onPromoBlockPointerDown($event, 'featurePumps')">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
                         <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.pumps})` }" role="img" aria-label="Pumps" @click="openFeatureIconDialog('pumps')" />
                       </el-tooltip>
@@ -332,7 +362,7 @@
                     </div>
                     
                   </div>
-                  <div class="measurements-row">
+                  <div class="measurements-row promo-block" data-layout-id="featureMeasurements" :class="promoBlockClass('featureMeasurements')" :style="mergePromoBlockStyle('featureMeasurements')" @pointerdown="onPromoBlockPointerDown($event, 'featureMeasurements')">
                     <div class="m-icon">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
                         <span class="mask-icon" :style="{ '--mask-url': `url(${featureIcons.measurements})` }" role="img" aria-label="Measurements" @click="openFeatureIconDialog('measurements')" />
@@ -345,7 +375,7 @@
                   </div>
                 </div>
 
-                <div class="section" v-if="promoSectionTitles.premium">
+                <div class="section promo-block" v-if="promoSectionTitles.premium" data-layout-id="sectionPremium" :class="promoBlockClass('sectionPremium')" :style="mergePromoBlockStyle('sectionPremium')" @pointerdown="onPromoBlockPointerDown($event, 'sectionPremium')">
                   <div
                     class="h2"
                     contenteditable="true"
@@ -359,7 +389,7 @@
                   </ul>
                 </div>
 
-                <div class="section" v-if="promoSectionTitles.insulation">
+                <div class="section promo-block" v-if="promoSectionTitles.insulation" data-layout-id="sectionInsulation" :class="promoBlockClass('sectionInsulation')" :style="mergePromoBlockStyle('sectionInsulation')" @pointerdown="onPromoBlockPointerDown($event, 'sectionInsulation')">
                   <div
                     class="h2"
                     contenteditable="true"
@@ -373,7 +403,7 @@
                   </ul>
                 </div>
 
-                <div class="section" v-if="promoSectionTitles.extra">
+                <div class="section promo-block" v-if="promoSectionTitles.extra" data-layout-id="sectionExtra" :class="promoBlockClass('sectionExtra')" :style="mergePromoBlockStyle('sectionExtra')" @pointerdown="onPromoBlockPointerDown($event, 'sectionExtra')">
                   <div
                     class="h2"
                     contenteditable="true"
@@ -390,7 +420,7 @@
 
               <!-- 右列 -->
               <div class="col right-col">
-                <div class="section" v-if="promoSectionTitles.specifications">
+                <div class="section promo-block" v-if="promoSectionTitles.specifications" data-layout-id="sectionSpecifications" :class="promoBlockClass('sectionSpecifications')" :style="mergePromoBlockStyle('sectionSpecifications')" @pointerdown="onPromoBlockPointerDown($event, 'sectionSpecifications')">
                   <div
                     class="h2"
                     data-placeholder="Specifications"
@@ -426,7 +456,7 @@
                   </ul>
                 </div>
 
-                <div class="section" v-if="promoSectionTitles.smartWater">
+                <div class="section promo-block" v-if="promoSectionTitles.smartWater" data-layout-id="sectionSmartWater" :class="promoBlockClass('sectionSmartWater')" :style="mergePromoBlockStyle('sectionSmartWater')" @pointerdown="onPromoBlockPointerDown($event, 'sectionSmartWater')">
                   <div
                     class="h2"
                     contenteditable="true"
@@ -443,8 +473,60 @@
             </div>
 
             <!-- 页脚 -->
-            <div class="promo-footer">
+            <div class="promo-footer promo-block" data-layout-id="promoFooter" :class="promoBlockClass('promoFooter')" :style="mergePromoBlockStyle('promoFooter')" @pointerdown="onPromoBlockPointerDown($event, 'promoFooter')">
               <div class="footnote">* Specifications are subject to change.</div>
+            </div>
+
+            <div v-if="promoEditMode" class="promo-props-panel" @pointerdown.stop>
+              <div class="props-title">编辑属性</div>
+              <div v-if="!selectedPromoBlockId" class="props-empty">请选择一个区块</div>
+              <div v-else class="props-body">
+                <div class="props-row">
+                  <div class="props-label">区块</div>
+                  <div class="props-value">{{ selectedPromoBlockId }}</div>
+                </div>
+
+                <div class="props-row">
+                  <div class="props-label">字体</div>
+                  <el-select v-model="selectedBlockStyle.fontFamily" size="small" style="width: 160px" @change="applySelectedBlockStyle">
+                    <el-option v-for="f in promoFontCandidates" :key="f" :label="f" :value="f" />
+                  </el-select>
+                </div>
+
+                <div class="props-row">
+                  <div class="props-label">字号</div>
+                  <el-input-number v-model="selectedBlockStyle.fontSize" size="small" :min="8" :max="120" @change="applySelectedBlockStyle" />
+                </div>
+
+                <div class="props-row">
+                  <div class="props-label">字重</div>
+                  <el-select v-model="selectedBlockStyle.fontWeight" size="small" style="width: 160px" @change="applySelectedBlockStyle">
+                    <el-option label="400" :value="400" />
+                    <el-option label="600" :value="600" />
+                    <el-option label="700" :value="700" />
+                    <el-option label="800" :value="800" />
+                  </el-select>
+                </div>
+
+                <div class="props-row">
+                  <div class="props-label">颜色</div>
+                  <el-color-picker v-model="selectedBlockStyle.color" size="small" @change="applySelectedBlockStyle" />
+                </div>
+
+                <div class="props-row">
+                  <div class="props-label">对齐</div>
+                  <el-select v-model="selectedBlockStyle.textAlign" size="small" style="width: 160px" @change="applySelectedBlockStyle">
+                    <el-option label="left" value="left" />
+                    <el-option label="center" value="center" />
+                    <el-option label="right" value="right" />
+                  </el-select>
+                </div>
+
+                <div class="props-row">
+                  <el-button size="small" @click="resetSelectedBlockTransform">重置位置</el-button>
+                  <el-button size="small" @click="clearSelectedBlockStyle">清除样式</el-button>
+                </div>
+              </div>
             </div>
           </div>
           <!-- 隐藏文件输入：产品与背景图更换 -->
@@ -1141,9 +1223,340 @@ import {
   saveManualSpecsheetTruth,
   getManualBookVariants,
   saveManualBookVariants,
-  generateManualBookOneShot
+  generateManualBookOneShot,
+  getSavedManualSpecsheetLayout,
+  saveManualSpecsheetLayout
 } from '@/services/api'
 import { BOM_CONFIG } from '@/constants/bomOptions'
+
+const promoEditMode = ref(false)
+const promoLayout = ref({
+  version: 1,
+  blocks: {},
+  overrides: {},
+})
+
+const promoFontCandidates = [
+  'AgencyFB-Bold',
+  'SourceSansPro-Regular',
+  'SourceSansPro-Semibold',
+  'SourceSansPro-Bold',
+  'Arial',
+  'Helvetica',
+  'Times New Roman',
+  'Georgia',
+  'Verdana',
+  'Tahoma',
+]
+
+const selectedPromoBlockId = ref('')
+const selectedBlockStyle = ref({
+  fontFamily: '',
+  fontSize: null,
+  fontWeight: null,
+  color: '',
+  textAlign: '',
+})
+
+const promoBlockClass = (id) => {
+  return {
+    'promo-editable': promoEditMode.value,
+    'promo-selected': promoEditMode.value && selectedPromoBlockId.value === id,
+  }
+}
+
+const _readBlockLayout = (id) => {
+  const blocks = promoLayout.value?.blocks && typeof promoLayout.value.blocks === 'object' ? promoLayout.value.blocks : {}
+  const b = blocks?.[id]
+  return b && typeof b === 'object' ? b : null
+}
+
+const mergePromoBlockStyle = (id, baseStyle = {}) => {
+  if (!promoEditMode.value) return baseStyle
+  const b = _readBlockLayout(id)
+  const tx = typeof b?.tx === 'number' ? b.tx : 0
+  const ty = typeof b?.ty === 'number' ? b.ty : 0
+  const style = b?.style && typeof b.style === 'object' ? b.style : {}
+  const baseTransform = baseStyle && typeof baseStyle === 'object' ? (baseStyle.transform || '') : ''
+  const baseTransformStr = typeof baseTransform === 'string' ? baseTransform.trim() : ''
+  const hasDrag = !!tx || !!ty
+  const dragTransform = hasDrag ? `translate(${tx}px, ${ty}px)` : ''
+  const mergedTransform = hasDrag
+    ? (baseTransformStr ? `${baseTransformStr} ${dragTransform}` : dragTransform)
+    : baseTransformStr
+  const out = {
+    ...baseStyle,
+    ...style,
+    touchAction: 'none',
+  }
+  if (mergedTransform) out.transform = mergedTransform
+  return out
+}
+
+const _ensureBlockLayout = (id) => {
+  if (!promoLayout.value || typeof promoLayout.value !== 'object') {
+    promoLayout.value = { version: 1, blocks: {}, overrides: {} }
+  }
+  if (!promoLayout.value.blocks || typeof promoLayout.value.blocks !== 'object') {
+    promoLayout.value.blocks = {}
+  }
+  if (!promoLayout.value.blocks[id] || typeof promoLayout.value.blocks[id] !== 'object') {
+    promoLayout.value.blocks[id] = { tx: 0, ty: 0, style: {} }
+  }
+  if (!promoLayout.value.blocks[id].style || typeof promoLayout.value.blocks[id].style !== 'object') {
+    promoLayout.value.blocks[id].style = {}
+  }
+  return promoLayout.value.blocks[id]
+}
+
+const _syncSelectedStyleFromLayout = (id) => {
+  const b = _readBlockLayout(id)
+  const s = b?.style && typeof b.style === 'object' ? b.style : {}
+  selectedBlockStyle.value = {
+    fontFamily: s.fontFamily || '',
+    fontSize: typeof s.fontSize === 'number' ? s.fontSize : null,
+    fontWeight: typeof s.fontWeight === 'number' ? s.fontWeight : null,
+    color: s.color || '',
+    textAlign: s.textAlign || '',
+  }
+}
+
+const applySelectedBlockStyle = () => {
+  const id = selectedPromoBlockId.value
+  if (!promoEditMode.value || !id) return
+  const b = _ensureBlockLayout(id)
+  const s = { ...(b.style || {}) }
+  const next = selectedBlockStyle.value || {}
+
+  if (next.fontFamily) s.fontFamily = next.fontFamily
+  else delete s.fontFamily
+  if (typeof next.fontSize === 'number') s.fontSize = next.fontSize
+  else delete s.fontSize
+  if (typeof next.fontWeight === 'number') s.fontWeight = next.fontWeight
+  else delete s.fontWeight
+  if (next.color) s.color = next.color
+  else delete s.color
+  if (next.textAlign) s.textAlign = next.textAlign
+  else delete s.textAlign
+
+  b.style = s
+}
+
+const resetSelectedBlockTransform = () => {
+  const id = selectedPromoBlockId.value
+  if (!promoEditMode.value || !id) return
+  const b = _ensureBlockLayout(id)
+  b.tx = 0
+  b.ty = 0
+}
+
+const clearSelectedBlockStyle = () => {
+  const id = selectedPromoBlockId.value
+  if (!promoEditMode.value || !id) return
+  const b = _ensureBlockLayout(id)
+  b.style = {}
+  _syncSelectedStyleFromLayout(id)
+}
+
+const _applyPromoOverrides = () => {
+  const o = promoLayout.value?.overrides && typeof promoLayout.value.overrides === 'object' ? promoLayout.value.overrides : {}
+  const promo = o.promoData && typeof o.promoData === 'object' ? o.promoData : {}
+  const titles = o.sectionTitles && typeof o.sectionTitles === 'object' ? o.sectionTitles : {}
+
+  Object.keys(promo).forEach((path) => {
+    const val = promo[path]
+    if (typeof path !== 'string') return
+
+    const m = path.match(/^Specifications\.(\d+)\.(.+)$/)
+    if (m) {
+      const idx = parseInt(m[1], 10)
+      const key = m[2]
+      if (Number.isFinite(idx) && idx >= 0 && Array.isArray(promoData.value.Specifications) && key) {
+        if (promoData.value.Specifications[idx] && typeof promoData.value.Specifications[idx] === 'object') {
+          promoData.value.Specifications[idx] = { [key]: typeof val === 'string' ? val : (val ?? '') }
+        }
+      }
+      return
+    }
+
+    const segs = path.split('.')
+    let obj = promoData.value
+    for (let i = 0; i < segs.length - 1; i++) {
+      const k = segs[i]
+      if (!(k in obj) || typeof obj[k] !== 'object') obj[k] = {}
+      obj = obj[k]
+    }
+    obj[segs[segs.length - 1]] = typeof val === 'string' ? val : (val ?? '')
+  })
+
+  if (Object.keys(titles).length) {
+    promoSectionTitles.value = {
+      ...promoSectionTitles.value,
+      ...titles,
+    }
+  }
+}
+
+const _setPromoOverride = (path, value) => {
+  if (!promoEditMode.value) return
+  if (!path) return
+  if (!promoLayout.value || typeof promoLayout.value !== 'object') {
+    promoLayout.value = { version: 1, blocks: {}, overrides: {} }
+  }
+  if (!promoLayout.value.overrides || typeof promoLayout.value.overrides !== 'object') {
+    promoLayout.value.overrides = {}
+  }
+  if (!promoLayout.value.overrides.promoData || typeof promoLayout.value.overrides.promoData !== 'object') {
+    promoLayout.value.overrides.promoData = {}
+  }
+  promoLayout.value.overrides.promoData[path] = typeof value === 'string' ? value : (value ?? '')
+}
+
+const _setSectionTitleOverride = (key, html) => {
+  if (!promoEditMode.value) return
+  if (!key) return
+  if (!promoLayout.value || typeof promoLayout.value !== 'object') {
+    promoLayout.value = { version: 1, blocks: {}, overrides: {} }
+  }
+  if (!promoLayout.value.overrides || typeof promoLayout.value.overrides !== 'object') {
+    promoLayout.value.overrides = {}
+  }
+  if (!promoLayout.value.overrides.sectionTitles || typeof promoLayout.value.overrides.sectionTitles !== 'object') {
+    promoLayout.value.overrides.sectionTitles = {}
+  }
+  promoLayout.value.overrides.sectionTitles[key] = typeof html === 'string' ? html : (html ?? '')
+}
+
+const togglePromoEditMode = async () => {
+  promoEditMode.value = !promoEditMode.value
+  selectedPromoBlockId.value = ''
+  if (!promoEditMode.value) return
+
+  if (!productName.value || !bomCode.value) {
+    ElMessage.warning('缺少 产品名称 或 BOM，无法进入编辑模式')
+    promoEditMode.value = false
+    return
+  }
+
+  try {
+    const saved = await getSavedManualSpecsheetLayout(productName.value, bomCode.value)
+    if (saved && typeof saved === 'object') {
+      promoLayout.value = saved
+    } else {
+      promoLayout.value = { version: 1, blocks: {}, overrides: {} }
+    }
+    _applyPromoOverrides()
+  } catch (e) {
+    promoLayout.value = { version: 1, blocks: {}, overrides: {} }
+  }
+}
+
+const savePromoLayoutToBackend = async () => {
+  if (!promoEditMode.value) return
+  if (!productName.value || !bomCode.value) {
+    ElMessage.warning('缺少 产品名称 或 BOM，无法保存布局')
+    return
+  }
+  try {
+    await saveManualSpecsheetLayout(productName.value, bomCode.value, promoLayout.value || {}, null)
+    ElMessage.success('布局/样式已保存')
+  } catch (e) {
+    ElMessage.error(`保存布局失败: ${e?.message || '未知错误'}`)
+  }
+}
+
+const _dragState = ref({
+  active: false,
+  moved: false,
+  id: '',
+  pointerId: 0,
+  pointerType: '',
+  startX: 0,
+  startY: 0,
+  baseTx: 0,
+  baseTy: 0,
+})
+
+const onPromoBlockPointerDown = (evt, id) => {
+  if (!promoEditMode.value) return
+  if (!evt || evt.button === 2) return
+
+  selectedPromoBlockId.value = id
+  _syncSelectedStyleFromLayout(id)
+
+  // Editing mode: click selects. Dragging requires holding Alt (mouse).
+  if ((evt.pointerType === 'mouse' || !evt.pointerType) && !evt.altKey) {
+    evt.stopPropagation()
+    return
+  }
+
+  const isEditingText = evt.target && (evt.target.isContentEditable || evt.target.closest?.('[contenteditable="true"]'))
+  if (isEditingText) return
+
+  const b = _ensureBlockLayout(id)
+  _dragState.value = {
+    active: true,
+    moved: false,
+    id,
+    pointerId: evt.pointerId,
+    pointerType: evt.pointerType || '',
+    startX: evt.clientX,
+    startY: evt.clientY,
+    baseTx: typeof b.tx === 'number' ? b.tx : 0,
+    baseTy: typeof b.ty === 'number' ? b.ty : 0,
+  }
+  try {
+    if (evt.pointerType !== 'mouse') {
+      evt.currentTarget && evt.currentTarget.setPointerCapture && evt.currentTarget.setPointerCapture(evt.pointerId)
+    }
+  } catch (e) {}
+  evt.stopPropagation()
+  evt.preventDefault()
+}
+
+const _onPromoPointerMove = (evt) => {
+  if (!promoEditMode.value) return
+  const st = _dragState.value
+  if (!st?.active) return
+  if (evt.pointerId !== st.pointerId) return
+
+  // Mouse: if button is no longer pressed, stop dragging to avoid drift.
+  if ((st.pointerType === 'mouse' || evt.pointerType === 'mouse') && evt.buttons === 0) {
+    _dragState.value = { active: false, moved: false, id: '', pointerId: 0, pointerType: '', startX: 0, startY: 0, baseTx: 0, baseTy: 0 }
+    return
+  }
+
+  const dx = evt.clientX - st.startX
+  const dy = evt.clientY - st.startY
+
+  if (!st.moved) {
+    if (Math.hypot(dx, dy) < 10) return
+    st.moved = true
+  }
+
+  const b = _ensureBlockLayout(st.id)
+  b.tx = st.baseTx + dx
+  b.ty = st.baseTy + dy
+}
+
+const _onPromoPointerUp = (evt) => {
+  const st = _dragState.value
+  if (!st?.active) return
+  if (evt.pointerId !== st.pointerId) return
+  _dragState.value = { active: false, moved: false, id: '', pointerId: 0, pointerType: '', startX: 0, startY: 0, baseTx: 0, baseTy: 0 }
+}
+
+onMounted(() => {
+  window.addEventListener('pointermove', _onPromoPointerMove)
+  window.addEventListener('pointerup', _onPromoPointerUp)
+  window.addEventListener('pointercancel', _onPromoPointerUp)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('pointermove', _onPromoPointerMove)
+  window.removeEventListener('pointerup', _onPromoPointerUp)
+  window.removeEventListener('pointercancel', _onPromoPointerUp)
+})
 
 const route = useRoute()
 const router = useRouter()
@@ -2582,6 +2995,7 @@ const _endProductPhotoDrag = () => {
 }
 
 const onProductPhotoMouseDown = (ev) => {
+  if (promoEditMode.value) return
   // Only start dragging when holding Alt + left mouse.
   if (!ev || ev.button !== 0 || !ev.altKey) return
   ev.preventDefault()
@@ -2812,6 +3226,7 @@ const onEditSectionTitle = (evt, key) => {
     ...promoSectionTitles.value,
     [key]: normalizedHtml,
   }
+  _setSectionTitleOverride(key, normalizedHtml)
 }
 
 // 打开 RAG 来源调试面板
@@ -2856,6 +3271,18 @@ const specColorPresets = [
   '#d6d3d1', '#a8a29e', '#78716c', '#57534e', '#3f3f46',
   '#d1d5db', '#94a3b8', '#64748b', '#475569', '#0f172a',
 ]
+
+const resetPromo = () => {
+  try {
+    if (specsheetInitialSnapshot.value) {
+      promoData.value = JSON.parse(JSON.stringify(specsheetInitialSnapshot.value))
+    } else {
+      promoData.value = JSON.parse(JSON.stringify(initialPromoData))
+    }
+  } catch (e) {
+    promoData.value = JSON.parse(JSON.stringify(initialPromoData))
+  }
+}
 
 const openSpecColorDialog = (idx) => {
   if (idx !== 0 && idx !== 1) return
@@ -2990,6 +3417,7 @@ const onEditTextWithCaret = (evt, path) => {
     obj = obj[k]
   }
   obj[segs[segs.length - 1]] = val
+  _setPromoOverride(String(path), val)
   nextTick(() => {
     if (!el || !el.firstChild) return
     try {
@@ -3046,6 +3474,7 @@ const onEditSpecification = (evt, idx) => {
   const specKey = Object.keys(promoData.value.Specifications[idx] || {})[0]
   if (specKey) {
     promoData.value.Specifications[idx] = { [specKey]: val }
+    _setPromoOverride(`Specifications.${idx}.${specKey}`, val)
   }
 
   // 下一帧恢复光标位置
@@ -5186,6 +5615,57 @@ onMounted(() => {
 }
 .promo-canvas :where([contenteditable="true"]) { cursor: text; outline: none; border: none; }
 .promo-canvas :where([contenteditable="true"]):focus { outline: none; box-shadow: none; border: none; background: transparent; }
+
+.promo-block.promo-editable {
+  cursor: move;
+}
+.promo-block.promo-editable.promo-selected {
+  outline: 2px solid rgba(64, 158, 255, 0.9);
+  outline-offset: 2px;
+}
+.promo-block.promo-editable:hover {
+  outline: 1px dashed rgba(64, 158, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.promo-props-panel {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 230px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 999;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.promo-props-panel .props-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.promo-props-panel .props-empty {
+  color: #6b7280;
+  font-size: 12px;
+}
+.promo-props-panel .props-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 0;
+}
+.promo-props-panel .props-label {
+  font-size: 12px;
+  color: #374151;
+  min-width: 44px;
+}
+.promo-props-panel .props-value {
+  font-size: 12px;
+  color: #111827;
+  word-break: break-all;
+  text-align: right;
+}
 .promo-top { height: 35%; background: #e9ecef url('/back/back.png') center/cover no-repeat; position: relative; cursor: pointer; }
 .promo-top-bg-layer { position: absolute; inset: 0; z-index: 1; cursor: pointer; }
 .logo-card { position: absolute; left: 20px; width: 100px; height: 130px; padding: 12px; background: #eaeff5; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #eee; display: flex; align-items: center; justify-content: center; box-sizing: border-box; z-index: 6; cursor: pointer; }

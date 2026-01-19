@@ -4,7 +4,29 @@ nohup: ignoring input
 > vite --host 0.0.0.0 --port 36963
 
 
-  VITE v6.4.1  ready in 327 ms
+  VITE v6.4.1  ready in 305 ms
 
   ➜  Local:   http://localhost:36963/
   ➜  Network: http://10.18.20.167:36963/
+8:24:03 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:24:25 PM [vite] (client) hmr update /src/views/ProductDetail.vue
+8:27:12 PM [vite] (client) hmr update /src/views/ProductDetail.vue
+8:27:13 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:30:54 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:31:12 PM [vite] (client) hmr update /src/views/ProductDetail.vue
+8:32:44 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:32:56 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:40:41 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:40:45 PM [vite] (client) hmr update /src/views/ProductManual.vue
+8:40:49 PM [vite] (client) hmr update /src/views/ProductDetail.vue
+9:07:39 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:11:15 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:11:31 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:16:20 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:20:39 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:25:47 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:29:44 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:33:08 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:38:46 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:39:59 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue
+9:48:57 PM [vite] (client) hmr update /src/views/PosterCanvasEditor.vue

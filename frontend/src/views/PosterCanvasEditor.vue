@@ -828,6 +828,14 @@ const groupActiveSelection = () => {
     } catch (e) {}
     canvas.requestRenderAll()
     updateObjOverlay()
+    try {
+      requestAnimationFrame(() => {
+        try {
+          canvas.requestRenderAll()
+          updateObjOverlay()
+        } catch (e) {}
+      })
+    } catch (e) {}
     scheduleHistory()
   } catch (e) {}
   finally {
@@ -853,6 +861,7 @@ const ungroupActiveGroup = () => {
   if (isLockedBottomLayer(obj)) return
 
   try {
+    let prevVpt = null
     let groupRect = null
     try {
       groupRect = obj.getBoundingRect?.(true, true) || null
@@ -962,34 +971,92 @@ const ungroupActiveGroup = () => {
     if (!items.length) return
     const groupIndex = (canvas.getObjects?.() || []).indexOf(obj)
 
-    // Let fabric restore absolute coords. Do NOT apply extra manual transforms (causes drift).
     try {
-      refreshFabricCoords(obj)
-      if (typeof obj._restoreObjectsState === 'function') obj._restoreObjectsState()
+      prevVpt = Array.isArray(canvas.viewportTransform) ? canvas.viewportTransform.slice() : null
+      canvas.setViewportTransform([1, 0, 0, 1, 0, 0])
+      canvas.calcOffset()
     } catch (e) {}
+
     try {
-      canvas.remove(obj)
+      groupRect = obj.getBoundingRect?.(true, true) || groupRect
     } catch (e) {}
-    items.forEach((o) => {
+
+    let liveItems = items
+    let ungroupOk = false
+
+    // Prefer Fabric's official ungroup path (Fabric 6+): toActiveSelection() handles restore + re-add.
+    // Run under identity VPT to avoid viewport-related drift.
+    try {
+      if (typeof obj.toActiveSelection === 'function') {
+        const sel = obj.toActiveSelection()
+        if (sel) {
+          liveItems = typeof sel.getObjects === 'function' ? (sel.getObjects() || []) : liveItems
+          ungroupOk = true
+        }
+      }
+    } catch (e) {}
+
+    // Fallback for environments where toActiveSelection is unavailable/failed.
+    if (!ungroupOk) {
       try {
-        try {
-          if (typeof o?._set === 'function') o._set('group', null)
-        } catch (e) {}
-        try { o.group = null } catch (e) {}
-        try { o.parent = null } catch (e) {}
-        try { o._group = null } catch (e) {}
-        try { o.__owningGroup = null } catch (e) {}
-        try { o.canvas = canvas } catch (e) {}
-        refreshFabricCoords(o)
-        canvas.add(o)
+        // Let fabric restore absolute coords. Do NOT apply extra manual transforms (causes drift).
+        refreshFabricCoords(obj)
+        if (typeof obj._restoreObjectsState === 'function') obj._restoreObjectsState()
       } catch (e) {}
-    })
-    try { alignItemsToGroupRect(items) } catch (e) {}
+      try {
+        canvas.remove(obj)
+      } catch (e) {}
+      liveItems = items
+      liveItems.forEach((o) => {
+        try {
+          try {
+            if (typeof o?._set === 'function') o._set('group', null)
+          } catch (e) {}
+          try { o.group = null } catch (e) {}
+          try { o.parent = null } catch (e) {}
+          try { o._group = null } catch (e) {}
+          try { o.__owningGroup = null } catch (e) {}
+          try { o.canvas = canvas } catch (e) {}
+          refreshFabricCoords(o)
+          canvas.add(o)
+        } catch (e) {}
+      })
+      try {
+        if (typeof FabricActiveSelection === 'function') {
+          const sel = new FabricActiveSelection(liveItems, { canvas })
+          ungroupOk = true
+        }
+      } catch (e) {}
+    }
+
     try {
-      if (typeof FabricActiveSelection === 'function') {
-        const sel = new FabricActiveSelection(items, { canvas })
-        canvas.setActiveObject(sel)
-        sanitizeActiveSelection()
+      if (groupRect) {
+        let minL = Infinity
+        let minT = Infinity
+        let maxR = -Infinity
+        let maxB = -Infinity
+        ;(liveItems || []).forEach((o) => {
+          try {
+            const r = o?.getBoundingRect?.(true, true)
+            if (!r) return
+            const l = Number(r.left)
+            const t = Number(r.top)
+            const w = Number(r.width)
+            const h = Number(r.height)
+            if (!Number.isFinite(l) || !Number.isFinite(t) || !Number.isFinite(w) || !Number.isFinite(h)) return
+            minL = Math.min(minL, l)
+            minT = Math.min(minT, t)
+            maxR = Math.max(maxR, l + w)
+            maxB = Math.max(maxB, t + h)
+          } catch (e) {}
+        })
+        if (Number.isFinite(minL) && Number.isFinite(minT) && Number.isFinite(maxR) && Number.isFinite(maxB)) {
+          const dx = Number(groupRect.left) - minL
+          const dy = Number(groupRect.top) - minT
+          if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+            try { alignItemsToGroupRect(liveItems) } catch (e) {}
+          }
+        }
       }
     } catch (e) {}
 
@@ -1003,7 +1070,7 @@ const ungroupActiveGroup = () => {
         const objs = canvas.getObjects?.() || []
         const firstIdx = getFirstMovableCanvasIndex()
         const base = Math.max(firstIdx, groupIndex)
-        items.forEach((o, i) => {
+        liveItems.forEach((o, i) => {
           try {
             canvas.moveObjectTo(o, Math.min(base + i, objs.length - 1))
           } catch (e) {}
@@ -1011,11 +1078,28 @@ const ungroupActiveGroup = () => {
       }
     } catch (e) {}
 
+    try {
+      if (prevVpt) {
+        canvas.setViewportTransform(prevVpt)
+        canvas.calcOffset()
+      }
+    } catch (e) {}
+
+    // Scheme B: do not keep multi-selection after ungroup.
+    try {
+      canvas.discardActiveObject()
+    } catch (e) {}
+
     canvas.requestRenderAll()
     updateObjOverlay()
     scheduleHistory()
   } catch (e) {}
   finally {
+    try {
+      if (prevVpt) {
+        canvas.setViewportTransform(prevVpt)
+      }
+    } catch (e) {}
     try { canvas.calcOffset() } catch (e) {}
     try {
       const ao = canvas.getActiveObject?.()
@@ -2698,6 +2782,7 @@ const updateObjOverlay = () => {
   const t = obj ? String(obj.type || '') : ''
   const tl = t.toLowerCase()
   const supported = tl === 'image' || tl === 'textbox' || tl === 'activeselection' || tl === 'group'
+  const singleObject = tl === 'image' || tl === 'textbox'
   if (!obj || !supported) {
     objOverlay.visible = false
     objOverlay.sizeVisible = false
@@ -2727,8 +2812,8 @@ const updateObjOverlay = () => {
   objOverlay.left = Math.max(12, Math.min(sr.centerX, stage.clientWidth - 12))
   objOverlay.top = preferTop ? (sr.top - gap) : (sr.bottom + gap)
 
-  // size tag only for images
-  if (t === 'image') {
+  // size tag only for images (single object only)
+  if (t === 'image' && singleObject) {
     const getScaledDim = (o, key) => {
       try {
         if (key === 'w' && typeof o.getScaledWidth === 'function') return o.getScaledWidth()
@@ -2746,6 +2831,12 @@ const updateObjOverlay = () => {
     objOverlay.sizeTop = Math.max(12, Math.min((sr.topRight?.y ?? sr.top) - 4, stage.clientHeight - 12))
   } else {
     objOverlay.sizeVisible = false
+  }
+
+  // Custom resize handles only apply to single objects.
+  if (!singleObject) {
+    resizeOverlay.visible = false
+    return
   }
 
   resizeOverlay.visible = true
