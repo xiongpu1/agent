@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import AppLayout from '@/views/AppLayout.vue'
 import Home from '@/views/Home.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 import ProductBoms from '@/views/ProductBoms.vue'
@@ -12,48 +13,63 @@ import PromptPlaybook from '@/views/PromptPlaybook.vue'
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/product/:id/boms',
-    name: 'ProductBoms',
-    component: ProductBoms
-  },
-  {
-    path: '/product/:id/overview',
-    name: 'ProductBomOverview',
-    component: ProductBomOverview
-  },
-  {
-    path: '/product/:id/boms/:bom',
-    name: 'ProductBomDetail',
-    component: ProductBomDetail
-  },
-  {
-    path: '/product/:id',
-    name: 'ProductDetail',
-    component: ProductDetail
-  },
-  {
-    path: '/manual/review',
-    name: 'ManualReview',
-    component: ManualReview
-  },
-  {
-    path: '/manual/manual-detail',
-    name: 'ProductManual',
-    component: ProductManual
-  },
-  {
-    path: '/prompt-playbook',
-    name: 'PromptPlaybook',
-    component: PromptPlaybook
-  },
-  {
-    path: '/poster-editor',
-    name: 'PosterCanvasEditor',
-    component: PosterCanvasEditor
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: Home,
+        meta: { moduleKey: 'home' }
+      },
+      {
+        path: 'product/:id/boms',
+        name: 'ProductBoms',
+        component: ProductBoms,
+        meta: { moduleKey: 'kbSearch' }
+      },
+      {
+        path: 'product/:id/overview',
+        name: 'ProductBomOverview',
+        component: ProductBomOverview,
+        meta: { moduleKey: 'kbSearch' }
+      },
+      {
+        path: 'product/:id/boms/:bom',
+        name: 'ProductBomDetail',
+        component: ProductBomDetail,
+        meta: { moduleKey: 'kbSearch' }
+      },
+      {
+        path: 'product/:id',
+        name: 'ProductDetail',
+        component: ProductDetail,
+        meta: { moduleKey: 'kbSearch' }
+      },
+      {
+        path: 'manual/review',
+        name: 'ManualReview',
+        component: ManualReview,
+        meta: { moduleKey: 'manual' }
+      },
+      {
+        path: 'manual/manual-detail',
+        name: 'ProductManual',
+        component: ProductManual,
+        meta: { moduleKey: 'export' }
+      },
+      {
+        path: 'prompt-playbook',
+        name: 'PromptPlaybook',
+        component: PromptPlaybook,
+        meta: { moduleKey: 'kbSearch' }
+      },
+      {
+        path: 'poster-editor',
+        name: 'PosterCanvasEditor',
+        component: PosterCanvasEditor,
+        meta: { moduleKey: 'export' }
+      }
+    ]
   }
 ]
 

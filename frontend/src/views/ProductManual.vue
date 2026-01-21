@@ -173,6 +173,16 @@
             </div>
           </div>
           <div class="row gap12">
+            <el-select
+              v-model="inlineFontFamily"
+              size="small"
+              style="width: 180px"
+              placeholder="选中文字改字体"
+              :disabled="false"
+              @change="applyInlineFontFamily"
+            >
+              <el-option v-for="f in promoFontCandidates" :key="f" :label="f" :value="f" />
+            </el-select>
             <el-button size="small" @click="resetPromo">重置内容</el-button>
             <el-button size="small" type="primary" @click="exportPromo">导出为图片</el-button>
             <el-button size="small" type="warning" @click="exportPromoPdfEditable">导出为PDF</el-button>
@@ -324,8 +334,10 @@
                   @pointerdown="onPromoBlockPointerDown($event, 'productTitle')"
                   contenteditable="true"
                   data-placeholder="Vastera"
-                  @input="onEditTextWithCaret($event, 'productTitle')"
-                  v-text="promoData.productTitle"
+                  @focus="setActiveInlineEditable($event, { type: 'promoText', path: 'productTitle' })"
+                  @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: 'productTitle' })"
+                  @input="onEditTextWithCaret($event, 'productTitle', true)"
+                  v-html="promoData.productTitle"
                 ></div>
                 <div class="section">
                   <div class="h2" data-placeholder="Feature">Feature</div>
@@ -336,10 +348,9 @@
                       </el-tooltip>
                       <div class="icon-text">
                         <div class="icon-t">Capacity</div>
-                        <div class="icon-num" contenteditable="true" data-placeholder="1" @input="onEditTextWithCaret($event, 'features.capacity')" v-text="promoData.features.capacity"></div>
+                        <div class="icon-num" contenteditable="true" data-placeholder="1" @focus="setActiveInlineEditable($event, { type: 'promoText', path: 'features.capacity' })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: 'features.capacity' })" @input="onEditTextWithCaret($event, 'features.capacity', true)" v-html="promoData.features.capacity"></div>
                       </div>
                     </div>
-
 
                     <div class="icon promo-block" data-layout-id="featureJets" :class="promoBlockClass('featureJets')" :style="mergePromoBlockStyle('featureJets')" @pointerdown="onPromoBlockPointerDown($event, 'featureJets')">
                       <el-tooltip :content="FEATURE_ICON_UPLOAD_TIPS" placement="top">
@@ -347,7 +358,7 @@
                       </el-tooltip>
                       <div class="icon-text">
                         <div class="icon-t">Jets</div>
-                        <div class="icon-num" contenteditable="true" data-placeholder="0" @input="onEditTextWithCaret($event, 'features.jets')" v-text="promoData.features.jets"></div>
+                        <div class="icon-num" contenteditable="true" data-placeholder="0" @focus="setActiveInlineEditable($event, { type: 'promoText', path: 'features.jets' })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: 'features.jets' })" @input="onEditTextWithCaret($event, 'features.jets', true)" v-html="promoData.features.jets"></div>
                       </div>
                     </div>
 
@@ -357,7 +368,7 @@
                       </el-tooltip>
                       <div class="icon-text">
                         <div class="icon-t">Pumps</div>
-                        <div class="icon-num" contenteditable="true" data-placeholder="2" @input="onEditTextWithCaret($event, 'features.pumps')" v-text="promoData.features.pumps"></div>
+                        <div class="icon-num" contenteditable="true" data-placeholder="2" @focus="setActiveInlineEditable($event, { type: 'promoText', path: 'features.pumps' })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: 'features.pumps' })" @input="onEditTextWithCaret($event, 'features.pumps', true)" v-html="promoData.features.pumps"></div>
                       </div>
                     </div>
                     
@@ -370,7 +381,7 @@
                     </div>
                     <div class="m-text">
                       <div class="m-label">Measurements</div>
-                      <div class="m-value" contenteditable="true" data-placeholder="70&quot; × 33&quot; × 37&quot;" @input="onEditTextWithCaret($event, 'measurements')" v-text="promoData.measurements"></div>
+                      <div class="m-value" contenteditable="true" data-placeholder="70&quot; × 33&quot; × 37&quot;" @focus="setActiveInlineEditable($event, { type: 'promoText', path: 'measurements' })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: 'measurements' })" @input="onEditTextWithCaret($event, 'measurements', true)" v-html="promoData.measurements"></div>
                     </div>
                   </div>
                 </div>
@@ -379,12 +390,14 @@
                   <div
                     class="h2"
                     contenteditable="true"
+                    @focus="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'premium' })"
+                    @mouseup="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'premium' })"
                     @blur="onEditSectionTitle($event, 'premium')"
                     v-html="promoSectionTitles.premium"
                   ></div>
                   <ul class="bullets">
                     <li v-for="(it, idx) in promoData.premiumFeatures" :key="'s0-'+idx">
-                      <span contenteditable="true" @input="onEditTextWithCaret($event, `premiumFeatures.${idx}`)" @keydown="onListItemKeydown($event, 'premiumFeatures', idx)" v-text="it"></span>
+                      <span contenteditable="true" @focus="setActiveInlineEditable($event, { type: 'promoText', path: `premiumFeatures.${idx}` })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: `premiumFeatures.${idx}` })" @input="onEditTextWithCaret($event, `premiumFeatures.${idx}`, true)" @keydown="onListItemKeydown($event, 'premiumFeatures', idx)" v-html="it"></span>
                     </li>
                   </ul>
                 </div>
@@ -393,12 +406,14 @@
                   <div
                     class="h2"
                     contenteditable="true"
+                    @focus="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'insulation' })"
+                    @mouseup="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'insulation' })"
                     @blur="onEditSectionTitle($event, 'insulation')"
                     v-html="promoSectionTitles.insulation"
                   ></div>
                   <ul class="bullets">
                     <li v-for="(it, idx) in promoData.insulationFeatures" :key="'s1-'+idx">
-                      <span contenteditable="true" @input="onEditTextWithCaret($event, `insulationFeatures.${idx}`)" @keydown="onListItemKeydown($event, 'insulationFeatures', idx)" v-text="it"></span>
+                      <span contenteditable="true" @focus="setActiveInlineEditable($event, { type: 'promoText', path: `insulationFeatures.${idx}` })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: `insulationFeatures.${idx}` })" @input="onEditTextWithCaret($event, `insulationFeatures.${idx}`, true)" @keydown="onListItemKeydown($event, 'insulationFeatures', idx)" v-html="it"></span>
                     </li>
                   </ul>
                 </div>
@@ -407,12 +422,14 @@
                   <div
                     class="h2"
                     contenteditable="true"
+                    @focus="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'extra' })"
+                    @mouseup="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'extra' })"
                     @blur="onEditSectionTitle($event, 'extra')"
                     v-html="promoSectionTitles.extra"
                   ></div>
                   <ul class="bullets">
                     <li v-for="(it, idx) in promoData.extraFeatures" :key="'s2-'+idx">
-                      <span contenteditable="true" @input="onEditTextWithCaret($event, `extraFeatures.${idx}`)" @keydown="onListItemKeydown($event, 'extraFeatures', idx)" v-text="it"></span>
+                      <span contenteditable="true" @focus="setActiveInlineEditable($event, { type: 'promoText', path: `extraFeatures.${idx}` })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: `extraFeatures.${idx}` })" @input="onEditTextWithCaret($event, `extraFeatures.${idx}`, true)" @keydown="onListItemKeydown($event, 'extraFeatures', idx)" v-html="it"></span>
                     </li>
                   </ul>
                 </div>
@@ -425,6 +442,8 @@
                     class="h2"
                     data-placeholder="Specifications"
                     contenteditable="true"
+                    @focus="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'specifications' })"
+                    @mouseup="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'specifications' })"
                     @blur="onEditSectionTitle($event, 'specifications')"
                     v-html="promoSectionTitles.specifications"
                   ></div>
@@ -449,7 +468,7 @@
                         </template>
                         <!-- 其他字段显示文本 -->
                         <template v-else>
-                          <span contenteditable="true" data-placeholder="" @input="onEditSpecification($event, idx)" v-text="Object.values(specObj)[0]"></span>
+                          <span contenteditable="true" data-placeholder="" @focus="setActiveInlineEditable($event, { type: 'promoSpec', idx })" @mouseup="setActiveInlineEditable($event, { type: 'promoSpec', idx })" @input="onEditSpecification($event, idx, true)" v-html="Object.values(specObj)[0]"></span>
                         </template>
                       </span>
                     </li>
@@ -460,12 +479,14 @@
                   <div
                     class="h2"
                     contenteditable="true"
+                    @focus="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'smartWater' })"
+                    @mouseup="setActiveInlineEditable($event, { type: 'promoSectionTitle', key: 'smartWater' })"
                     @blur="onEditSectionTitle($event, 'smartWater')"
                     v-html="promoSectionTitles.smartWater"
                   ></div>
                   <ul class="bullets">
                     <li v-for="(it, idx) in promoData.smartWater" :key="'sw-'+idx">
-                      <span contenteditable="true" @input="onEditTextWithCaret($event, `smartWater.${idx}`)" @keydown="onListItemKeydown($event, 'smartWater', idx)" v-text="it"></span>
+                      <span contenteditable="true" @focus="setActiveInlineEditable($event, { type: 'promoText', path: `smartWater.${idx}` })" @mouseup="setActiveInlineEditable($event, { type: 'promoText', path: `smartWater.${idx}` })" @input="onEditTextWithCaret($event, `smartWater.${idx}`, true)" @keydown="onListItemKeydown($event, 'smartWater', idx)" v-html="it"></span>
                     </li>
                   </ul>
                 </div>
@@ -1236,6 +1257,10 @@ const promoLayout = ref({
   overrides: {},
 })
 
+const inlineFontFamily = ref('')
+const activeInlineEditable = ref(null)
+const lastInlineSelection = ref(null)
+
 const promoFontCandidates = [
   'AgencyFB-Bold',
   'SourceSansPro-Regular',
@@ -1248,6 +1273,210 @@ const promoFontCandidates = [
   'Verdana',
   'Tahoma',
 ]
+
+const setActiveInlineEditable = (evt, meta) => {
+  try {
+    const rawEl = evt?.target
+    const el = rawEl?.closest?.('[contenteditable="true"]') || rawEl
+    if (!el) return
+    if (!el.isContentEditable) return
+    activeInlineEditable.value = { el, ...(meta || {}) }
+
+    // Cache current selection (Range) so changing font from a toolbar/select
+    // (which may steal focus and clear selection) can still apply to the last selection.
+    try {
+      const sel = window.getSelection?.()
+      if (!sel || sel.rangeCount <= 0) return
+      const range = sel.getRangeAt(0)
+      if (!range || range.collapsed) return
+      // Only cache selection that is inside this editable.
+      const sc = range.startContainer
+      const ec = range.endContainer
+      if (!sc || !ec) return
+      if (!el.contains(sc) || !el.contains(ec)) return
+      lastInlineSelection.value = { el, range: range.cloneRange() }
+    } catch (e) {}
+  } catch (e) {}
+}
+
+const _cacheInlineSelectionFromSelection = () => {
+  try {
+    const sel = window.getSelection?.()
+    if (!sel || sel.rangeCount <= 0) return
+    const range = sel.getRangeAt(0)
+    if (!range || range.collapsed) return
+
+    const sc = range.startContainer
+    const ec = range.endContainer
+    const el0 = (sc && sc.nodeType === Node.ELEMENT_NODE) ? sc : sc?.parentElement
+    const el1 = (ec && ec.nodeType === Node.ELEMENT_NODE) ? ec : ec?.parentElement
+    const editable = el0?.closest?.('[contenteditable="true"]') || el1?.closest?.('[contenteditable="true"]') || null
+    if (!editable) return
+    if (!editable.contains(sc) || !editable.contains(ec)) return
+    lastInlineSelection.value = { el: editable, range: range.cloneRange() }
+  } catch (e) {}
+}
+
+const _restoreLastInlineSelectionIfNeeded = (targetEl) => {
+  try {
+    const sel = window.getSelection?.()
+    if (!sel) return false
+    const hasActiveRange = sel.rangeCount > 0 && !sel.getRangeAt(0)?.collapsed
+    if (hasActiveRange) return true
+
+    const cached = lastInlineSelection.value
+    const el = cached?.el
+    const range = cached?.range
+    if (!targetEl || !el || !range) return false
+    if (el !== targetEl) return false
+    if (!el.isConnected) return false
+    const sc = range.startContainer
+    const ec = range.endContainer
+    if (!sc || !ec) return false
+    if (!el.contains(sc) || !el.contains(ec)) return false
+
+    sel.removeAllRanges()
+    sel.addRange(range)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const _sanitizeInlineHtml = (raw) => {
+  try {
+    const html = String(raw ?? '')
+    if (!html) return ''
+
+    const wrap = document.createElement('div')
+    wrap.innerHTML = html
+
+    const walk = (node) => {
+      if (!node) return
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const tag = String(node.tagName || '').toLowerCase()
+
+        // Allow only a minimal set of tags.
+        if (tag !== 'span' && tag !== 'br') {
+          const parent = node.parentNode
+          if (parent) {
+            while (node.firstChild) parent.insertBefore(node.firstChild, node)
+            parent.removeChild(node)
+          }
+          return
+        }
+
+        // Strip dangerous attributes. Only keep style on span.
+        const attrs = Array.from(node.attributes || [])
+        attrs.forEach((a) => {
+          const name = String(a?.name || '').toLowerCase()
+          if (tag === 'span' && name === 'style') return
+          node.removeAttribute(a.name)
+        })
+
+        if (tag === 'span') {
+          const style = String(node.getAttribute('style') || '')
+          // Keep only font-family.
+          const m = style.match(/font-family\s*:\s*([^;]+)\s*;?/i)
+          if (m && m[1]) {
+            const ff = m[1].trim()
+            node.setAttribute('style', `font-family: ${ff};`)
+          } else {
+            node.removeAttribute('style')
+          }
+        }
+      }
+      // Use a snapshot because we might mutate children.
+      const kids = Array.from(node.childNodes || [])
+      kids.forEach((c) => walk(c))
+    }
+    walk(wrap)
+    return wrap.innerHTML
+  } catch (e) {
+    return String(raw ?? '')
+  }
+}
+
+const _applyFontFamilyToSelection = (fontFamily) => {
+  try {
+    const sel = window.getSelection()
+    if (!sel || sel.rangeCount <= 0) return { ok: false, reason: 'no_selection' }
+    const range = sel.getRangeAt(0)
+    if (!range || range.collapsed) return { ok: false, reason: 'collapsed' }
+
+    const anchor = sel.anchorNode
+    const focus = sel.focusNode
+    const findEditable = (n) => {
+      const el = (n && n.nodeType === Node.ELEMENT_NODE) ? n : n?.parentElement
+      return el?.closest?.('[contenteditable="true"]') || null
+    }
+
+    const ed1 = findEditable(anchor)
+    const ed2 = findEditable(focus)
+    const targetEl = (activeInlineEditable.value?.el && activeInlineEditable.value.el.isConnected)
+      ? activeInlineEditable.value.el
+      : (ed1 || ed2)
+
+    if (!targetEl) return { ok: false, reason: 'not_in_editable' }
+    if (ed1 && ed1 !== targetEl) return { ok: false, reason: 'cross_editable' }
+    if (ed2 && ed2 !== targetEl) return { ok: false, reason: 'cross_editable' }
+
+    const span = document.createElement('span')
+    span.style.fontFamily = String(fontFamily || '').trim()
+
+    try {
+      range.surroundContents(span)
+    } catch (e) {
+      // Fallback: extract and wrap
+      const frag = range.extractContents()
+      span.appendChild(frag)
+      range.insertNode(span)
+    }
+
+    // Restore selection to wrapped content
+    try {
+      const r = document.createRange()
+      r.selectNodeContents(span)
+      sel.removeAllRanges()
+      sel.addRange(r)
+    } catch (e) {}
+
+    return { ok: true, el: targetEl }
+  } catch (e) {
+    return { ok: false, reason: 'error' }
+  }
+}
+
+const applyInlineFontFamily = () => {
+  const ff = String(inlineFontFamily.value || '').trim()
+  if (!ff) return
+
+  // If selection got cleared by clicking the font dropdown, restore it from cache.
+  const meta0 = activeInlineEditable.value || {}
+  const el0 = meta0?.el
+  if (el0) {
+    _restoreLastInlineSelectionIfNeeded(el0)
+  } else {
+    // If we don't have an active editable (e.g. focus stolen by toolbar), try cached one.
+    const cachedEl = lastInlineSelection.value?.el
+    if (cachedEl) _restoreLastInlineSelectionIfNeeded(cachedEl)
+  }
+
+  const r = _applyFontFamilyToSelection(ff)
+  if (!r?.ok) return
+
+  const meta = activeInlineEditable.value || {}
+  const el = meta?.el
+  if (!el) return
+  // Persist the HTML back to data.
+  if (meta.type === 'promoText' && meta.path) {
+    onEditTextWithCaret({ target: el }, String(meta.path), true)
+  } else if (meta.type === 'promoSpec' && typeof meta.idx === 'number') {
+    onEditSpecification({ target: el }, meta.idx, true)
+  } else if (meta.type === 'promoSectionTitle' && meta.key) {
+    onEditSectionTitle({ target: el }, String(meta.key))
+  }
+}
 
 const selectedPromoBlockId = ref('')
 const selectedBlockStyle = ref({
@@ -1550,12 +1779,17 @@ onMounted(() => {
   window.addEventListener('pointermove', _onPromoPointerMove)
   window.addEventListener('pointerup', _onPromoPointerUp)
   window.addEventListener('pointercancel', _onPromoPointerUp)
+
+  // Keep a cached copy of the latest text selection inside any contenteditable.
+  // This enables toolbar actions (like font dropdown) even when focus changes.
+  document.addEventListener('selectionchange', _cacheInlineSelectionFromSelection)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('pointermove', _onPromoPointerMove)
   window.removeEventListener('pointerup', _onPromoPointerUp)
   window.removeEventListener('pointercancel', _onPromoPointerUp)
+  document.removeEventListener('selectionchange', _cacheInlineSelectionFromSelection)
 })
 
 const route = useRoute()
@@ -3202,26 +3436,11 @@ const promoSectionTitles = ref({
 const onEditSectionTitle = (evt, key) => {
   const el = evt?.target
   if (!el) return
-  const escapeHtml = (s) => String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-
-  const text = String(el.innerText || '')
-    .replace(/\r/g, '')
-    .trim()
-
-  const lines = text
-    .split('\n')
-    .map((l) => l.trim())
-    .filter((l) => l.length > 0)
-
-  const normalizedHtml = lines.length ? lines.map(escapeHtml).join('<br>') : ''
-
-  // Normalize DOM immediately to prevent styled HTML from lingering.
-  el.innerHTML = normalizedHtml
+  const raw = el.innerHTML ?? ''
+  const normalizedHtml = _sanitizeInlineHtml(raw)
+  try {
+    if (el.innerHTML !== normalizedHtml) el.innerHTML = normalizedHtml
+  } catch (e) {}
   promoSectionTitles.value = {
     ...promoSectionTitles.value,
     [key]: normalizedHtml,
@@ -3396,7 +3615,7 @@ const onListItemKeydown = (evt, path, index) => {
   }
 }
 
-const onEditTextWithCaret = (evt, path) => {
+const onEditTextWithCaret = (evt, path, useHTML = false) => {
   const el = evt?.target
   if (!el || !path) return
   const selection = window.getSelection()
@@ -3408,7 +3627,13 @@ const onEditTextWithCaret = (evt, path) => {
     preCaretRange.setEnd(range.endContainer, range.endOffset)
     caretOffset = preCaretRange.toString().length
   }
-  const val = el.innerText ?? ''
+  const raw = useHTML ? (el.innerHTML ?? '') : (el.innerText ?? '')
+  const val = useHTML ? _sanitizeInlineHtml(raw) : raw
+  if (useHTML) {
+    try {
+      if (el.innerHTML !== val) el.innerHTML = val
+    } catch (e) {}
+  }
   const segs = String(path).split('.')
   let obj = promoData.value
   for (let i = 0; i < segs.length - 1; i++) {
@@ -3454,7 +3679,7 @@ const onEditTextWithCaret = (evt, path) => {
 }
 
 // 编辑规格项的函数（带光标位置保持）
-const onEditSpecification = (evt, idx) => {
+const onEditSpecification = (evt, idx, useHTML = false) => {
   const el = evt?.target
   if (!el) return
 
@@ -3470,7 +3695,13 @@ const onEditSpecification = (evt, idx) => {
   }
 
   // 更新规格数据
-  const val = el.innerText ?? ''
+  const raw = useHTML ? (el.innerHTML ?? '') : (el.innerText ?? '')
+  const val = useHTML ? _sanitizeInlineHtml(raw) : raw
+  if (useHTML) {
+    try {
+      if (el.innerHTML !== val) el.innerHTML = val
+    } catch (e) {}
+  }
   const specKey = Object.keys(promoData.value.Specifications[idx] || {})[0]
   if (specKey) {
     promoData.value.Specifications[idx] = { [specKey]: val }
@@ -5522,7 +5753,7 @@ onMounted(() => {
 .tabs { flex: 1; display: flex; justify-content: center; }
 .toolbar-like { display: flex; gap: 16px; }
 .content { display: grid; gap: 16px; }
-.product-header { display: flex; gap: 16px; align-items: center; padding: 12px; border: 1px solid var(--color-border, #ebeef5); border-radius: 10px; }
+.product-header { display: flex; gap: 16px; align-items: center; padding: 12px; border: 1px solid var(--color-border, #ebeef5); border-radius: 10px; background: #fff; }
 .thumb { width: 96px; height: 96px; object-fit: contain; border-radius: 8px; background: #fafafa; padding: 8px; }
 .meta .name { font-size: 18px; font-weight: 700; }
 .meta .sub { color: #666; }

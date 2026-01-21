@@ -353,6 +353,7 @@ const goProductDetail = async (bom) => {
       name: 'ManualReview',
       query: {
         sessionId,
+        moduleKey: route.query?.moduleKey || undefined,
       },
     })
   } catch (error) {

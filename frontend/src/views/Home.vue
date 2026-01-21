@@ -1,84 +1,81 @@
 
 <template>
-  <div class="page">
-    <div class="page-header">
-      <h1 class="title">基于产品知识库的内容生成系统</h1>
-      <div class="toolbar">
-        <el-button round :type="active === 'upload' ? 'primary' : ''" :plain="active !== 'upload'" :icon="Upload" @click="active = 'upload'">上传图片</el-button>
-        <el-button round :type="active === 'kbSearch' ? 'primary' : ''" :plain="active !== 'kbSearch'" :icon="Search" @click="active = 'kbSearch'">产品知识库</el-button>
-        <el-button round :type="active === 'manual' ? 'primary' : ''" :plain="active !== 'manual'" :icon="Notebook" @click="active = 'manual'">生成产品手册</el-button>
-        <el-button round :type="active === 'export' ? 'primary' : ''" :plain="active !== 'export'" :icon="Download" @click="active = 'export'">导出编辑器</el-button>
+  <div class="home-root">
+    <div class="home">
+      <div class="main-header">
+        <div>
+          <div class="main-title">{{ activeMeta.title }}</div>
+          <div class="main-sub">{{ activeMeta.hint }}</div>
+        </div>
       </div>
-    </div>
 
-    <div class="panel">
-      <!-- 上传图片 -->
-      <div v-if="active === 'upload'">
-        <div class="img-mgr">
-          <div class="img-mgr__left">
-            <div class="card-header">上传图片</div>
-            <div class="upload-form">
-              <el-form :model="uploadForm" label-width="100px">
-                <el-form-item label="产品名称">
-                  <el-input v-model="uploadForm.name" placeholder="请输入产品名称后再选择图片" />
-                </el-form-item>
-                <el-form-item label="选择图片">
-                  <el-upload
-                    class="uploader"
-                    drag
-                    action="#"
-                    :auto-upload="false"
-                    :file-list="fileList"
-                  >
-                    <div class="el-upload__text">将文件拖到此处，或<em>点击选择</em></div>
-                    <template #tip>
-                      <div class="el-upload__tip">仅前端布局占位，未接入真实上传。</div>
-                    </template>
-                  </el-upload>
-                </el-form-item>
-                <div class="actions">
-                  <el-button type="primary">上传</el-button>
+      <div class="panel">
+          <!-- 上传图片 -->
+          <div v-if="active === 'upload'">
+            <div class="img-mgr">
+              <div class="img-mgr__left">
+                <div class="card-header">上传图片</div>
+                <div class="upload-form">
+                  <el-form :model="uploadForm" label-width="100px">
+                    <el-form-item label="产品名称">
+                      <el-input v-model="uploadForm.name" placeholder="请输入产品名称后再选择图片" />
+                    </el-form-item>
+                    <el-form-item label="选择图片">
+                      <el-upload
+                        class="uploader"
+                        drag
+                        action="#"
+                        :auto-upload="false"
+                        :file-list="fileList"
+                      >
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击选择</em></div>
+                        <template #tip>
+                          <div class="el-upload__tip">仅前端布局占位，未接入真实上传。</div>
+                        </template>
+                      </el-upload>
+                    </el-form-item>
+                    <div class="actions">
+                      <el-button type="primary">上传</el-button>
+                    </div>
+                  </el-form>
                 </div>
-              </el-form>
-            </div>
 
-            <div class="divider" />
+                <div class="divider" />
 
-            <div class="card-header">查询图片</div>
-            <div class="search-row">
-              <el-input v-model="imageSearchName" placeholder="输入产品名称进行查询（仅布局）" clearable />
-              <el-button type="primary">查询</el-button>
-            </div>
-          </div>
+                <div class="card-header">查询图片</div>
+                <div class="search-row">
+                  <el-input v-model="imageSearchName" placeholder="输入产品名称进行查询（仅布局）" clearable />
+                  <el-button type="primary">查询</el-button>
+                </div>
+              </div>
 
-          <div class="img-mgr__right">
-            <div class="list-toolbar">
-              <div class="list-title">图片列表</div>
-              <div class="list-actions">
-                <el-button>查看所有图片</el-button>
+              <div class="img-mgr__right">
+                <div class="list-toolbar">
+                  <div class="list-title">图片列表</div>
+                  <div class="list-actions">
+                    <el-button>查看所有图片</el-button>
+                  </div>
+                </div>
+                <el-table :data="imageList" border style="width: 100%">
+                  <el-table-column prop="name" label="产品名称" min-width="140" />
+                  <el-table-column label="缩略图" width="120">
+                    <template #default="scope">
+                      <img :src="scope.row.url" class="thumb" alt="thumb" @error="onImgError" />
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="filename" label="文件名" min-width="180" />
+                  <el-table-column label="操作" width="160">
+                    <template #default>
+                      <el-button link type="primary">修改</el-button>
+                      <el-button link type="danger">删除</el-button>
+                    </template>
+                  </el-table-column>
+                </el-table>
               </div>
             </div>
-            <el-table :data="imageList" border style="width: 100%">
-              <el-table-column prop="name" label="产品名称" min-width="140" />
-              <el-table-column label="缩略图" width="120">
-                <template #default="scope">
-                  <img :src="scope.row.url" class="thumb" alt="thumb" @error="onImgError" />
-                </template>
-              </el-table-column>
-              <el-table-column prop="filename" label="文件名" min-width="180" />
-              <el-table-column label="操作" width="160">
-                <template #default>
-                  <el-button link type="primary">修改</el-button>
-                  <el-button link type="danger">删除</el-button>
-                </template>
-              </el-table-column>
-            </el-table> 
           </div>
-        </div>
-
-      </div>
-      <!-- 查询知识库 -->
-      <div v-else-if="active === 'kbSearch'" class="section">
+          <!-- 查询知识库 -->
+          <div v-else-if="active === 'kbSearch'" class="section">
         <div class="card-header">产品知识库</div>
         <div class="product-panel">
           <div class="product-panel__header">所有物料编码</div>
@@ -168,6 +165,12 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- 知识库问答 -->
+      <div v-else-if="active === 'kbChat'" class="section">
+        <div class="card-header">知识库问答</div>
+        <KbChat />
       </div>
 
       <!-- 生成产品手册 -->
@@ -316,46 +319,47 @@
           </div>
           <el-button type="primary" text @click="openHistoryDialog">查看历史</el-button>
         </div>
-      </div>
+    </div>
 
-      <!-- 导出编辑器 -->
-      <div v-else class="section">
-        <div class="card-header">导出编辑器</div>
-        <div v-if="loadingMaterials" class="loading">加载中...</div>
-        <div v-else-if="materialsError" class="error">{{ materialsError }}</div>
-        <div v-else>
-          <div class="search-row product-search">
-            <el-input
-              v-model="exportMaterialKeyword"
-              placeholder="输入物料编码进行查询..."
-              clearable
-            >
-              <template #prefix>
-                <el-icon class="product-search-icon">
-                  <Search />
-                </el-icon>
-              </template>
-            </el-input>
-          </div>
-          <div v-if="filteredExportMaterials.length" class="product-list">
-            <el-card
-              v-for="materialCode in filteredExportMaterials"
-              :key="materialCode"
-              class="product-card"
-              shadow="hover"
-              @click="goToExportMaterial(materialCode)"
-            >
-              <div class="product-row">
-                <div class="product-name">{{ materialCode }}</div>
-                <div class="arrow">›</div>
-              </div>
-            </el-card>
-          </div>
-          <div v-else class="loading">未找到匹配的物料</div>
+    <!-- 导出编辑器 -->
+    <div v-else class="section">
+      <div class="card-header">导出编辑器</div>
+      <div v-if="loadingMaterials" class="loading">加载中...</div>
+      <div v-else-if="materialsError" class="error">{{ materialsError }}</div>
+      <div v-else>
+        <div class="search-row product-search">
+          <el-input
+            v-model="exportMaterialKeyword"
+            placeholder="输入物料编码进行查询..."
+            clearable
+          >
+            <template #prefix>
+              <el-icon class="product-search-icon">
+                <Search />
+              </el-icon>
+            </template>
+          </el-input>
         </div>
+        <div v-if="filteredExportMaterials.length" class="product-list">
+          <el-card
+            v-for="materialCode in filteredExportMaterials"
+            :key="materialCode"
+            class="product-card"
+            shadow="hover"
+            @click="goToExportMaterial(materialCode)"
+          >
+            <div class="product-row">
+              <div class="product-name">{{ materialCode }}</div>
+              <div class="arrow">›</div>
+            </div>
+          </el-card>
+        </div>
+        <div v-else class="loading">未找到匹配的物料</div>
       </div>
     </div>
-  </div>
+
+      </div>
+    </div>
 
   <el-dialog
     v-model="manualHistoryVisible"
@@ -435,6 +439,7 @@
       </div>
     </div>
   </el-dialog>
+  </div>
 </template>
 
 <script setup>
@@ -442,13 +447,30 @@ import { ref, computed, onMounted, watch, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Upload, Notebook, Search, Download, CaretBottom } from '@element-plus/icons-vue'
+import KbChat from '@/components/KbChat.vue'
 import { setManualData } from '@/stores/manualStore'
 import { createManualSession, runManualOcrSession } from '@/services/api'
 import { BOM_TYPES, BOM_CONFIG, createDefaultBomSelections } from '@/constants/bomOptions'
 
 const route = useRoute()
-const AVAILABLE_TABS = ['upload', 'kbSearch', 'manual', 'export']
+const AVAILABLE_TABS = ['upload', 'kbSearch', 'kbChat', 'manual', 'export']
 const active = ref(AVAILABLE_TABS.includes(route.query.tab) ? route.query.tab : 'export')
+
+const activeMeta = computed(() => {
+  switch (active.value) {
+    case 'upload':
+      return { title: '上传图片', hint: '填写产品名称后上传图片；上传完成后可在右侧列表查看。' }
+    case 'kbSearch':
+      return { title: '产品知识库', hint: '检索物料编码 / 配件名称，并查看对应资料入口。' }
+    case 'kbChat':
+      return { title: '知识库问答', hint: '' }
+    case 'manual':
+      return { title: '生成产品手册', hint: '上传产品/配件文件，完成 OCR 后进入说明书编辑页。' }
+    case 'export':
+    default:
+      return { title: '导出编辑器', hint: '输入物料编码检索，进入海报/规格页等导出编辑。' }
+  }
+})
 
 // 上传图片
 const fileList = ref([])
@@ -1124,7 +1146,7 @@ const goToExportMaterial = (materialCode) => {
   router.push({
     name: 'ProductBoms',
     params: { id: '0' },
-    query: { materialCode: code, label: code }
+    query: { materialCode: code, label: code, moduleKey: 'export' }
   })
 }
 
@@ -1175,25 +1197,204 @@ watch(accessoryKeyword, (value) => {
 
 .page {
   width: 100%;
-  padding: 24px;
+  min-height: 100vh;
+  padding: 0;
+  background: #f6f7fb;
 }
 
-.page-header {
-  display: grid;
-  justify-items: center;
-  gap: 30px;
-  margin-bottom: 16px;
-}
-
-.title {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.toolbar {
+.layout {
   display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 180px;
+  flex: 0 0 180px;
+  background: #ffffff;
+  border-right: 1px solid var(--color-border);
+  padding: 14px 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: width 160ms ease, flex-basis 160ms ease;
+}
+
+.sidebar.collapsed {
+  width: 72px;
+  flex-basis: 72px;
+}
+
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.sidebar.collapsed .brand {
+  gap: 0;
+}
+
+.brand-mark {
+  appearance: none;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-mark:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.brand-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  overflow: hidden;
+  transition: opacity 120ms ease, max-width 160ms ease;
+  max-width: 220px;
+  max-height: 44px;
+  transition-property: opacity, max-width, max-height;
+}
+
+.brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.2;
+}
+
+.collapse-btn {
+  flex: 0 0 auto;
+}
+
+.nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-item {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 12px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: #111827;
+}
+
+.nav-item:hover {
+  background: #f3f4f6;
+}
+
+.nav-item.active {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.nav-icon {
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+
+.nav-label {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 120ms ease, max-width 160ms ease;
+  max-width: 160px;
+}
+
+.sidebar.collapsed .brand-text {
+  opacity: 0;
+  max-width: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.sidebar.collapsed .nav-label {
+  opacity: 0;
+  max-width: 0;
+  pointer-events: none;
+}
+
+/* When expanding, wait a moment for sidebar width animation before showing text */
+.sidebar:not(.collapsed) .brand-text,
+.sidebar:not(.collapsed) .nav-label {
+  transition-delay: 120ms;
+}
+
+.sidebar.collapsed .brand-text,
+.sidebar.collapsed .nav-label {
+  transition-delay: 0ms;
+}
+
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100vh;
+  overflow: auto;
+  padding: 18px 18px 24px;
+}
+
+.main-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
+  padding: 6px 6px 14px;
+}
+
+.main-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.main-sub {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #6b7280;
 }
 
 .panel {
@@ -1201,6 +1402,13 @@ watch(accessoryKeyword, (value) => {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 1100px) {
+  .sidebar {
+    width: 72px;
+    flex-basis: 72px;
+  }
 }
 
 .uploader {

@@ -519,6 +519,14 @@ const clipboard = ref(null)
 const clipboardData = ref(null)
 const pasteCount = ref(0)
 
+const isShiftDown = ref(false)
+
+const snapGuides = reactive({
+  active: false,
+  vx: null,
+  hy: null,
+})
+
 const historyUndo = ref([])
 const historyRedo = ref([])
 let historyEnabled = false
@@ -592,6 +600,163 @@ const initHistoryForCanvas = () => {
 const isLockedBottomLayer = (o) => {
   const role = String(o?.data?.role || '')
   return role === 'artboard' || role === 'poster_background'
+}
+
+const clearSnapGuides = () => {
+  snapGuides.active = false
+  snapGuides.vx = null
+  snapGuides.hy = null
+  try {
+    const canvas = canvasInstance.value
+    if (canvas) canvas.requestRenderAll()
+  } catch (e) {}
+}
+
+const _worldToCanvasXY = (canvas, x, y) => {
+  const vpt = canvas?.viewportTransform || [1, 0, 0, 1, 0, 0]
+  return {
+    x: vpt[0] * x + vpt[2] * y + vpt[4],
+    y: vpt[1] * x + vpt[3] * y + vpt[5],
+  }
+}
+
+const renderSnapGuides = () => {
+  // Temporarily disabled: user requested to hide helper guide lines.
+  return
+}
+
+const handleObjectMovingWithSnap = (opt) => {
+  const canvas = canvasInstance.value
+  if (!canvas) return
+  const obj = opt?.target
+  if (!obj) return
+  if (isLockedBottomLayer(obj)) {
+    clearSnapGuides()
+    updateObjOverlay()
+    return
+  }
+
+  const tl = String(obj?.type || '').toLowerCase()
+  if (tl !== 'image' && tl !== 'textbox') {
+    clearSnapGuides()
+    updateObjOverlay()
+    return
+  }
+
+  if (isShiftDown.value) {
+    clearSnapGuides()
+    updateObjOverlay()
+    return
+  }
+
+  const snapPx = 6
+  const z = Number(zoom.value || 1) || 1
+  const threshold = snapPx / Math.max(1e-6, z)
+
+  let rect = null
+  try {
+    rect = obj.getBoundingRect(true, true)
+  } catch (e) {
+    rect = null
+  }
+  if (!rect) {
+    clearSnapGuides()
+    updateObjOverlay()
+    return
+  }
+
+  const left = Number(rect.left || 0)
+  const top = Number(rect.top || 0)
+  const w = Number(rect.width || 0)
+  const h = Number(rect.height || 0)
+  const right = left + w
+  const bottom = top + h
+  const cx = left + w / 2
+  const cy = top + h / 2
+
+  const xTargets = [left, cx, right]
+  const yTargets = [top, cy, bottom]
+
+  const boardXGuides = [0, POSTER_CANVAS_WIDTH / 2, POSTER_CANVAS_WIDTH]
+  const boardYGuides = [0, POSTER_CANVAS_HEIGHT / 2, POSTER_CANVAS_HEIGHT]
+  const objectXGuides = []
+  const objectYGuides = []
+
+  try {
+    const all = canvas.getObjects?.() || []
+    all.forEach((o) => {
+      try {
+        if (!o || o === obj) return
+        if (isLockedBottomLayer(o)) return
+        const tt = String(o.type || '').toLowerCase()
+        if (tt === 'group' || tt === 'activeselection') return
+        const r = o.getBoundingRect?.(true, true)
+        if (!r) return
+        const l2 = Number(r.left || 0)
+        const t2 = Number(r.top || 0)
+        const w2 = Number(r.width || 0)
+        const h2 = Number(r.height || 0)
+        const r2 = l2 + w2
+        const b2 = t2 + h2
+        const cx2 = l2 + w2 / 2
+        const cy2 = t2 + h2 / 2
+        objectXGuides.push(l2, cx2, r2)
+        objectYGuides.push(t2, cy2, b2)
+      } catch (e) {}
+    })
+  } catch (e) {}
+
+  const findBestSnap = (guides, targets) => {
+    let bestAbs = Infinity
+    let bestD = 0
+    let bestG = null
+    ;(guides || []).forEach((g0) => {
+      const g = Number(g0)
+      if (!Number.isFinite(g)) return
+      ;(targets || []).forEach((t0) => {
+        const t = Number(t0)
+        if (!Number.isFinite(t)) return
+        const d = g - t
+        const ad = Math.abs(d)
+        if (ad <= threshold && ad < bestAbs) {
+          bestAbs = ad
+          bestD = d
+          bestG = g
+        }
+      })
+    })
+    if (!Number.isFinite(bestAbs) || bestAbs === Infinity) return { abs: Infinity, d: 0, g: null }
+    return { abs: bestAbs, d: bestD, g: bestG }
+  }
+
+  // Prefer snapping to other objects. Only show guides when object snapping is active.
+  const xObj = findBestSnap(objectXGuides, xTargets)
+  const yObj = findBestSnap(objectYGuides, yTargets)
+  const xBoard = findBestSnap(boardXGuides, xTargets)
+  const yBoard = findBestSnap(boardYGuides, yTargets)
+
+  const useObjX = xObj.abs !== Infinity
+  const useObjY = yObj.abs !== Infinity
+
+  const bestDx = useObjX ? xObj.d : xBoard.d
+  const bestDy = useObjY ? yObj.d : yBoard.d
+  const showVx = useObjX ? xObj.g : null
+  const showHy = useObjY ? yObj.g : null
+
+  if (bestDx !== 0 || bestDy !== 0) {
+    try {
+      obj.set({ left: Number(obj.left || 0) + bestDx, top: Number(obj.top || 0) + bestDy })
+      if (typeof obj.setCoords === 'function') obj.setCoords()
+    } catch (e) {}
+  }
+
+  // Only display helper lines when snapping to other objects (not board).
+  // Temporarily disabled: user requested to hide helper guide lines.
+  snapGuides.active = false
+  snapGuides.vx = null
+  snapGuides.hy = null
+
+  updateObjOverlay()
 }
 
 const getMovableObjects = () => {
@@ -3180,8 +3345,9 @@ const initCanvas = async () => {
       updateObjOverlay()
       resizeOverlay.visible = false
       resizeState.active = false
+      clearSnapGuides()
     })
-    canvas.on('object:moving', updateObjOverlay)
+    canvas.on('object:moving', handleObjectMovingWithSnap)
     canvas.on('object:scaling', (opt) => {
       const t = opt?.target
       if (t && t.type === 'image') {
@@ -3198,6 +3364,11 @@ const initCanvas = async () => {
       updateObjOverlay()
     })
     canvas.on('object:rotating', updateObjOverlay)
+
+    canvas.on('object:modified', () => {
+      clearSnapGuides()
+    })
+    canvas.on('after:render', renderSnapGuides)
 
     canvasInstance.value = canvas
     try { window.__posterCanvas = canvas } catch (e) {}
@@ -4551,6 +4722,10 @@ const onKeyDown = (e) => {
   if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target?.isContentEditable) {
     return
   }
+
+  if (e.key === 'Shift') {
+    isShiftDown.value = true
+  }
   const canvas = canvasInstance.value
   const active = canvas ? canvas.getActiveObject() : null
   if (active && active.isEditing) {
@@ -4602,6 +4777,10 @@ const onKeyDown = (e) => {
 
 const onKeyUp = (e) => {
   if (!e) return
+  if (e.key === 'Shift') {
+    isShiftDown.value = false
+    clearSnapGuides()
+  }
   if (e.code === 'Space') {
     isSpaceDown.value = false
   }

@@ -373,8 +373,8 @@ import {
 import { runManualOcrSession, getManualOcrProgress, getManualSession, appendManualSessionUploads, deleteManualSessionUpload, updateDocument, deleteDocument } from '@/services/api'
 import { BOM_CONFIG } from '@/constants/bomOptions'
 
-const route = useRoute()
 const router = useRouter()
+const route = useRoute()
 const manualData = useManualStore()
 
 onMounted(async () => {
@@ -505,7 +505,19 @@ const ocrProgress = computed(() => {
 })
 
 const goBack = () => {
-  router.push({ name: 'Home', query: { tab: 'manual' } })
+  const cur = router.currentRoute.value?.fullPath || ''
+  const fallbackTab = String(route.query?.moduleKey || '') === 'export' ? 'export' : 'manual'
+  try {
+    router.back()
+    setTimeout(() => {
+      const after = router.currentRoute.value?.fullPath || ''
+      if (after === cur) {
+        router.push({ name: 'Home', query: { tab: fallbackTab } })
+      }
+    }, 120)
+  } catch (e) {
+    router.push({ name: 'Home', query: { tab: fallbackTab } })
+  }
 }
 
 const handleUploadProductChange = async (file) => {
@@ -576,7 +588,8 @@ const startOcr = () => {
     query: {
       sessionId: manualData.sessionId,
       productName: manualData.productName,
-      bomType: manualData.bomType || route.query.bomType || ''
+      bomType: manualData.bomType || route.query.bomType || '',
+      moduleKey: route.query?.moduleKey || undefined,
     }
   })
 }
