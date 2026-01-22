@@ -975,7 +975,17 @@ def embed_texts(texts: List[str], embedding_config: LLMConfig) -> List[List[floa
 
 
 def get_neo4j_driver(neo4j_config: Neo4jConfig):
-    return GraphDatabase.driver(neo4j_config.uri, auth=(neo4j_config.user, neo4j_config.password))
+    timeout_s = 15
+    try:
+        timeout_s = int(os.getenv("NEO4J_CONNECTION_TIMEOUT_SECONDS", "15"))
+    except Exception:
+        timeout_s = 15
+
+    return GraphDatabase.driver(
+        neo4j_config.uri,
+        auth=(neo4j_config.user, neo4j_config.password),
+        connection_timeout=timeout_s,
+    )
 
 
 def ensure_constraints(session) -> None:

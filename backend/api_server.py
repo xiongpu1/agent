@@ -24,6 +24,8 @@ if str(project_root) not in sys.path:
 
 load_dotenv(project_root / ".env")
 
+from src.kb_chat.routes import router as kb_chat_router
+
 from src.api_queries import (
     get_all_product_names,
     get_all_accessory_names,
@@ -190,6 +192,8 @@ load_dotenv()
 
 # Create FastAPI app
 app = FastAPI(title="Product Specsheet API", version="1.0.0")
+
+app.include_router(kb_chat_router)
 
 # Configure CORS
 app.add_middleware(
