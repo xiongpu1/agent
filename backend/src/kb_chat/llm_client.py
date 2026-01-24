@@ -22,6 +22,23 @@ def _build_kwargs(messages: List[Dict[str, str]], model: Optional[str] = None, s
         "request_timeout": timeout_s,
     }
 
+    enable_thinking = (os.getenv("KBCHAT_ENABLE_THINKING", "0") or "0").strip().lower()
+    if enable_thinking in {"1", "true", "yes", "y", "on"}:
+        extra_body: Dict[str, Any] = {}
+        extra_body["enable_thinking"] = True
+        # Some providers accept thinking params at top-level in OpenAI compatible mode,
+        # others require extra_body. We set both for maximum compatibility.
+        kwargs["enable_thinking"] = True
+        try:
+            budget = int(os.getenv("KBCHAT_THINKING_BUDGET", "2048"))
+            tb = max(256, min(budget, 8192))
+            extra_body["thinking_budget"] = tb
+            kwargs["thinking_budget"] = tb
+        except Exception:
+            extra_body["thinking_budget"] = 2048
+            kwargs["thinking_budget"] = 2048
+        kwargs["extra_body"] = extra_body
+
     api_key = os.getenv("DASHSCOPE_API_KEY")
     if api_key:
         kwargs["api_key"] = api_key

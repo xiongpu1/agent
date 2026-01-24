@@ -23,6 +23,8 @@ from .service import (
     repair_cypher,
     reflect_failure,
     route_intent,
+    agent_mode_enabled,
+    agent_orchestrate,
     run_cypher,
     smalltalk_reply,
     stream_smalltalk_llm,
@@ -32,7 +34,65 @@ from .service import (
     stream_answer,
 )
 
+from .conversations_store import (
+    append_message,
+    create_conversation,
+    delete_conversation,
+    get_conversation,
+    list_conversations,
+    list_messages,
+    set_conversation_title,
+)
+
 router = APIRouter()
+
+# In-memory per-session state for UX flows (best-effort). This avoids LLM hallucinating
+# candidate selections and allows deterministic mapping of "1/2" to actual DB candidates.
+_SESSION_STATE: Dict[str, Dict[str, Any]] = {}
+
+
+@router.post("/api/kb/conversations")
+async def kb_create_conversation(payload: Dict[str, Any] = Body(default={})):  # type: ignore
+    title = payload.get("title") if isinstance(payload, dict) else None
+    conv = create_conversation(initial_title=str(title) if title else None)
+    return {"conversation": conv}
+
+
+@router.get("/api/kb/conversations")
+async def kb_list_conversations(
+    q: str = Query(default=""),
+    limit: int = Query(default=50),
+    offset: int = Query(default=0),
+):
+    items = list_conversations(limit=limit, offset=offset, q=q)
+    return {"conversations": items}
+
+
+@router.get("/api/kb/conversations/{conversation_id}")
+async def kb_get_conversation(conversation_id: str):
+    conv = get_conversation(conversation_id)
+    if not conv:
+        raise HTTPException(status_code=404, detail="conversation not found")
+    return {"conversation": conv}
+
+
+@router.get("/api/kb/conversations/{conversation_id}/messages")
+async def kb_get_messages(
+    conversation_id: str,
+    limit: int = Query(default=200),
+    offset: int = Query(default=0),
+):
+    conv = get_conversation(conversation_id)
+    if not conv:
+        raise HTTPException(status_code=404, detail="conversation not found")
+    msgs = list_messages(conversation_id, limit=limit, offset=offset)
+    return {"messages": msgs}
+
+
+@router.delete("/api/kb/conversations/{conversation_id}")
+async def kb_delete_conversation(conversation_id: str):
+    delete_conversation(conversation_id)
+    return {"ok": True}
 
 
 def _debug_llm_enabled() -> bool:
@@ -40,6 +100,104 @@ def _debug_llm_enabled() -> bool:
     if v in {"0", "false", "no", "n", "off"}:
         return False
     return True
+
+
+def _extract_candidate_index(message: str) -> Optional[int]:
+    text = (message or "").strip()
+    if not text:
+        return None
+    # Support long utterances, e.g.:
+    # - "1" / "2"
+    # - "第3个" / "刚刚第3个"
+    # - "看第3个配置" / "我要第3个的产品配置"
+    # Use search instead of match to allow leading/trailing words.
+    m = re.search(r"(?:^|\D)(?:第\s*)?(\d{1,2})\s*(?:个|号)?(?:\D|$)", text)
+    if not m:
+        m = re.match(r"^(\d{1,2})$", text)
+        if not m:
+            return None
+    try:
+        idx = int(m.group(1))
+    except Exception:
+        return None
+    return idx if 1 <= idx <= 50 else None
+
+
+def _set_last_bom_candidates(session_id: str, material_code: str, candidates: list) -> None:
+    if not session_id:
+        return
+    st = _SESSION_STATE.setdefault(session_id, {})
+    st["last_bom_material_code"] = material_code
+    st["last_bom_candidates"] = candidates
+
+
+def _get_last_bom_candidates(session_id: str) -> list:
+    if not session_id:
+        return []
+    st = _SESSION_STATE.get(session_id) or {}
+    cands = st.get("last_bom_candidates")
+    return cands if isinstance(cands, list) else []
+
+
+def _candidate_identifier(cand: Any) -> str:
+    # cand can be like {"rel_type":.., "labels":.., "bom":{...}}
+    if isinstance(cand, dict) and isinstance(cand.get("bom"), dict):
+        b = cand["bom"]
+        for k in ("bom_id", "bom_code", "bomId", "bomCode", "code", "id", "name", "title"):
+            v = b.get(k)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+            if v is not None and str(v).strip():
+                return str(v).strip()
+    if isinstance(cand, dict):
+        for k in ("bom_id", "bom_code", "bomId", "bomCode", "code", "id", "name", "title"):
+            v = cand.get(k)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+            if v is not None and str(v).strip():
+                return str(v).strip()
+    return ""
+
+
+def _query_config_for_bom_identifier(identifier: str, limit: int = 200) -> list:
+    ident = (identifier or "").strip()
+    if not ident:
+        return []
+    # Step 1: locate a BOM-like node by matching common id/code/name fields.
+    # Step 2: expand 1-2 hops to config-like nodes.
+    cypher = (
+        "MATCH (b) "
+        "WHERE (b.bom_id = $ident OR b.bom_code = $ident OR b.bomId = $ident OR b.bomCode = $ident "
+        "   OR b.code = $ident OR b.id = $ident OR b.name = $ident OR b.title = $ident "
+        "   OR toString(b.bom_id) = $ident OR toString(b.bom_code) = $ident OR toString(b.id) = $ident) "
+        "WITH b "
+        "OPTIONAL MATCH (b)-[r1]-(x) "
+        "OPTIONAL MATCH (x)-[r2]-(y) "
+        "WITH b, r1, x, r2, y "
+        "WHERE x IS NOT NULL AND ("
+        "  any(l IN labels(x) WHERE toUpper(l) CONTAINS 'CONFIG') "
+        "  OR any(l IN labels(x) WHERE toUpper(l) CONTAINS 'BOM') "
+        "  OR x.bom_id IS NOT NULL OR x.bom_code IS NOT NULL OR x.bomId IS NOT NULL OR x.bomCode IS NOT NULL"
+        ") "
+        "RETURN labels(b) AS b_labels, b{.*} AS bom, type(r1) AS r1_type, labels(x) AS x_labels, x{.*} AS node1, type(r2) AS r2_type, labels(y) AS y_labels, y{.*} AS node2 "
+        "LIMIT $limit"
+    )
+    return run_cypher(cypher, {"ident": ident, "limit": limit})
+
+
+def _strict_no_candidates_text(material_code: str) -> str:
+    mc = (material_code or "").strip()
+    head = f"未在知识库中查到 {mc} 的BOM候选。" if mc else "未在知识库中查到BOM候选。"
+    return (
+        head
+        + "\n"
+        + "可能原因：该系列并非 Material.material_code，或图谱中BOM关系/字段命名不同。"
+        + "\n"
+        + "你可以：\n"
+        + "(1) 直接粘贴完整BOM号；\n"
+        + "(2) 换一个物料编码/型号再试；\n"
+        + "(3) 告诉我你想看的系列关键词，我先帮你在库里定位对应节点。"
+    )
 
 
 def _is_list_products_question(message: str) -> bool:
@@ -220,13 +378,81 @@ async def kb_chat_schema():
 async def kb_chat(payload: Dict[str, Any] = Body(...)):
     """Non-streaming KB chat endpoint (JSON). Used as a fallback when SSE is blocked."""
 
-    session_id = (payload.get("sessionId") or "").strip() or str(uuid.uuid4())
+    conversation_id = (payload.get("conversationId") or "").strip()
     message = (payload.get("message") or "").strip()
-    history = payload.get("history")
     context = payload.get("context") if isinstance(payload.get("context"), dict) else {}
+
+    if not conversation_id:
+        raise HTTPException(status_code=400, detail="conversationId 不能为空")
+    conv = get_conversation(conversation_id)
+    if not conv:
+        raise HTTPException(status_code=404, detail="conversation not found")
+
+    # Load history from DB
+    db_msgs = list_messages(conversation_id, limit=24, offset=0)
+    history = [{"role": m.get("role"), "content": m.get("content")} for m in db_msgs if m.get("role") in {"user", "assistant", "system"}]
 
     if not message:
         raise HTTPException(status_code=400, detail="message 不能为空")
+
+    if agent_mode_enabled():
+        append_message(conversation_id, role="user", content=message)
+        out = agent_orchestrate(message, history=history, context=context, session_id=conversation_id)
+        append_message(
+            conversation_id,
+            role="assistant",
+            content=out.get("content") or "",
+            reasoning=out.get("reasoning") or "",
+            citations=out.get("citations") or [],
+        )
+        return {
+            "conversationId": conversation_id,
+            "type": out.get("type") or "answer",
+            "content": out.get("content") or "",
+            "citations": out.get("citations") or [],
+            "reasoning": out.get("reasoning") or "",
+        }
+
+    # Deterministic candidate selection: if user inputs "1/2" after we presented candidates,
+    # map it to the actual candidate and query config.
+    idx = _extract_candidate_index(message)
+    if idx is not None:
+        cands = _get_last_bom_candidates(session_id)
+        if cands and 1 <= idx <= len(cands):
+            chosen = cands[idx - 1]
+            chosen_ident = _candidate_identifier(chosen)
+            rows = _query_config_for_bom_identifier(chosen_ident)
+            used_ident = chosen_ident
+            if not rows:
+                # Auto-pick another candidate with config
+                for j, cand in enumerate(cands):
+                    if j == idx - 1:
+                        continue
+                    ident = _candidate_identifier(cand)
+                    if not ident:
+                        continue
+                    r2 = _query_config_for_bom_identifier(ident)
+                    if r2:
+                        rows = r2
+                        used_ident = ident
+                        break
+            if rows:
+                citations = build_citations(rows)
+                q = f"请解释 BOM {used_ident} 的产品配置"
+                content = answer_nonstream(q, history, rows)
+                return {
+                    "sessionId": session_id,
+                    "type": "answer",
+                    "content": content,
+                    "citations": citations,
+                }
+            # No config found for any candidate
+            return {
+                "sessionId": session_id,
+                "type": "answer",
+                "content": "已根据你选择的候选BOM尝试查询产品配置，但知识库中未找到任何候选的配置明细。你可以粘贴完整BOM号或换一个系列/物料编码继续。",
+                "citations": [],
+            }
 
     routed = route_intent(message, history=history, context=context)
     action = routed.get("action")
@@ -290,6 +516,15 @@ async def kb_chat(payload: Dict[str, Any] = Body(...)):
         if material_code:
             limit = _bom_candidates_limit()
             rows = _query_boms_for_material(material_code, limit=limit)
+            _set_last_bom_candidates(session_id, material_code, rows)
+            if not rows:
+                reflect_failure(message, stage="list_boms_for_material_empty", detail=f"material_code={material_code}", history=history)
+                return {
+                    "sessionId": session_id,
+                    "type": "answer",
+                    "content": _strict_no_candidates_text(material_code),
+                    "citations": [],
+                }
             return {
                 "sessionId": session_id,
                 "type": "answer",
@@ -349,10 +584,26 @@ async def kb_chat(payload: Dict[str, Any] = Body(...)):
 async def kb_chat_stream(
     payload: Dict[str, Any] = Body(...),
 ):
-    session_id = (payload.get("sessionId") or "").strip() or str(uuid.uuid4())
+    conversation_id = (payload.get("conversationId") or "").strip()
     message = (payload.get("message") or "").strip()
-    history = payload.get("history")
     context = payload.get("context") if isinstance(payload.get("context"), dict) else {}
+
+    if not conversation_id:
+        raise HTTPException(status_code=400, detail="conversationId 不能为空")
+    conv = get_conversation(conversation_id)
+    if not conv:
+        raise HTTPException(status_code=404, detail="conversation not found")
+
+    # Load history from DB
+    db_msgs = list_messages(conversation_id, limit=24, offset=0)
+    history = [
+        {"role": m.get("role"), "content": m.get("content")}
+        for m in db_msgs
+        if m.get("role") in {"user", "assistant", "system"}
+    ]
+
+    # Keep legacy helper paths using session_id naming.
+    session_id = conversation_id
 
     if not message:
         raise HTTPException(status_code=400, detail="message 不能为空")
@@ -362,7 +613,89 @@ async def kb_chat_stream(
         yield _sse_comment("pad " + ("." * 2048))
         last_ping = time.time()
 
-        yield _sse("meta", {"sessionId": session_id})
+        yield _sse("meta", {"conversationId": conversation_id})
+
+        if agent_mode_enabled():
+            append_message(conversation_id, role="user", content=message)
+            out = agent_orchestrate(message, history=history, context=context, session_id=conversation_id)
+            typ = out.get("type") or "answer"
+            reasoning = out.get("reasoning") or ""
+            if typ == "clarify":
+                if reasoning:
+                    yield _sse("reasoning_delta", {"delta": reasoning})
+                yield _sse("clarify", {"content": out.get("content") or ""})
+                append_message(
+                    conversation_id,
+                    role="assistant",
+                    content=out.get("content") or "",
+                    reasoning=reasoning,
+                    citations=out.get("citations") or [],
+                )
+                yield _sse("done", {"ok": True})
+                return
+            if reasoning:
+                yield _sse("reasoning_delta", {"delta": reasoning})
+            yield _sse("answer_delta", {"delta": out.get("content") or ""})
+            yield _sse("citations", {"citations": out.get("citations") or []})
+            append_message(
+                conversation_id,
+                role="assistant",
+                content=out.get("content") or "",
+                reasoning=reasoning,
+                citations=out.get("citations") or [],
+            )
+            yield _sse("done", {"ok": True})
+            return
+
+        idx = _extract_candidate_index(message)
+        if idx is not None:
+            cands = _get_last_bom_candidates(session_id)
+            if cands and 1 <= idx <= len(cands):
+                chosen = cands[idx - 1]
+                chosen_ident = _candidate_identifier(chosen)
+                rows = _query_config_for_bom_identifier(chosen_ident)
+                used_ident = chosen_ident
+                if not rows:
+                    for j, cand in enumerate(cands):
+                        if j == idx - 1:
+                            continue
+                        ident = _candidate_identifier(cand)
+                        if not ident:
+                            continue
+                        r2 = _query_config_for_bom_identifier(ident)
+                        if r2:
+                            rows = r2
+                            used_ident = ident
+                            break
+                if rows:
+                    yield _sse("retrieval", {"count": len(rows)})
+                    stream = stream_answer(f"请解释 BOM {used_ident} 的产品配置", history, rows)
+                    try:
+                        for chunk in stream:
+                            delta = ""
+                            try:
+                                delta = chunk["choices"][0]["delta"].get("content") or ""
+                            except Exception:
+                                try:
+                                    delta = chunk.choices[0].delta.content or ""
+                                except Exception:
+                                    delta = ""
+                            if delta:
+                                yield _sse("answer_delta", {"delta": delta})
+                    except Exception as exc:
+                        reflect_failure(message, stage="stream_answer_selected_bom", detail=str(exc), history=history)
+                        yield _sse("error", {"message": f"LLM输出失败: {exc}"})
+                        yield _sse("done", {"ok": False})
+                        return
+
+                    citations = build_citations(rows)
+                    yield _sse("citations", {"citations": citations})
+                    yield _sse("done", {"ok": True})
+                    return
+
+                yield _sse("answer_delta", {"delta": "已根据你选择的候选BOM尝试查询产品配置，但知识库中未找到任何候选的配置明细。你可以粘贴完整BOM号或换一个系列/物料编码继续。"})
+                yield _sse("done", {"ok": True})
+                return
 
         routed = route_intent(message, history=history, context=context)
         action = routed.get("action")
@@ -471,6 +804,12 @@ async def kb_chat_stream(
             if material_code:
                 limit = _bom_candidates_limit()
                 rows = _query_boms_for_material(material_code, limit=limit)
+                _set_last_bom_candidates(session_id, material_code, rows)
+                if not rows:
+                    reflect_failure(message, stage="list_boms_for_material_empty", detail=f"material_code={material_code}", history=history)
+                    yield _sse("answer_delta", {"delta": _strict_no_candidates_text(material_code)})
+                    yield _sse("done", {"ok": True})
+                    return
                 yield _sse("retrieval", {"count": len(rows)})
 
                 stream = stream_bom_candidates(message, history, material_code, rows, total=None)

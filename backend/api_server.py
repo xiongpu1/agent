@@ -25,6 +25,7 @@ if str(project_root) not in sys.path:
 load_dotenv(project_root / ".env")
 
 from src.kb_chat.routes import router as kb_chat_router
+from src.dingtalk_auth import router as dingtalk_auth_router
 
 from src.api_queries import (
     get_all_product_names,
@@ -194,12 +195,14 @@ load_dotenv()
 app = FastAPI(title="Product Specsheet API", version="1.0.0")
 
 app.include_router(kb_chat_router)
+app.include_router(dingtalk_auth_router)
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://d0ctb77hri0c73ctcgdg-36963.agent.damodel.com",
+        "http://d0ctb77hri0c73ctcgdg-36963.agent.damodel.com",
         "http://localhost:36963",
         "http://127.0.0.1:36963",
     ],

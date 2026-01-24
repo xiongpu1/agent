@@ -10,10 +10,10 @@
     },
     "measurements": "98\" × 90\" × 35\"",
     "premiumFeatures": [
-      "Underwater LED Light",
-      "Valve Light",
-      "Edge Light",
-      "Corner Light"
+      "Underwater light",
+      "Valve light",
+      "Tub edge light",
+      "Corner light"
     ],
     "insulationFeatures": [
       "Enviro-seal Insulated Base",
@@ -22,6 +22,7 @@
     ],
     "extraFeatures": [
       "Bluetooth audio system",
+      "Gecko-wifi",
       "Grey skirt, Aluminum Skirt",
       "Grey corner"
     ],
@@ -33,7 +34,7 @@
         "Shell Color": "#ffffff"
       },
       {
-        "Dry Weight": "975 lbs"
+        "Dry Weight": "977 lbs"
       },
       {
         "Water Capacity": "296 gallons"
@@ -53,5 +54,5 @@
       "background": "/back/back.png"
     }
   },
-  "saved_at": "2026-01-16T09:27:17.597193Z"
+  "saved_at": "2026-01-23T00:55:35.616750Z"
 }

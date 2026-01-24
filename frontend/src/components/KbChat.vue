@@ -1,8 +1,78 @@
 <template>
   <div class="kbchat">
-    <div class="kbchat__viewport" ref="viewportRef" @scroll="handleScroll">
-      <div class="kbchat__container">
-        <div v-if="!messages.length" class="kbchat__empty">
+    <div class="kbchat__sidebar" :class="{ collapsed: sidebarCollapsed }">
+      <div class="kbchat__sidebarHeader">
+        <div v-if="!sidebarCollapsed" class="kbchat__sidebarTitle">对话</div>
+        <div class="kbchat__sidebarActions">
+          <button
+            class="kbchat__collapse"
+            type="button"
+            :title="sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'"
+            :aria-label="sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'"
+            @click="toggleSidebar()"
+          >
+            <svg v-if="sidebarCollapsed" class="kbchat__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 6L16 12L10 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg v-else class="kbchat__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 6L8 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button
+            class="kbchat__newChat"
+            type="button"
+            title="新建对话"
+            aria-label="新建对话"
+            @click="createConversation()"
+          >
+            <svg v-if="sidebarCollapsed" class="kbchat__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <span v-else>新建</span>
+          </button>
+        </div>
+      </div>
+      <div v-if="!sidebarCollapsed" class="kbchat__convList">
+        <div v-if="isInitializing" class="kbchat__convSkeleton">
+          <div v-for="i in 6" :key="i" class="kbchat__convSkeletonItem">
+            <div class="kbchat__skeleton kbchat__skeletonLine kbchat__convSkeletonTitle" />
+            <div class="kbchat__skeleton kbchat__skeletonLine kbchat__convSkeletonMeta" />
+          </div>
+        </div>
+
+        <button
+          v-else
+          v-for="c in conversations"
+          :key="c.id"
+          class="kbchat__convItem"
+          :class="{ active: c.id === conversationId }"
+          type="button"
+          @click="selectConversation(c.id)"
+        >
+          <div class="kbchat__convTitle">{{ c.title }}</div>
+          <div class="kbchat__convMeta">{{ formatTime(c.updated_at_ms || c.updated_at) }}</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="kbchat__main">
+      <div class="kbchat__viewport" ref="viewportRef" @scroll="handleScroll">
+        <div class="kbchat__container">
+        <div v-if="isInitializing" class="kbchat__msgSkeleton">
+          <div v-for="i in 4" :key="i" class="kbchat__msgSkeletonRow">
+            <div class="kbchat__skeleton kbchat__skeletonAvatar" />
+            <div class="kbchat__msgSkeletonBubble">
+              <div class="kbchat__skeleton kbchat__skeletonLine kbchat__msgSkeletonLine1" />
+              <div class="kbchat__skeleton kbchat__skeletonLine kbchat__msgSkeletonLine2" />
+            </div>
+          </div>
+        </div>
+
+        <div v-else-if="!messages.length" class="kbchat__empty">
+          <div class="kbchat__emptyBrand">
+            <img class="kbchat__emptyLogo" src="../assets/logo.svg" alt="logo" />
+          </div>
           <div class="kbchat__chips">
             <button
               v-if="suggestionsFailed"
@@ -28,6 +98,10 @@
           <div v-for="m in messages" :key="m.id" class="kbchat__msg" :class="m.role">
             <div class="kbchat__avatar">{{ m.role === 'assistant' ? 'AI' : '你' }}</div>
             <div class="kbchat__content">
+              <details v-if="m.role === 'assistant' && m.reasoning" class="kbchat__reasoning" open>
+                <summary class="kbchat__reasoningTitle">思考过程</summary>
+                <div class="kbchat__reasoningText" v-text="m.reasoning" />
+              </details>
               <div class="kbchat__text" v-text="m.content" />
               <div v-if="m.status === 'typing'" class="kbchat__typing">
                 <span class="dot" />
@@ -41,41 +115,43 @@
         </div>
       </div>
 
-      <button
-        v-if="showScrollToBottom"
-        class="kbchat__scrollBottom"
-        type="button"
-        @click="scrollToBottom()"
-      >
-        回到底部
-      </button>
-    </div>
-
-    <div class="kbchat__composer">
-      <div class="kbchat__composerInner">
-        <button class="kbchat__plus" type="button" :disabled="true" aria-label="attachment">
-          +
+        <button
+          v-if="showScrollToBottom"
+          class="kbchat__scrollBottom"
+          type="button"
+          @click="scrollToBottom()"
+        >
+          回到底部
         </button>
+      </div>
 
-        <textarea
+      <div class="kbchat__composer">
+        <div class="kbchat__composerInner">
+          <button class="kbchat__plus" type="button" :disabled="true" aria-label="attachment">
+            +
+          </button>
+
+          <textarea
           ref="textareaRef"
           v-model="draft"
           class="kbchat__input"
           rows="1"
           placeholder="有问题，尽管问"
+          :disabled="isInitializing"
           @keydown.enter.exact.prevent="handleSend"
           @keydown.enter.shift.exact.stop
           @input="autoResize"
         />
 
-        <button
-          class="kbchat__send"
-          type="button"
-          :disabled="!canSend"
-          @click="handleSend"
-        >
-          发送
-        </button>
+          <button
+            class="kbchat__send"
+            type="button"
+            :disabled="!canSend || isInitializing"
+            @click="handleSend"
+          >
+            发送
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -97,11 +173,86 @@ const suggestedQuestions = ref([])
 const suggestionsFailed = ref(false)
 
 const sessionId = ref('')
+const conversationId = ref('')
 const isStreaming = ref(false)
 const streamAbortController = ref(null)
 const eventSourceRef = ref(null)
 
+const isInitializing = ref(true)
+
+const sidebarCollapsed = ref(false)
+const toggleSidebar = () => {
+  sidebarCollapsed.value = !sidebarCollapsed.value
+}
+
 const canSend = computed(() => draft.value.trim().length > 0)
+
+const conversations = ref([])
+
+const formatTime = (v) => {
+  const n = Number(v || 0)
+  if (!n) return ''
+  const d = new Date(n)
+  return d.toLocaleString()
+}
+
+const fetchJson = async (path, options) => {
+  const url = resolveApiUrl(path)
+  const resp = await fetch(url, options)
+  const raw = await resp.text().catch(() => '')
+  if (!resp.ok) throw new Error(raw || `HTTP ${resp.status}`)
+  try {
+    return JSON.parse(raw)
+  } catch (e) {
+    throw new Error(raw || '后端返回非 JSON 响应')
+  }
+}
+
+const loadConversations = async () => {
+  const data = await fetchJson('/api/kb/conversations', { method: 'GET' })
+  conversations.value = Array.isArray(data?.conversations) ? data.conversations : []
+}
+
+const loadMessages = async (cid) => {
+  const data = await fetchJson(`/api/kb/conversations/${cid}/messages?limit=200`, { method: 'GET' })
+  const arr = Array.isArray(data?.messages) ? data.messages : []
+  messages.value = arr
+    .filter((m) => m?.role === 'user' || m?.role === 'assistant')
+    .map((m) =>
+      reactive({
+        id: m.id || `${m.seq || Date.now()}`,
+        role: m.role,
+        content: m.content || '',
+        reasoning: m.reasoning || '',
+        status: 'done',
+        citations: Array.isArray(m.citations) ? m.citations : [],
+        showCitations: false
+      })
+    )
+}
+
+const selectConversation = async (cid) => {
+  stopStreaming()
+  conversationId.value = cid
+  try {
+    localStorage.setItem('kbchat_conversation_id', cid)
+  } catch (e) {}
+  await loadMessages(cid)
+  await nextTick()
+  scrollToBottom()
+}
+
+const createConversation = async () => {
+  const data = await fetchJson('/api/kb/conversations', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({})
+  })
+  const cid = data?.conversation?.id
+  if (!cid) throw new Error('创建会话失败')
+  await loadConversations()
+  await selectConversation(cid)
+}
 
 const autoResize = () => {
   const el = textareaRef.value
@@ -181,9 +332,8 @@ const stopStreaming = () => {
 const fetchNonStreamAnswer = async (userText) => {
   const url = resolveApiUrl('/api/kb/chat')
   const payload = {
-    sessionId: sessionId.value || undefined,
+    conversationId: conversationId.value,
     message: userText,
-    history: buildHistoryPayload(),
     context: { moduleKey: 'kbChat' }
   }
   const controller = new AbortController()
@@ -227,9 +377,8 @@ const startStreamViaEventSource = (userText, assistantMsg) => {
     }
 
     const payloadObj = {
-      sessionId: sessionId.value || '',
+      conversationId: conversationId.value,
       message: userText,
-      history: buildHistoryPayload(),
       context: { moduleKey: 'kbChat' }
     }
     const qs = new URLSearchParams({
@@ -270,6 +419,7 @@ const startStreamViaEventSource = (userText, assistantMsg) => {
           if (data?.sessionId && !sessionId.value) sessionId.value = data.sessionId
           assistantMsg.status = 'done'
           assistantMsg.content = data?.content || '请求失败'
+          assistantMsg.reasoning = data?.reasoning || ''
           assistantMsg.citations = Array.isArray(data?.citations) ? data.citations : []
         } catch (e) {
           console.log('[KbChat] request failed', e)
@@ -309,6 +459,16 @@ const startStreamViaEventSource = (userText, assistantMsg) => {
       } catch (e) {}
     })
 
+    es.addEventListener('reasoning_delta', (ev) => {
+      markGotEvent()
+      try {
+        const data = JSON.parse(ev.data || '{}')
+        const d = data?.delta || ''
+        if (d) assistantMsg.reasoning = (assistantMsg.reasoning || '') + d
+        scrollToBottom()
+      } catch (e) {}
+    })
+
     es.addEventListener('citations', (ev) => {
       markGotEvent()
       try {
@@ -343,6 +503,7 @@ const startStreamViaEventSource = (userText, assistantMsg) => {
           if (data?.sessionId && !sessionId.value) sessionId.value = data.sessionId
           assistantMsg.status = 'done'
           assistantMsg.content = data?.content || '请求失败'
+          assistantMsg.reasoning = data?.reasoning || ''
           assistantMsg.citations = Array.isArray(data?.citations) ? data.citations : []
         } catch (e) {
           console.log('[KbChat] request failed', e)
@@ -365,6 +526,7 @@ const startStream = async (userText, assistantMsg) => {
     if (data?.sessionId && !sessionId.value) sessionId.value = data.sessionId
     assistantMsg.status = 'done'
     assistantMsg.content = data?.content || '请求失败'
+    assistantMsg.reasoning = data?.reasoning || ''
     assistantMsg.citations = Array.isArray(data?.citations) ? data.citations : []
   } catch (e) {
     console.log('[KbChat] request failed', e)
@@ -388,6 +550,7 @@ const handleSend = async () => {
     id: aiId,
     role: 'assistant',
     content: '',
+    reasoning: '',
     status: 'typing',
     citations: [],
     showCitations: false
@@ -418,9 +581,25 @@ const handleSend = async () => {
 }
 
 onMounted(async () => {
-  await getSuggestions()
-  autoResize()
-  scrollToBottom()
+  isInitializing.value = true
+  try {
+    await getSuggestions()
+    await loadConversations()
+    let cid = ''
+    try {
+      cid = localStorage.getItem('kbchat_conversation_id') || ''
+    } catch (e) {}
+    if (!cid && conversations.value.length) cid = conversations.value[0].id
+    if (!cid) {
+      await createConversation()
+    } else {
+      await selectConversation(cid)
+    }
+  } finally {
+    isInitializing.value = false
+    autoResize()
+    scrollToBottom()
+  }
 })
 </script>
 
@@ -428,18 +607,212 @@ onMounted(async () => {
 .kbchat {
   height: calc(100vh - 110px);
   min-height: 520px;
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 14px;
   overflow: hidden;
   background: #ffffff;
   border: 1px solid var(--color-border, #ebeef5);
 }
 
+.kbchat__skeleton {
+  background: linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 45%, #f3f4f6 100%);
+  background-size: 200% 100%;
+  animation: kbchat-skeleton 1.1s ease-in-out infinite;
+}
+
+@keyframes kbchat-skeleton {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.kbchat__skeletonLine {
+  height: 10px;
+  border-radius: 999px;
+}
+
+.kbchat__skeletonAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+}
+
+.kbchat__convSkeleton {
+  display: grid;
+  gap: 10px;
+}
+
+.kbchat__convSkeletonItem {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.kbchat__convSkeletonTitle {
+  width: 72%;
+}
+
+.kbchat__convSkeletonMeta {
+  width: 46%;
+  margin-top: 8px;
+}
+
+.kbchat__msgSkeleton {
+  display: grid;
+  gap: 14px;
+  padding-top: 6px;
+}
+
+.kbchat__msgSkeletonRow {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.kbchat__msgSkeletonBubble {
+  padding-top: 4px;
+}
+
+.kbchat__msgSkeletonLine1 {
+  width: 68%;
+}
+
+.kbchat__msgSkeletonLine2 {
+  width: 48%;
+  margin-top: 10px;
+}
+
+.kbchat__sidebar {
+  width: 260px;
+  border-right: 1px solid #e5e7eb;
+  background: #fcfcfd;
+  display: flex;
+  flex-direction: column;
+}
+
+.kbchat__sidebar.collapsed {
+  width: 56px;
+}
+
+.kbchat__sidebarHeader {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kbchat__sidebar.collapsed .kbchat__sidebarHeader {
+  padding: 10px 8px;
+  justify-content: center;
+}
+
+.kbchat__sidebar.collapsed .kbchat__sidebarActions {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kbchat__sidebarActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kbchat__collapse {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.kbchat__sidebar.collapsed .kbchat__collapse,
+.kbchat__sidebar.collapsed .kbchat__newChat {
+  width: 40px;
+  padding: 6px 0;
+  text-align: center;
+}
+
+.kbchat__icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.kbchat__sidebarTitle {
+  font-weight: 800;
+  color: #111827;
+}
+
+.kbchat__newChat {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.kbchat__convList {
+  padding: 8px;
+  overflow: auto;
+  display: grid;
+  gap: 8px;
+}
+
+.kbchat__convItem {
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.kbchat__convItem.active {
+  border-color: #111827;
+}
+
+.kbchat__convTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.kbchat__convMeta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
 .kbchat__viewport {
   position: relative;
   flex: 1 1 auto;
   overflow: auto;
+}
+
+.kbchat__main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.kbchat__viewport {
+  flex: 1 1 auto;
+}
+
+.kbchat__composer {
+  flex: 0 0 auto;
 }
 
 .kbchat__container {
@@ -451,6 +824,33 @@ onMounted(async () => {
 .kbchat__empty {
   padding: 56px 0 0;
   text-align: center;
+}
+
+.kbchat__emptyBrand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 34px 0 22px;
+}
+
+.kbchat__emptyLogo {
+  width: 220px;
+  max-width: 62vw;
+  height: auto;
+  opacity: 0.95;
+}
+
+.kbchat__empty .kbchat__chips {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.kbchat__empty .kbchat__chip {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12px;
 }
 
 .kbchat__chips {
@@ -515,6 +915,29 @@ onMounted(async () => {
 
 .kbchat__content {
   padding-top: 4px;
+}
+
+.kbchat__reasoning {
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border: 1px dashed #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.kbchat__reasoningTitle {
+  cursor: pointer;
+  color: #334155;
+  font-size: 12px;
+  user-select: none;
+}
+
+.kbchat__reasoningText {
+  margin-top: 8px;
+  white-space: pre-wrap;
+  color: #0f172a;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .kbchat__text {
