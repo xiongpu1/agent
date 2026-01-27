@@ -1,6 +1,6 @@
 <template>
   <div class="app-page">
-    <div class="app-layout">
+    <div class="app-layout" :style="layoutStyle">
       <aside class="sidebar" :class="{ collapsed }">
         <div class="sidebar-top">
           <div class="brand" :title="collapsed ? '产品手册自动化设计生成系统' : ''">
@@ -14,34 +14,42 @@
         </div>
 
         <nav class="nav">
-          <button class="nav-item" :class="{ active: activeKey === 'upload' }" @click="goHomeTab('upload')">
-            <el-icon class="nav-icon"><Upload /></el-icon>
-            <span class="nav-label">上传图片</span>
-          </button>
-          <button class="nav-item" :class="{ active: activeKey === 'kbSearch' }" @click="goHomeTab('kbSearch')">
-            <el-icon class="nav-icon"><Search /></el-icon>
-            <span class="nav-label">产品知识库</span>
-          </button>
           <button class="nav-item" :class="{ active: activeKey === 'kbChat' }" @click="goHomeTab('kbChat')">
             <el-icon class="nav-icon"><ChatDotRound /></el-icon>
             <span class="nav-label">知识库问答</span>
           </button>
-          <button class="nav-item" :class="{ active: activeKey === 'manual' }" @click="goHomeTab('manual')">
-            <el-icon class="nav-icon"><Notebook /></el-icon>
-            <span class="nav-label">生成产品手册</span>
-          </button>
           <button class="nav-item" :class="{ active: activeKey === 'export' }" @click="goHomeTab('export')">
             <el-icon class="nav-icon"><Download /></el-icon>
-            <span class="nav-label">导出编辑器</span>
+            <span class="nav-label">产品手册编辑导出</span>
           </button>
         </nav>
 
-        <div class="auth" :class="{ collapsed }">
-          <div class="auth__dot" :class="authDotClass" />
-          <div v-if="!collapsed" class="auth__text">
-            <div class="auth__title">钉钉登录</div>
-            <button v-if="authState === 'error'" class="auth__retry" type="button" @click="runDingTalkLogin()">重试</button>
-            <div v-else class="auth__subtitle">{{ authSubtitle }}</div>
+        <div class="sidebar-mid">
+          <button
+            class="tool-item"
+            :class="{ active: imagePanelOpen }"
+            type="button"
+            @mouseenter="onImageToolEnter"
+            @mouseleave="onImageToolLeave"
+            @click="onImageToolClick"
+          >
+            <el-icon class="nav-icon"><Picture /></el-icon>
+            <span class="nav-label">上传图片</span>
+          </button>
+        </div>
+
+        <div class="sidebar-bottom" :class="{ collapsed }">
+          <div class="admin-entry" :class="{ collapsed }">
+            <button class="admin-entry__btn" type="button" @click="goAdmin()">{{ adminLabel }}</button>
+          </div>
+
+          <div class="auth" :class="{ collapsed }">
+            <div class="auth__dot" :class="authDotClass" />
+            <div v-if="!collapsed" class="auth__text">
+              <div class="auth__title">钉钉登录</div>
+              <button v-if="authState === 'error'" class="auth__retry" type="button" @click="runDingTalkLogin()">重试</button>
+              <div v-else class="auth__subtitle">{{ authSubtitle }}</div>
+            </div>
           </div>
         </div>
       </aside>
@@ -49,6 +57,24 @@
       <main class="main">
         <router-view />
       </main>
+
+      <div
+        v-show="imagePanelOpen"
+        class="imgpanel-popover"
+        :class="{ pinned: imagePanelPinned }"
+        @mouseenter="onImagePanelEnter"
+        @mouseleave="onImagePanelLeave"
+      >
+        <div class="imgpanel-popover__inner">
+          <ImageLibraryPanel
+            :logged-in="authState === 'ok'"
+            :pinned="imagePanelPinned"
+            :opened="imagePanelOpen"
+            @retry-login="runDingTalkLogin()"
+            @interact="onImagePanelInteract"
+          />
+        </div>
+      </div>
     </div>
 
     <el-dialog v-model="diagVisible" title="钉钉登录诊断" width="560px" append-to-body>
@@ -72,8 +98,9 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { Upload, Notebook, Search, Download, ChatDotRound } from '@element-plus/icons-vue'
+import { Download, ChatDotRound, Picture } from '@element-plus/icons-vue'
 import homeLogo from '@/assets/logo.png'
+import ImageLibraryPanel from '@/components/ImageLibraryPanel.vue'
 
 const collapsed = ref(false)
 
@@ -90,6 +117,89 @@ const activeKey = computed(() => {
 
 const goHomeTab = (tab) => {
   router.push({ path: '/', query: { tab } })
+}
+
+const goAdmin = () => {
+  router.push({ path: '/admin' })
+}
+
+const adminLabel = computed(() => (collapsed.value ? '后台' : '产品后台管理'))
+
+const layoutStyle = computed(() => ({
+  '--sidebar-w': collapsed.value ? '72px' : '180px'
+}))
+
+const imagePanelOpen = ref(false)
+const imagePanelPinned = ref(false)
+const imageToolHover = ref(false)
+const imagePanelHover = ref(false)
+let imageCloseTimer = null
+
+const isTouchDevice = () => {
+  if (typeof window === 'undefined') return false
+  const nav = window?.navigator
+  const points = Number(nav?.maxTouchPoints || 0)
+  return points > 0 || 'ontouchstart' in window
+}
+
+const cancelImageClose = () => {
+  if (imageCloseTimer) {
+    clearTimeout(imageCloseTimer)
+    imageCloseTimer = null
+  }
+}
+
+const scheduleImageClose = () => {
+  if (imagePanelPinned.value) return
+  cancelImageClose()
+  imageCloseTimer = setTimeout(() => {
+    if (!imageToolHover.value && !imagePanelHover.value && !imagePanelPinned.value) {
+      imagePanelOpen.value = false
+    }
+  }, 200)
+}
+
+const onImageToolEnter = () => {
+  if (isTouchDevice()) return
+  imageToolHover.value = true
+  cancelImageClose()
+  imagePanelOpen.value = true
+}
+
+const onImageToolLeave = () => {
+  if (isTouchDevice()) return
+  imageToolHover.value = false
+  scheduleImageClose()
+}
+
+const onImagePanelEnter = () => {
+  if (isTouchDevice()) return
+  imagePanelHover.value = true
+  cancelImageClose()
+}
+
+const onImagePanelLeave = () => {
+  if (isTouchDevice()) return
+  imagePanelHover.value = false
+  scheduleImageClose()
+}
+
+const onImageToolClick = () => {
+  if (isTouchDevice()) {
+    imagePanelPinned.value = false
+    imagePanelOpen.value = !imagePanelOpen.value
+    return
+  }
+
+  imagePanelPinned.value = !imagePanelPinned.value
+  imagePanelOpen.value = true
+  cancelImageClose()
+}
+
+const onImagePanelInteract = () => {
+  if (!imagePanelOpen.value) imagePanelOpen.value = true
+  if (!imagePanelPinned.value) imagePanelPinned.value = true
+  cancelImageClose()
 }
 
 const authState = ref('idle')
@@ -125,10 +235,18 @@ const isInDingTalk = () => {
   return /DingTalk/i.test(ua)
 }
 
+const isMobileDingTalk = () => {
+  const ua = String(navigator?.userAgent || '')
+  if (!/DingTalk/i.test(ua)) return false
+  return /Mobile|Android|iPhone|iPad|iPod|OpenHarmony|hmos/i.test(ua)
+}
+
 const getDingTalkApi = () => {
   const w = window
-  if (w?.DingTalkPC) return w.DingTalkPC
-  return w?.dd || null
+  if (isMobileDingTalk()) {
+    return w?.dd || w?.DingTalkPC || null
+  }
+  return w?.DingTalkPC || w?.dd || null
 }
 
 const getDingTalkApiName = (dt) => {
@@ -390,6 +508,7 @@ onMounted(() => {
 .app-layout {
   display: flex;
   height: 100vh;
+  position: relative;
 }
 
 .sidebar {
@@ -409,7 +528,6 @@ onMounted(() => {
 }
 
 .auth {
-  margin-top: auto;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -484,6 +602,37 @@ onMounted(() => {
 
 .auth__retry:hover {
   text-decoration: underline;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-entry {
+  padding: 0;
+}
+
+.admin-entry.collapsed {
+  padding: 0;
+}
+
+.admin-entry__btn {
+  width: 100%;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  background: rgba(37, 99, 235, 0.06);
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.admin-entry__btn:hover {
+  background: rgba(37, 99, 235, 0.1);
 }
 
 .diag {
@@ -581,6 +730,58 @@ onMounted(() => {
 .nav {
   display: grid;
   gap: 6px;
+}
+
+.sidebar-mid {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+}
+
+.tool-item {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 12px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: #111827;
+}
+
+.tool-item:hover {
+  background: #f3f4f6;
+}
+
+.tool-item.active {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.imgpanel-popover {
+  position: fixed;
+  top: 14px;
+  left: calc(var(--sidebar-w, 180px) + 12px);
+  width: 320px;
+  height: calc(100vh - 28px);
+  z-index: 50;
+}
+
+.imgpanel-popover__inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(17, 24, 39, 0.14);
+  overflow: hidden;
 }
 
 .nav-item {

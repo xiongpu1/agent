@@ -9,6 +9,7 @@ import ManualReview from '@/views/ManualReview.vue'
 import ProductManual from '@/views/ProductManual.vue'
 import PosterCanvasEditor from '@/views/PosterCanvasEditor.vue'
 import PromptPlaybook from '@/views/PromptPlaybook.vue'
+import Admin from '@/views/Admin.vue'
 
 const routes = [
   {
@@ -62,6 +63,12 @@ const routes = [
         name: 'PromptPlaybook',
         component: PromptPlaybook,
         meta: { moduleKey: 'kbSearch' }
+      },
+      {
+        path: 'admin',
+        name: 'Admin',
+        component: Admin,
+        meta: { moduleKey: 'admin' }
       },
       {
         path: 'poster-editor',

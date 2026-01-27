@@ -39,6 +39,52 @@ async function handleResponse(response, defaultMessage) {
   return response.json()
 }
 
+export async function uploadImageAssets(files = []) {
+  if (!Array.isArray(files) || files.length === 0) throw new Error('files is required')
+  const form = new FormData()
+  files.forEach((f) => {
+    if (f) form.append('files', f)
+  })
+  const response = await fetch(`${API_BASE_URL}/api/images/upload`, {
+    method: 'POST',
+    credentials: 'include',
+    body: form
+  })
+  return handleResponse(response, '上传图片失败')
+}
+
+export async function listImageAssets({ keyword = '', limit = 200, offset = 0 } = {}) {
+  const params = new URLSearchParams()
+  if (keyword) params.set('keyword', keyword)
+  if (limit != null) params.set('limit', String(limit))
+  if (offset != null) params.set('offset', String(offset))
+  const query = params.toString()
+  const response = await fetch(`${API_BASE_URL}/api/images${query ? `?${query}` : ''}`, {
+    credentials: 'include'
+  })
+  return handleResponse(response, '加载图片库失败')
+}
+
+export async function updateImageAsset(imageId, payload = {}) {
+  if (!imageId) throw new Error('imageId is required')
+  const response = await fetch(`${API_BASE_URL}/api/images/${encodeURIComponent(imageId)}`, {
+    method: 'PATCH',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload || {})
+  })
+  return handleResponse(response, '更新图片信息失败')
+}
+
+export async function deleteImageAsset(imageId) {
+  if (!imageId) throw new Error('imageId is required')
+  const response = await fetch(`${API_BASE_URL}/api/images/${encodeURIComponent(imageId)}`, {
+    method: 'DELETE',
+    credentials: 'include'
+  })
+  return handleResponse(response, '删除图片失败')
+}
+
 /**
  * Generate specsheet purely from OCR documents.
  * @param {{documents: object[]}} payload

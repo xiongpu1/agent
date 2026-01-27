@@ -1,0 +1,629 @@
+{
+  "dentries": [
+    {
+      "modifiedTime": "Thu Jan 22 18:27:37 CST 2026",
+      "extension": "axls",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FILE",
+      "version": 1,
+      "uuid": "P0MALyR8kljDp543tZZd1ZE7W3bzYmDO",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/💿 产品索引- Bellagio Product Catalog V2.axls",
+      "size": 91229430,
+      "createTime": "Thu Nov 13 10:56:16 CST 2025",
+      "storageDriver": "DINGTALK",
+      "name": "💿 产品索引- Bellagio Product Catalog V2.axls",
+      "id": "200509474771",
+      "category": "ALI_DOC",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Wed Jan 21 14:12:35 CST 2026",
+      "extension": "axls",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FILE",
+      "version": 1,
+      "uuid": "gvNG4YZ7Jnl35vzXCZvEZyrDW2LD0oRE",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/💿 视频索引- Bellagio Video V2.axls",
+      "size": 25672952,
+      "createTime": "Mon Aug 18 17:36:53 CST 2025",
+      "storageDriver": "DINGTALK",
+      "name": "💿 视频索引- Bellagio Video V2.axls",
+      "id": "190416555010",
+      "category": "ALI_DOC",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"dingding\",\"id\":\"alidocs_emotion_008\",\"name\":\"[进度: 未开始]\",\"url\":\"https://g.alicdn.com/alidocs/emotion-assets/0.0.6/alidocs_emotion_008.png\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Tue Dec 30 11:11:39 CST 2025",
+      "creatorId": "Zw6iivoh7Xq2VGDQfbii3QwgiEiE",
+      "modifierId": "zWNiSGsuR1v4BTaaBWfiirQQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "mweZ92PV6Mwl3X71UE2xOk05WxEKBD6p",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/社媒及卖点",
+      "createTime": "Fri Dec 13 10:03:34 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "社媒及卖点",
+      "id": "163264254602",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "23"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"Invite\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Mon Dec 22 14:30:44 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "pYLaezmVNeZqmzjdix0b32avWrMqPxX6",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/🧊Vinterköld",
+      "createTime": "Wed Sep 11 14:13:43 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "🧊Vinterköld",
+      "id": "153013639014",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "11"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Tue Dec 16 11:25:06 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "ii7U1kNRZKpBLHLzwcMLIHgiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "gpG2NdyVX3l6yvnbfgljEDXdWMwvDqPk",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/Manuals",
+      "createTime": "Wed Sep 11 14:24:37 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "Manuals",
+      "id": "153014262199",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "1"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "7"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 12 15:57:18 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "1DKw2zgV2PwojMrbtzn9j91v8B5r9YAn",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/Brochure",
+      "createTime": "Wed Sep 11 14:23:41 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "Brochure",
+      "id": "153013364052",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {}
+    },
+    {
+      "modifiedTime": "Fri Dec 12 15:55:46 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "wva2dxOW4YwlONmbT5p3ENGZVbkz3BRL",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/Freestanding Bathtub",
+      "createTime": "Thu Sep 12 18:42:34 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "Freestanding Bathtub",
+      "id": "153209074973",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "3"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "0"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"var(--we_yellow1_color, rgba(255, 206, 32, 1))\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 12 15:44:29 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "l6Pm2Db8D4Dly9B0I4PYY7Yb8xLq0Ee4",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/Massage Bathtub",
+      "createTime": "Fri Sep 13 15:56:18 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "Massage Bathtub",
+      "id": "153314547761",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "66"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"var(--we_yellow1_color, rgba(255, 206, 32, 1))\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 12 15:41:42 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "MyQA2dXW7ewlOpRPivQRx7gxJzlwrZgb",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/🔥Spa",
+      "createTime": "Wed Sep 11 14:23:35 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "🔥Spa",
+      "id": "153015618839",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "6"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 12 14:04:42 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "bva6QBXJwa0me5zrtqXDga4kWn4qY5Pr",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/🏊‍Swim Spa",
+      "createTime": "Wed Sep 11 14:21:06 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "🏊‍Swim Spa",
+      "id": "153014262116",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "3"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "0"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 12 13:55:49 CST 2025",
+      "creatorId": "RLJ7T4BiPyii7P5cL5kAZfFAiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "7QG4Yx2JpL2rz5MmtA06L0p6J9dEq3XD",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/Video",
+      "createTime": "Wed Sep 11 14:22:15 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "Video",
+      "id": "153015430208",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "4"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"Ywork\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 12 11:25:11 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "1zknDm0WRalq0npdtBYyrxvE8BQEx5rG",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/场景图",
+      "createTime": "Fri Dec 12 11:24:41 CST 2025",
+      "storageDriver": "DINGTALK",
+      "name": "场景图",
+      "id": "203882766004",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {}
+    },
+    {
+      "modifiedTime": "Fri Oct 17 18:03:39 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "MyQA2dXW7ewlOpRPir5mAaxOJzlwrZgb",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/技术资料",
+      "createTime": "Tue Aug 20 14:39:38 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "技术资料",
+      "id": "150236470910",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "21"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"Explore\",\"color\":\"special-color-ai\"}"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "1"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Tue Oct 14 17:58:47 CST 2025",
+      "creatorId": "ii7U1kNRZKpBLHLzwcMLIHgiEiE",
+      "modifierId": "ii7U1kNRZKpBLHLzwcMLIHgiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "dxXB52LJqnAg9Y0XCngx53Yz8qjMp697",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/SpaPad",
+      "createTime": "Thu Jul 31 16:04:45 CST 2025",
+      "storageDriver": "DINGTALK",
+      "name": "SpaPad",
+      "id": "190406542892",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "1"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "3"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Tue Oct 14 13:18:08 CST 2025",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "ii7U1kNRZKpBLHLzwcMLIHgiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "X6GRezwJlAEK3nLginR7mwz18dqbropQ",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/Fence",
+      "createTime": "Wed Jul 09 15:28:31 CST 2025",
+      "storageDriver": "DINGTALK",
+      "name": "Fence",
+      "id": "190403613269",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "3"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "2"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Wed Sep 24 11:08:33 CST 2025",
+      "extension": "dlnk",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FILE",
+      "version": 1,
+      "uuid": "nYMoO1rWxa0nP5ZLtbP5jYDmV47Z3je9",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/💿 说明书索引-Bellagio Product 供应商说明书等.dlnk",
+      "size": 226,
+      "createTime": "Mon Aug 18 14:45:25 CST 2025",
+      "storageDriver": "DINGTALK",
+      "name": "💿 说明书索引-Bellagio Product 供应商说明书等.dlnk",
+      "id": "190379688675",
+      "category": "SHORTCUT",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PRIVATE",
+            "name": "dingDrive#Icons",
+            "value": "{\"LIGHT\":\"$iQEKAqNwbmcDAARgBWAG2gAhhAGkC7CsngKqW6mR3A2ufiodfwPPAAABhPGakVUEzQh2BwAIAAmxYWxpZG9jLmNsb3VkLm5vdGU\",\"DARK\":\"$iQELAqNwbmcDAARgBWAG2gAhhAGkITYYegKq5jn21dUBmjti7gPPAAABg9BjHvUEzZYjBwAIAAmxYWxpZG9jLmNsb3VkLm5vdGU\"}"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 20 09:50:08 CST 2024",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "pYLaezmVNeZqmzjdix0Zbaa3WrMqPxX6",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/♨️Sauna",
+      "createTime": "Wed Sep 11 10:10:33 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "♨️Sauna",
+      "id": "152974156208",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "3"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          },
+          {
+            "visibility": "PUBLIC",
+            "name": "fileChildrenCount",
+            "value": "0"
+          }
+        ]
+      }
+    },
+    {
+      "modifiedTime": "Fri Dec 13 13:34:41 CST 2024",
+      "creatorId": "msiPnmdHXXzeZUkZMqzARZQiEiE",
+      "modifierId": "Zw6iivoh7Xq2VGDQfbii3QwgiEiE",
+      "type": "FOLDER",
+      "version": 1,
+      "uuid": "1zknDm0WRalq0npdtkvqkNLX8BQEx5rG",
+      "partitionType": "PUBLIC_OSS_PARTITION",
+      "parentId": "0",
+      "spaceId": "24834926306",
+      "path": "/🍃Gazebo",
+      "createTime": "Wed Sep 11 14:19:07 CST 2024",
+      "storageDriver": "DINGTALK",
+      "name": "🍃Gazebo",
+      "id": "153014098285",
+      "category": "OTHER",
+      "properties": {
+        "readOnly": false
+      },
+      "status": "NORMAL",
+      "appProperties": {
+        "KG08z0pThyaozbZj8tj0UQsiP7JjZMBTY": [
+          {
+            "visibility": "PUBLIC",
+            "name": "folderChildrenCount",
+            "value": "3"
+          },
+          {
+            "visibility": "PRIVATE",
+            "name": "customIcon",
+            "value": "{\"type\":\"icon\",\"id\":\"File\",\"color\":\"special-color-ai\"}"
+          }
+        ]
+      }
+    }
+  ]
+}

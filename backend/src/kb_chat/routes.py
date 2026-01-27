@@ -5,8 +5,10 @@ from typing import Any, Dict, Optional
 import time
 import re
 
-from fastapi import APIRouter, Body, HTTPException, Query
+from fastapi import APIRouter, Body, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
+
+from src.dingtalk_auth import _COOKIE_NAME, _get_session
 
 from .neo4j_schema import probe_schema
 from .service import (
@@ -46,31 +48,53 @@ from .conversations_store import (
 
 router = APIRouter()
 
+
+def _maybe_userid(request: Request) -> str:
+    try:
+        sid = request.cookies.get(_COOKIE_NAME) or ""
+        user = _get_session(sid)
+        if not user:
+            return ""
+        return str(user.get("userid") or "").strip()
+    except Exception:
+        return ""
+
+
+def _require_userid(request: Request) -> str:
+    uid = _maybe_userid(request)
+    if not uid:
+        raise HTTPException(status_code=401, detail="not logged in")
+    return uid
+
 # In-memory per-session state for UX flows (best-effort). This avoids LLM hallucinating
 # candidate selections and allows deterministic mapping of "1/2" to actual DB candidates.
 _SESSION_STATE: Dict[str, Dict[str, Any]] = {}
 
 
 @router.post("/api/kb/conversations")
-async def kb_create_conversation(payload: Dict[str, Any] = Body(default={})):  # type: ignore
+async def kb_create_conversation(request: Request, payload: Dict[str, Any] = Body(default={})):  # type: ignore
+    owner_userid = _require_userid(request)
     title = payload.get("title") if isinstance(payload, dict) else None
-    conv = create_conversation(initial_title=str(title) if title else None)
+    conv = create_conversation(owner_userid, initial_title=str(title) if title else None)
     return {"conversation": conv}
 
 
 @router.get("/api/kb/conversations")
 async def kb_list_conversations(
+    request: Request,
     q: str = Query(default=""),
     limit: int = Query(default=50),
     offset: int = Query(default=0),
 ):
-    items = list_conversations(limit=limit, offset=offset, q=q)
+    owner_userid = _require_userid(request)
+    items = list_conversations(owner_userid, limit=limit, offset=offset, q=q)
     return {"conversations": items}
 
 
 @router.get("/api/kb/conversations/{conversation_id}")
-async def kb_get_conversation(conversation_id: str):
-    conv = get_conversation(conversation_id)
+async def kb_get_conversation(request: Request, conversation_id: str):
+    owner_userid = _require_userid(request)
+    conv = get_conversation(owner_userid, conversation_id)
     if not conv:
         raise HTTPException(status_code=404, detail="conversation not found")
     return {"conversation": conv}
@@ -78,20 +102,23 @@ async def kb_get_conversation(conversation_id: str):
 
 @router.get("/api/kb/conversations/{conversation_id}/messages")
 async def kb_get_messages(
+    request: Request,
     conversation_id: str,
     limit: int = Query(default=200),
     offset: int = Query(default=0),
 ):
-    conv = get_conversation(conversation_id)
+    owner_userid = _require_userid(request)
+    conv = get_conversation(owner_userid, conversation_id)
     if not conv:
         raise HTTPException(status_code=404, detail="conversation not found")
-    msgs = list_messages(conversation_id, limit=limit, offset=offset)
+    msgs = list_messages(owner_userid, conversation_id, limit=limit, offset=offset)
     return {"messages": msgs}
 
 
 @router.delete("/api/kb/conversations/{conversation_id}")
-async def kb_delete_conversation(conversation_id: str):
-    delete_conversation(conversation_id)
+async def kb_delete_conversation(request: Request, conversation_id: str):
+    owner_userid = _require_userid(request)
+    delete_conversation(owner_userid, conversation_id)
     return {"ok": True}
 
 
@@ -375,36 +402,63 @@ async def kb_chat_schema():
 
 
 @router.post("/api/kb/chat")
-async def kb_chat(payload: Dict[str, Any] = Body(...)):
+async def kb_chat(request: Request, payload: Dict[str, Any] = Body(...)):
     """Non-streaming KB chat endpoint (JSON). Used as a fallback when SSE is blocked."""
 
     conversation_id = (payload.get("conversationId") or "").strip()
     message = (payload.get("message") or "").strip()
     context = payload.get("context") if isinstance(payload.get("context"), dict) else {}
+    local_mode = bool(payload.get("local"))
+    history_in = payload.get("history") if isinstance(payload.get("history"), list) else None
 
-    if not conversation_id:
-        raise HTTPException(status_code=400, detail="conversationId 不能为空")
-    conv = get_conversation(conversation_id)
-    if not conv:
-        raise HTTPException(status_code=404, detail="conversation not found")
+    owner_userid = _maybe_userid(request)
+    if not local_mode:
+        if not owner_userid:
+            raise HTTPException(status_code=401, detail="not logged in")
+        if not conversation_id:
+            raise HTTPException(status_code=400, detail="conversationId 不能为空")
+        conv = get_conversation(owner_userid, conversation_id)
+        if not conv:
+            raise HTTPException(status_code=404, detail="conversation not found")
 
-    # Load history from DB
-    db_msgs = list_messages(conversation_id, limit=24, offset=0)
-    history = [{"role": m.get("role"), "content": m.get("content")} for m in db_msgs if m.get("role") in {"user", "assistant", "system"}]
+        # Load history from DB
+        db_msgs = list_messages(owner_userid, conversation_id, limit=24, offset=0)
+        history = [
+            {"role": m.get("role"), "content": m.get("content")}
+            for m in db_msgs
+            if m.get("role") in {"user", "assistant", "system"}
+        ]
+        session_id = conversation_id
+    else:
+        # Local mode: allow chatting without login and without persistence.
+        history = []
+        if isinstance(history_in, list):
+            for it in history_in:
+                if not isinstance(it, dict):
+                    continue
+                r = str(it.get("role") or "").strip()
+                c = str(it.get("content") or "").strip()
+                if r in {"user", "assistant", "system"} and c:
+                    history.append({"role": r, "content": c})
+        history = history[-24:]
+        session_id = conversation_id or "local"
 
     if not message:
         raise HTTPException(status_code=400, detail="message 不能为空")
 
     if agent_mode_enabled():
-        append_message(conversation_id, role="user", content=message)
-        out = agent_orchestrate(message, history=history, context=context, session_id=conversation_id)
-        append_message(
-            conversation_id,
-            role="assistant",
-            content=out.get("content") or "",
-            reasoning=out.get("reasoning") or "",
-            citations=out.get("citations") or [],
-        )
+        if not local_mode:
+            append_message(owner_userid, conversation_id, role="user", content=message)
+        out = agent_orchestrate(message, history=history, context=context, session_id=session_id)
+        if not local_mode:
+            append_message(
+                owner_userid,
+                conversation_id,
+                role="assistant",
+                content=out.get("content") or "",
+                reasoning=out.get("reasoning") or "",
+                citations=out.get("citations") or [],
+            )
         return {
             "conversationId": conversation_id,
             "type": out.get("type") or "answer",
@@ -582,28 +636,47 @@ async def kb_chat(payload: Dict[str, Any] = Body(...)):
 
 @router.post("/api/kb/chat/stream")
 async def kb_chat_stream(
+    request: Request,
     payload: Dict[str, Any] = Body(...),
 ):
     conversation_id = (payload.get("conversationId") or "").strip()
     message = (payload.get("message") or "").strip()
     context = payload.get("context") if isinstance(payload.get("context"), dict) else {}
+    local_mode = bool(payload.get("local"))
+    history_in = payload.get("history") if isinstance(payload.get("history"), list) else None
 
-    if not conversation_id:
-        raise HTTPException(status_code=400, detail="conversationId 不能为空")
-    conv = get_conversation(conversation_id)
-    if not conv:
-        raise HTTPException(status_code=404, detail="conversation not found")
+    owner_userid = _maybe_userid(request)
+    if not local_mode:
+        if not owner_userid:
+            raise HTTPException(status_code=401, detail="not logged in")
+        if not conversation_id:
+            raise HTTPException(status_code=400, detail="conversationId 不能为空")
+        conv = get_conversation(owner_userid, conversation_id)
+        if not conv:
+            raise HTTPException(status_code=404, detail="conversation not found")
 
-    # Load history from DB
-    db_msgs = list_messages(conversation_id, limit=24, offset=0)
-    history = [
-        {"role": m.get("role"), "content": m.get("content")}
-        for m in db_msgs
-        if m.get("role") in {"user", "assistant", "system"}
-    ]
-
-    # Keep legacy helper paths using session_id naming.
-    session_id = conversation_id
+        # Load history from DB
+        db_msgs = list_messages(owner_userid, conversation_id, limit=24, offset=0)
+        history = [
+            {"role": m.get("role"), "content": m.get("content")}
+            for m in db_msgs
+            if m.get("role") in {"user", "assistant", "system"}
+        ]
+        # Keep legacy helper paths using session_id naming.
+        session_id = conversation_id
+    else:
+        # Local mode: allow chatting without login and without persistence.
+        history = []
+        if isinstance(history_in, list):
+            for it in history_in:
+                if not isinstance(it, dict):
+                    continue
+                r = str(it.get("role") or "").strip()
+                c = str(it.get("content") or "").strip()
+                if r in {"user", "assistant", "system"} and c:
+                    history.append({"role": r, "content": c})
+        history = history[-24:]
+        session_id = conversation_id or "local"
 
     if not message:
         raise HTTPException(status_code=400, detail="message 不能为空")
@@ -616,34 +689,39 @@ async def kb_chat_stream(
         yield _sse("meta", {"conversationId": conversation_id})
 
         if agent_mode_enabled():
-            append_message(conversation_id, role="user", content=message)
-            out = agent_orchestrate(message, history=history, context=context, session_id=conversation_id)
+            if not local_mode:
+                append_message(owner_userid, conversation_id, role="user", content=message)
+            out = agent_orchestrate(message, history=history, context=context, session_id=session_id)
             typ = out.get("type") or "answer"
             reasoning = out.get("reasoning") or ""
             if typ == "clarify":
                 if reasoning:
                     yield _sse("reasoning_delta", {"delta": reasoning})
                 yield _sse("clarify", {"content": out.get("content") or ""})
-                append_message(
-                    conversation_id,
-                    role="assistant",
-                    content=out.get("content") or "",
-                    reasoning=reasoning,
-                    citations=out.get("citations") or [],
-                )
+                if not local_mode:
+                    append_message(
+                        owner_userid,
+                        conversation_id,
+                        role="assistant",
+                        content=out.get("content") or "",
+                        reasoning=reasoning,
+                        citations=out.get("citations") or [],
+                    )
                 yield _sse("done", {"ok": True})
                 return
             if reasoning:
                 yield _sse("reasoning_delta", {"delta": reasoning})
             yield _sse("answer_delta", {"delta": out.get("content") or ""})
             yield _sse("citations", {"citations": out.get("citations") or []})
-            append_message(
-                conversation_id,
-                role="assistant",
-                content=out.get("content") or "",
-                reasoning=reasoning,
-                citations=out.get("citations") or [],
-            )
+            if not local_mode:
+                append_message(
+                    owner_userid,
+                    conversation_id,
+                    role="assistant",
+                    content=out.get("content") or "",
+                    reasoning=reasoning,
+                    citations=out.get("citations") or [],
+                )
             yield _sse("done", {"ok": True})
             return
 
@@ -914,6 +992,7 @@ async def kb_chat_stream(
 
 @router.get("/api/kb/chat/stream_get")
 async def kb_chat_stream_get(
+    request: Request,
     payload: str = Query(default=""),
     sessionId: str = Query(default=""),
     message: str = Query(default=""),
@@ -942,4 +1021,4 @@ async def kb_chat_stream_get(
         }
 
     # Reuse POST handler logic by calling it directly.
-    return await kb_chat_stream(payload=data)
+    return await kb_chat_stream(request, payload=data)

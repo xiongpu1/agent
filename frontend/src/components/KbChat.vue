@@ -189,6 +189,15 @@ const canSend = computed(() => draft.value.trim().length > 0)
 
 const conversations = ref([])
 
+const authUser = ref(null)
+const isLoggedIn = computed(() => Boolean(authUser.value?.userid))
+const modeKey = computed(() => (isLoggedIn.value ? `u:${authUser.value.userid}` : 'anon'))
+
+const localConvId = ref('')
+
+let authPollTimer = null
+const lastAuthUserid = ref('')
+
 const formatTime = (v) => {
   const n = Number(v || 0)
   if (!n) return ''
@@ -198,7 +207,7 @@ const formatTime = (v) => {
 
 const fetchJson = async (path, options) => {
   const url = resolveApiUrl(path)
-  const resp = await fetch(url, options)
+  const resp = await fetch(url, { credentials: 'include', ...(options || {}) })
   const raw = await resp.text().catch(() => '')
   if (!resp.ok) throw new Error(raw || `HTTP ${resp.status}`)
   try {
@@ -208,12 +217,82 @@ const fetchJson = async (path, options) => {
   }
 }
 
+const fetchMe = async () => {
+  try {
+    const url = resolveApiUrl('/api/auth/me')
+    const resp = await fetch(url, { credentials: 'include' })
+    if (!resp.ok) return null
+    const data = await resp.json()
+    return data?.user || null
+  } catch {
+    return null
+  }
+}
+
+const localKey = (suffix) => `kbchat_local_${suffix}_${modeKey.value}`
+
+const loadLocalState = () => {
+  try {
+    const raw = localStorage.getItem(localKey('state')) || ''
+    const st = raw ? JSON.parse(raw) : {}
+    const convs = Array.isArray(st?.conversations) ? st.conversations : []
+    const msgs = st?.messages && typeof st.messages === 'object' ? st.messages : {}
+    const selected = String(st?.selectedId || '')
+    return { conversations: convs, messages: msgs, selectedId: selected }
+  } catch {
+    return { conversations: [], messages: {}, selectedId: '' }
+  }
+}
+
+const saveLocalState = (state) => {
+  try {
+    localStorage.setItem(localKey('state'), JSON.stringify(state || {}))
+  } catch (e) {}
+}
+
+const ensureLocalConversation = () => {
+  const st = loadLocalState()
+  const convs = Array.isArray(st.conversations) ? st.conversations : []
+  let cid = String(st.selectedId || '')
+  if (!cid && convs.length) cid = String(convs[0]?.id || '')
+  if (!cid) {
+    const now = Date.now()
+    cid = `local-${now}`
+    convs.unshift({ id: cid, title: '新对话', updated_at_ms: now, created_at_ms: now })
+  }
+  const next = { conversations: convs, messages: st.messages || {}, selectedId: cid }
+  saveLocalState(next)
+  return cid
+}
+
 const loadConversations = async () => {
+  if (!isLoggedIn.value) {
+    const st = loadLocalState()
+    conversations.value = Array.isArray(st.conversations) ? st.conversations : []
+    return
+  }
   const data = await fetchJson('/api/kb/conversations', { method: 'GET' })
   conversations.value = Array.isArray(data?.conversations) ? data.conversations : []
 }
 
 const loadMessages = async (cid) => {
+  if (!isLoggedIn.value) {
+    const st = loadLocalState()
+    const arr = Array.isArray(st?.messages?.[cid]) ? st.messages[cid] : []
+    messages.value = arr.map((m) =>
+      reactive({
+        id: m.id || `${m.ts || Date.now()}`,
+        role: m.role,
+        content: m.content || '',
+        reasoning: m.reasoning || '',
+        status: m.status || 'done',
+        citations: Array.isArray(m.citations) ? m.citations : [],
+        showCitations: false
+      })
+    )
+    return
+  }
+
   const data = await fetchJson(`/api/kb/conversations/${cid}/messages?limit=200`, { method: 'GET' })
   const arr = Array.isArray(data?.messages) ? data.messages : []
   messages.value = arr
@@ -233,9 +312,13 @@ const loadMessages = async (cid) => {
 
 const selectConversation = async (cid) => {
   stopStreaming()
-  conversationId.value = cid
+  if (isLoggedIn.value) {
+    conversationId.value = cid
+  } else {
+    localConvId.value = cid
+  }
   try {
-    localStorage.setItem('kbchat_conversation_id', cid)
+    localStorage.setItem(`kbchat_conversation_id_${modeKey.value}`, cid)
   } catch (e) {}
   await loadMessages(cid)
   await nextTick()
@@ -243,6 +326,19 @@ const selectConversation = async (cid) => {
 }
 
 const createConversation = async () => {
+  if (!isLoggedIn.value) {
+    const now = Date.now()
+    const cid = `local-${now}`
+    const st = loadLocalState()
+    const convs = Array.isArray(st.conversations) ? st.conversations : []
+    convs.unshift({ id: cid, title: '新对话', updated_at_ms: now, created_at_ms: now })
+    const next = { conversations: convs, messages: st.messages || {}, selectedId: cid }
+    saveLocalState(next)
+    await loadConversations()
+    await selectConversation(cid)
+    return
+  }
+
   const data = await fetchJson('/api/kb/conversations', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -331,11 +427,11 @@ const stopStreaming = () => {
 
 const fetchNonStreamAnswer = async (userText) => {
   const url = resolveApiUrl('/api/kb/chat')
-  const payload = {
-    conversationId: conversationId.value,
-    message: userText,
-    context: { moduleKey: 'kbChat' }
-  }
+  const local = !isLoggedIn.value
+  const cid = local ? localConvId.value : conversationId.value
+  const payload = local
+    ? { local: true, conversationId: cid || 'local', message: userText, history: buildHistoryPayload(), context: { moduleKey: 'kbChat' } }
+    : { conversationId: cid, message: userText, context: { moduleKey: 'kbChat' } }
   const controller = new AbortController()
   const timeoutMs = 15000
   const t = setTimeout(() => controller.abort(), timeoutMs)
@@ -343,6 +439,7 @@ const fetchNonStreamAnswer = async (userText) => {
   try {
     resp = await fetch(url, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
       signal: controller.signal
@@ -376,16 +473,16 @@ const startStreamViaEventSource = (userText, assistantMsg) => {
       gotAnyEvent = true
     }
 
-    const payloadObj = {
-      conversationId: conversationId.value,
-      message: userText,
-      context: { moduleKey: 'kbChat' }
-    }
+    const local = !isLoggedIn.value
+    const cid = local ? localConvId.value : conversationId.value
+    const payloadObj = local
+      ? { local: true, conversationId: cid || 'local', message: userText, history: buildHistoryPayload(), context: { moduleKey: 'kbChat' } }
+      : { conversationId: cid, message: userText, context: { moduleKey: 'kbChat' } }
     const qs = new URLSearchParams({
       payload: JSON.stringify(payloadObj)
     })
     const url = resolveApiUrl(`/api/kb/chat/stream_get?${qs.toString()}`)
-    const es = new EventSource(url)
+    const es = new EventSource(url, { withCredentials: true })
     eventSourceRef.value = es
 
     es.onopen = () => {
@@ -559,6 +656,21 @@ const handleSend = async () => {
   messages.value.push(userMsg)
   messages.value.push(assistantMsg)
 
+  if (!isLoggedIn.value) {
+    const cid = localConvId.value
+    const st = loadLocalState()
+    const msgsMap = st.messages && typeof st.messages === 'object' ? st.messages : {}
+    const arr = Array.isArray(msgsMap[cid]) ? msgsMap[cid] : []
+    arr.push({ id: userId, role: 'user', content: text, ts: now })
+    arr.push({ id: aiId, role: 'assistant', content: '', reasoning: '', status: 'typing', ts: now })
+    msgsMap[cid] = arr
+    const convs = Array.isArray(st.conversations) ? st.conversations : []
+    const idx = convs.findIndex((c) => c.id === cid)
+    if (idx >= 0) convs[idx] = { ...convs[idx], updated_at_ms: now }
+    saveLocalState({ conversations: convs, messages: msgsMap, selectedId: cid })
+    await loadConversations()
+  }
+
   draft.value = ''
   await nextTick()
   autoResize()
@@ -574,6 +686,28 @@ const handleSend = async () => {
       assistantMsg.status = 'done'
       if (!assistantMsg.content) assistantMsg.content = '请求结束但未收到内容'
     }
+
+    if (!isLoggedIn.value) {
+      try {
+        const cid = localConvId.value
+        const st = loadLocalState()
+        const msgsMap = st.messages && typeof st.messages === 'object' ? st.messages : {}
+        const arr = Array.isArray(msgsMap[cid]) ? msgsMap[cid] : []
+        const i = arr.findIndex((m) => m.id === aiId)
+        if (i >= 0) {
+          arr[i] = {
+            ...arr[i],
+            content: assistantMsg.content,
+            reasoning: assistantMsg.reasoning,
+            status: 'done',
+            citations: assistantMsg.citations
+          }
+        }
+        msgsMap[cid] = arr
+        saveLocalState({ conversations: st.conversations || [], messages: msgsMap, selectedId: cid })
+      } catch (e) {}
+    }
+
     console.log('[KbChat] final status', assistantMsg.status, assistantMsg.content)
     await nextTick()
     scrollToBottom()
@@ -581,25 +715,73 @@ const handleSend = async () => {
 }
 
 onMounted(async () => {
-  isInitializing.value = true
-  try {
-    await getSuggestions()
-    await loadConversations()
-    let cid = ''
+  const initChat = async (options = {}) => {
+    const skipFetch = Boolean(options.skipFetchMe)
+    stopStreaming()
+    messages.value = []
+    conversations.value = []
+    conversationId.value = ''
+    localConvId.value = ''
+    sessionId.value = ''
+
+    isInitializing.value = true
     try {
-      cid = localStorage.getItem('kbchat_conversation_id') || ''
-    } catch (e) {}
-    if (!cid && conversations.value.length) cid = conversations.value[0].id
-    if (!cid) {
-      await createConversation()
-    } else {
-      await selectConversation(cid)
+      await getSuggestions()
+
+      if (!skipFetch) {
+        authUser.value = await fetchMe()
+      }
+      lastAuthUserid.value = String(authUser.value?.userid || '')
+
+      if (!isLoggedIn.value) {
+        await loadConversations()
+        const cid = ensureLocalConversation()
+        localConvId.value = cid
+        await selectConversation(cid)
+        return
+      }
+
+      await loadConversations()
+      let cid = ''
+      try {
+        cid = localStorage.getItem(`kbchat_conversation_id_${modeKey.value}`) || ''
+      } catch (e) {}
+      if (!cid && conversations.value.length) cid = conversations.value[0].id
+      if (!cid) {
+        await createConversation()
+      } else {
+        await selectConversation(cid)
+      }
+    } finally {
+      isInitializing.value = false
+      autoResize()
+      scrollToBottom()
     }
-  } finally {
-    isInitializing.value = false
-    autoResize()
-    scrollToBottom()
   }
+
+  const refreshAuthAndMaybeSwitch = async () => {
+    const me = await fetchMe()
+    const nextUid = String(me?.userid || '')
+    const prevUid = String(authUser.value?.userid || '')
+    if (nextUid !== prevUid) {
+      authUser.value = me
+      await initChat({ skipFetchMe: true })
+    }
+  }
+
+  await initChat()
+
+  const onFocus = () => refreshAuthAndMaybeSwitch()
+  const onVis = () => {
+    if (document.visibilityState === 'visible') refreshAuthAndMaybeSwitch()
+  }
+
+  window.addEventListener('focus', onFocus)
+  document.addEventListener('visibilitychange', onVis)
+
+  authPollTimer = setInterval(() => {
+    refreshAuthAndMaybeSwitch()
+  }, 8000)
 })
 </script>
 

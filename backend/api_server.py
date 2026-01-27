@@ -26,6 +26,7 @@ load_dotenv(project_root / ".env")
 
 from src.kb_chat.routes import router as kb_chat_router
 from src.dingtalk_auth import router as dingtalk_auth_router
+from src.image_library import router as image_library_router
 
 from src.api_queries import (
     get_all_product_names,
@@ -196,6 +197,7 @@ app = FastAPI(title="Product Specsheet API", version="1.0.0")
 
 app.include_router(kb_chat_router)
 app.include_router(dingtalk_auth_router)
+app.include_router(image_library_router)
 
 # Configure CORS
 app.add_middleware(

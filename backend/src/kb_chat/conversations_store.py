@@ -31,12 +31,18 @@ def init_db() -> None:
             """
             CREATE TABLE IF NOT EXISTS conversations (
                 id TEXT PRIMARY KEY,
+                owner_userid TEXT NOT NULL,
                 title TEXT NOT NULL,
                 created_at_ms INTEGER NOT NULL,
                 updated_at_ms INTEGER NOT NULL
             )
             """
         )
+        # Backward compatible migration: older DBs may miss owner_userid.
+        cols = [r[1] for r in conn.execute("PRAGMA table_info(conversations)").fetchall()]
+        if "owner_userid" not in cols:
+            conn.execute("ALTER TABLE conversations ADD COLUMN owner_userid TEXT NOT NULL DEFAULT ''")
+
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS messages (
@@ -53,21 +59,25 @@ def init_db() -> None:
             """
         )
         conn.execute("CREATE INDEX IF NOT EXISTS idx_messages_conv_seq ON messages(conversation_id, seq)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_conversations_owner ON conversations(owner_userid)")
         conn.commit()
     finally:
         conn.close()
 
 
-def create_conversation(initial_title: Optional[str] = None) -> Dict[str, Any]:
+def create_conversation(owner_userid: str, initial_title: Optional[str] = None) -> Dict[str, Any]:
     init_db()
+    ou = (owner_userid or "").strip()
+    if not ou:
+        raise ValueError("owner_userid required")
     cid = str(uuid.uuid4())
     now = _now_ms()
     title = (initial_title or "新对话").strip() or "新对话"
     conn = _connect()
     try:
         conn.execute(
-            "INSERT INTO conversations(id, title, created_at_ms, updated_at_ms) VALUES(?,?,?,?)",
-            (cid, title, now, now),
+            "INSERT INTO conversations(id, owner_userid, title, created_at_ms, updated_at_ms) VALUES(?,?,?,?,?)",
+            (cid, ou, title, now, now),
         )
         conn.commit()
     finally:
@@ -75,8 +85,11 @@ def create_conversation(initial_title: Optional[str] = None) -> Dict[str, Any]:
     return {"id": cid, "title": title, "created_at_ms": now, "updated_at_ms": now}
 
 
-def list_conversations(limit: int = 50, offset: int = 0, q: str = "") -> List[Dict[str, Any]]:
+def list_conversations(owner_userid: str, limit: int = 50, offset: int = 0, q: str = "") -> List[Dict[str, Any]]:
     init_db()
+    ou = (owner_userid or "").strip()
+    if not ou:
+        return []
     lim = max(1, min(int(limit or 50), 200))
     off = max(0, int(offset or 0))
     query = (q or "").strip()
@@ -85,33 +98,49 @@ def list_conversations(limit: int = 50, offset: int = 0, q: str = "") -> List[Di
     try:
         if query:
             rows = conn.execute(
-                "SELECT id, title, created_at_ms, updated_at_ms FROM conversations WHERE title LIKE ? ORDER BY updated_at_ms DESC LIMIT ? OFFSET ?",
-                (f"%{query}%", lim, off),
+                "SELECT id, title, created_at_ms, updated_at_ms FROM conversations WHERE owner_userid = ? AND title LIKE ? ORDER BY updated_at_ms DESC LIMIT ? OFFSET ?",
+                (ou, f"%{query}%", lim, off),
             ).fetchall()
         else:
             rows = conn.execute(
-                "SELECT id, title, created_at_ms, updated_at_ms FROM conversations ORDER BY updated_at_ms DESC LIMIT ? OFFSET ?",
-                (lim, off),
+                "SELECT id, title, created_at_ms, updated_at_ms FROM conversations WHERE owner_userid = ? ORDER BY updated_at_ms DESC LIMIT ? OFFSET ?",
+                (ou, lim, off),
             ).fetchall()
         return [dict(r) for r in rows]
     finally:
         conn.close()
 
 
-def get_conversation(conversation_id: str) -> Optional[Dict[str, Any]]:
+def get_conversation(owner_userid: str, conversation_id: str) -> Optional[Dict[str, Any]]:
     init_db()
+    ou = (owner_userid or "").strip()
+    if not ou:
+        return None
     cid = (conversation_id or "").strip()
     if not cid:
         return None
     conn = _connect()
     try:
         row = conn.execute(
-            "SELECT id, title, created_at_ms, updated_at_ms FROM conversations WHERE id = ?",
-            (cid,),
+            "SELECT id, title, created_at_ms, updated_at_ms FROM conversations WHERE id = ? AND owner_userid = ?",
+            (cid, ou),
         ).fetchone()
         return dict(row) if row else None
     finally:
         conn.close()
+
+
+def _assert_owns_conversation(conn: sqlite3.Connection, owner_userid: str, conversation_id: str) -> None:
+    ou = (owner_userid or "").strip()
+    cid = (conversation_id or "").strip()
+    if not ou or not cid:
+        raise ValueError("owner_userid/conversation_id required")
+    row = conn.execute(
+        "SELECT id FROM conversations WHERE id = ? AND owner_userid = ?",
+        (cid, ou),
+    ).fetchone()
+    if not row:
+        raise ValueError("conversation not found")
 
 
 def _next_seq(conn: sqlite3.Connection, conversation_id: str) -> int:
@@ -124,6 +153,7 @@ def _next_seq(conn: sqlite3.Connection, conversation_id: str) -> int:
 
 
 def append_message(
+    owner_userid: str,
     conversation_id: str,
     role: str,
     content: str,
@@ -152,6 +182,7 @@ def append_message(
 
     conn = _connect()
     try:
+        _assert_owns_conversation(conn, owner_userid, cid)
         seq = _next_seq(conn, cid)
         conn.execute(
             "INSERT INTO messages(id, conversation_id, seq, role, content, reasoning, citations_json, created_at_ms) VALUES(?,?,?,?,?,?,?,?)",
@@ -173,8 +204,11 @@ def append_message(
         conn.close()
 
 
-def list_messages(conversation_id: str, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+def list_messages(owner_userid: str, conversation_id: str, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
     init_db()
+    ou = (owner_userid or "").strip()
+    if not ou:
+        return []
     cid = (conversation_id or "").strip()
     if not cid:
         return []
@@ -183,6 +217,10 @@ def list_messages(conversation_id: str, limit: int = 50, offset: int = 0) -> Lis
 
     conn = _connect()
     try:
+        try:
+            _assert_owns_conversation(conn, ou, cid)
+        except Exception:
+            return []
         rows = conn.execute(
             "SELECT id, conversation_id, seq, role, content, reasoning, citations_json, created_at_ms FROM messages WHERE conversation_id = ? ORDER BY seq ASC LIMIT ? OFFSET ?",
             (cid, lim, off),
@@ -207,8 +245,11 @@ def list_messages(conversation_id: str, limit: int = 50, offset: int = 0) -> Lis
         conn.close()
 
 
-def set_conversation_title(conversation_id: str, title: str) -> None:
+def set_conversation_title(owner_userid: str, conversation_id: str, title: str) -> None:
     init_db()
+    ou = (owner_userid or "").strip()
+    if not ou:
+        return
     cid = (conversation_id or "").strip()
     if not cid:
         return
@@ -218,21 +259,31 @@ def set_conversation_title(conversation_id: str, title: str) -> None:
     now = _now_ms()
     conn = _connect()
     try:
-        conn.execute("UPDATE conversations SET title = ?, updated_at_ms = ? WHERE id = ?", (t, now, cid))
+        conn.execute(
+            "UPDATE conversations SET title = ?, updated_at_ms = ? WHERE id = ? AND owner_userid = ?",
+            (t, now, cid, ou),
+        )
         conn.commit()
     finally:
         conn.close()
 
 
-def delete_conversation(conversation_id: str) -> None:
+def delete_conversation(owner_userid: str, conversation_id: str) -> None:
     init_db()
+    ou = (owner_userid or "").strip()
+    if not ou:
+        return
     cid = (conversation_id or "").strip()
     if not cid:
         return
     conn = _connect()
     try:
+        # Only delete if conversation belongs to user.
+        row = conn.execute("SELECT id FROM conversations WHERE id = ? AND owner_userid = ?", (cid, ou)).fetchone()
+        if not row:
+            return
         conn.execute("DELETE FROM messages WHERE conversation_id = ?", (cid,))
-        conn.execute("DELETE FROM conversations WHERE id = ?", (cid,))
+        conn.execute("DELETE FROM conversations WHERE id = ? AND owner_userid = ?", (cid, ou))
         conn.commit()
     finally:
         conn.close()

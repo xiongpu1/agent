@@ -10,72 +10,7 @@
       </div>
 
       <div class="panel">
-          <!-- 上传图片 -->
-          <div v-if="active === 'upload'">
-            <div class="img-mgr">
-              <div class="img-mgr__left">
-                <div class="card-header">上传图片</div>
-                <div class="upload-form">
-                  <el-form :model="uploadForm" label-width="100px">
-                    <el-form-item label="产品名称">
-                      <el-input v-model="uploadForm.name" placeholder="请输入产品名称后再选择图片" />
-                    </el-form-item>
-                    <el-form-item label="选择图片">
-                      <el-upload
-                        class="uploader"
-                        drag
-                        action="#"
-                        :auto-upload="false"
-                        :file-list="fileList"
-                      >
-                        <div class="el-upload__text">将文件拖到此处，或<em>点击选择</em></div>
-                        <template #tip>
-                          <div class="el-upload__tip">仅前端布局占位，未接入真实上传。</div>
-                        </template>
-                      </el-upload>
-                    </el-form-item>
-                    <div class="actions">
-                      <el-button type="primary">上传</el-button>
-                    </div>
-                  </el-form>
-                </div>
-
-                <div class="divider" />
-
-                <div class="card-header">查询图片</div>
-                <div class="search-row">
-                  <el-input v-model="imageSearchName" placeholder="输入产品名称进行查询（仅布局）" clearable />
-                  <el-button type="primary">查询</el-button>
-                </div>
-              </div>
-
-              <div class="img-mgr__right">
-                <div class="list-toolbar">
-                  <div class="list-title">图片列表</div>
-                  <div class="list-actions">
-                    <el-button>查看所有图片</el-button>
-                  </div>
-                </div>
-                <el-table :data="imageList" border style="width: 100%">
-                  <el-table-column prop="name" label="产品名称" min-width="140" />
-                  <el-table-column label="缩略图" width="120">
-                    <template #default="scope">
-                      <img :src="scope.row.url" class="thumb" alt="thumb" @error="onImgError" />
-                    </template>
-                  </el-table-column>
-                  <el-table-column prop="filename" label="文件名" min-width="180" />
-                  <el-table-column label="操作" width="160">
-                    <template #default>
-                      <el-button link type="primary">修改</el-button>
-                      <el-button link type="danger">删除</el-button>
-                    </template>
-                  </el-table-column>
-                </el-table>
-              </div>
-            </div>
-          </div>
-          <!-- 查询知识库 -->
-          <div v-else-if="active === 'kbSearch'" class="section">
+          <div v-if="active === 'kbSearch'" class="section">
         <div class="card-header">产品知识库</div>
         <div class="product-panel">
           <div class="product-panel__header">所有物料编码</div>
@@ -453,13 +388,11 @@ import { createManualSession, runManualOcrSession } from '@/services/api'
 import { BOM_TYPES, BOM_CONFIG, createDefaultBomSelections } from '@/constants/bomOptions'
 
 const route = useRoute()
-const AVAILABLE_TABS = ['upload', 'kbSearch', 'kbChat', 'manual', 'export']
+const AVAILABLE_TABS = ['kbSearch', 'kbChat', 'manual', 'export']
 const active = ref(AVAILABLE_TABS.includes(route.query.tab) ? route.query.tab : 'export')
 
 const activeMeta = computed(() => {
   switch (active.value) {
-    case 'upload':
-      return { title: '上传图片', hint: '填写产品名称后上传图片；上传完成后可在右侧列表查看。' }
     case 'kbSearch':
       return { title: '产品知识库', hint: '检索物料编码 / 配件名称，并查看对应资料入口。' }
     case 'kbChat':
@@ -472,31 +405,6 @@ const activeMeta = computed(() => {
   }
 })
 
-// 上传图片
-const fileList = ref([])
-const handleUploadChange = (file, files) => {
-  fileList.value = files
-}
-
-// 图片管理（仅前端布局所需的占位数据）
-const uploadForm = ref({ name: '' })
-const imageSearchName = ref('')
-const imageList = ref([])
-
-const loadImages = async () => {
-  try {
-    const res = await fetch('/upload_image/images.json', { cache: 'no-cache' })
-    if (!res.ok) {
-      imageList.value = []
-      return
-    }
-    const data = await res.json()
-    imageList.value = Array.isArray(data) ? data : []
-  } catch {
-    imageList.value = []
-  }
-}
-
 const openHistoryDialog = () => {
   manualHistoryVisible.value = true
   loadManualHistory()
@@ -505,14 +413,6 @@ const openHistoryDialog = () => {
 const closeHistoryDialog = () => {
   manualHistoryVisible.value = false
 }
-
-onMounted(() => {
-  if (active.value === 'upload') loadImages()
-})
-
-watch(active, (v) => {
-  if (v === 'upload') loadImages()
-})
 
 const router = useRouter()
 const materials = ref([])
@@ -1151,7 +1051,6 @@ const goToExportMaterial = (materialCode) => {
 }
 
 onMounted(() => {
-  if (active.value === 'upload') loadImages()
   loadProducts()
   loadMaterials()
   loadAccessories()
@@ -1159,15 +1058,9 @@ onMounted(() => {
 })
 
 watch(active, (v) => {
-  if (v === 'upload') {
-    loadImages()
-  } else if (['export', 'kbSearch', 'manual'].includes(v)) {
-    if (!productsLoaded.value) {
-      loadProducts()
-    }
-    if (!accessoriesLoaded.value) {
-      loadAccessories()
-    }
+  if (['export', 'kbSearch', 'manual'].includes(v)) {
+    if (!productsLoaded.value) loadProducts()
+    if (!accessoriesLoaded.value) loadAccessories()
   }
   if (v === 'manual' && manualHistoryVisible.value) {
     loadManualHistory()
@@ -1411,10 +1304,6 @@ watch(accessoryKeyword, (value) => {
   }
 }
 
-.uploader {
-  width: 100%;
-}
-
 .section {
   display: grid;
   gap: 12px;
@@ -1599,24 +1488,6 @@ watch(accessoryKeyword, (value) => {
   color: #4b5563;
 }
 
-.manual-upload-grid {
-  cursor: pointer;
-}
-
-.ellipsis-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 10px;
-  color: #999;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.actions {
-  text-align: right;
-}
-
 .product-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -1658,56 +1529,6 @@ watch(accessoryKeyword, (value) => {
 
 .error {
   color: #f56c6c;
-}
-
-/* 图片管理布局 */
-.img-mgr {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-.img-mgr__left {
-  display: grid;
-  gap: 12px;
-  overflow: hidden;
-}
-
-.img-mgr__right {
-  display: grid;
-  gap: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-.upload-form {
-  background: #fafafa;
-  border: 1px dashed var(--el-border-color, #dcdfe6);
-  border-radius: 10px;
-  padding: 12px;
-  overflow: hidden;
-}
-
-/* 固定拖拽框高度，文件列表内部滚动，避免整体高度波动 */
-.uploader :deep(.el-upload-dragger) {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.uploader :deep(.el-upload-list) {
-  max-height: 96px;
-  overflow: auto;
-  position: static;
-}
-
-.divider {
-  height: 1px;
-  background: var(--color-border, #ebeef5);
 }
 
 .list-toolbar {
