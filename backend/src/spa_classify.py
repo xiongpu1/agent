@@ -329,25 +329,88 @@ def _extract_first_data_image_url(md: str) -> Optional[str]:
 
 
 def _to_data_url_for_image(path: Path, max_bytes: int) -> Optional[str]:
+    """
+    将图片转换为 data URL，如果超过大小限制则自动压缩
+    
+    Args:
+        path: 图片文件路径
+        max_bytes: 最大字节数（0 表示不限制）
+        
+    Returns:
+        data URL 字符串，失败返回 None
+    """
     try:
-        b = path.read_bytes()
-    except Exception:
+        from PIL import Image
+        import io
+        
+        # 读取原始图片
+        img = Image.open(path)
+        
+        # 转换为 RGB（如果是 RGBA 或其他模式）
+        if img.mode in ('RGBA', 'LA', 'P'):
+            # 创建白色背景
+            background = Image.new('RGB', img.size, (255, 255, 255))
+            if img.mode == 'P':
+                img = img.convert('RGBA')
+            background.paste(img, mask=img.split()[-1] if img.mode in ('RGBA', 'LA') else None)
+            img = background
+        elif img.mode != 'RGB':
+            img = img.convert('RGB')
+        
+        # 获取原始大小
+        original_size = path.stat().st_size
+        
+        # 如果不限制大小，或者原始文件已经小于限制，直接返回
+        if max_bytes <= 0 or original_size <= max_bytes:
+            b = path.read_bytes()
+            ext = path.suffix.lower()
+            mime = "image/jpeg"
+            if ext == ".png":
+                mime = "image/png"
+            elif ext == ".webp":
+                mime = "image/webp"
+            elif ext == ".gif":
+                mime = "image/gif"
+            b64 = base64.b64encode(b).decode("utf-8")
+            return f"data:{mime};base64,{b64}"
+        
+        # 需要压缩：逐步降低质量直到满足大小要求
+        quality = 85
+        scale = 1.0
+        
+        while quality >= 20 or scale > 0.3:
+            # 调整尺寸
+            if scale < 1.0:
+                new_size = (int(img.width * scale), int(img.height * scale))
+                resized_img = img.resize(new_size, Image.Resampling.LANCZOS)
+            else:
+                resized_img = img
+            
+            # 压缩为 JPEG
+            buffer = io.BytesIO()
+            resized_img.save(buffer, format='JPEG', quality=quality, optimize=True)
+            compressed_bytes = buffer.getvalue()
+            
+            # 检查大小
+            if len(compressed_bytes) <= max_bytes:
+                # 成功压缩到目标大小
+                b64 = base64.b64encode(compressed_bytes).decode("utf-8")
+                print(f"    图片已压缩: {original_size / 1024 / 1024:.1f}MB → {len(compressed_bytes) / 1024 / 1024:.1f}MB (质量={quality}, 缩放={scale:.0%})")
+                return f"data:image/jpeg;base64,{b64}"
+            
+            # 继续降低质量或缩小尺寸
+            if quality > 20:
+                quality -= 10
+            else:
+                scale -= 0.1
+        
+        # 如果还是太大，返回 None
+        print(f"    ⚠️ 图片无法压缩到目标大小: {original_size / 1024 / 1024:.1f}MB")
         return None
-
-    if max_bytes > 0 and len(b) > max_bytes:
+        
+    except Exception as e:
+        print(f"    ⚠️ 图片处理失败: {e}")
         return None
-
-    ext = path.suffix.lower()
-    mime = "image/jpeg"
-    if ext == ".png":
-        mime = "image/png"
-    elif ext == ".webp":
-        mime = "image/webp"
-    elif ext == ".gif":
-        mime = "image/gif"
-
-    b64 = base64.b64encode(b).decode("utf-8")
-    return f"data:{mime};base64,{b64}"
 
 
 def _kind_for_ext(ext: str) -> str:

@@ -112,7 +112,6 @@ class DingTalkNeo4jImporter:
                         f.confidence_read = $confidence_read,
                         f.category_confidence = $category_confidence,
                         f.category_evidence = $category_evidence,
-                        f.open_url = $open_url,
                         f.space_id = $space_id,
                         f.created_at = datetime($now)
                     ON MATCH SET 
@@ -126,7 +125,6 @@ class DingTalkNeo4jImporter:
                         f.confidence_read = $confidence_read,
                         f.category_confidence = $category_confidence,
                         f.category_evidence = $category_evidence,
-                        f.open_url = $open_url,
                         f.space_id = $space_id,
                         f.updated_at = datetime($now)
                     MERGE (l2)-[:CONTAINS_FILE]->(f)
@@ -143,7 +141,6 @@ class DingTalkNeo4jImporter:
                     "confidence_read": capsule.get('confidence_read', 0.0),
                     "category_confidence": file_result.get('category_confidence', 0.0),
                     "category_evidence": file_result.get('category_evidence', ''),
-                    "open_url": file_result.get('open_url', ''),
                     "space_id": "24834926306",
                     "now": datetime.utcnow().isoformat()
                 })

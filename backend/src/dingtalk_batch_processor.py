@@ -32,7 +32,6 @@ class FileProcessResult:
     category_l2: Optional[str] = None
     category_confidence: Optional[float] = None  # 分类置信度
     category_evidence: Optional[str] = None  # 分类证据
-    open_url: Optional[str] = None  # 钉盘预览链接
     error: Optional[str] = None
     processing_time: float = 0.0
 
@@ -173,11 +172,6 @@ class DingTalkBatchProcessor:
                 )
                 
                 result.capsule = capsule
-                
-                # 获取钉盘预览链接
-                print(f"  获取预览链接...")
-                open_url = self.downloader.get_open_url(file_id, open_type='PREVIEW')
-                result.open_url = open_url
                 
                 # 使用 LLM 分类
                 print(f"  智能分类...")

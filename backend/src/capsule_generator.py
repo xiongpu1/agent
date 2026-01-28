@@ -44,7 +44,7 @@ class CapsuleGenerator:
         vision_model: Optional[str] = None,
         text_model: Optional[str] = None,
         max_chars: int = 4000,
-        max_image_bytes: int = 6_000_000,
+        max_image_bytes: int = 20_000_000,  # 提高到 20MB，会自动压缩
         pdf_max_pages: int = 3,
         pdf_lang: str = "chi_sim+eng",
         excel_nrows: int = 20

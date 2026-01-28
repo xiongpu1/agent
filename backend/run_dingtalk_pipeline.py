@@ -358,28 +358,57 @@ class DingTalkPipeline:
         }
     
     def _save_results(self, results: List, skipped_files: List):
-        """保存处理结果"""
+        """保存处理结果（合并已有数据）"""
         from dataclasses import asdict
         
-        # 保存处理结果
+        # 加载已有的结果
+        existing_results = []
+        if self.processing_results_path.exists():
+            try:
+                with open(self.processing_results_path, 'r', encoding='utf-8') as f:
+                    existing_data = json.load(f)
+                    existing_results = existing_data.get('results', [])
+            except:
+                pass
+        
+        # 合并结果：用新结果更新已有结果
+        file_id_to_result = {r['file_id']: r for r in existing_results}
+        for r in results:
+            file_id_to_result[r.file_id] = asdict(r)
+        
+        # 转换为列表
+        all_results = list(file_id_to_result.values())
+        
+        # 保存合并后的结果
         results_data = {
-            "total": len(results),
-            "success": sum(1 for r in results if r.status == 'success'),
-            "failed": sum(1 for r in results if r.status == 'failed'),
-            "skipped": sum(1 for r in results if r.status == 'skipped'),
+            "total": len(all_results),
+            "success": sum(1 for r in all_results if r.get('status') == 'success'),
+            "failed": sum(1 for r in all_results if r.get('status') == 'failed'),
+            "skipped": sum(1 for r in all_results if r.get('status') == 'skipped'),
             "last_update": datetime.utcnow().isoformat(),
-            "results": [asdict(r) for r in results]
+            "results": all_results
         }
         
         with open(self.processing_results_path, 'w', encoding='utf-8') as f:
             json.dump(results_data, f, ensure_ascii=False, indent=2)
         
-        # 保存跳过的文件
+        # 保存跳过的文件（追加模式）
         if skipped_files:
+            existing_skipped = []
+            if self.skipped_files_path.exists():
+                try:
+                    with open(self.skipped_files_path, 'r', encoding='utf-8') as f:
+                        existing_skipped_data = json.load(f)
+                        existing_skipped = existing_skipped_data.get('files', [])
+                except:
+                    pass
+            
+            all_skipped = existing_skipped + skipped_files
+            
             skipped_data = {
-                "total": len(skipped_files),
+                "total": len(all_skipped),
                 "last_update": datetime.utcnow().isoformat(),
-                "files": skipped_files
+                "files": all_skipped
             }
             
             with open(self.skipped_files_path, 'w', encoding='utf-8') as f:

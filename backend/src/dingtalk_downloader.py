@@ -37,16 +37,13 @@ class DingTalkDownloader:
         if not self.app_key or not self.app_secret:
             raise ValueError("未配置钉钉应用凭证 (DINGTALK_CLIENT_ID, DINGTALK_CLIENT_SECRET)")
     
-    def get_access_token(self) -> Optional[str]:
+    def refresh_access_token(self) -> Optional[str]:
         """
-        获取钉钉 access_token
+        强制刷新 access_token（不使用缓存）
         
         Returns:
-            access_token 或 None
+            新的 access_token 或 None
         """
-        if self.access_token:
-            return self.access_token
-        
         url = f"https://oapi.dingtalk.com/gettoken?appkey={self.app_key}&appsecret={self.app_secret}"
         
         try:
@@ -55,6 +52,7 @@ class DingTalkDownloader:
                 
             if data.get('errcode') == 0:
                 self.access_token = data.get('access_token')
+                print(f"✓ 已刷新 access_token")
                 return self.access_token
             else:
                 print(f"获取 access_token 失败: {data}")
@@ -62,6 +60,21 @@ class DingTalkDownloader:
         except Exception as e:
             print(f"获取 access_token 异常: {e}")
             return None
+    
+    def get_access_token(self, force_refresh: bool = False) -> Optional[str]:
+        """
+        获取钉钉 access_token
+        
+        Args:
+            force_refresh: 是否强制刷新 token
+        
+        Returns:
+            access_token 或 None
+        """
+        if force_refresh or not self.access_token:
+            return self.refresh_access_token()
+        
+        return self.access_token
     
     def get_union_id(self) -> Optional[str]:
         """
@@ -81,12 +94,13 @@ class DingTalkDownloader:
         print("警告: 未设置 DINGTALK_TEST_UNION_ID，无法下载文件")
         return None
     
-    def get_download_info(self, file_id: str) -> Optional[Dict[str, Any]]:
+    def get_download_info(self, file_id: str, retry_on_auth_error: bool = True) -> Optional[Dict[str, Any]]:
         """
         获取文件下载信息
         
         Args:
             file_id: 文件ID
+            retry_on_auth_error: 认证失败时是否自动重试
             
         Returns:
             下载信息字典 或 None
@@ -121,19 +135,33 @@ class DingTalkDownloader:
                 return result
         except urllib.error.HTTPError as e:
             error_body = e.read().decode('utf-8', errors='replace')
+            
+            # 检查是否是认证错误
+            if e.code == 400 and retry_on_auth_error:
+                try:
+                    error_data = json.loads(error_body)
+                    if error_data.get('code') == 'InvalidAuthentication':
+                        print(f"⚠️ access_token 已过期，正在刷新...")
+                        # 刷新 token 并重试
+                        if self.get_access_token(force_refresh=True):
+                            return self.get_download_info(file_id, retry_on_auth_error=False)
+                except:
+                    pass
+            
             print(f"获取下载信息失败 (HTTP {e.code}): {error_body}")
             return None
         except Exception as e:
             print(f"获取下载信息异常: {e}")
             return None
     
-    def get_open_url(self, file_id: str, open_type: str = 'PREVIEW') -> Optional[str]:
+    def get_open_url(self, file_id: str, open_type: str = 'PREVIEW', retry_on_auth_error: bool = True) -> Optional[str]:
         """
         获取文件预览/编辑链接
         
         Args:
             file_id: 文件ID
             open_type: 打开类型，'PREVIEW' 或 'EDIT'
+            retry_on_auth_error: 认证失败时是否自动重试
             
         Returns:
             文件链接 或 None
@@ -158,7 +186,7 @@ class DingTalkDownloader:
                 "version": 1,
                 "type": open_type,
                 "waterMark": True,
-                "checkLogin": True
+                "checkLogin": False  # 改为 False，允许无需登录访问
             }
         }
         
@@ -170,11 +198,55 @@ class DingTalkDownloader:
                 return result.get('url')
         except urllib.error.HTTPError as e:
             error_body = e.read().decode('utf-8', errors='replace')
+            
+            # 检查是否是认证错误
+            if e.code == 400 and retry_on_auth_error:
+                try:
+                    error_data = json.loads(error_body)
+                    if error_data.get('code') == 'InvalidAuthentication':
+                        print(f"⚠️ access_token 已过期，正在刷新...")
+                        # 刷新 token 并重试
+                        if self.get_access_token(force_refresh=True):
+                            return self.get_open_url(file_id, open_type, retry_on_auth_error=False)
+                except:
+                    pass
+            
             print(f"获取文件链接失败 (HTTP {e.code}): {error_body}")
             return None
         except Exception as e:
             print(f"获取文件链接异常: {e}")
             return None
+    
+    def get_download_url(self, file_id: str, expire_seconds: int = 3600) -> Optional[str]:
+        """
+        获取文件临时下载链接（有效期内可直接访问）
+        
+        Args:
+            file_id: 文件ID
+            expire_seconds: 链接有效期（秒），默认 1 小时
+            
+        Returns:
+            下载链接 或 None
+        """
+        download_info = self.get_download_info(file_id)
+        if not download_info:
+            return None
+        
+        protocol = download_info.get('protocol')
+        
+        if protocol != 'HEADER_SIGNATURE':
+            print(f"不支持的协议类型: {protocol}")
+            return None
+        
+        header_info = download_info.get('headerSignatureInfo', {})
+        resource_urls = header_info.get('resourceUrls', [])
+        
+        if not resource_urls:
+            print("未找到下载URL")
+            return None
+        
+        # 返回第一个下载URL（这是带签名的临时链接）
+        return resource_urls[0]
     
     def download_file_to_bytes(self, file_id: str) -> Optional[bytes]:
         """
